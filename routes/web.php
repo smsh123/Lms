@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/cms', function () {
-    return view('cms.dashboard');
+ /* All front Url */
+ Route::get('/', 'HomeController@index'); 
+/* All cms routes */
+Route::prefix('cms')->namespace('Cms')->group(function () {
+    Route::get('/', 'DashboardController@index'); 
 });
 Route::get('/cms/courses/index', function () {
     return view('cms.courses.index');
@@ -34,5 +34,5 @@ Route::get('/cms/courses/delete', function () {
 Route::get('/cms/courses/view', function () {
     return view('cms.courses.add');
 });
-// Route::get('/cms', 'AdminController@index'); 
-// Route::get('/cms/courses/index', 'AdminController@courses'); 
+
+

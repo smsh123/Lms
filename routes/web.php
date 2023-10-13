@@ -14,25 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
  /* All front Url */
- Route::get('/', 'HomeController@index'); 
+Route::get('/', 'HomeController@index'); 
+Route::get('/cms', 'DashboardController@index');
+Route::get('/cms/courses', 'DashboardController@courses'); 
+Route::get('/cms/courses/add', 'DashboardController@courseCreate');
+Route::get('/cms/courses/edit', 'DashboardController@courseEdit'); 
+Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
+Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
 /* All cms routes */
-Route::prefix('cms')->namespace('Cms')->group(function () {
-    Route::get('/', 'DashboardController@index'); 
-});
-Route::get('/cms/courses/index', function () {
-    return view('cms.courses.index');
-});
-Route::get('/cms/courses/add', function () {
-    return view('cms.courses.add');
-});
-Route::get('/cms/courses/edit', function () {
-    return view('cms.courses.add');
-});
-Route::get('/cms/courses/delete', function () {
-    return view('cms.courses.add');
-});
-Route::get('/cms/courses/view', function () {
-    return view('cms.courses.add');
-});
+// Route::prefix('cms')->namespace('Cms')->group(function () {
+//     Route::get('/', 'DashboardController@index'); 
+//     Route::get('/courses', 'DashboardController@courses'); 
+//     Route::get('/courses/add', 'DashboardController@courseCreate');
+//     Route::get('/courses/edit', 'DashboardController@courseEdit'); 
+//     Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
+//     Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
+// });
 
 

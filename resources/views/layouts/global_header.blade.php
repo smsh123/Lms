@@ -35,7 +35,7 @@
             </li>
           </ul>
             <form class="form-inline my-2 my-lg-0">
-              <button class="btn bg-transparent text-white mx-2 my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+              <button class="btn bg-transparent text-dark mx-2 my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
               <button class="btn btn-theme-contrast my-2 mx-2 my-sm-0" type="submit">Buy A Course</button>
                <button class="btn bg-transparent text-theme-contrast my-2 my-sm-0" type="submit">Login</button>
             </form>

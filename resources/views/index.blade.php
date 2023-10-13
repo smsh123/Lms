@@ -1,8 +1,10 @@
-@extends('cms.layouts.master')
+@extends('layouts.front')
 @section('body')
   @include('layouts.global_header')
-    <div class="container-fluid">
-        <h1>Welcome to AryaBhatt Classes</h1>
-    </div>
+  <div class="theme-contrast-gradient-container min-vh-100">
+      <div class="container-fluid">
+      
+      </div>
+  </div>
 @stop
 

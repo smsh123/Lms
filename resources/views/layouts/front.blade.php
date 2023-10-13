@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <style>
     body{
         font-family:'Inter', sans-serif;
@@ -51,6 +53,63 @@
         color:#566dc1;
       }
     </style>
+     <style>
+
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+
+    @media only screen and (min-width: 769px) {
+      .swiper-slide:first-child {
+        transition: transform 100ms;
+      }
+
+      .swiper-slide:first-child img {
+        transition: box-shadow 500ms;
+      }
+
+      .swiper-slide.swiper-slide-active:first-child {
+        transform: translateX(50%);
+        z-index: 2;
+      }
+
+      .swiper-slide.swiper-slide-active:first-child img {
+        box-shadow: 0px 32px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      .swiper-slide:nth-child(2) {
+        transition: transform 100ms;
+      }
+
+      .swiper-slide.swiper-slide-next:nth-child(2) {
+        transform: translateX(55%);
+        z-index: 1;
+      }
+
+      .swiper[dir="rtl"] .swiper-slide.swiper-slide-active:first-child {
+        transform: translateX(-50%);
+      }
+
+      .swiper[dir="rtl"] .swiper-slide.swiper-slide-next:nth-child(2) {
+        transform: translateX(-55%);
+      }
+    }
+  </style>
   </head>
   <body>
     @yield('body')
@@ -59,5 +118,40 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        <script>
+          var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            centeredSlides: false,
+            slidesPerGroupSkip: 1,
+            grabCursor: true,
+            keyboard: {
+              enabled: true,
+            },
+            breakpoints: {
+              769: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+              },
+              950: {
+                slidesPerView: 2.5,
+                slidesPerGroup: 2,
+              },
+            },
+            scrollbar: {
+              el: ".swiper-scrollbar",
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+          });
+        </script>
+    </script>
   </body>
 </html>

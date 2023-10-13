@@ -52,64 +52,35 @@
       .text-theme-contrast{
         color:#566dc1;
       }
+      .banner-section{
+        height:450px;
+        width:90%;
+      }
     </style>
      <style>
-
-
-    .swiper {
+       .swiper {
       width: 100%;
       height: 100%;
     }
 
     .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      position: relative;
+      align-items: center;
+      border-radius:25px;
     }
 
     .swiper-slide img {
       display: block;
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius:20px;
     }
-
-    @media only screen and (min-width: 769px) {
-      .swiper-slide:first-child {
-        transition: transform 100ms;
-      }
-
-      .swiper-slide:first-child img {
-        transition: box-shadow 500ms;
-      }
-
-      .swiper-slide.swiper-slide-active:first-child {
-        transform: translateX(50%);
-        z-index: 2;
-      }
-
-      .swiper-slide.swiper-slide-active:first-child img {
-        box-shadow: 0px 32px 80px rgba(0, 0, 0, 0.35);
-      }
-
-      .swiper-slide:nth-child(2) {
-        transition: transform 100ms;
-      }
-
-      .swiper-slide.swiper-slide-next:nth-child(2) {
-        transform: translateX(55%);
-        z-index: 1;
-      }
-
-      .swiper[dir="rtl"] .swiper-slide.swiper-slide-active:first-child {
-        transform: translateX(-50%);
-      }
-
-      .swiper[dir="rtl"] .swiper-slide.swiper-slide-next:nth-child(2) {
-        transform: translateX(-55%);
-      }
-    }
-  </style>
+    </style>
   </head>
   <body>
     @yield('body')
@@ -120,11 +91,10 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        <script>
           var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
+            spaceBetween: 10,
             centeredSlides: false,
-            slidesPerGroupSkip: 1,
             grabCursor: true,
             keyboard: {
               enabled: true,
@@ -132,11 +102,11 @@
             breakpoints: {
               769: {
                 slidesPerView: 2,
-                slidesPerGroup: 2,
+                spaceBetween: 20,
               },
               950: {
                 slidesPerView: 2.5,
-                slidesPerGroup: 2,
+                spaceBetween: 40,
               },
             },
             scrollbar: {
@@ -152,6 +122,5 @@
             },
           });
         </script>
-    </script>
   </body>
 </html>

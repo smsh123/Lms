@@ -7,6 +7,8 @@
   @include('layouts.success_stories')
   @include('layouts.study_materials')
   @include('layouts.mentors')
+  @include('layouts.story_slider')
+  @include('layouts.testimonial')
   @include('layouts.footer')
 @stop
 

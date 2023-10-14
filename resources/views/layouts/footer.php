@@ -5,7 +5,7 @@
         <div class="icon-250">
             <div class="ratio-image image_16-9 bg-transparent">
               <a class="navbar-brand" href="#">
-                <img src="/assets/image/logo.png" class="brand-logo" alt="AryaBhat Classes" />
+                <img src="/assets/image/logo-light.png" class="brand-logo" alt="AryaBhat Classes" />
               </a>
             </div>
         </div>

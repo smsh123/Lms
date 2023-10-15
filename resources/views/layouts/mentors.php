@@ -16,7 +16,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap justify-content-lg-start justify-content-center">
                   <div class="align-self-start px-3">
                     <div class="icon-150 mt-n5">
                       <div class="ratio-image image_1-1 rounded-circle border border-white">
@@ -24,7 +24,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex-fill p-3 align-self-middle text-left">
+                  <div class="flex-fill p-3 align-self-middle text-center text-lg-left">
                     <p class="mb-0">Ansuman Maharajan</p>
                     <p class="mb-0"><i class="bi bi-briefcase font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">Faculty Mathemetics</span></p>
                     <p class="mb-0"><i class="bi bi-mortarboard font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">PHD Mathemetics</span></p>
@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap justify-content-lg-start justify-content-center">
                   <div class="align-self-start px-3">
                     <div class="icon-150 mt-n5">
                       <div class="ratio-image image_1-1 rounded-circle border border-white">
@@ -71,7 +71,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex-fill p-3 align-self-middle text-left">
+                  <div class="flex-fill p-3 align-self-middle text-center text-lg-left">
                     <p class="mb-0">Alisha Desuja</p>
                     <p class="mb-0"><i class="bi bi-briefcase font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">Faculty Physics</span></p>
                     <p class="mb-0"><i class="bi bi-mortarboard font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">Masters in Physics</span></p>
@@ -110,7 +110,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap justify-content-lg-start justify-content-center">
                   <div class="align-self-start px-3">
                     <div class="icon-150 mt-n5">
                       <div class="ratio-image image_1-1 rounded-circle border border-white">
@@ -118,7 +118,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex-fill p-3 align-self-middle text-left">
+                  <div class="flex-fill p-3 align-self-middle text-center text-lg-left">
                     <p class="mb-0">Sanvi Singh</p>
                     <p class="mb-0"><i class="bi bi-briefcase font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">Faculty History</span></p>
                     <p class="mb-0"><i class="bi bi-mortarboard font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">Bachelors in History</span></p>

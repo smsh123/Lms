@@ -9,10 +9,14 @@
     }
     body{
         font-family: var(--safalta_font);
+        padding:0px 15px;
     }
     .footer{
         padding-top:250px !important; padding-top:250px;
     }
+    .video-card{position:relative;}.video-play-icon-overlay{width:44px; height:44px; top:50%; left:50%; margin-top:-22px; margin-left:-22px; position:absolute;}
+    .image-profile-cover{width:100% !important; aspect-ratio:auto 320/80; position:relative; overflow:hidden; background-color:var(--theme_color);}
+    .btn-play{position:absolute; background-image:url(https://spiderimg1.safalta.com/assets/images/safalta.com/2022/03/10/vid-play_6229fd1bf19fc.png); background-size:100%; background-position: center; height:48px; width:48px; overflow:hidden; top:50%; left:50%; margin-top:-24px; margin-left:-24px; }
     .theme-gradient-container{
     background-image: linear-gradient(to right, #ffffff00 , var(--theme_color))
     }

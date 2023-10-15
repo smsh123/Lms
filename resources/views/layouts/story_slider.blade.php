@@ -14,12 +14,21 @@
               </div>
             </div>
             <div class="card-body">
-              <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration </h3>
-              <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                <span class="text-dark ml-1 font-12">48%</span>
-              </p>
-              <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+              <div class="d-flex flex-nowrap">
+                <div class="align-self-center p-3">
+                  <div class="icon-48">
+                    <div class="ratio-image image_1-1 rounded-circle">
+                      <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-fill p-3 align-self-center text-left">
+                  <p class="mb-0">Nikesh Bhardwaj</p>
+                  <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                </div>
+              </div>
+              <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+              <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
             </div>
           </div>
         </div>
@@ -31,12 +40,21 @@
                 </div>
               </div>
               <div class="card-body">
-                <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration with complete batch start details </h3>
-                <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                  <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                  <span class="text-dark ml-1 font-12">48%</span>
-                </p>
-                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+                <div class="d-flex flex-nowrap">
+                  <div class="align-self-center p-3">
+                    <div class="icon-48">
+                      <div class="ratio-image image_1-1 rounded-circle">
+                        <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-fill p-3 align-self-center text-left">
+                    <p class="mb-0">Nikesh Bhardwaj</p>
+                    <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                  </div>
+                </div>
+                <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
               </div>
             </div>
         </div>
@@ -48,12 +66,21 @@
                 </div>
               </div>
               <div class="card-body">
-                <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration with complete batch start details </h3>
-                <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                  <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                  <span class="text-dark ml-1 font-12">48%</span>
-                </p>
-                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+                <div class="d-flex flex-nowrap">
+                  <div class="align-self-center p-3">
+                    <div class="icon-48">
+                      <div class="ratio-image image_1-1 rounded-circle">
+                        <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-fill p-3 align-self-center text-left">
+                    <p class="mb-0">Nikesh Bhardwaj</p>
+                    <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                  </div>
+                </div>
+                <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
               </div>
             </div>
         </div>
@@ -65,12 +92,21 @@
               </div>
             </div>
             <div class="card-body">
-              <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration </h3>
-              <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                <span class="text-dark ml-1 font-12">48%</span>
-              </p>
-              <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+              <div class="d-flex flex-nowrap">
+                <div class="align-self-center p-3">
+                  <div class="icon-48">
+                    <div class="ratio-image image_1-1 rounded-circle">
+                      <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-fill p-3 align-self-center text-left">
+                  <p class="mb-0">Nikesh Bhardwaj</p>
+                  <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                </div>
+              </div>
+              <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+              <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
             </div>
           </div>
         </div>
@@ -82,12 +118,21 @@
                 </div>
               </div>
               <div class="card-body">
-                <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration with complete batch start details </h3>
-                <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                  <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                  <span class="text-dark ml-1 font-12">48%</span>
-                </p>
-                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+                <div class="d-flex flex-nowrap">
+                  <div class="align-self-center p-3">
+                    <div class="icon-48">
+                      <div class="ratio-image image_1-1 rounded-circle">
+                        <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-fill p-3 align-self-center text-left">
+                    <p class="mb-0">Nikesh Bhardwaj</p>
+                    <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                  </div>
+                </div>
+                <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
               </div>
             </div>
         </div>
@@ -99,12 +144,21 @@
                 </div>
               </div>
               <div class="card-body">
-                <h3 class="font-22 font-weight-bold">Blog Article Complete with Duration with complete batch start details </h3>
-                <p class="font-16 mt-2 mb-2 text-success font-weight-bold">₹ 64999
-                  <del class="text-danger font-12 font-weight-normal">₹ 125000</del>
-                  <span class="text-dark ml-1 font-12">48%</span>
-                </p>
-                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme">Buy Now</a></p>
+                <div class="d-flex flex-nowrap">
+                  <div class="align-self-center p-3">
+                    <div class="icon-48">
+                      <div class="ratio-image image_1-1 rounded-circle">
+                        <img src="https://img.freepik.com/premium-photo/young-man-is-holding-book-smiling_905085-17.jpg" alt="author_image" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-fill p-3 align-self-center text-left">
+                    <p class="mb-0">Nikesh Bhardwaj</p>
+                    <p class="text-muted mb-0"><i class="bi bi-calendar font-22 align-middle text-theme"></i><span class="align-center mx-2 font-14">12 Oct 2023</span></p>
+                  </div>
+                </div>
+                <h3 class="font-22">Blog Article Complete with Duration with complete batch start details </h3>
+                <p class="mb-0"><a href="#" class="stretched-link btn btn-theme-contrast">Read More</a></p>
               </div>
             </div>
         </div>

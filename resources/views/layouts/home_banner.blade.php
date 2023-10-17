@@ -5,7 +5,7 @@
           <div class="main-msg">
               <h1 class="text-uppercase font-weight-bold">Smart Learning</h1>
               <p>Learn from industry smart teachers. We value your study and time. Our vision to provide smart learning experience to students.</p>
-              <p><a href="#" class="btn btn-theme-contrast">Start Smart Learning</a></p>
+              <p><a href="javascript:void(0)" class="btn btn-theme-contrast" onclick="openLoginWindow()">Start Smart Learning</a></p>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 align-self-end">

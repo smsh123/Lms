@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
      <link rel="stylesheet" href="/assets/css/app.css" />
+     <script src="https://accounts.google.com/gsi/client" async></script>
      <style>
        .swiper {
       width: 100%;

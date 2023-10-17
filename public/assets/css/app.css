@@ -9,7 +9,7 @@
     }
     body{
         font-family: var(--safalta_font);
-        padding:0px 15px;
+        /* padding:0px 15px; */
     }
     .footer{
         padding-top:250px !important; padding-top:250px;
@@ -103,6 +103,55 @@
     height:auto;
     width:90%;
     }
+    .screen_fed{
+        position:fixed;
+        top:0px;
+        right:0px;
+        left:0px;
+        bottom:0px;
+        z-index:1030;
+        display:none;
+        transition:all 0.5s;
+        background-color:black;
+        opacity:0.6;
+      }
+      .login_window{
+        z-index: 1040;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        width:100%;
+        max-width:450px;
+        transition:all 0.5s;
+        border-radius:25px 0px 0px 0px;
+      }
+      .login_window .card{
+        border-radius:25px 0px 0px 0px;
+      }
+      .login_window.opened{
+        right: 0;
+        transition:all 0.5s;
+      }
     @media only screen and (max-width: 768px) {
     .font-32{font-size:24px !important;} .font-22 {font-size:18px !important;}.font-16d-18m{font-size:18px !important; }
+    .login_window{
+        top: auto;
+        right: 0;
+        left: 0;
+        bottom:-100%;
+        width:100%;
+        max-width:768px;
+        border-radius:25px;
+     }
+     .login_window.opened{
+        right: auto;
+        bottom:0px;
+        transition:all 0.5s;
+      }
+      .login_window .card{
+        border-radius:25px 25px 0px 0px;
+      }
+      .login_window_footer{
+        display:none!important;
+      }
     }

@@ -33,131 +33,28 @@
             <th>Title</th>
             <th>Slug</th>
             <th>Created Date</th>
-            <th>Created By</th>
+            {{-- <th>Created By</th> --}}
             <th>Modified Date</th>
-            <th>Modified By</th>
-            <th>Action</th>
+            {{-- <th>Modified By</th> --}}
+            {{-- <th>Action</th> --}}
           </tr>
       </thead>
       <tbody>
-          <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-           <tr>
-            <td>Classical Musical Course Batch 1</td>
-            <td>classical-musical-course-batch-1</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td>11-10-2023:12:50PM</td>
-            <td>vivek@aryabhattclasses.com</td>
-            <td class="text-nowrap">
-              <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-              <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-              <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-            </td>
-          </tr>
-          
+        @foreach ($courses as $course)
+        <tr>
+          <td>{{$course->name}}</td>
+          <td>{{$course->slug}}</td>
+          <td>{{$course->created_at}}</td>
+          {{-- <td>vivek@aryabhattclasses.com</td> --}}
+          <td>{{$course->updated_at}}</td>
+          {{-- <td>vivek@aryabhattclasses.com</td> --}}
+          {{-- <td class="text-nowrap">
+            <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
+            <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+          </td> --}}
+        </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

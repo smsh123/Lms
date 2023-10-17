@@ -13,16 +13,25 @@
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Name</label>
           <input type="text" class="form-control" name="name" placeholder="Course Name" />
+          @if ($errors->has('name'))
+            <p class="text-danger">{{ $errors->first('name') }}</p>
+          @endif
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Course Name Hindi</label>
           <input type="text" class="form-control" name="name_hn" placeholder="Course Name Hindi" />
+          @if ($errors->has('name_hn'))
+          <p class="text-danger">{{ $errors->first('name_hn') }}</p>
+        @endif
         </div>
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="course-slug"  />
+          <input type="text" class="form-control" name="slug" placeholder="course slug"  />
+          @if ($errors->has('slug'))
+          <p class="text-danger">{{ $errors->first('slug') }}</p>
+        @endif
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Batch Start Date</label>
@@ -48,6 +57,9 @@
         <div class="col-lg-12">
           <label class="font-weight-bold">Course Description</label>
           <textarea class="form-control txteditor" rows="6" placeholder="Course Description ..." name="description"></textarea>
+          @if ($errors->has('description'))
+          <p class="text-danger">{{ $errors->first('description') }}</p>
+        @endif
         </div>
       </div>
       <div class="row form-group">
@@ -62,10 +74,16 @@
           <div class="col-lg-6">
             <label class="font-weight-bold">Original Price (&#8377;)</label>
             <input type="number" class="form-control" placeholder="Original Price"  name="original_price"/>
+            @if ($errors->has('original_price'))
+          <p class="text-danger">{{ $errors->first('original_price') }}</p>
+        @endif
           </div>
           <div class="col-lg-6">
               <label class="font-weight-bold">Selling Price (&#8377;)</label>
               <input type="number" class="form-control" placeholder="Selling Price" name="selling_price"  />
+              @if ($errors->has('selling_price'))
+          <p class="text-danger">{{ $errors->first('selling_price') }}</p>
+        @endif
           </div>
         </div>
         <div class="row form-group">

@@ -88,10 +88,20 @@
     background-color: var(--theme_color);
     border-color: var(--theme_color);
     }
+    .btn-theme:hover, .btn-theme:focus{
+        color: var(--theme_color);
+        background-color: #fff;
+        border-color: var(--theme_color);
+    }
     .btn-theme-contrast{
-    color: #fff;
-    background-color: var(--theme_contrast_color);
-    border-color: var(--theme_contrast_color);
+        color: #fff;
+        background-color: var(--theme_contrast_color);
+        border-color: var(--theme_contrast_color);
+    }
+    .btn-theme-contrast:hover,.btn-theme-contrast:focus{
+        color: var(--theme_contrast_color);
+        background-color: #fff;
+        border-color: var(--theme_contrast_color);
     }
     .text-theme{
     color:#46ceb3;

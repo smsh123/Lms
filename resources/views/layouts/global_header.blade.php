@@ -37,9 +37,71 @@
             <form class="form-inline my-2 my-lg-0">
               <button class="btn bg-transparent text-dark mx-2 my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
               <button class="btn btn-theme-contrast my-2 mx-2 my-sm-0" type="submit">Buy A Course</button>
-               <button class="btn bg-transparent text-theme-contrast my-2 my-sm-0" type="submit">Login</button>
+              <a href="javascript:void(0)" class="btn bg-transparent text-theme-contrast my-2 my-sm-0" type="submit" onclick="openLoginWindow()">Login</a>
             </form>
         </div>
     </nav>
   </div>
+</div>
+<style>
+  .screen_fed{
+    position:fixed;
+    top:0px;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    z-index:1030;
+    display:none;
+    transition:all 0.5s;
+    background-color:black;
+    opacity:0.6;
+  }
+  .login_window{
+    z-index: 1040;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width:100%;
+    max-width:450px;
+    transition:all 0.5s;
+  }
+  .login_window.opened{
+    z-index: 1040;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width:100%;
+    max-width:450px;
+    transition:all 0.5s;
+  }
+</style>
+<div class="screen_fed"></div>
+<div class="login_window mx-auto min-vh-100 position-fixed bg-white zindex-fixed">
+    <div class="card border-0">
+      <div class="card-header bg-transparent text-right border-0">
+        <a href="javascript:void(0)" title="close me" onclick="closeLoginWindow()">
+          <i class="bi bi-x-circle font-22 text-dark"></i>
+        </a>
+      </div>
+      <div class="card-body">
+        <div class="icon-250 mx-auto my-3">
+          <div class="ratio-image image_16-9 bg-transparent">
+            <img src="/assets/image/logo.png" alt="Aryabhatt Classes" />
+          </div>
+        </div>
+        <h3 class="font-22 text-uppercase text-center"><span class="align-middle">Start</span> <span class="text-theme align-middle mx-1 font-weight-bold">Smart</span><span class="text-theme-contrast align-middle mx-1">Learning</span></h3>
+        <form class="my-5 mx-auto">
+          <div class="form-group">
+            <input type="text" class="form-control font-22" placeholder="Mobile/Email/Username" />
+          </div>
+           <div class="form-group">
+            <input type="password" class="form-control font-22" placeholder="Password" />
+          </div>
+          <div class="form-group text-center">
+            <button class="btn btn-primary w-100 mw-450 mx-auto rounded-pill font-22"><span class="align-middle">Proceed</span><i class="bi bi-arrow-right-circle-fill align-middle mx-2"></i></button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer border-0 theme-contrast-gradient-container position-relative pt-5 wave_border_top_white footer"></div>
+    </div>
 </div>

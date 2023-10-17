@@ -185,5 +185,19 @@
         })
       });
     </script>
+    <script>
+      function openLoginWindow(){
+        $(".login_window").addClass("opened");
+        $(".screen_fed").show();
+        $('body').css("overflow","hidden");
+        return false;
+      }
+      function closeLoginWindow(){
+        $(".login_window").removeClass("opened");
+        $(".screen_fed").hide();
+        $('body').css("overflow","auto");
+        return false;
+      }
+    </script>
   </body>
 </html>

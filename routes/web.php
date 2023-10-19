@@ -29,7 +29,7 @@ Route::post('reset_password_without_token', 'AuthController@validatePasswordRequ
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
 /* All cms routes */
-Route::prefix('cms')->group(function () {
+Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
     Route::get('/courses', 'CourseController@index')->name('courses.index'); 
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');

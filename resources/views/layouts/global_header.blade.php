@@ -26,9 +26,6 @@
               <a class="nav-link px-3" href="#">Study Materials</a> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3" href="#">BYJU'S Answer</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link px-3" href="#">Scholarship</a>
             </li>
             <li class="nav-item">
@@ -206,3 +203,13 @@
       </div>
     </div>
   @endif
+
+@if (session('error'))
+  <div class="alert alert-danger custom-alert font-weight-bold">
+      {{ session('error') }}
+  </div>
+@elseif (session('msg'))
+  <div class="alert alert-success custom-alert font-weight-bold">
+      {{ session('msg') }}
+  </div>
+@endif

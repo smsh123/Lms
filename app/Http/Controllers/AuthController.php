@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -40,15 +41,13 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('pwd')])) {
            // return response()->json(['message' => 'Login successful', 'user' => Auth::user()]);
-            return redirect('/');
+           return Redirect::to('/')->with('msg', 'Welcome -'.Auth::user()->name);
         }
-
-        return response()->json(['message' => 'Login failed'], 401);
-        return redirect('/');
+        return Redirect::to('/')->with('error', 'Login Failed');
     }
     public function logout(Request $request) {
         Auth::logout();
-        return redirect('/');
+        return Redirect::to('/')->with('msg', 'Log Out Successfully !');
     }
     public function createAvatar($name)
     {

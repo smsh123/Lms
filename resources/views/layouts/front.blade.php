@@ -209,6 +209,15 @@
         $('body').css("overflow","hidden");
         return false;
       }
+      function autoDismissAlerts(){
+        $(document).find(".custom-alert").each(function(){
+          $(this).hide();
+        })
+      }
+      $(document).ready(function(){
+        setTimeout(function(){autoDismissAlerts();},5000);
+        
+      });
     </script>
   </body>
 </html>

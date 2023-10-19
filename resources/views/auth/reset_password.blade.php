@@ -1,7 +1,7 @@
 @extends('layouts.front')
 @section('body')
   @include('layouts.global_header')
-   <div class="theme-contrast-gradient-container min-vh-100 position-relative pt-5 wave_border_bottom_white">
+   <div class="theme-contrast-gradient-container position-relative pt-5 wave_border_bottom_white">
       <div class="card mw-768 mx-auto my-5">
         <div class="card-header bg-transparent">
           Reset Password for <span class="font-weight-bold mx-2">{{ !empty($user_email) ? $user_email : ''}}</span>

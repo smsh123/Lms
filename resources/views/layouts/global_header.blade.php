@@ -215,7 +215,7 @@
   </div>
 @elseif (session('msg_focus'))
   <div class="alert alert-warning alert-fixed alert-dismissible fade show" role="alert">
-    {{ session('msg_focus') }}
+    {!! html_entity_decode(session('msg_focus')) !!}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

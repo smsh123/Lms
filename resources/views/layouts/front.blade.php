@@ -188,15 +188,25 @@
     </script>
     <script>
       function openLoginWindow(){
-        $(".login_window").addClass("opened");
+        $("#login_menu").addClass("opened");
         $(".screen_fed").show();
         $('body').css("overflow","hidden");
         return false;
       }
-      function closeLoginWindow(){
-        $(".login_window").removeClass("opened");
+      function closeSideMenu(){
+        $(".side_menu").removeClass("opened");
         $(".screen_fed").hide();
         $('body').css("overflow","auto");
+        return false;
+      }
+      function activateForm(div_id){
+        $(div_id).siblings('form').hide();
+        $(div_id).show();
+      }
+      function openProfileMenu(){
+        $("#profile_menu").addClass("opened");
+        $(".screen_fed").show();
+        $('body').css("overflow","hidden");
         return false;
       }
     </script>

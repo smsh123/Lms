@@ -15,7 +15,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'mobile',
+        'avatar_image',
+        'password'
+       
     ];
 
     // Additional model code, such as relationships and methods, can be defined here

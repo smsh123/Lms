@@ -22,8 +22,9 @@ Route::get('/cms/courses/edit', 'DashboardController@courseEdit');
 Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
 Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
 // Route::post('/register', 'UserController@register'); 
-Route::get('register', 'AuthController@register');
+Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::get('/logout', 'AuthController@logout');
 /* All cms routes */
 Route::prefix('cms')->group(function () {
     Route::get('/', 'DashboardController@index'); 

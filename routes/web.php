@@ -25,6 +25,9 @@ Route::get('/cms/courses/view', 'DashboardController@courseViewStatus');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
+Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
+Route::post('reset_password_with_token', 'AuthController@resetPassword');
+Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
 /* All cms routes */
 Route::prefix('cms')->group(function () {
     Route::get('/', 'DashboardController@index'); 

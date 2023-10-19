@@ -11,6 +11,7 @@
         font-family: var(--safalta_font);
         /* padding:0px 15px; */
     }
+    .alert-fixed{position:fixed; max-width:100%; top:0px; left:50%; transform:translate(-50%, 0%); transition:all 0.5s ease-in-out;}
     .custom-alert{position:fixed; top:0px; left:50%; transform:translate(-50%, 0%); transition:all 0.5s ease-in-out;}
     .footer{
         padding-top:250px !important; padding-top:250px;

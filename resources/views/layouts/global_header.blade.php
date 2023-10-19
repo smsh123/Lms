@@ -83,7 +83,7 @@
             </div>
           </form>
           <form id="register_form" class="my-5 mx-auto"  style="display:none;" action="/register" method="post">
-          @csrf
+            @csrf
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Your Name" id="reg_name" name="name" />
             </div>
@@ -106,12 +106,13 @@
               </div>
             </div>
           </form>
-          <form id="pw_recovery_form" class="my-5 mx-auto" style="display:none;">
+          <form id="pw_recovery_form" class="my-5 mx-auto" action="/reset_password_without_token" method="POST" style="display:none;">
+            @csrf
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Email / Mobile" />
+              <input type="text" class="form-control" placeholder="Email / Mobile" name="email" />
             </div>
             <div class="form-group text-center">
-              <button class="btn btn-primary w-100 mw-450 mx-auto rounded-pill font-16"><span class="align-middle">Reset Password</span><i class="bi bi-arrow-right-circle-fill align-middle mx-2"></i></button>
+              <button type="submit" class="btn btn-primary w-100 mw-450 mx-auto rounded-pill font-16"><span class="align-middle">Reset Password</span><i class="bi bi-arrow-right-circle-fill align-middle mx-2"></i></button>
             </div>
             <div class="form-group">
               <div class="row">
@@ -211,5 +212,12 @@
 @elseif (session('msg'))
   <div class="alert alert-success custom-alert font-weight-bold">
       {{ session('msg') }}
+  </div>
+@elseif (session('msg_focus'))
+  <div class="alert alert-warning alert-fixed alert-dismissible fade show" role="alert">
+    {{ session('msg_focus') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 @endif

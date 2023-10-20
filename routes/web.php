@@ -28,7 +28,19 @@ Route::get('/logout', 'AuthController@logout');
 Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
-Route::post('cms/users/store', 'UserController@register');
+Route::post('/cms/users/store', 'UserController@register');
+
+
+/* home top navigation router */
+Route::get('/course', 'CourseController@listing');
+Route::get('/blogs', 'BlogController@listing');
+Route::get('/success-stories', 'TestimonialController@listing');
+
+/* all user profile router */
+Route::get('/profile/{userid}', 'ProfileController@profile');
+Route::get('/courses/{userid}', 'ProfileController@courses');
+Route::get('/orders/{userid}', 'ProfileController@orders');
+Route::get('/reports/{userid}', 'ProfileController@reports');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 

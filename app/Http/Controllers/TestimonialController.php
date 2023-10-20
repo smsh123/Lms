@@ -6,16 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
 
-class CourseController extends Controller
+class TestimonialController extends Controller
 {
     //
     public function index(Request $request){
-
-        $courses = Course::all();
-        return view('cms.courses.index')->with('courses',$courses);
-      }
+    
+    }
     public function add(Request $request){
-    return view('cms.courses.add');
+   
     }
     public function store(Request $request)
     {
@@ -51,8 +49,8 @@ class CourseController extends Controller
     }
     public function listing(Request $request){
 
-        $courses = Course::all();
-        return view('course.index')->with('courses',$courses);
+        $testimonials = Course::all();
+        return view('testimonial.index')->with('testimonials',$testimonials);
     }
     
 }

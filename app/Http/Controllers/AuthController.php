@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PasswordResets;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -80,20 +81,28 @@ class AuthController extends Controller
     }
 
     public function validatePasswordRequest(Request $request){
-        $user = DB::table('users')->where('email', '=', $request->email)->first();
+        // $user = DB::table('users')->where('email', '=', $request->email)->first();
+        $users = User::where('email', '=', $request->input('email',''))->first();
         //Check if the user exists
         if (count($user) < 1) {
             return redirect()->back()->with('error','User does not exist');
         }
 
         //Create Password Reset Token
-        DB::table('password_resets')->insert([
-            'email' => $request->email,
-            'token' => Str::random(16),
-            'created_at' => Carbon::now()
+        // DB::table('password_resets')->insert([
+        //     'email' => $request->email,
+        //     'token' => Str::random(16),
+        //     'created_at' => Carbon::now()
+        // ]);
+        PasswordResets::updateOrCreate([
+            'email'   =>$request->input('email',''),
+        ],[
+            'email' => $request->input('email',''),
+                'token' => Str::random(16),
+                'created_at' => Carbon::now() 
         ]);
         //Get the token just created above
-        $tokenData = DB::table('password_resets')->where('email', $request->email)->first();
+        $tokenData = PasswordResets::where('email', $request->input('email',''))->first();
         //dd($tokenData);
 
         if ($this->sendResetEmail($request->email, $tokenData['token'])) {

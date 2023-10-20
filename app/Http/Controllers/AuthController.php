@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Hamcrest\Type\IsObject;
 
 class AuthController extends Controller
 {
@@ -81,9 +82,10 @@ class AuthController extends Controller
     }
 
     public function validatePasswordRequest(Request $request){
-        // $user = DB::table('users')->where('email', '=', $request->email)->first();
-        $users = User::where('email', '=', $request->input('email',''))->first();
+        //$fuser = DB::table('users')->where('email', '=', $request->email)->first();
+        $user = User::where('email','=',$request->email)->first() ->toArray();
         //Check if the user exists
+       // dd($user,$fuser);
         if (count($user) < 1) {
             return redirect()->back()->with('error','User does not exist');
         }
@@ -94,22 +96,24 @@ class AuthController extends Controller
         //     'token' => Str::random(16),
         //     'created_at' => Carbon::now()
         // ]);
-        PasswordResets::updateOrCreate([
-            'email'   =>$request->input('email',''),
-        ],[
-            'email' => $request->input('email',''),
-                'token' => Str::random(16),
-                'created_at' => Carbon::now() 
+        PasswordResets::create([
+            'email' => $request->email,
+            'token' => Str::random(16),
+            'created_at' => Carbon::now() 
         ]);
         //Get the token just created above
-        $tokenData = PasswordResets::where('email', $request->input('email',''))->first();
-        //dd($tokenData);
-
-        if ($this->sendResetEmail($request->email, $tokenData['token'])) {
-            $link = config('base_url') . '/reset/password/'.$tokenData['token'].'?email='.urlencode($request->email);
-            return redirect()->back()->with('msg_focus','A reset link has been sent to your email address.<a href="'.$link.'">Click Here</a>');
-        } else {
-            return redirect()->back()->with('error','A Network Error occurred. Please try again.');
+        $tokenData = PasswordResets::where('email','=',$request->email)->first();
+        //$tokenData = PasswordResets::where('email', $request->email)->first()->toArray();
+       
+        if(!empty($tokenData) || $tokenData == null){
+            if ($this->sendResetEmail($request->email, $tokenData['token'])) {
+                $link = config('base_url') . '/reset/password/'.$tokenData['token'].'?email='.urlencode($request->email);
+                return redirect()->back()->with('msg_focus','A reset link has been sent to your email address.<a href="'.$link.'">Click Here</a>');
+            } else {
+                return redirect()->back()->with('error','A Network Error occurred. Please try again.');
+            }
+        } else{
+            return redirect()->back()->with('error','Token Not Found');
         }
     }
     private function sendResetEmail($email, $token)

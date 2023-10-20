@@ -9,5 +9,9 @@ class PasswordResets extends Eloquent
 
     protected $collection = 'password_resets'; 
 
-    protected $fillable = ['*'];
+    protected $fillable = [
+        'email',
+        'token',
+        'created_at'
+    ];
 }

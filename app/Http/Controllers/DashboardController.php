@@ -25,4 +25,5 @@ class DashboardController extends Controller
   public function courseViewStatus(Request $request){
     return view('cms.courses.add');
   }
+ 
 }

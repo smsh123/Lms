@@ -17,7 +17,7 @@ class CheckInternalUser
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
-            $userType = auth()->user()->type;
+            $userType = auth()->user()->user_type;
                 if ($userType === 'internal') {
                 return $next($request);
             }

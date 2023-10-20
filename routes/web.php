@@ -28,15 +28,15 @@ Route::get('/logout', 'AuthController@logout');
 Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
+Route::post('cms/users/store', 'UserController@register');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
     Route::get('/courses', 'CourseController@index')->name('courses.index'); 
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');
-    Route::get('/courses/edit', 'DashboardController@courseEdit'); 
-    Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
-    Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
+    Route::get('/users', 'UserController@listUsers'); 
+    Route::get('/users/add', 'UserController@addUsers'); 
 });
 
 

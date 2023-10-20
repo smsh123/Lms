@@ -32,11 +32,17 @@ class AuthController extends Controller
         $user->mobile = $request->mobile;
         $user->email = $request->email;
         $user->avatar_image = $userAvatar;
+        $user->user_type = 'external';
         $user->password = bcrypt($request->pwd);
         $user->save();
 
-       // return response()->json(['message' => 'Registration successful', 'user' => $user]);
-        return redirect('/');
+        $user = User::where('email', $request->email)->first();
+        if(!empty($user)){
+            Auth::login($user);
+            return Redirect::to('/')->with('msg', 'Congratulations!'.Auth::user()->name.', Registered Successfully');
+        }
+        // return response()->json(['message' => 'Registration successful', 'user' => $user]);
+        return Redirect::to('/')->with('msg', 'Congratulations! Registered Successfully');
     }
 
     public function login(Request $request)
@@ -59,7 +65,9 @@ class AuthController extends Controller
     public function createAvatar($name)
     {
         $words = explode(' ', $name);
-        $initials = strtoupper(substr($words[0], 0, 1) . substr($words[1], 0, 1));
+       // dd($words,$name);
+        $initials = strtoupper(substr($words[0], 0, 1));
+       
 
         // Define a background color and text color for the avatar
         $bgColor = '#'.substr(md5($name), 0, 6); // Use a unique color based on the name
@@ -70,7 +78,7 @@ class AuthController extends Controller
         $bg = imagecolorallocate($image, hexdec(substr($bgColor, 1, 2)), hexdec(substr($bgColor, 3, 2)), hexdec(substr($bgColor, 5, 2)));
         $text = imagecolorallocate($image, hexdec(substr($textColor, 1, 2)), hexdec(substr($textColor, 3, 2)), hexdec(substr($textColor, 5, 2)));
         imagefill($image, 0, 0, $bg);
-        imagettftext($image, 75, 0, 25, 130, $text, public_path('/assets/fonts/arial.ttf'), $initials);
+        imagettftext($image, 75, 0, 70, 130, $text, public_path('/assets/fonts/arial.ttf'), $initials);
 
         // Save the image to a file
         $name = str_replace(' ', '_', $name);

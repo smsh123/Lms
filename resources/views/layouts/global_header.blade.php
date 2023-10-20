@@ -21,17 +21,6 @@
   ];
 @endphp
 
-<ul class="profile_menu_list mt-5 list-no-style p-0 mx-0">
-  <li class="py-3">
-    <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/profile/{{ !empty(\Auth::user()->id) ? \Auth::user()->id : '' }}">
-        <div class="menu-icon align-self-center">
-          <div class="icon-24 text-theme-contrast"><i class="bi bi-person-badge font-22"></i></div>
-        </div>
-        <div class="flex-fill align-self-center px-3">My Profile</div>
-    </a>
-  </li>
-</ul>
-
 <div class="bg-theme-contrast py-3 px-3">
   <div class="container text-center text-white font-weight-bold">
     <p class="mb-0">

@@ -36,7 +36,7 @@
             {{-- <th>Created By</th> --}}
             <th>Modified Date</th>
             {{-- <th>Modified By</th> --}}
-            {{-- <th>Action</th> --}}
+            <th>Action</th>
           </tr>
       </thead>
       <tbody>
@@ -48,11 +48,11 @@
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td>{{$course->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
-          {{-- <td class="text-nowrap">
+          <td class="text-nowrap">
             <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
+            <a href="/cms/courses/edit/{{$course->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-          </td> --}}
+          </td>
         </tr>
         @endforeach
       </tbody>

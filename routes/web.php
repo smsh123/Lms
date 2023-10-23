@@ -28,6 +28,8 @@ Route::get('/logout', 'AuthController@logout');
 Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
+Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upload');
+Route::post('image-upload','ImageUploadController@imageUploadPost')->name('image.upload.post');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
@@ -36,8 +38,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');
     Route::get('/courses/edit/{id}', 'CourseController@courseEdit')->name('courses.edit'); 
     Route::get('/courses/update', 'CourseController@courseEdit')->name('courses.update'); 
-    Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
-    Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
+    Route::get('/users', 'UserController@listUsers')->name('users.index');
+    Route::get('/users/add', 'UserController@addUsers')->name('users.add');
+    Route::get('/banners', 'BannerController@listBanners')->name('banners.index');
+    Route::get('/banners/add', 'BannerController@addBanners')->name('banners.add');
+    Route::post('/banners/store', 'BannerController@store')->name('banners.store');
 });
 
 

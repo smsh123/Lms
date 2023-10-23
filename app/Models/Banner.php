@@ -3,20 +3,14 @@
 namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-use Jenssegers\Mongodb\Auth\User as Authenticatable;
 
-class Banner extends Authenticatable
+class Banner extends Eloquent
 {
+
     protected $collection = 'banners'; 
 
-    protected $fillable = [
-        'name',
-        'image',
-        'live_from',
-        'live_till',
-        'banner_type'
-       
-    ];
+    protected $fillable = ['*'];
+
 
     // Additional model code, such as relationships and methods, can be defined here
 }

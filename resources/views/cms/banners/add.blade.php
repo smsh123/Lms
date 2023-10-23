@@ -12,7 +12,7 @@
       <div class="row form-group">
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Banner Name</label>
-          <input type="text" class="form-control" name="name" />
+          <input type="text" class="form-control" placeholder="banner_name" name="name" />
         </div>
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Banner Image</label>
@@ -25,7 +25,7 @@
           <input type="date" class="form-control" name="live_from" />
         </div>
         <div class="col-12 col-lg-6">
-          <label class="font-weight-bold">Banner Image</label>
+          <label class="font-weight-bold">Live Till</label>
           <input type="date" class="form-control" name="live_till" />
         </div>
       </div>

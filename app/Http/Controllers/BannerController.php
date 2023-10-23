@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Banner;
-use Illuminate\Support\Facades\Auth;
 
 class BannerController extends Controller
 {
     public function store(Request $request)
     {
-        // return $request->all();
+         //return $request->all();
         $this->validate($request, [
             'name' => 'required',
             'image' => 'required',
@@ -20,11 +20,11 @@ class BannerController extends Controller
         ]);
   
         $banner = new Banner();
-        $banner->name = $request->name;
-        $banner->image = $request->image;
-        $banner->live_from = $request->live_from;
-        $banner->live_till = $request->live_end;
-        $banner->banner_type = $request->banner_type;
+        $banner->name = $request->input('name');
+        $banner->image = $request->input('image');
+        $banner->live_from = $request->input('live_from');
+        $banner->live_till = $request->input('live_till');
+        $banner->banner_type = $request->input('banner_type');
         $banner->save();
         return redirect()->back()->with('msg', 'Banner Added Successfully!');
     }

@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1>Add Course</h1></div>
+    <div class="col-12 col-lg-6"><h1>Edit Course</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/courses/index" class="btn btn-lg btn-secondary">View Courses</a></div>
   </div>
 

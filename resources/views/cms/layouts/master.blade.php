@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href={{asset('/assets/css/app.css')}} />
 
 
     <style>
@@ -100,6 +100,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="/assets/js/dashboard.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+        <script src={{asset('/assets/js/custom.js')}}></script>
         <script>
         if($('.txteditor').length !== 0){
           ClassicEditor
@@ -114,38 +115,7 @@
             $(this).hide();
           })
         }
-        
-        function uploadImage(image1,element){
 
-          //  $('.fullpage_loader').show();
-       
-
-          var form = new FormData();
-          image = $("#inputBanner")[0].files[0];
-        //  image = document.getElementById('inputBanner');
-          form.append("image", image);
-         // var params = {'image' : image,'element' : element};
-          $.ajaxSetup({
-            headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-          $.ajax({
-            url:'/image-upload-post',
-            type: 'POST',
-            method: 'POST',
-            enctype: 'multipart/form-data',
-            data:form,
-            success:function(data) {
-               console.log(data);
-            },
-            error: function (msg) {
-               console.log(msg);
-               var errors = msg.responseJSON;
-            }
-          });
-        //  $('.fullpage_loader').hide();
-        }
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);
         });

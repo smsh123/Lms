@@ -20,7 +20,7 @@
           <div class="input-group upload-image mb-3">
             <input id="inputBanner" type="file" class="form-control" placeholder="Banner Image">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" onclick="uploadImage($('#inputBanner').val(),'form-image')" type="button" id="button-addon2">Button</button>
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputBanner');" type="button" id="button-addon2">Upload</button>
             </div>
           </div>
         </div>

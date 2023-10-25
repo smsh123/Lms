@@ -2,7 +2,7 @@
 @section('body')
   <div class="row my-3">
     <div class="col-12 col-lg-6"><h1>Banners</h1></div>
-    <div class="col-12 col-lg-6 text-right"><a href="/cms/banners/add" class="btn btn-lg btn-secondary">Add Users</a></div>
+    <div class="col-12 col-lg-6 text-right"><a href="/cms/banners/add" class="btn btn-lg btn-secondary">Add Banners</a></div>
   </div>
   <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>

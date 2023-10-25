@@ -29,11 +29,12 @@ class LeadController extends Controller
         $lead->email = $request->input('email');
         $lead->mobile = $request->input('mobile');
         $lead->course_interested = $request->input('course_interested');
+        $lead->synopsis = $request->input('synopsis');
+        $lead->status = $request->input('status');
        
-    
         $lead->save();
     
-        return redirect()->route('cms.lead.index')->with('success', 'Lead created successfully');
+        return redirect()->back()->with('success', 'Lead created successfully');
     }
 
     public function leadEdit(Request $request, $id) {
@@ -45,20 +46,18 @@ class LeadController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'name_hn' => 'required|string|max:255',
-            'description' => 'required|string',
-            'slug'=> 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'mobile' => 'required|numeric|max:10',
+            'course_interested' => 'required|string',
         ]);
         $id = $request->input("id",'');
         $lead = Leads::find($id);
         $lead->name = $request->input('name');
-        $lead->name_hindi = $request->input('name_hindi');
-        $lead->slug = $request->input('slug');
-        $lead->batch_start_date = $request->input('batch_start_date');
-        $lead->duration = $request->input('duration');
-        $lead->class_mode = $request->input('class_mode');
-        $lead->description = $request->input('description');
+        $lead->email = $request->input('email');
+        $lead->mobile = $request->input('mobile');
+        $lead->course_interested = $request->input('course_interested');
         $lead->synopsis = $request->input('synopsis');
+        $lead->status = $request->input('status');
     
         $lead->save();
     

@@ -24,6 +24,7 @@ class ImageUploadController extends Controller
      */
     public function imageUploadPost(Request $request)
     {
+       // dd($request->all());
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

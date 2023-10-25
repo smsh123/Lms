@@ -115,10 +115,16 @@
           })
         }
         
-        function uploadImage(image,element){
+        function uploadImage(image1,element){
 
           //  $('.fullpage_loader').show();
-          var params = {'image' : image,'element' : element};
+       
+
+          var form = new FormData();
+          image = $("#inputBanner")[0].files[0];
+        //  image = document.getElementById('inputBanner');
+          form.append("image", image);
+         // var params = {'image' : image,'element' : element};
           $.ajaxSetup({
             headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -129,7 +135,7 @@
             type: 'POST',
             method: 'POST',
             enctype: 'multipart/form-data',
-            data:params,
+            data:form,
             success:function(data) {
                console.log(data);
             },

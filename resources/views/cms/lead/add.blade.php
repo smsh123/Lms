@@ -33,7 +33,7 @@
           <p class="text-danger">{{ $errors->first('mobile') }}</p>
         @endif
         </div>
-         <div class="col-lg-6">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Course Interested</label>
           <select name="course_interested">
             <option value="0">Select Course</option>

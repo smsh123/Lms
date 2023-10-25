@@ -51,6 +51,11 @@
         'url' => '/cms/upload',
     ],
     [
+        'label' => 'leads',
+        'icon'=>'package',
+        'url' => '/cms/leads',
+    ],
+    [
         'label' => 'logout',
         'icon'=>'log-out',
         'url' => '/logout',

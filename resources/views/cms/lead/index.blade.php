@@ -40,18 +40,18 @@
           </tr>
       </thead>
       <tbody>
-        @foreach ($blogs as $blog)
+        @foreach ($leads as $lead)
         <tr>
-          <td>{{$blog->name}}</td>
-          <td>{{$blog->slug}}</td>
-          <td>{{$blog->created_at}}</td>
+          <td>{{$lead->name}}</td>
+          <td>{{$lead->slug}}</td>
+          <td>{{$lead->created_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
-          <td>{{$blog->updated_at}}</td>
+          <td>{{$lead->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/blogs/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/blogs/edit/{{$blog->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/blogs/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/leads/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/leads/edit/{{$lead->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
+            <a href="/cms/leads/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach

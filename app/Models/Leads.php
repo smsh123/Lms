@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Blog extends BaseModel
+class Leads extends BaseModel
 {
-    protected $collection = 'blogs';
+    protected $collection = 'leads';
     protected $fillable = ['*'];
 }
 

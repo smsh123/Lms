@@ -47,6 +47,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/blogs/store', 'BlogController@store')->name('blogs.store');
     Route::get('/blogs/edit/{id}', 'BlogController@courseEdit')->name('blogs.edit'); 
     Route::get('/blogs/update', 'BlogController@courseEdit')->name('blogs.update'); 
+    Route::get('/leads', 'LeadController@index')->name('leads.index'); 
+    Route::get('/leads/add', 'LeadController@add')->name('leads.add');
+    Route::post('/leads/store', 'LeadController@store')->name('leads.store');
+    Route::get('/leads/edit/{id}', 'LeadController@courseEdit')->name('leads.edit'); 
+    Route::get('/leads/update', 'LeadController@courseEdit')->name('leads.update'); 
 });
 
 

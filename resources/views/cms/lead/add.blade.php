@@ -21,8 +21,8 @@
           <label class="font-weight-bold">Email</label>
           <input type="text" class="form-control" name="email" placeholder="Email" />
           @if ($errors->has('email'))
-          <p class="text-danger">{{ $errors->first('email') }}</p>
-        @endif
+            <p class="text-danger">{{ $errors->first('email') }}</p>
+          @endif
         </div>
       </div>
       <div class="row form-group">
@@ -35,10 +35,10 @@
         </div>
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Interested</label>
-          <select name="course_interested">
+          <select name="course_interested" class="form-control">
             <option value="0">Select Course</option>
-            <option value="0">Course 1</option>
-            <option value="0">Course 2</option>
+            <option value="Course 1">Course 1</option>
+            <option value="Course 2">Course 2</option>
           </select>
         </div>
       </div>
@@ -51,7 +51,7 @@
       <div class="row form-group">
         <div class="col-lg-12 align-self-center">
             <label class="font-weight-bold mb-0">Lead Status</label>
-            <select name="status">
+            <select name="status" class="form-control">
               <option>Active</option>
               <option>Deactive</option>
             </select>

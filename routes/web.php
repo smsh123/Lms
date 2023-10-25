@@ -36,7 +36,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');
     Route::get('/courses/edit/{id}', 'CourseController@courseEdit')->name('courses.edit'); 
-    Route::get('/courses/update', 'CourseController@courseEdit')->name('courses.update'); 
+    Route::post('/courses/update', 'CourseController@update')->name('courses.update'); 
     Route::get('/users', 'UserController@listUsers')->name('users.index');
     Route::get('/users/add', 'UserController@addUsers')->name('users.add');
     Route::get('/banners', 'BannerController@listBanners')->name('banners.index');
@@ -45,13 +45,13 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/blogs', 'BlogController@index')->name('blogs.index'); 
     Route::get('/blogs/add', 'BlogController@add')->name('blogs.add');
     Route::post('/blogs/store', 'BlogController@store')->name('blogs.store');
-    Route::get('/blogs/edit/{id}', 'BlogController@courseEdit')->name('blogs.edit'); 
-    Route::get('/blogs/update', 'BlogController@courseEdit')->name('blogs.update'); 
+    Route::get('/blogs/edit/{id}', 'BlogController@blogEdit')->name('blogs.edit'); 
+    Route::post('/blogs/update', 'BlogController@update')->name('blogs.update'); 
     Route::get('/leads', 'LeadController@index')->name('leads.index'); 
     Route::get('/leads/add', 'LeadController@add')->name('leads.add');
     Route::post('/leads/store', 'LeadController@store')->name('leads.store');
-    Route::get('/leads/edit/{id}', 'LeadController@courseEdit')->name('leads.edit'); 
-    Route::get('/leads/update', 'LeadController@courseEdit')->name('leads.update'); 
+    Route::get('/leads/edit/{id}', 'LeadController@leadEdit')->name('leads.edit'); 
+    Route::post('/leads/update', 'LeadController@update')->name('leads.update'); 
 });
 
 

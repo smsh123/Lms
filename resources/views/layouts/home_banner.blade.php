@@ -14,33 +14,7 @@
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 align-self-end">
-          <div class="card blurry_white_bg border-radius-25">
-            <div class="card-header text-center bg-transparent">
-              <h2 class="font-22">Book Your Free Session</h2>
-              <p class="font-14">Learn from India's Smart Teachers</p>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Name" />
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Mobile" />
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email" />
-                </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Select State</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input type="button" class="btn btn-theme-contrast w-100" value="Book Free Session" />
-                </div>
-              </form>
-            </div>
-          </div>
+          @include('layouts.lead_form')
         </div>
       </div>
     </div>

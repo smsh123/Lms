@@ -17,37 +17,38 @@ class LeadController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'mobile' => 'required|numeric|max:10',
-            'course_interested' => 'required|string',
-        ]);
-    
+        
+         $request->validate([
+             'name' => 'required|string|max:255',
+             'email' => 'required|string|max:255',
+             'mobile' => 'required|numeric',
+             'course_interested' => 'required|string',
+         ]);
+      
         $lead = new Leads;
         $lead->name = $request->input('name');
         $lead->email = $request->input('email');
         $lead->mobile = $request->input('mobile');
         $lead->course_interested = $request->input('course_interested');
         $lead->synopsis = $request->input('synopsis');
-        $lead->status = $request->input('status');
+        $lead->status = !empty($request->input('status')) ? $request->input('status') : 'Active';
        
         $lead->save();
     
-        return redirect()->back()->with('success', 'Lead created successfully');
+        return redirect()->back()->with('msg', 'Form Submitted successfully');
     }
 
     public function leadEdit(Request $request, $id) {
-        $course = Leads::find($id);
+        $leads = Leads::find($id);
         // dd($course);
-        return view('cms.lead.edit')->with('blogs',$course);
+        return view('cms.lead.edit')->with('Lead',$leads);
     }
     public function update(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            'mobile' => 'required|numeric|max:10',
+            'mobile' => 'required|numeric',
             'course_interested' => 'required|string',
         ]);
         $id = $request->input("id",'');
@@ -57,11 +58,11 @@ class LeadController extends Controller
         $lead->mobile = $request->input('mobile');
         $lead->course_interested = $request->input('course_interested');
         $lead->synopsis = $request->input('synopsis');
-        $lead->status = $request->input('status');
+        $lead->status = !empty($request->input('status')) ? $request->input('status') : 'Active';
     
         $lead->save();
     
-        return redirect()->route('cms.lead.index')->with('success', 'Lead updated successfully');
+        return redirect()->back()->with('msg', 'Lead updated successfully');
     }
     
 }

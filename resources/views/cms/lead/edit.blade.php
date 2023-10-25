@@ -29,17 +29,17 @@
        <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Mobile</label>
-          <input type="number" class="form-control" name="mobile" placeholder="{{$Lead->mobile}}"  />
+          <input type="number" class="form-control" name="mobile" placeholder="{{$Lead->mobile}}" value="{{$Lead->mobile}}"  />
           @if ($errors->has('mobile'))
           <p class="text-danger">{{ $errors->first('mobile') }}</p>
         @endif
         </div>
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Interested</label>
-          <select name="course_interested">
+          <select name="course_interested" Class="form-control">
             <option value="0">Select Course</option>
-            <option {{!empty($Lead->course_interested) &&  $Lead->course_interested == 'Course 1' ? selected : ''}} value="Course 1">Course 1</option>
-            <option {{!empty($Lead->course_interested) &&  $Lead->course_interested == 'Course 2' ? selected : ''}} value="Course 2">Course 2</option>
+            <option {{!empty($Lead->course_interested) &&  $Lead->course_interested == 'Course 1' ? 'selected' : ''}} value="Course 1">Course 1</option>
+            <option {{!empty($Lead->course_interested) &&  $Lead->course_interested == 'Course 2' ? 'selected' : ''}} value="Course 2">Course 2</option>
           </select>
         </div>
       </div>
@@ -47,14 +47,14 @@
         <div class="col-lg-12">
           <label class="font-weight-bold">Lead Synopsis</label>
           <textarea class="form-control" rows="4"  placeholder="Lead Synopsis ..." name="synopsis">
-            {{!empty($Lead->mobile) ? $Lead->mobile : '' }}
+            {{!empty($Lead->synopsis) ? $Lead->synopsis : '' }}
           </textarea>
         </div>
       </div>
       <div class="row form-group">
         <div class="col-lg-12 align-self-center">
             <label class="font-weight-bold mb-0">Lead Status</label>
-            <select name="status">
+            <select name="status" Class="form-control">
               <option>Active</option>
               <option>Deactive</option>
             </select>

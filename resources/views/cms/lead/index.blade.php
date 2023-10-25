@@ -30,12 +30,12 @@
     <table class="table table-striped table-bordered">
       <thead>
           <tr>
-            <th>Title</th>
-            <th>Slug</th>
-            <th>Created Date</th>
-            {{-- <th>Created By</th> --}}
-            <th>Modified Date</th>
-            {{-- <th>Modified By</th> --}}
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile Date</th>
+            <th>Lead Status</th>
+            <th>Course Interested/th>
+            <th>Synopsis</th>
             <th>Action</th>
           </tr>
       </thead>
@@ -43,11 +43,11 @@
         @foreach ($leads as $lead)
         <tr>
           <td>{{$lead->name}}</td>
-          <td>{{$lead->slug}}</td>
-          <td>{{$lead->created_at}}</td>
-          {{-- <td>vivek@aryabhattclasses.com</td> --}}
-          <td>{{$lead->updated_at}}</td>
-          {{-- <td>vivek@aryabhattclasses.com</td> --}}
+          <td>{{$lead->email}}</td>
+          <td>{{$lead->mobile}}</td>
+          <td>{{$lead->status}}</td>
+          <td>{{$lead->course_interested}}</td>
+          <td>{{$lead->synopsis}}</td>
           <td class="text-nowrap">
             <a href="/cms/leads/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/leads/edit/{{$lead->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>

@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
  /* All front Url */
-Route::get('/', 'HomeController@index'); 
-Route::get('/cms', 'DashboardController@index');
-Route::get('/cms/courses', 'DashboardController@courses'); 
-// Route::get('/cms/courses/add', 'DashboardController@courseCreate');
-Route::get('/cms/courses/edit', 'DashboardController@courseEdit'); 
-Route::get('/cms/courses/delete', 'DashboardController@courseDelete'); 
-Route::get('/cms/courses/view', 'DashboardController@courseViewStatus'); 
-// Route::post('/register', 'UserController@register'); 
+Route::get('/', 'HomeController@index');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
+Route::get('/profile/{id}', 'ProfileController@profile');
+Route::get('/courses/{id}', 'ProfileController@courses');
+Route::get('/orders/{id}', 'ProfileController@orders');
+Route::get('/reports/{id}', 'ProfileController@reports');
+Route::get('/course', 'CourseController@listing');
+Route::get('/blogs', 'BlogController@listing');
+Route::get('/success-stories', 'TestimonialController@listing');
 Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
@@ -42,6 +42,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/banners', 'BannerController@listBanners')->name('banners.index');
     Route::get('/banners/add', 'BannerController@addBanners')->name('banners.add');
     Route::post('/banners/store', 'BannerController@store')->name('banners.store');
+    Route::get('/blogs', 'BlogController@index')->name('blogs.index'); 
+    Route::get('/blogs/add', 'BlogController@add')->name('blogs.add');
+    Route::post('/blogs/store', 'BlogController@store')->name('blogs.store');
+    Route::get('/blogs/edit/{id}', 'BlogController@courseEdit')->name('blogs.edit'); 
+    Route::get('/blogs/update', 'BlogController@courseEdit')->name('blogs.update'); 
 });
 
 

@@ -16,7 +16,13 @@
         </div>
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Banner Image</label>
-          <input type="file" class="form-control" name="image" />
+          <input id="form-image" type="hidden" class="form-control" name="image" />
+          <div class="input-group upload-image mb-3">
+            <input id="inputBanner" type="file" class="form-control" placeholder="Banner Image">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" onclick="uploadImage($('#inputBanner').val(),'form-image')" type="button" id="button-addon2">Button</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row form-group">
@@ -43,37 +49,7 @@
           <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
       </div>
-      <div class="row form-group">
-        <div class="col-12">
-          @if (session('error'))
-            <div class="alert alert-danger custom-alert font-weight-bold">
-                {{ session('error') }}
-            </div>
-          @elseif (session('msg'))
-            <div class="alert alert-success custom-alert font-weight-bold">
-                {{ session('msg') }}
-            </div>
-          @elseif (session('msg_focus'))
-            <div class="alert alert-warning alert-fixed alert-dismissible fade show" role="alert">
-              {!! html_entity_decode(session('msg_focus')) !!}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @endif
-        </div>
-      </div>
     </div>
   </form>
-
-  {{-- <script>
-    $(document).ready(function(){
-      $("#user_type_select").change(function(){
-        var select_val = $(this).find('option:selected').attr('value');
-        $("#user_type").val(user_type);
-        alert(user_type);
-      });
-    });
-  </script> --}}
 
 @stop

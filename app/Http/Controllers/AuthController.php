@@ -91,10 +91,13 @@ class AuthController extends Controller
 
     public function validatePasswordRequest(Request $request){
         //$fuser = DB::table('users')->where('email', '=', $request->email)->first();
-        $user = User::where('email','=',$request->email)->first() ->toArray();
+        $user = User::where('email','=',$request->email)->first();
+        if(!empty($user)){
+            $user = $user->toArray();
+        }
         //Check if the user exists
        // dd($user,$fuser);
-        if (count($user) < 1) {
+        if (empty($user)) {
             return redirect()->back()->with('error','User does not exist');
         }
 

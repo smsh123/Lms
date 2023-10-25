@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link data-n-head="ssr" rel="shortcut icon" type="image/x-icon" href="/assets/image/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="description" content="">
     <title>ARYABHATT Classes - Click To Success</title>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -71,9 +72,26 @@
     </main>
   </div>
 </div>
+  @if (session('error'))
+    <div class="alert alert-danger custom-alert font-weight-bold">
+        {{ session('error') }}
+    </div>
+  @elseif (session('msg'))
+    <div class="alert alert-success custom-alert font-weight-bold">
+        {{ session('msg') }}
+    </div>
+  @elseif (session('msg_focus'))
+    <div class="alert alert-warning alert-fixed alert-dismissible fade show" role="alert">
+      {!! html_entity_decode(session('msg_focus')) !!}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  @endif
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
       <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
       <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
@@ -96,9 +114,34 @@
             $(this).hide();
           })
         }
+        
+        function uploadImage(image,element){
+
+          //  $('.fullpage_loader').show();
+          var params = {'image' : image,'element' : element};
+          $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+          $.ajax({
+            url:'/image-upload-post',
+            type: 'POST',
+            method: 'POST',
+            enctype: 'multipart/form-data',
+            data:params,
+            success:function(data) {
+               console.log(data);
+            },
+            error: function (msg) {
+               console.log(msg);
+               var errors = msg.responseJSON;
+            }
+          });
+        //  $('.fullpage_loader').hide();
+        }
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);
-          
         });
         </script>
         

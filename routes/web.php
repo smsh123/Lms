@@ -47,6 +47,9 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/blogs/store', 'BlogController@store')->name('blogs.store');
     Route::get('/blogs/edit/{id}', 'BlogController@blogEdit')->name('blogs.edit'); 
     Route::post('/blogs/update', 'BlogController@update')->name('blogs.update'); 
+    Route::get('/menus', 'MenuController@index')->name('menus.index'); 
+    Route::get('/menus/add', 'MenuController@add')->name('menus.add');
+    Route::post('/menus/store', 'MenuController@store')->name('menus.store');
     Route::get('/leads', 'LeadController@index')->name('leads.index'); 
     Route::get('/leads/add', 'LeadController@add')->name('leads.add');
     Route::post('/leads/store', 'LeadController@store')->name('leads.store');

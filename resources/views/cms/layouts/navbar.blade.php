@@ -56,6 +56,11 @@
         'url' => '/cms/leads',
     ],
     [
+        'label' => 'menu',
+        'icon'=>'package',
+        'url' => '/cms/menus',
+    ],
+    [
         'label' => 'logout',
         'icon'=>'log-out',
         'url' => '/logout',

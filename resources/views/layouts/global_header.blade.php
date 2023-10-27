@@ -21,7 +21,7 @@
     ]
   ];
 
-  $menus = \SiteHelper::GetMenus();
+  $menus = App\Helpers\SiteHelper::GetMenus();
   dd($menus);
 @endphp
 

@@ -31,7 +31,7 @@
         'url' => '/cms/subscriptions',
     ],
     [
-        'label' => 'subscriptions',
+        'label' => 'scheduling',
         'icon'=>'calendar',
         'url' => '/cms/schedule',
     ],

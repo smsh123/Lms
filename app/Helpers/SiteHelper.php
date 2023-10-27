@@ -7,9 +7,9 @@ use App\Models\Menu;
 
 class SiteHelper
 {
-    public static function GetMenus($pageNo = 1, $refresh = null)
+    public static function getMenuBySlug($slug = null)
     {
-        $menus = Menu::all();
+        $menus = Menu::getMenuBySlug($slug);
         return isset($menus) && !empty($menus) ? $menus : []; 
     }
 

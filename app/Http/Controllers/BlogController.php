@@ -23,7 +23,7 @@ class BlogController extends Controller
             'description' => 'required|string',
             'original_price' => 'required|numeric|min:0',
             'selling_price' => 'required|numeric|min:0',
-            'slug'=> 'required|string|max:255',
+            'slug'=> 'required|string|max:255|unique:blogs',
         ]);
     
         $blog = new Blog;

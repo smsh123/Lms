@@ -55,6 +55,10 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/leads/store', 'LeadController@store')->name('leads.store');
     Route::get('/leads/edit/{id}', 'LeadController@leadEdit')->name('leads.edit'); 
     Route::post('/leads/update', 'LeadController@update')->name('leads.update'); 
+    Route::get('/testimonials', 'TestimonialController@index')->name('testimonial.index'); 
+    Route::get('/testimonials/add', 'TestimonialController@add')->name('testimonial.add');
+    Route::post('/testimonials/store', 'TestimonialController@store')->name('testimonial.store');
+    Route::get('/testimonials/edit/{id}', 'TestimonialController@courseEdit')->name('testimonial.edit');
 });
 
 

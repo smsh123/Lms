@@ -23,7 +23,7 @@ class MenuController extends Controller
         // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:menus',
             'status' => 'required',
         ]);
         $title = $request->input('title');

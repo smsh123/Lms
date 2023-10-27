@@ -20,9 +20,9 @@
         'url' => '/success-stories',
     ]
   ];
-
-  $menus = App\Helpers\SiteHelper::GetMenus();
-  dd($menus);
+  $MenuSlug = 'global-navigation';
+  $menus = App\Helpers\SiteHelper::getMenuBySlug($MenuSlug);
+  //dd($menus);
 @endphp
 
 <div class="bg-theme-contrast py-3 px-3">

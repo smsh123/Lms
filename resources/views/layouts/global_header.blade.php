@@ -1,4 +1,5 @@
 @php
+
   $isUserLoggedin = false;
   $isUserLoggedin = \Auth::user();
   $menuItems = [
@@ -19,6 +20,9 @@
         'url' => '/success-stories',
     ]
   ];
+
+  $menus = \SiteHelper::GetMenus();
+  dd($menus);
 @endphp
 
 <div class="bg-theme-contrast py-3 px-3">

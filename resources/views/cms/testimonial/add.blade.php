@@ -1,6 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
-  <div class="row my-3">
+@php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
+<div class="row my-3">
     <div class="col-12 col-lg-6"><h1>Add Testimonial</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/testimonials" class="btn btn-lg btn-secondary">View Testimonial</a></div>
   </div>
@@ -29,7 +30,7 @@
             <option>Select Type</option>
             @if(!empty($global_picklist['testimonialType']))
               @foreach ($global_picklist['testimonialType'] as $key => $type)
-                <option>{{ !empty($type['label']) ? $type['label'] : '' }} - {{ !empty($type['code']) ? $type['code'] : ''}}</option>
+                <option value="{{ !empty($type['code']) ? $type['code'] : ''}}">{{ !empty($type['label']) ? $type['label'] : '' }}</option>
               @endforeach
             @endif
           </select>
@@ -60,7 +61,7 @@
           <select class="form-control" name="status">
             @if(!empty($global_picklist['status']))
               @foreach ($global_picklist['status'] as $faqstatus)
-                  <option>{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }} - {{ !empty($faqstatus['value']) ? $faqstatus['value'] : '' }} </option>
+                  <option value="{{ !empty($faqstatus['value']) ? $faqstatus['value'] : '' }}">{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}</option>
               @endforeach
             @endif
           </select>

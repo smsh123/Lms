@@ -5,142 +5,65 @@
     <div class="col-12 col-lg-6 text-right"><a href="/cms/testimonials" class="btn btn-lg btn-secondary">View Testimonials</a></div>
   </div>
 
-
-  <form class="card" method="post" action="/cms/testimonials/update">
+   <form class="card" method="post" action="/cms/testimonials/store">
     @csrf
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Testimonial Name</label>
-          <input type="text" class="form-control" name="name" placeholder="Testimonial Name" value="{{$testimonial->name}}"/>
-          <input type="hidden"  name="id"  value="{{$testimonial->id}}"/>
-          @if ($errors->has('name'))
-            <p class="text-danger">{{ $errors->first('name') }}</p>
+          <label class="font-weight-bold">Select User</label>
+          <select class="form-control" name="user">
+            <option>Select User</option>
+            @if(!empty($users))
+              @foreach($users as $key => $user)
+                <option {{!empty($testimonial->user) && $testimonial->user == $user['id']."-".$user['name'] ? "selected" : "" }}>{{!empty($user['id']) && !empty($user['name']) ?  $user['id']."-".$user['name'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+          @if ($errors->has('user'))
+            <p class="text-danger">{{ $errors->first('user') }}</p>
           @endif
         </div>
          <div class="col-lg-6">
-          <label class="font-weight-bold">Testimonial Name Hindi</label>
-          <input type="text" class="form-control" name="name_hn" placeholder="Testimonial Name Hindi" value="{{$testimonial->name_hn}}" />
-          @if ($errors->has('name_hn'))
-          <p class="text-danger">{{ $errors->first('name_hn') }}</p>
-        @endif
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-6">
-          <label class="font-weight-bold">Testimonial Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="Testimonial slug" value="{{$testimonial->slug}}" />
-          @if ($errors->has('slug'))
-          <p class="text-danger">{{ $errors->first('slug') }}</p>
-        @endif
-        </div>
-         <div class="col-lg-6">
-          <label class="font-weight-bold">Batch Start Date</label>
-          <input type="date" class="form-control" name="start_date" value="{{$testimonial->start_date}}"/>
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-6">
-          <label class="font-weight-bold">Testimonial Duration (Days)</label>
-          <input type="number" class="form-control" placeholder="Days" name="duration" value="{{$testimonial->duration}}" />
-        </div>
-        <div class="col-lg-6">
-          <label class="font-weight-bold">Class Mode</label>
-          <select class="form-control" name="class_mode" value="{{$testimonial->class_mode}}">
-            <option>Select</option>
-            <option value="live">Live</option>
-            <option value="recorded">Recorded</option>
-            <option value="offline">Offline</option>
+          <label class="font-weight-bold">Testimonial Type</label>
+          <select class="form-control" name="type">
+            <option>Select Type</option>
+            @if(!empty($testimonialType))
+              @foreach ($testimonialType as $key => $type)
+                <option>{{ !empty($type['label']) ? $type['label'] : '' }} - {{ !empty($type['code']) ? $type['code'] : ''}}</option>
+              @endforeach
+            @endif
           </select>
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-12">
-          <label class="font-weight-bold">Testimonial Description</label>
-          <textarea class="form-control txteditor" rows="6" placeholder="Testimonial Description ..." name="description">{{$testimonial->description}}</textarea>
-          @if ($errors->has('description'))
-          <p class="text-danger">{{ $errors->first('description') }}</p>
+          @if ($errors->has('type'))
+          <p class="text-danger">{{ $errors->first('type') }}</p>
         @endif
         </div>
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
           <label class="font-weight-bold">Testimonial Synopsis</label>
-          <textarea class="form-control" rows="4"  placeholder="Testimonial Synopsis ..." name="synopsis">{{$testimonial->synopsis}}</textarea>
+          <textarea class="form-control" rows="4"  placeholder="Testimonial Synopsis ..." name="synopsis"></textarea>
         </div>
       </div>
-      <fieldset class="border p-3 mb-3">
-        <legend class="d-inline-block w-auto px-3">Price & Offer Details</legend>
-        <div class="row form-group">
-          <div class="col-lg-6">
-            <label class="font-weight-bold">Original Price (&#8377;)</label>
-            <input type="number" class="form-control" placeholder="Original Price"  name="original_price" value="{{$testimonial->original_price}}"/>
-            @if ($errors->has('original_price'))
-          <p class="text-danger">{{ $errors->first('original_price') }}</p>
-        @endif
-          </div>
-          <div class="col-lg-6">
-              <label class="font-weight-bold">Selling Price (&#8377;)</label>
-              <input type="number" class="form-control" placeholder="Selling Price" name="selling_price" value="{{$testimonial->selling_price}}" />
-              @if ($errors->has('selling_price'))
-          <p class="text-danger">{{ $errors->first('selling_price') }}</p>
-        @endif
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-lg-6">
-            <label class="font-weight-bold">Offer Type</label>
-            <select class="form-control" name="offer_type" value="{{$testimonial->offer_type}}">
-              <option>Select</option>
-              <option value="discount">Discount</option>
-              <option value="cashback">Cashback</option>
-              <option value="coupon">Coupon</option>
-            </select>
-          </div>
-          <div class="col-lg-6 align-self-center">
-              <label class="font-weight-bold mb-0">Offer Unit</label>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="disount_unit" id="inlineRadio1" value="flat" {{$testimonial->disount_unit == 'flat' ? 'checked' : ''}}>
-                <label class="form-check-label mb-0" for="inlineRadio1">Flat</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="disount_unit" id="inlineRadio2" value="percentage" {{$testimonial->disount_unit == 'percentage' ? 'checked' : ''}}>
-                <label class="form-check-label mb-0" for="inlineRadio2">Percentage</label>
-              </div>
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-lg-6">
-            <label class="font-weight-bold">Offer Value</label>
-            <input type="number" class="form-control" placeholder="Offer Value"  name="offer_value" value="{{$testimonial->offer_value}}"/>
-          </div>
-          <div class="col-lg-6">
-              <label class="font-weight-bold">Coupon Code</label>
-              <input type="text" class="form-control" placeholder="Couupon Code" name="coupon_code" value="{{$testimonial->coupon_code}}" />
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-12">
-            <label class="font-weight-bold">Offer Label</label>
-            <textarea rows="2" class="form-control" placeholder="Write Offer Details Text" name="offer_details">{{$testimonial->offer_details}}</textarea>
-          </div>
-        </div>
-      </fieldset>
       <div class="row form-group">
-        <div class="col-lg-12 align-self-center">
-            <label class="font-weight-bold mb-0">Display Testimonials</label>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1" name="display_Testimonial[]">Home</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2" name="display_Testimonial[]">Testimonial Listing</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3" name="display_Testimonial[]">Blog</label>
-          </div>
+        <div class="col-12 col-lg-6">
+          <label class="font-weight-bold">Image</label>
+          <input type="file" class="form-control" name="image" />
+        </div>
+        <div class="col-12 col-lg-6">
+          <label class="font-weight-bold">Video</label>
+          <input type="text" class="form-control" placeholder="YT URL" name="video" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-12 text-center">
+          <label class="font-weight-bold">Status</label>
+          <select class="form-control" name="status">
+            @if(!empty($status))
+              @foreach ($status as $faqstatus)
+                  <option>{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }} - {{ !empty($faqstatus['value']) ? $faqstatus['value'] : '' }} </option>
+              @endforeach
+            @endif
+          </select>
         </div>
       </div>
       <div class="row form-group">

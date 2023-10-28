@@ -13,7 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href={{asset('/assets/css/app.css')}} />
-
+    @php
+      $global_picklist = App\Helpers\SiteHelper::getAllPickList();
+      dd($global_picklist['userType']);
+    @endphp
 
     <style>
       .bd-placeholder-img {

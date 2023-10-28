@@ -30,27 +30,30 @@
     <table class="table table-striped table-bordered">
       <thead>
           <tr>
-            <th>Title</th>
-            <th>Slug</th>
-            <th>Created Date</th>
-            {{-- <th>Created By</th> --}}
+            <th>User</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Synopsis</th>
+            <th>Image</th>
+            <th>Video</th>
             <th>Modified Date</th>
-            {{-- <th>Modified By</th> --}}
             <th>Action</th>
           </tr>
       </thead>
       <tbody>
         @foreach ($testimonial as $testimonial)
         <tr>
-          <td>{{$testimonial->name}}</td>
-          <td>{{$testimonial->slug}}</td>
-          <td>{{$testimonial->created_at}}</td>
-          {{-- <td>vivek@aryabhattclasses.com</td> --}}
+          <td>{{$testimonial->user}}</td>
+          <td>{{$testimonial->type}}</td>
+          <td>{{$testimonial->status}}</td>
+          <td>{{$testimonial->synopsis}}</td>
+          <td>{{$testimonial->image}}</td>
+           <td>{{$testimonial->video}}</td>
           <td>{{$testimonial->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
             <a href="/cms/testimonials/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/testimonials/edit/{{$course->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
+            <a href="/cms/testimonials/edit/{{$testimonial->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/testimonials/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>

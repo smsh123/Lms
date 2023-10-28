@@ -38,7 +38,7 @@ class TestimonialController extends Controller
     
         $testimonial->save();
     
-        return redirect()->route('cms.testimonial.index')->with('success', 'Course created successfully');
+        return redirect()->route('testimonial.index')->with('msg', 'Course created successfully');
     }
     public function listing(Request $request){
 
@@ -49,12 +49,16 @@ class TestimonialController extends Controller
     public function testimonialEdit(Request $request, $id) {
         $testimonials =Testimonial::find($id);
         $users = User::all();
-        // dd($course);
-        return view('cms.testimonial.edit')->with('testimonial',$testimonials,'users',!empty($users) ? $users : []);
+        $data = [
+            "testimonial" => $testimonials,
+            "users" => !empty($users) ? $users : []
+        ];
+        return view('cms.testimonial.edit',$data);
     }
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required',
             'user' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'status' => 'required|string',
@@ -71,7 +75,7 @@ class TestimonialController extends Controller
     
         $testimonial->save();
     
-        return redirect()->route('cms.testimonial.index')->with('success', 'Testimonial updated successfully');
+        return redirect()->route('testimonial.index')->with('msg', 'Testimonial updated successfully');
     }
     
 }

@@ -61,7 +61,7 @@
           <select class="form-control" name="status">
             @if(!empty($global_picklist['status']))
               @foreach ($global_picklist['status'] as $faqstatus)
-                  <option value="{{ !empty($faqstatus['value']) ? $faqstatus['value'] : '' }}">{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}</option>
+                  <option value="{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}">{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}</option>
               @endforeach
             @endif
           </select>

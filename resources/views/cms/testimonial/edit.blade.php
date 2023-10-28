@@ -1,12 +1,14 @@
 @extends('cms.layouts.master')
 @section('body')
+@php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
   <div class="row my-3">
     <div class="col-12 col-lg-6"><h1>Edit Testimonial</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/testimonials" class="btn btn-lg btn-secondary">View Testimonials</a></div>
   </div>
 
-   <form class="card" method="post" action="/cms/testimonials/store">
+   <form class="card" method="post" action="/cms/testimonials/update">
     @csrf
+    <input type="hidden" value="{{ !empty($testimonial->id) ? $testimonial->id : '' }}" name="id" />
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-6">
@@ -27,9 +29,9 @@
           <label class="font-weight-bold">Testimonial Type</label>
           <select class="form-control" name="type">
             <option>Select Type</option>
-            @if(!empty($testimonialType))
-              @foreach ($testimonialType as $key => $type)
-                <option>{{ !empty($type['label']) ? $type['label'] : '' }} - {{ !empty($type['code']) ? $type['code'] : ''}}</option>
+            @if(!empty($global_picklist['testimonialType']))
+              @foreach ($global_picklist['testimonialType'] as $key => $type)
+                <option {{!empty($testimonial->type) && $testimonial->type == $type['code'] ? "selected" : "" }} value="{{ !empty($type['code']) ? $type['code'] : ''}}">{{ !empty($type['label']) ? $type['label'] : '' }}-{{ !empty($type['code']) ? $type['code'] : ''}}</option>
               @endforeach
             @endif
           </select>
@@ -41,26 +43,26 @@
       <div class="row form-group">
         <div class="col-lg-12">
           <label class="font-weight-bold">Testimonial Synopsis</label>
-          <textarea class="form-control" rows="4"  placeholder="Testimonial Synopsis ..." name="synopsis"></textarea>
+          <textarea class="form-control" rows="4"  placeholder="Testimonial Synopsis ..." name="synopsis">{{ !empty($testimonial->synopsis) ? $testimonial->synopsis : '' }}</textarea>
         </div>
       </div>
       <div class="row form-group">
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Image</label>
-          <input type="file" class="form-control" name="image" />
+          <input type="file" class="form-control" name="image" value="{{ !empty($testimonial->image) ? $testimonial->image : '' }}" />
         </div>
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Video</label>
-          <input type="text" class="form-control" placeholder="YT URL" name="video" />
+          <input type="text" class="form-control" placeholder="YT URL" name="video" value="{{ !empty($testimonial->video) ? $testimonial->video : '' }}" />
         </div>
       </div>
       <div class="row form-group">
         <div class="col-12 text-center">
           <label class="font-weight-bold">Status</label>
           <select class="form-control" name="status">
-            @if(!empty($status))
-              @foreach ($status as $faqstatus)
-                  <option>{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }} - {{ !empty($faqstatus['value']) ? $faqstatus['value'] : '' }} </option>
+            @if(!empty($global_picklist['status']))
+              @foreach ($global_picklist['status'] as $faqstatus)
+                  <option value="{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}" {{!empty($testimonial->status) && $testimonial->status == $faqstatus['label'] ? "selected" : "" }}>{{ !empty($faqstatus['label']) ? $faqstatus['label'] : '' }}</option>
               @endforeach
             @endif
           </select>

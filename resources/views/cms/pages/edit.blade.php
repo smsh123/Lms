@@ -47,17 +47,11 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
-          <label class="font-weight-bold">Page Description</label>
-          <textarea class="form-control txteditor" rows="6" placeholder="Page Description ..." name="description">{{ !empty($pages['description']) ? $pages['description'] : '' }}</textarea>
+          <label class="font-weight-bold">Page HTML Content</label>
+          <textarea class="form-control" rows="6" placeholder="Page Content HTML ..." name="description">{{ !empty($pages['description']) ? $pages['description'] : '' }}</textarea>
           @if ($errors->has('description'))
           <p class="text-danger">{{ $errors->first('description') }}</p>
         @endif
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-12">
-          <label class="font-weight-bold">Page Synopsis</label>
-          <textarea class="form-control" rows="4"  placeholder="Page Synopsis ..." name="synopsis">{{ !empty($pages['synopsis']) ? $pages['synopsis'] : '' }}</textarea>
         </div>
       </div>
       <div class="row form-group">

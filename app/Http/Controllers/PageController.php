@@ -25,7 +25,7 @@ class PageController extends Controller
             'name' => 'required|string|max:255',
             'name_hindi' => 'required|string|max:255',
             'description' => 'required|string',
-            'slug'=> 'required|string|max:255|unique:blogs',
+            'slug'=> 'required|string|max:255|unique:pages',
         ]);
     
         $page = new Page;
@@ -42,8 +42,23 @@ class PageController extends Controller
     }
     public function listing(Request $request){
 
-        $Pages = Page::all();
-        return view('pages.index')->with('pages',$Pages);
+        $pages = Page::all();
+        $data=[
+            "pages"=>!empty($pages) ? $pages : [] 
+        ];
+        return view('pages.directory',$data);
+    }
+    public function pageBySlug(Request $request){
+        $request_uri= explode("/",$request->url());
+        $slug = $request_uri[count($request_uri) - 1];
+        $pages = Page::getPageBySlug($slug);
+        if(empty($pages)){
+            abort(404);
+        }
+        $data = [
+            "page_content" => !empty($pages) ? $pages[0] : []
+        ];
+        return view('pages.index', $data);
     }
 
     public function pageEdit(Request $request, $id) {
@@ -62,7 +77,7 @@ class PageController extends Controller
             'name' => 'required|string|max:255',
             'name_hindi' => 'required|string|max:255',
             'description' => 'required|string',
-            'slug'=> 'required|string|max:255',
+            'slug'=> 'required|string|max:255|unique:pages',
         ]);
         $id = $request->input("id");
         $page = Page::find($id);

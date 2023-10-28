@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1>Blogs</h1></div>
+    <div class="col-12 col-lg-6"><h1>Pages</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/pages/add" class="btn btn-lg btn-secondary">Add Pages</a></div>
   </div>
   <fieldset class="border mb-3 p-3">
@@ -38,17 +38,17 @@
           </tr>
       </thead>
       <tbody>
-        @foreach ($pages as $blog)
+        @foreach ($pages as $page)
         <tr>
-          <td>{{$pages->name}}</td>
-          <td>{{$pages->slug}}</td>
-          <td>{{$pages->created_at}}</td>
+          <td>{{$page->name}}</td>
+          <td>{{$page->slug}}</td>
+          <td>{{$page->created_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
-          <td>{{$pages->updated_at}}</td>
+          <td>{{$page->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
             <a href="/cms/pages/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/pages/edit/{{$blog->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
+            <a href="/cms/pages/edit/{{$page->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/pages/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>

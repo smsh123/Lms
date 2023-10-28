@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1>Add Blogs</h1></div>
+    <div class="col-12 col-lg-6"><h1>Add Pages</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/pages" class="btn btn-lg btn-secondary">View Pages</a></div>
   </div>
 
@@ -11,15 +11,15 @@
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Blog Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Blog Name" />
+          <label class="font-weight-bold">Page Name</label>
+          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Page Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
          <div class="col-lg-6">
-          <label class="font-weight-bold">Blog Name Hindi</label>
-          <input type="text" class="form-control" name="name_hindi" placeholder="Blog Name Hindi" />
+          <label class="font-weight-bold">Page Name Hindi</label>
+          <input type="text" class="form-control" name="name_hindi" placeholder="Page Name Hindi" />
           @if ($errors->has('name_hindi'))
           <p class="text-danger">{{ $errors->first('name_hindi') }}</p>
         @endif
@@ -27,8 +27,8 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Blog Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="Blog slug"  />
+          <label class="font-weight-bold">Page Slug</label>
+          <input type="text" class="form-control" name="slug" placeholder="Page slug"  />
           @if ($errors->has('slug'))
           <p class="text-danger">{{ $errors->first('slug') }}</p>
         @endif
@@ -47,17 +47,11 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
-          <label class="font-weight-bold">Blog Description</label>
-          <textarea class="form-control txteditor" rows="6" placeholder="Blog Description ..." name="description"></textarea>
+          <label class="font-weight-bold">Page Content</label>
+          <textarea class="form-control" rows="6" placeholder="Page Content HTML ..." name="description"></textarea>
           @if ($errors->has('description'))
           <p class="text-danger">{{ $errors->first('description') }}</p>
         @endif
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-12">
-          <label class="font-weight-bold">Blog Synopsis</label>
-          <textarea class="form-control" rows="4"  placeholder="Blog Synopsis ..." name="synopsis"></textarea>
         </div>
       </div>
       <div class="row form-group">

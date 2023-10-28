@@ -25,6 +25,8 @@ Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');
 Route::get('/blogs', 'BlogController@listing');
 Route::get('/success-stories', 'TestimonialController@listing');
+Route::get('/pages', 'PageController@listing')->name('page.listing'); 
+Route::get('/pages/{slug}', 'PageController@pageBySlug')->name('page.index'); 
 Route::post('reset_password_without_token', 'AuthController@validatePasswordRequest');
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
@@ -60,11 +62,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/testimonials/store', 'TestimonialController@store')->name('testimonial.store');
     Route::get('/testimonials/edit/{id}', 'TestimonialController@testimonialEdit')->name('testimonial.edit');
     Route::post('/testimonials/update', 'TestimonialController@update')->name('testimonial.update');
-    Route::get('/pages', 'PageController@index')->name('page.index'); 
-    Route::get('/pages/add', 'PageController@add')->name('page.add');
-    Route::post('/pages/store', 'PageController@storePage.store');
-    Route::get('/pages/edit/{id}', 'PageController@testimonialEdit')->name('page.edit');
-    Route::post('/pages/update', 'PageController@update')->name('page.update'); 
+    Route::get('/pages', 'PageController@index')->name('pages.index'); 
+    Route::get('/pages/add', 'PageController@add')->name('pages.add');
+    Route::post('/pages/store', 'PageController@store');
+    Route::get('/pages/edit/{id}', 'PageController@testimonialEdit')->name('pages.edit');
+    Route::post('/pages/update', 'PageController@update')->name('pages.update'); 
 });
 
 

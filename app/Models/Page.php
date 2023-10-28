@@ -8,5 +8,13 @@ class Page extends BaseModel
 {
     protected $collection = 'pages';
     protected $fillable = ['*'];
+
+    public static function getPageBySlug($slug) {
+
+        if(!empty($slug)){
+            $result = self::where('slug',$slug)->get()->toArray();
+            return $result;
+        }
+    }   
 }
 

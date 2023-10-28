@@ -16,7 +16,8 @@ class TestimonialController extends Controller
         return view('cms.testimonial.index')->with('testimonial',$testimonials,'users',!empty($users) ? $users : []);
       }
     public function add(Request $request){
-    return view('cms.testimonial.add');
+        $users = User::all();
+        return view('cms.testimonial.add')->with('users',!empty($users) ? $users : []);
     }
     public function store(Request $request)
     {

@@ -2,11 +2,11 @@
 @section('body')
   <div class="row my-3">
     <div class="col-12 col-lg-6"><h1>Add Blogs</h1></div>
-    <div class="col-12 col-lg-6 text-right"><a href="/cms/blogs" class="btn btn-lg btn-secondary">View Blogs</a></div>
+    <div class="col-12 col-lg-6 text-right"><a href="/cms/pages" class="btn btn-lg btn-secondary">View Pages</a></div>
   </div>
 
 
-  <form class="card" method="post" action="/cms/blogs/store">
+  <form class="card" method="post" action="/cms/pages/store">
     @csrf
     <div class="card-body">
       <div class="row form-group">

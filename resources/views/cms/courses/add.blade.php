@@ -12,7 +12,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Name</label>
-          <input type="text" class="form-control" name="name" placeholder="Course Name" />
+          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Course Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif

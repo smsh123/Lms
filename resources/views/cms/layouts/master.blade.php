@@ -115,6 +115,13 @@
             $(this).hide();
           })
         }
+        function CreateAndSetSlug(){
+          if($('input[name="slug"]').length !== 0){
+            var txt = $("#title").val().toLowerCase();
+            var slugVal = txt.split(' ').join('-');
+            $('input[name="slug"]').val(slugVal);
+          }
+        }
 
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);

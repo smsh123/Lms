@@ -57,8 +57,28 @@
     ],
     [
         'label' => 'menu',
-        'icon'=>'package',
+        'icon'=>'menu',
         'url' => '/cms/menus',
+    ],
+    [
+        'label' => 'module',
+        'icon'=>'airplay',
+        'url' => '/cms/modules',
+    ],
+    [
+        'label' => 'FAQ',
+        'icon'=>'message-square',
+        'url' => '/cms/modules',
+    ],
+    [
+        'label' => 'mapping',
+        'icon'=>'columns',
+        'url' => '/cms/mappings',
+    ],
+    [
+        'label' => 'pages',
+        'icon'=>'layout',
+        'url' => '/cms/pages',
     ],
     [
         'label' => 'logout',

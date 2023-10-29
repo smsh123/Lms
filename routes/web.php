@@ -76,7 +76,10 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/faq/add', 'FaqController@add')->name('faq.add');
     Route::post('/faq/store', 'FaqController@store');
     Route::get('/faq/edit/{id}', 'FaqController@edit')->name('faq.edit');
-    Route::post('/faq/update', 'FaqController@update')->name('faq.update'); 
+    Route::post('/faq/update', 'FaqController@update')->name('faq.update');
+    Route::get('/mappings', 'MappingController@listing');
+    Route::get('/course-module-mapping', 'CourseModuleMappingController@index');
+    Route::get('/course-module-mapping/add', 'CourseModuleMappingController@add');
 });
 
 

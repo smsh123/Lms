@@ -70,7 +70,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/modules', 'ModuleController@index')->name('modules.index'); 
     Route::get('/modules/add', 'ModuleController@add')->name('modules.add');
     Route::post('/modules/store', 'ModuleController@store');
-    Route::get('/modules/edit/{id}', 'ModuleController@testimonialEdit')->name('modules.edit');
+    Route::get('/modules/edit/{id}', 'ModuleController@edit')->name('modules.edit');
     Route::post('/modules/update', 'ModuleController@update')->name('modules.update'); 
 });
 

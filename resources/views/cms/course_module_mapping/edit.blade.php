@@ -36,7 +36,7 @@
               <ul id="selected_input" class="list-no-style p-0 m-0">
                 @if(!empty($mappings['modules']))
                   @foreach ($mappings['modules'] as $key => $module)
-                    <li class='d-inline-block mx-2 mb-2'><input type='hidden' id='{{ !empty($module['id']) ? $module['id'] : ''  }}' value='{{ !empty($module['id']) ? $module['id'] : ''  }}' name='module_id[{{ $key }}]' readonly /><input type='text' name='module_name[{{$key}}]' class='btn btn-outline-info rounded-pill' value='{{!empty($module['moduleName']) ?$module['moduleName'] : ""}}' readonly /></li>
+                    <li class='d-inline-block mx-2 mb-2'><input type='hidden' id='{{ !empty($module['moduleId']) ? $module['moduleId'] : ''  }}' value='{{ !empty($module['moduleId']) ? $module['moduleId'] : ''  }}' name='module_id[{{ $key }}]' readonly /><input type='text' name='module_name[{{$key}}]' class='btn btn-outline-info rounded-pill' value='{{!empty($module['moduleName']) ?$module['moduleName'] : ""}}' readonly /></li>
                   @endforeach
                 @endif
               </ul>

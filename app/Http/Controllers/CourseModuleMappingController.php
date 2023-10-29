@@ -76,6 +76,7 @@ class CourseModuleMappingController extends Controller
         ]);
         $moduleId = $request->input('module_id');
         $moduleName= $request->input('module_name');
+        //dd($request);
         $objects = [];
         if (!empty($moduleId) && !empty($moduleName)) {
             $count = count($moduleId);

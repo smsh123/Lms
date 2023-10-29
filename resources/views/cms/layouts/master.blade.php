@@ -129,7 +129,9 @@
           if(isChecked){
             var selected_id = event.value;
             var selected_module = event.getAttribute("data-label");
-            $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='module_id[]' readonly /><input type='text' name='module_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+            if($("#"+selected_id).length == 0){
+              $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='module_id[]' readonly /><input type='text' name='module_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+            }
            // alert(selected_id);
           }else{
             var selected_id = event.value;

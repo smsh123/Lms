@@ -6,6 +6,7 @@
   <div class="card">
     <div class="card-header">
       <form method="post" action="/cms/course-module-mapping/store" class="p-3">
+      @csrf
         <div class="row d-flex align-items-stretch flex-wrap">
           <div class="col-12 col-md-6 col-lg-6 align-self-center">
             <div class="form-group mb-0">

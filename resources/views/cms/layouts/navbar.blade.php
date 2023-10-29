@@ -68,7 +68,7 @@
     [
         'label' => 'FAQ',
         'icon'=>'message-square',
-        'url' => '/cms/modules',
+        'url' => '/cms/faqs',
     ],
     [
         'label' => 'mapping',

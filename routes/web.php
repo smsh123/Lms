@@ -66,7 +66,12 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/pages/add', 'PageController@add')->name('pages.add');
     Route::post('/pages/store', 'PageController@store');
     Route::get('/pages/edit/{id}', 'PageController@testimonialEdit')->name('pages.edit');
-    Route::post('/pages/update', 'PageController@update')->name('pages.update'); 
+    Route::post('/pages/update', 'PageController@update')->name('pages.update');
+    Route::get('/modules', 'ModuleController@index')->name('modules.index'); 
+    Route::get('/modules/add', 'ModuleController@add')->name('modules.add');
+    Route::post('/modules/store', 'ModuleController@store');
+    Route::get('/modules/edit/{id}', 'ModuleController@testimonialEdit')->name('modules.edit');
+    Route::post('/modules/update', 'ModuleController@update')->name('modules.update'); 
 });
 
 

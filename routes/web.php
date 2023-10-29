@@ -72,6 +72,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/modules/store', 'ModuleController@store');
     Route::get('/modules/edit/{id}', 'ModuleController@edit')->name('modules.edit');
     Route::post('/modules/update', 'ModuleController@update')->name('modules.update'); 
+    Route::get('/faq', 'FaqController@index')->name('faq.index'); 
+    Route::get('/faq/add', 'FaqController@add')->name('faq.add');
+    Route::post('/faq/store', 'FaqController@store');
+    Route::get('/faq/edit/{id}', 'FaqController@edit')->name('faq.edit');
+    Route::post('/faq/update', 'FaqController@update')->name('faq.update'); 
 });
 
 

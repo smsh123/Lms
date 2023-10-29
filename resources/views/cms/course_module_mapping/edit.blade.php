@@ -51,7 +51,7 @@
           @foreach ($modules as  $key => $module)
             <li class="list-group-item col-12 col-md-6 col-lg-4 border">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($module['id']) ? $module['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($module['name']) ? $module['name'] : '' }}" {{ !empty($mappings['modules']) && in_array($module['id'],$mappings['modules']) ? checked : '' }}>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($module['id']) ? $module['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($module['name']) ? $module['name'] : '' }}"  @if(!empty($mappings['modules'])) @foreach ($mappings['modules'] as $moduleArray) @if($moduleArray['moduleId'] == $module['id']) checked @endif @endforeach  @endif>
                 <label class="form-check-label" for="inlineCheckbox{{ $key }}">{{ !empty($module['name']) ? $module['name'] : '' }}</label>
               </div>
             </li>

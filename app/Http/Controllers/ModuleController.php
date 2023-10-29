@@ -46,7 +46,7 @@ class ModuleController extends Controller
     
         $module->save();
     
-        return redirect()->route('module.index')->with('success', 'Module created successfully');
+        return redirect()->route('modules.index')->with('success', 'Module created successfully');
     }
 
     

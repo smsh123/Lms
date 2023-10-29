@@ -13,7 +13,7 @@
       </div>
       <div class="form-group col-lg-4 col-md-6">
         <label>Module Slug</label>
-        <input type="date" class="form-control" placeholder="Module Slug" />
+        <input type="text" class="form-control" placeholder="Module Slug" />
       </div>
       <div class="form-group col-lg-12 text-center">
         <input type="button" class="btn btn-primary" value="Search" >

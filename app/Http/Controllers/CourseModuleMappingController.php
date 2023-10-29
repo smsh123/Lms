@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Course;
+use App\Models\CourseModuleMapping;
+
 
 class CourseModuleMappingController extends Controller
 {
     //
     public function index(Request $request) 
     {
-        $modules = Module::all();
-        return view('cms.course_module_mapping.index')->with('modules',$modules);
+        //$modules = Module::all();
+        $mappings = CourseModuleMapping::all();
+        return view('cms.course_module_mapping.index')->with('mappings',$mappings);
     }
 
     public function add(Request $request){
@@ -26,9 +29,13 @@ class CourseModuleMappingController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        $module = Module::find($id);
+        $mappings = CourseModuleMapping::find($id);
+        $modules = Module::all();
+        $courses = Course::all();
         $data=[
-            'module' => !empty($module) ? $module : []
+            "courses" => !empty($courses) ? $courses : [],
+            "modules" =>  !empty($modules) ? $modules : [],
+            "mappings" =>  !empty($mappings) ? $mappings : []
         ];
         // dd($course);
         return view('cms.course_module_mapping.edit', $data);
@@ -38,63 +45,55 @@ class CourseModuleMappingController extends Controller
     {
         // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:modules',
-            'status' => 'required',
+            'course' => 'required|string|max:255',
         ]);
-        $title = $request->input('title');
-        $duration =  $request->input('duration');
+        $moduleId = $request->input('module_id');
+        $moduleName= $request->input('module_name');
         $objects = [];
-        if (count($title) == count($duration)) {
-            $count = count($title);
+        if (!empty($moduleId) && !empty($moduleName)) {
+            $count = count($moduleId);
             for ($i = 0; $i < $count; $i++) {
                 $object = new \stdClass(); 
-                $object->title = $title[$i];
-                $object->duration = $duration[$i];
+                $object->moduleId = $moduleId[$i];
+                $object->moduleName = $moduleName[$i];
                 $objects[] = $object;
             }
         }
-        $module = new Module;
-        $module->name = $request->input('name');
-        $module->slug = $request->input('slug');
-        $module->status = $request->input('status');
-        $module->items = $objects;
+        $mapping = new CourseModuleMapping;
+        $mapping->course = $request->input('course');
+        $mapping->modules = $objects;
     
-        $module->save();
+        $mapping->save();
     
-        return redirect()->route('modules.index')->with('success', 'Module created successfully');
+        return view("cms.course_module_mapping.index")->with('msg', 'Mapping created successfully');
     }
 
     public function update(Request $request)
     {
         // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'status' => 'required',
+            'course' => 'required|string|max:255',
         ]);
-        $title = $request->input('title');
-        $duration =  $request->input('duration');
+        $moduleId = $request->input('module_id');
+        $moduleName= $request->input('module_name');
         $objects = [];
-        if (count($title) == count($duration)) {
-            $count = count($title);
+        if (!empty($moduleId) && !empty($moduleName)) {
+            $count = count($moduleId);
             for ($i = 0; $i < $count; $i++) {
                 $object = new \stdClass(); 
-                $object->title = $title[$i];
-                $object->duration = $duration[$i];
+                $object->moduleId = $moduleId[$i];
+                $object->moduleName = $moduleName[$i];
                 $objects[] = $object;
             }
         }
         $id = $request->input("id");
-        $module = Module::find($id);
-        $module->name = $request->input('name');
-        $module->slug = $request->input('slug');
-        $module->status = $request->input('status');
-        $module->items = $objects;
+        $mapping = CourseModuleMapping::find($id);
+        $mapping->course = $request->input('course');
+        $mapping->modules = $objects;
     
-        $module->save();
+        $mapping->save();
     
-        return redirect()->route('modules.index')->with('success', 'Module Updated successfully');
+        return view("cms.course_module_mapping.index")->with('msg', 'Mapping created successfully');
     }
 
     

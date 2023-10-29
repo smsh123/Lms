@@ -1,11 +1,12 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-12"><h1>Create Course Module Mapping</h1></div>
+    <div class="col-12 col-lg-12"><h1>Edit Course Module Mapping</h1></div>
   </div>
   <div class="card">
     <div class="card-header">
-      <form method="post" action="/cms/course-module-mapping/store" class="p-3">
+      <form method="post" action="/cms/course-module-mapping/update" class="p-3">
+      <input type="hidden" name="id" value="{{!empty($mappings['id']) ? $mappings['id'] : ''}}" />
         <div class="row d-flex align-items-stretch flex-wrap">
           <div class="col-12 col-md-6 col-lg-6 align-self-center">
             <div class="form-group mb-0">
@@ -14,7 +15,7 @@
                 <option>Select Course</option>
                 @if(!empty($courses))
                   @foreach ($courses as $course)
-                    <option value="{{ !empty($course['id']) ? $course['id'] : '' }}">{{ !empty($course['name']) ? $course['name'] : '' }}</option>
+                    <option {{ !empty($mappings['course']) && $mappings['course'] == $course['id'] ? "selected" : '' }} value="{{ !empty($course['id']) ? $course['id'] : '' }}">{{ !empty($course['name']) ? $course['name'] : '' }}</option>
                   @endforeach
                 @endif
               </select>
@@ -31,7 +32,13 @@
           <div class="col-12">
             <div class="form-group">
               <label>Selected Modules</label>
-              <ul id="selected_input" class="list-no-style p-0 m-0"></ul>
+              <ul id="selected_input" class="list-no-style p-0 m-0">
+                @if(!empty($mappings['modules']))
+                  @foreach ($mappings['modules'] as $key => $module)
+                    <li class='d-inline-block mx-2 mb-2'><input type='hidden' id='{{ !empty($module['id']) ? $module['id'] : ''  }}' value='{{ !empty($module['id']) ? $module['id'] : ''  }}' name='module_id[{{ $key }}]' readonly /><input type='text' name='module_name[{{ $key }}]' class='btn btn-outline-info rounded-pill' value='{{!empty($module['moduleName'])}}' /></li>
+                  @endforeach
+                @endif
+              </ul>
             </div>
           </div>
         </div>

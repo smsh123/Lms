@@ -123,6 +123,20 @@
           }
         }
 
+        function selectForMap(event,targetId){
+          var isChecked = event.checked;
+          //alert(isChecked);
+          if(isChecked){
+            var selected_id = event.value;
+            var selected_module = event.getAttribute("data-label");
+            $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='module_id[]' readonly /><input type='text' name='module_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+           // alert(selected_id);
+          }else{
+            var selected_id = event.value;
+            $("#"+targetId).find("#"+selected_id).parents("li").remove();
+          }
+        }
+
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);
         });

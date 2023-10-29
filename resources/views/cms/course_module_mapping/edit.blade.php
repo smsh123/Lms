@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-6 align-self-end text-left">
-            <input type="submit" value="Create Mapping" class="btn btn-primary" />
+            <input type="submit" value="Update Mapping" class="btn btn-primary" />
           </div>
         </div>
         <div class="row mt-3">

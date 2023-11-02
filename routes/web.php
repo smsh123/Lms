@@ -83,6 +83,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/course-module-mapping/edit/{id}', 'CourseModuleMappingController@edit');
     Route::post('/course-module-mapping/store', 'CourseModuleMappingController@store');
     Route::post('/course-module-mapping/update', 'CourseModuleMappingController@update');
+    Route::get('/course-faq-mapping', 'CourseFaqMappingController@index');
+    Route::get('/course-faq-mapping/add', 'CourseFaqMappingController@add');
+    Route::get('/course-faq-mapping/edit/{id}', 'CourseFaqMappingController@edit');
+    Route::post('/course-faq-mapping/store', 'CourseFaqMappingController@store');
+    Route::post('/course-faq-mapping/update', 'CourseFaqMappingController@update');
 });
 
 

@@ -1,11 +1,11 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-12"><h1>Create Course Module Mapping</h1></div>
+    <div class="col-12 col-lg-12"><h1>Create Course Faq Mapping</h1></div>
   </div>
   <div class="card">
     <div class="card-header">
-      <form method="post" action="/cms/course-module-mapping/store" class="p-3">
+      <form method="post" action="/cms/course-faq-mapping/store" class="p-3">
       @csrf
         <div class="row d-flex align-items-stretch flex-wrap">
           <div class="col-12 col-md-6 col-lg-6 align-self-center">
@@ -31,7 +31,7 @@
         <div class="row mt-3">
           <div class="col-12">
             <div class="form-group">
-              <label>Selected Modules</label>
+              <label>Selected Faqs</label>
               <ul id="selected_input" class="list-no-style p-0 m-0"></ul>
             </div>
           </div>
@@ -39,13 +39,13 @@
       </form>
     </div>
     <div class="card-body">
-      @if(!empty($modules))
+      @if(!empty($faqs))
         <ul class="list-group row" style="flex-direction:row;">
-          @foreach ($modules as  $key => $module)
+          @foreach ($faqs as  $key => $faq)
             <li class="list-group-item col-12 col-md-6 col-lg-4 border">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($module['id']) ? $module['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($module['name']) ? $module['name'] : '' }}" entity-type="module">
-                <label class="form-check-label" for="inlineCheckbox{{ $key }}">{{ !empty($module['name']) ? $module['name'] : '' }}</label>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($faq['id']) ? $faq['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($faq['name']) ? $faq['name'] : '' }}" entity-type="faq">
+                <label class="form-check-label" for="inlineCheckbox{{ $key }}">{{ !empty($faq['name']) ? $faq['name'] : '' }}</label>
               </div>
             </li>
           @endforeach

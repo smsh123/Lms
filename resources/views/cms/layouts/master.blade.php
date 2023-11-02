@@ -123,14 +123,25 @@
           }
         }
 
+        //copy this function and change according course faq mapping and others
+
+        //from here
+
         function selectForMap(event,targetId){
           var isChecked = event.checked;
           //alert(isChecked);
           if(isChecked){
+            var entityType = event.getAttribute("entity-type");
             var selected_id = event.value;
             var selected_module = event.getAttribute("data-label");
             if($("#"+selected_id).length == 0){
-              $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='module_id[]' readonly /><input type='text' name='module_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+              if(entityType == "module"){
+                $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='module_id[]' readonly /><input type='text' name='module_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+              }
+              else if(entityType == "faq"){
+                $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='faq_id[]' readonly /><input type='text' name='faq_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+              }
+              
             }
            // alert(selected_id);
           }else{
@@ -138,6 +149,8 @@
             $("#"+targetId).find("#"+selected_id).parents("li").remove();
           }
         }
+
+        //till here
 
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);

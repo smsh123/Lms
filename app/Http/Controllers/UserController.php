@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -65,6 +67,25 @@ class UserController extends Controller
     }
     public function addUsers(Request $request){
         return view('cms.users.add');
+    }
+    public function userRolesPermissions(Request $request,$id){
+        $user = User::find($id);
+        $data = [
+            "_id" => $id,
+            "roles" => Role::all(['name']),
+            "permissions" => Permission::all('name'),
+            "userPermissions" => !empty($user->permissions) ? $user->permissions : [],
+            "userRoles" => !empty($user->roles) ? $user->roles : []
+        ];
+        return view('cms.users.permissions',$data);
+    }
+    public function storeUserRolesPermissions(Request $request){
+        // dd($request->all());
+        $user = User::find($request->input('_id',''));
+        $user->roles = $request->input('roles',[]);
+        $user->permissions = $request->input('permissions',[]);
+        $user->save();
+        return redirect('/cms/users')->with('msg', 'User Roles and Permissions Updated Successfully!');
     }
     
 }

@@ -32,7 +32,7 @@
             <th>Email</th>
             <th>Mobile</th>
             <th>Type</th>
-            {{-- <th>Action</th> --}}
+            <th>Action</th>
           </tr>
       </thead>
       <tbody>
@@ -43,11 +43,12 @@
           <td>{{$user->email}}</td>
           <td>{{$user->mobile}}</td>
           <td>{{$user->user_type}}</td>
-          {{-- <td class="text-nowrap">
-            <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-          </td> --}}
+          <td class="text-nowrap">
+            {{-- <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a> --}}
+            {{-- <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a> --}}
+            <a href="/cms/users/permissions/{{$user->_id}}" class="mx-1" title="view roles and permission "><span data-feather="edit"></span></a>
+            {{-- <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a> --}}
+          </td>
         </tr>
         @endforeach
       @else

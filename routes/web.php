@@ -41,6 +41,8 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/courses/update', 'CourseController@update')->name('courses.update'); 
     Route::get('/users', 'UserController@listUsers')->name('users.index');
     Route::get('/users/add', 'UserController@addUsers')->name('users.add');
+    Route::get('/users/permissions/{id}', 'UserController@userRolesPermissions')->name('users.userRolesPermissions');
+    Route::post('/users/permissions-store', 'UserController@storeUserRolesPermissions')->name('users.storeUserRolesPermissions');
     Route::get('/banners', 'BannerController@listBanners')->name('banners.index');
     Route::get('/banners/add', 'BannerController@addBanners')->name('banners.add');
     Route::post('/banners/store', 'BannerController@store')->name('banners.store');
@@ -93,6 +95,16 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/course-testimonial-mapping/edit/{id}', 'CourseTestimonialMappingController@edit');
     Route::post('/course-testimonial-mapping/store', 'CourseTestimonialMappingController@store');
     Route::post('/course-testimonial-mapping/update', 'CourseTestimonialMappingController@update');
+    Route::get('/roles', 'RoleController@index');
+    Route::get('/roles/add', 'RoleController@add');
+    Route::get('/roles/edit/{id}', 'RoleController@edit');
+    Route::get('/roles/delete/{id}', 'RoleController@delete');
+    Route::post('/roles/store', 'RoleController@store');
+    Route::get('/permissions', 'PermissionController@index');
+    Route::get('/permissions/add', 'PermissionController@add');
+    Route::get('/permissions/edit/{id}', 'PermissionController@edit');
+    Route::get('/permissions/delete/{id}', 'PermissionController@delete');
+    Route::post('/permissions/store', 'PermissionController@store');
 });
 
 

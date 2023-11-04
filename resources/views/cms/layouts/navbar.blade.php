@@ -76,6 +76,16 @@
         'url' => '/cms/mappings',
     ],
     [
+        'label' => 'role',
+        'icon'=>'layout',
+        'url' => '/cms/roles',
+    ],
+    [
+        'label' => 'permission',
+        'icon'=>'layout',
+        'url' => '/cms/permissions',
+    ],
+    [
         'label' => 'pages',
         'icon'=>'layout',
         'url' => '/cms/pages',

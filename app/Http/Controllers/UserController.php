@@ -59,6 +59,9 @@ class UserController extends Controller
         return asset($avatarPath);
     }
     public function listUsers(Request $request){
+        if(!User::hasPermissions(["Create:User"])){
+            return response()->json(['error' => 'User has no permission to vew list'], 403);
+        }
         $users = User::all();
         $data = [
             'users'=>!empty($users) ? $users : []

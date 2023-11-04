@@ -34,9 +34,11 @@ class User extends Authenticatable
         return false;
     }
 
-    public static function hasPermission($permission = ""){
-        if (self::userHasDirectPermission($permission) || Role::roleHasPermission($permission)) {
-            return true;
+    public static function hasPermissions($permissions = []){
+        foreach ($permissions as $key => $permission) {
+            if (self::userHasDirectPermission($permission) || Role::roleHasPermission($permission)) {
+                return true;
+            }   
         }
         return false;
     }

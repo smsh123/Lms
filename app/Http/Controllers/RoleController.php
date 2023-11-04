@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
-// use App\Models\User;
+use App\Models\User;
 
 class RoleController extends Controller
 {
     //
     public function index(Request $request){
-        // dd(Role::roleHasPermission("Create:User1"),User::hasPermission("Create:User"));
+        // dd(Role::roleHasPermission("Create:User1"),User::hasPermissions(["Create:User"]));
         $roles = Role::all();
         $data = [
             'roles'=>!empty($roles) ? $roles : []

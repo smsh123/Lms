@@ -16,11 +16,17 @@
         </div>
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">Banner Image</label>
-          <input id="form-image" type="hidden" class="form-control" name="image" />
           <div class="input-group upload-image mb-3">
-            <input id="inputBanner" type="file" class="form-control" placeholder="Banner Image">
+            <input id="inputImage" type="file" class="form-control" placeholder="Banner Image">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputBanner');" type="button" id="button-addon2">Upload</button>
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage','form-image-input','image-preview');" type="button" id="button-addon2">Upload</button>
+            </div>
+          </div>
+          <input id="form-image-input" type="hidden" class="form-control" name="image" />
+
+          <div class="icon-200">
+            <div class="ratio-image image_1-1">
+              <img id="image-preview" src="" />
             </div>
           </div>
         </div>

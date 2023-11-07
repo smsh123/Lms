@@ -20,12 +20,16 @@ class UserController extends Controller
             'pwd' => 'required|min:8',
         ]);
 
-        $userAvatar = $this->createAvatar($request->name);    
+        $userAvatar = $request->avatar_image;
+        if(empty($userAvatar)){
+            $userAvatar = $this->createAvatar($request->name);
+        }
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->email = $request->email;
         $user->avatar_image = $userAvatar;
+        $user->cover_image = $request ->cover_image;
         $user->password = bcrypt($request->pwd);
         $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
         $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
@@ -49,7 +53,10 @@ class UserController extends Controller
         ]);
 
         $id = $request->input("id",'');
-        $userAvatar = !empty($request->avatar_image) ? $request->avatar_image : $this->createAvatar($request->name);    
+        $userAvatar = $request->avatar_image;
+        if(empty($userAvatar)){
+            $userAvatar = $this->createAvatar($request->name);
+        }
         $user = User::find($id);
         $user->name = $request->name;
         $user->mobile = $request->mobile;
@@ -58,6 +65,7 @@ class UserController extends Controller
         if(!empty($request->pwd)){
             $user->password = bcrypt($request->pwd);
         }
+        $user->cover_image = $request ->cover_image;
         $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
         $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
         $user->save();

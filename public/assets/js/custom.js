@@ -1,5 +1,5 @@
 var CustomFunctions = {
-    uploadImage: function(id = '') {
+    uploadImage: function(id = '',target_input = '', target_image = '') {
         var imageInput = document.getElementById(id);
         if (imageInput.files.length === 0) {
             alert('Please select an image to upload.');
@@ -23,6 +23,12 @@ var CustomFunctions = {
             data: form,
             success: function(data) {
                 console.log(data);
+                if (target_input === 0) {
+                    target_input.value=data.image;
+                }
+                if (target_image === 0) {
+                    target_image.src=data.image;
+                }
                 alert(data.message);
             },
             error: function(msg) {

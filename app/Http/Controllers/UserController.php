@@ -27,9 +27,41 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->avatar_image = $userAvatar;
         $user->password = bcrypt($request->pwd);
-        $user->user_type = $request ->user_type;
+        $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
+        $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
         $user->save();
         return redirect()->back()->with('msg', 'User Registered Successfully!');
+    }
+    public function edit(Request $request, $id){
+        $users = User::find($id);
+        $data = [
+            "users" => !empty($users) ? $users : []
+        ];
+        return view('cms.users.edit',$data);
+    }
+    public function update(Request $request)
+    {
+        // return $request->all();
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'email' => 'required|email|unique:users'
+        ]);
+
+        $id = $request->input("id",'');
+        $userAvatar = !empty($request->avatar_image) ? $request->avatar_image : $this->createAvatar($request->name);    
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->avatar_image = $userAvatar;
+        if(!empty($request->pwd)){
+            $user->password = bcrypt($request->pwd);
+        }
+        $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
+        $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
+        $user->save();
+        return redirect()->back()->with('msg', 'User Details Updated Successfully!');
     }
 
     public function createAvatar($name)

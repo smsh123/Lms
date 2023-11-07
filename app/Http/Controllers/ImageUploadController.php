@@ -31,13 +31,13 @@ class ImageUploadController extends Controller
       
         $filename = time() . '.' . $request->image->extension();
 
-        $request->image->move(public_path('images'), $filename);
+        $request->image->move(public_path('images/uploaded'), $filename);
 
         // save uploaded image filename here to your database
 
         return response()->json([
             'message' => 'Image uploaded successfully.',
-           'image' => 'images/' . $filename
+           'image' => 'images/uploaded/' . $filename
         ], 200);
     }
 }

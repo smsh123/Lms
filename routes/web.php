@@ -41,6 +41,8 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/courses/update', 'CourseController@update')->name('courses.update'); 
     Route::get('/users', 'UserController@listUsers')->name('users.index');
     Route::get('/users/add', 'UserController@addUsers')->name('users.add');
+    Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
+    Route::get('/users/update/{id}', 'UserController@update')->name('users.update');
     Route::get('/users/permissions/{id}', 'UserController@userRolesPermissions')->name('users.userRolesPermissions');
     Route::post('/users/permissions-store', 'UserController@storeUserRolesPermissions')->name('users.storeUserRolesPermissions');
     Route::get('/banners', 'BannerController@listBanners')->name('banners.index');

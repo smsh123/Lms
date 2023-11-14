@@ -91,6 +91,11 @@
         'url' => '/cms/pages',
     ],
     [
+        'label' => 'coupons',
+        'icon'=>'tag',
+        'url' => '/cms/coupons',
+    ],
+    [
         'label' => 'logout',
         'icon'=>'log-out',
         'url' => '/logout',

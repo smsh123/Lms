@@ -108,6 +108,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/permissions/edit/{id}', 'PermissionController@edit');
     Route::get('/permissions/delete/{id}', 'PermissionController@delete');
     Route::post('/permissions/store', 'PermissionController@store');
+    Route::get('/coupons', 'CouponController@index')->name('coupons.index'); 
+    Route::get('/coupons/add', 'CouponController@add')->name('coupons.add');
+    Route::post('/coupons/store', 'CouponController@store');
+    Route::get('/coupons/edit/{id}', 'CouponController@couponEdit')->name('coupons.edit');
+    Route::post('/coupons/update', 'CouponController@update')->name('coupons.update');
 });
 
 

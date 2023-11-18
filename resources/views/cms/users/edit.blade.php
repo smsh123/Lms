@@ -11,16 +11,33 @@
     <input type="hidden" name="id" value="{{ !empty($users['_id']) ? $users['_id'] : ''}}" />
     <div class="card-body">
       <div class="row form-group">
-        <div class="col-lg-6">
-          <div class="icon-200 mx-auto my-3">
-            <div class="ratio-image image_1-1 rounded-circle">
-              <img src="{{ !empty($users['avatar_image']) ? $users['avatar_image'] : '' }}" alt="{{ !empty($users['name']) ? $users['name'] : ''}}" />
+        <div class="col-12 col-lg-6">
+          <div class="icon-200 mx-auto">
+            <div class="ratio-image image_1-1 rounded-circle my-3">
+              <img id="image-preview" src="{{ !empty($users['avatar_image']) ? $users['avatar_image'] : '' }}" />
             </div>
-            <input type="hidden" value="{{ !empty($users['avatar_image']) ? $users['avatar_image'] : '' }}"   name="avatar_image" />
           </div>
+          <div class="input-group upload-image mb-3">
+            <input id="inputImage" type="file" class="form-control" placeholder="Banner Image" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage','form-image-input','image-preview');" type="button" id="button-addon2">Upload</button>
+            </div>
+          </div>
+          <input id="form-image-input" type="hidden" class="form-control" name="avatar_image" value="{{ !empty($users['avatar_image']) ? $users['avatar_image'] : '' }}" />
         </div>
-        <div class="col-lg-6">
-          <input type="file" class="form-control" />
+        <div class="col-12 col-lg-6">
+          <div class="w-100 mw-320 my-4 mx-auto">
+            <div class="ratio-image image_16-9">
+              <img id="image-preview_1" src="{{ !empty($users['cover_image']) ? $users['cover_image'] : '' }}" />
+            </div>
+          </div>
+          <div class="input-group upload-image mb-3">
+            <input id="inputImage_1" type="file" class="form-control" placeholder="Banner Image">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage_1','form-image-input_1','image-preview_1');" type="button" id="button-addon2">Upload</button>
+            </div>
+          </div>
+          <input id="form-image-input_1" type="hidden" class="form-control" name="cover_image" value="{{ !empty($users['cover_image']) ? $users['cover_image'] : '' }}" />
         </div>
       </div>
       <div class="row form-group">

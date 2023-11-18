@@ -75,7 +75,7 @@
             </div>
           </div>
           <input id="form-image-input_1" type="hidden" class="form-control" name="cover_image" />
-          <div class="icon-200">
+          <div class="w-100 mw-320">
             <div class="ratio-image image_16-9">
               <img id="image-preview_1" src="" />
             </div>

@@ -49,7 +49,7 @@ class UserController extends Controller
         $this->validate($request, [
             'id' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email'
         ]);
 
         $id = $request->input("id",'');

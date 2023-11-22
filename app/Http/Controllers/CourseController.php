@@ -44,6 +44,8 @@ class CourseController extends Controller
         $course->offer_value = $request->input('offer_value');
         $course->coupon_code = $request->input('coupon_code');
         $course->offer_details = $request->input('offer_details');
+        $course->thumbnail_image = $request->input('thumbnail_image');
+        $course->banner_image = $request->input('banner_image');
     
         $course->save();
     
@@ -87,6 +89,8 @@ class CourseController extends Controller
         $course->offer_value = $request->input('offer_value');
         $course->coupon_code = $request->input('coupon_code');
         $course->offer_details = $request->input('offer_details');
+        $course->thumbnail_image = $request->input('thumbnail_image');
+        $course->banner_image = $request->input('banner_image');
     
         $course->save();
     

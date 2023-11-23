@@ -13,7 +13,7 @@ class CourseController extends Controller
 
         $courses = Course::all();
         return view('cms.courses.index')->with('courses',$courses);
-      }
+    }
     public function add(Request $request){
     return view('cms.courses.add');
     }

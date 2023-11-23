@@ -31,6 +31,9 @@ Route::post('reset_password_without_token', 'AuthController@validatePasswordRequ
 Route::post('reset_password_with_token', 'AuthController@resetPassword');
 Route::get('/reset/password/{token}', 'AuthController@resetPasswordForm');
 Route::post('/image-upload-post','ImageUploadController@imageUploadPost');
+Route::get('/get-course-module','SchedulingController@getModulesByCourse');
+Route::get('/get-course-submodule','SchedulingController@getSubModulesByModuleId');
+
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
@@ -113,6 +116,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/coupons/store', 'CouponController@store');
     Route::get('/coupons/edit/{id}', 'CouponController@couponEdit')->name('coupons.edit');
     Route::post('/coupons/update', 'CouponController@update')->name('coupons.update');
+    Route::get('/schedule', 'SchedulingController@index')->name('schedule.index'); 
+    Route::get('/schedule/add', 'SchedulingController@add')->name('schedule.add');
+    Route::post('/schedule/store', 'SchedulingController@store')->name('schedule.store');
+    Route::get('/schedule/edit/{id}', 'SchedulingController@courseEdit')->name('schedule.edit'); 
+    Route::post('/schedule/update', 'SchedulingController@update')->name('schedule.update'); 
 });
 
 

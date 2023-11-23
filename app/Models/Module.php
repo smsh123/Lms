@@ -17,6 +17,14 @@ class Module extends BaseModel
             return $result;
         }
     }
+
+    public static function getModuleById($moduleId) {
+
+        if(!empty($moduleId)){
+            $result = self::where('_id',$moduleId)->get()->toArray();
+            return $result;
+        }
+    }
     
     
 }

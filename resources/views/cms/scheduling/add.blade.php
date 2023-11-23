@@ -12,7 +12,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Select Course</label>
-          <select id="course_select" class="form-control" onchange="CustomFunctions.getCourseModule('course_select','module_select')" name="course">
+          <select id="course_select" class="form-control" onchange="CustomFunctions.getCourseModule('course_select','module_select','course_id')" name="course">
             <option>Select</option>
             @if(!empty($courses))
               @foreach ($courses as $course)
@@ -27,7 +27,7 @@
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Select Module</label>
-          <select id="module_select" class="form-control" onchange="CustomFunctions.getCourseSubModule('module_select','subModule_select')" name="module"><option>Select</option></select>
+          <select id="module_select" class="form-control" onchange="CustomFunctions.getCourseSubModule('module_select','subModule_select','module_id')" name="module"><option>Select</option></select>
           <input id="module_id" type="hidden" name="module_id" />
           @if ($errors->has('module_id'))
             <p class="text-danger">{{ $errors->first('module_id') }}</p>
@@ -40,9 +40,8 @@
           <select id="subModule_select" class="form-control" name="sub_module">
             <option>Select</option>
           </select>
-          <input id="submodule_id" type="hidden" name="submodule_id" />
-          @if ($errors->has('submodule_id'))
-            <p class="text-danger">{{ $errors->first('submodule_id') }}</p>
+          @if ($errors->has('sub_module'))
+            <p class="text-danger">{{ $errors->first('sub_module') }}</p>
           @endif
         </div>
          <div class="col-lg-6">

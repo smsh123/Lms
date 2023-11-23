@@ -40,11 +40,9 @@ var CustomFunctions = {
         });
     },
 
-    getCourseModule: function(selectId = '',target_input_id = ''){
-        var courseSelected = document.getElementById(selectId);
-        //var courseId = courseSelected.getAttribute("data-id");
+    getCourseModule: function(selectId = '',target_input_id = '',target_id_val=''){
         var courseId = $("#"+selectId).find('option:selected').attr('data-id');
-        var target_input = document.getElementById(target_input_id);
+        $("#"+target_id_val).val(courseId);
         $("#"+target_input_id).empty();
         //alert(courseId);
         if (courseId =='' || courseId=='undefined') {
@@ -86,9 +84,9 @@ var CustomFunctions = {
 
     },
 
-    getCourseSubModule: function(selectId = '',target_input_id = ''){
+    getCourseSubModule: function(selectId = '',target_input_id = '',target_id_val=''){
         var moduleId = $("#"+selectId).find('option:selected').attr('data-id');
-        var target_input = document.getElementById(target_input_id);
+        $("#"+target_id_val).val(moduleId);
         $("#"+target_input_id).empty();
         //alert(moduleId);
         if (moduleId =='' || moduleId=='undefined') {

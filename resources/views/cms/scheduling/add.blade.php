@@ -36,7 +36,7 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Select Course</label>
+          <label class="font-weight-bold">Select Sub Module</label>
           <select id="subModule_select" class="form-control" name="sub_module">
             <option>Select</option>
           </select>
@@ -45,10 +45,71 @@
           @endif
         </div>
          <div class="col-lg-6">
-          <label class="font-weight-bold">Select Module</label>
-          <input type="date" class="form-control" name="class_start_time" />
+          <label class="font-weight-bold">Class Start Time</label>
+          <input type="datetime-local" class="form-control" name="class_start_time" />
           @if ($errors->has('class_start_time'))
             <p class="text-danger">{{ $errors->first('class_start_time') }}</p>
+          @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Class End Time</label>
+          <input type="datetime-local" class="form-control" name="class_end_time" />
+          @if ($errors->has('class_end_time'))
+            <p class="text-danger">{{ $errors->first('class_end_time') }}</p>
+          @endif
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Select Teacher</label>
+          <select id="teacher_select_btn" class="form-control" name="teacher" onchange="selectTeacher('teacher_select_btn','teacher_id_input')">
+            <option>Select</option>
+            @if(!empty($teachers))
+              @foreach ($teachers as $key => $teacher)
+                  <option data-id="{{ !empty($teacher['_id']) ? $teacher['_id'] : '' }}">{{ !empty($teacher['name']) ? $teacher['name'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+          <input id="teacher_id_input" type="hidden" name="teacher_id" />
+          @if ($errors->has('teacher_id'))
+            <p class="text-danger">{{ $errors->first('teacher_id') }}</p>
+          @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Video ID</label>
+          <input type="text" class="form-control" name="video_id" placeholder="Video ID" />
+          @if ($errors->has('video_id'))
+            <p class="text-danger">{{ $errors->first('video_id') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Video Type</label>
+          <select class="form-control" name="video_type">
+            <option value="yt">Youtube</option>
+          </select>
+          @if ($errors->has('video_type'))
+            <p class="text-danger">{{ $errors->first('video_type') }}</p>
+          @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Ebook (PDF)</label>
+          <input type="text" class="form-control" name="study_material" placeholder="Study Material Url" />
+          @if ($errors->has('study_material'))
+            <p class="text-danger">{{ $errors->first('study_material') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Class Type</label>
+          <select class="form-control" name="class_type">
+            <option value="live">Live</option>
+            <option value="recorded">Recorded</option>
+          </select>
+          @if ($errors->has('class_type'))
+            <p class="text-danger">{{ $errors->first('class_type') }}</p>
           @endif
         </div>
       </div>

@@ -32,6 +32,8 @@
           <tr>
             <th>Course</th>
             <th>Module</th>
+            <th>Sub Module</th>
+            <th>Teacher</th>
             <th>Created Date</th>
             {{-- <th>Created By</th> --}}
             <th>Modified Date</th>
@@ -42,8 +44,10 @@
       <tbody>
         @foreach ($schedules as $schedule)
         <tr>
-          <td>{{$schedule->course_id}}</td>
+          <td>{{$schedule->course}}</td>
           <td>{{$schedule->module}}</td>
+          <td>{{$schedule->sub_module}}</td>
+          <td>{{$schedule->teacher}}</td>
           <td>{{$schedule->created_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td>{{$schedule->updated_at}}</td>

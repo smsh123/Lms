@@ -129,3 +129,8 @@ var CustomFunctions = {
     }
 
 };
+
+function selectTeacher(selectId = '',target_id_val=''){
+    var teacherId = $("#"+selectId).find('option:selected').attr('data-id');
+    $("#"+target_id_val).val(teacherId);
+}

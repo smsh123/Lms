@@ -29,7 +29,7 @@ class User extends Authenticatable
             return true;
         }
         if (!empty($user->permissions) && in_array($permission,$user->permissions)) {
-                return true;
+            return true;
         }
         return false;
     }
@@ -41,5 +41,11 @@ class User extends Authenticatable
             }   
         }
         return false;
+    }
+    public static function getUserByRole($role = ''){
+        if(!empty($role)){
+           $result = self::where('roles',$role)->get()->toArray();
+            return $result;
+        }
     }
 }

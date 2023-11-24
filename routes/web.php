@@ -119,7 +119,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/schedule', 'SchedulingController@index')->name('schedule.index'); 
     Route::get('/schedule/add', 'SchedulingController@add')->name('schedule.add');
     Route::post('/schedule/store', 'SchedulingController@store')->name('schedule.store');
-    Route::get('/schedule/edit/{id}', 'SchedulingController@courseEdit')->name('schedule.edit'); 
+    Route::get('/schedule/edit/{id}', 'SchedulingController@scheduleEdit')->name('schedule.edit'); 
     Route::post('/schedule/update', 'SchedulingController@update')->name('schedule.update'); 
 });
 

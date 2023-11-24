@@ -16,8 +16,7 @@ class Testimonial extends BaseModel
             $result = self::where('slug',$type)->get()->toArray();
             return $result;
         }
-    }
-    
+    }    
     
 }
 

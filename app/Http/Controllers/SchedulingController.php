@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Schedule;
 use App\Models\Module;
 use App\Models\CourseModuleMapping;
+use App\Models\User;
 
 class SchedulingController extends Controller
 {
@@ -18,82 +19,90 @@ class SchedulingController extends Controller
     }
     public function add(Request $request){
         $courses = Course::all();
-        return view('cms.scheduling.add')->with('courses',$courses);
+        $teachers = User::getUserByRole('Teacher');
+        $data = [
+            "courses"=>!empty($courses) ? $courses : [],
+            "teachers"=>!empty($teachers) ? $teachers : []   
+        ];
+        return view('cms.scheduling.add',$data);
     }
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'name_hn' => 'required|string|max:255',
-            'description' => 'required|string',
-            'original_price' => 'required|numeric|min:0',
-            'selling_price' => 'required|numeric|min:0',
-            'slug'=> 'required|string|max:255|unique:courses',
+            'course' => 'required|string|max:255',
+            'course_id' => 'required|string|max:255',
+            'module' => 'required|string',
+            'module_id' => 'required|string|max:255',
+            'sub_module' => 'required|string|max:255',
+            'class_start_time'=> 'required|string|max:255',
+            'class_end_time'=> 'required|string|max:255',
+            'teacher_id'=> 'required|string|max:255',
         ]);
     
         $schedule = new Schedule;
-        $schedule->name = $request->input('name');
-        $schedule->name_hindi = $request->input('name_hindi');
-        $schedule->slug = $request->input('slug');
-        $schedule->batch_start_date = $request->input('batch_start_date');
-        $schedule->duration = $request->input('duration');
-        $schedule->class_mode = $request->input('class_mode');
-        $schedule->description = $request->input('description');
-        $schedule->synopsis = $request->input('synopsis');
-        $schedule->original_price = $request->input('original_price');
-        $schedule->selling_price = $request->input('selling_price');
-        $schedule->offer_type = $request->input('offer_type');
-        $schedule->offer_unit = $request->input('offer_unit');
-        $schedule->offer_value = $request->input('offer_value');
-        $schedule->coupon_code = $request->input('coupon_code');
-        $schedule->offer_details = $request->input('offer_details');
-        $schedule->thumbnail_image = $request->input('thumbnail_image');
-        $schedule->banner_image = $request->input('banner_image');
-    
+        $schedule->course = $request->input('course');
+        $schedule->course_id = $request->input('course_id');
+        $schedule->module = $request->input('module');
+        $schedule->module_id = $request->input('module_id');
+        $schedule->sub_module = $request->input('sub_module');
+        $schedule->class_start_time = $request->input('class_start_time');
+        $schedule->class_end_time = $request->input('class_end_time');
+        $schedule->teacher = $request->input('teacher');
+        $schedule->teacher_id = $request->input('teacher_id');
+        $schedule->video_id = $request->input('video_id');
+        $schedule->video_type = $request->input('video_type');
+        $schedule->study_material = $request->input('study_material');
+        $schedule->class_type = $request->input('class_type');
         $schedule->save();
     
         return redirect()->route('schedule.index')->with('success', 'Schedule created successfully');
     }
 
     public function scheduleEdit(Request $request, $id) {
-        $schedules = Course::find($id);
+        $schedules = Schedule::find($id);
+        $courses = Course::all();
+        $teachers = User::getUserByRole('Teacher');
+        $data=[
+            "schedule" => !empty($schedules) ? $schedules : [],
+            "courses" => !empty($courses) ? $courses : [],
+            "teachers" => !empty($teachers) ? $teachers : [],
+        ];
         // dd($course);
-        return view('cms.scheduling.edit')->with('schedule',$schedules);
+        return view('cms.scheduling.edit',$data);
     }
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'name_hn' => 'required|string|max:255',
-            'description' => 'required|string',
-            'original_price' => 'required|numeric|min:0',
-            'selling_price' => 'required|numeric|min:0',
-            'slug'=> 'required|string|max:255',
+            'course' => 'required|string|max:255',
+            'course_id' => 'required|string|max:255',
+            'module' => 'required|string',
+            'module_id' => 'required|string|max:255',
+            'sub_module' => 'required|string|max:255',
+            'class_start_time'=> 'required|string|max:255',
+            'class_end_time'=> 'required|string|max:255',
+            'teacher_id'=> 'required|string|max:255',
         ]);
+    
         $id = $request->input("id",'');
         $schedule = Schedule::find($id);
-        $schedule->name = $request->input('name');
-        $schedule->name_hindi = $request->input('name_hindi');
-        $schedule->slug = $request->input('slug');
-        $schedule->batch_start_date = $request->input('batch_start_date');
-        $schedule->duration = $request->input('duration');
-        $schedule->class_mode = $request->input('class_mode');
-        $schedule->description = $request->input('description');
-        $schedule->synopsis = $request->input('synopsis');
-        $schedule->original_price = $request->input('original_price');
-        $schedule->selling_price = $request->input('selling_price');
-        $schedule->offer_type = $request->input('offer_type');
-        $schedule->offer_unit = $request->input('offer_unit');
-        $schedule->offer_value = $request->input('offer_value');
-        $schedule->coupon_code = $request->input('coupon_code');
-        $schedule->offer_details = $request->input('offer_details');
-        $schedule->thumbnail_image = $request->input('thumbnail_image');
-        $schedule->banner_image = $request->input('banner_image');
-    
+        $schedule->course = $request->input('course');
+        $schedule->course_id = $request->input('course_id');
+        $schedule->module = $request->input('module');
+        $schedule->module_id = $request->input('module_id');
+        $schedule->sub_module = $request->input('sub_module');
+        $schedule->class_start_time = $request->input('class_start_time');
+        $schedule->class_end_time = $request->input('class_end_time');
+        $schedule->teacher = $request->input('teacher');
+        $schedule->teacher_id = $request->input('teacher_id');
+        $schedule->video_id = $request->input('video_id');
+        $schedule->video_type = $request->input('video_type');
+        $schedule->study_material = $request->input('study_material');
+        $schedule->class_type = $request->input('class_type');
         $schedule->save();
     
-        return redirect()->route('schedule.index')->with('success', 'Schedule updated successfully');
+        return redirect()->route('schedule.index')->with('success', 'Schedule created successfully');
     }
+
     public function getModulesByCourse(Request $request,$courseId=''){
         $courseId = $request->input('courseId');
         if(!empty($courseId)){

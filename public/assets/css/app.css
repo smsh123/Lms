@@ -25,6 +25,13 @@
     .theme-contrast-gradient-container{
     background-image: linear-gradient(to right, #ffffff00 , var(--theme_contrast_color_light))
     }
+    .theme-contrast-gradient-container-top{
+      background-image: linear-gradient(to bottom, #ffffff00 , var(--theme_contrast_color_light))
+    }
+    .theme-contrast-gradient-container-bottom{
+      background-image: linear-gradient(to top, #ffffff00 , var(--theme_contrast_color_light))
+    }
+
     .left-theme-strip{ background-color: var(--theme_contrast_color); min-height:300px;}
     .strip-testimonail-image{top:50%; right:-100px; translate:0% -50%;}
     .bg-light-yellow{background-color:#FFF7DB !important;}.border-light-yellow{border-color:#F4E2A1 !important;}

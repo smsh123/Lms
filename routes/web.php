@@ -23,6 +23,7 @@ Route::get('/courses/{id}', 'ProfileController@courses');
 Route::get('/orders/{id}', 'ProfileController@orders');
 Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');
+Route::get('/course/{slug}', 'CourseController@courseDetails');
 Route::get('/blogs', 'BlogController@listing');
 Route::get('/success-stories', 'TestimonialController@listing');
 Route::get('/pages', 'PageController@listing')->name('page.listing'); 

@@ -52,9 +52,13 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
     public function listing(Request $request){
-
         $courses = Course::all();
         return view('course.index')->with('courses',$courses);
+    }
+    public function courseDetails(Request $request, $slug){
+        $courseDescription = [];
+        $courseDescription = Course::getCourseBySlug($slug);
+        return view('course.details')->with('CourseDescription',!empty($courseDescription) ? $courseDescription[0] : []);
     }
 
     public function courseEdit(Request $request, $id) {

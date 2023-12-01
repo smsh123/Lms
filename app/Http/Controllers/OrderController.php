@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Course;
+use App\Helpers\SiteHelper;
 
 class OrderController extends Controller
 {
@@ -45,6 +46,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->product_type = $request->input('product_type');
         $order->product_name = $request->input('product_name');
+        $order->uid = SiteHelper::generateRandomString();
         $order->product_id = $request->input('product_id');
         $order->price = $request->input('price');
         $order->discount = $request->input('discount');

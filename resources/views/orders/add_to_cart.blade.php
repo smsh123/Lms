@@ -2,12 +2,16 @@
 @section('body')
   @include('layouts.global_header')
   <div class="theme-contrast-gradient-container-bottom position-relative py-3">
+   {{-- @if(!empty($saved_order))
+    @php dd($saved_order); @endphp
+   @endif --}}
     <div class="container">
       @if(!empty($product_description))
         <div class="row">
           <div class="col-8">
             <form class="card" method="post" action="/orders/store">
-            @csrf
+              @csrf
+              <input type="hidden" name="referrer" value="{{ !empty($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ''}}" />
               <div class="card-body row">
                 <div class="form-group col-12">
                   <label class="forn-weight-bold">Full Name</label>
@@ -44,6 +48,17 @@
                 </div>
               </div>
             </form>
+            <div class="card">
+              <div class="card-body text-center">
+                <label class="font-weight-bold">Have Your Coupon Code?</label>
+                <div class="input-group mb-3 mw-320 mx-auto">
+                  <input type="text" class="form-control" placeholder="Coupon Code">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button" id="button-addon2">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-4">
             <div class="card">
@@ -53,15 +68,12 @@
                 <p class="font-22">{{ !empty($product_description['selling_price']) ? '₹'.$product_description['selling_price'].'/-' : '' }}</p>
               </div>
               <div class="card-footer text-center">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Coupon Code">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Apply</button>
-                  </div>
-                </div>
                 <p class="mb-2">Total Payable Amount</p>
                 <p class="font-32 font-weight-bold text-primary">{{ !empty($product_description['selling_price']) ? '₹'.$product_description['selling_price'].'/-' : '' }}</p>
                 <p class="font-12 text-muted">*inclusive all texes.</p>
+              </div>
+              <div class="text-center py-3">
+                <a href="" class="btn btn-lg btn-theme-contrast font-22 font-weight-bold">Proceed to Checkout</a>
               </div>
             </div>
           </div>

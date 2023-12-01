@@ -37,6 +37,7 @@ Route::get('/get-course-submodule','SchedulingController@getSubModulesByModuleId
 
 Route::get('/cart/{slug}', 'OrderController@addToCart');
 Route::post('/orders/store', 'OrderController@store');
+Route::post('/orders/update', 'OrderController@update');
 
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {

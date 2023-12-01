@@ -52,6 +52,7 @@ class OrderController extends Controller
         $order->discount = $request->input('discount');
         $order->coupon = $request->input('coupon');
         $order->amount = $request->input('amount');
+        $order ->referrer = $request->input('referrer');
         $order->status = !empty($request->input('status')) ? $request->input('status') : 'created';
         $order->user_details = [
             'full_name'=> !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '',
@@ -62,8 +63,17 @@ class OrderController extends Controller
         ];
 
         $order->save();
-    
-        return redirect()->back()->with('success', 'Order created successfully');
+
+        $savedOrder = Order::getOrderByUID($order->uid);
+        $data = [
+            'saved_order' => !empty($savedOrder) ? $savedOrder[0] : []
+        ];
+        if(!empty($order ->referrer)){
+            return redirect()->back()->with('success', 'Order Created Successfully');
+        }else{
+            return redirect()->back()->with('success', 'Order Created Successfully');
+        }
+
     }
     public function addToCart(Request $request, $slug){
         $productType = $productId = '';
@@ -81,7 +91,10 @@ class OrderController extends Controller
             abort(404);
         }
         
-        return view('orders.add_to_cart')->with('product_description',!empty($productDescription) ? $productDescription : []);
+        $data = [
+            "product_description"=>!empty($productDescription) ? $productDescription : []
+        ];
+        return view('orders.add_to_cart', $data);
     }
 
     public function edit(Request $request, $id) {
@@ -104,24 +117,33 @@ class OrderController extends Controller
     
         $id = $request->input("id",'');
         $order = Order::find($id);
-        $order->product_type = $request->input('product_type');
-        $order->product_name = $request->input('product_name');
-        $order->product_id = $request->input('product_id');
-        $order->price = $request->input('price');
-        $order->discount = $request->input('discount');
-        $order->coupon = $request->input('coupon');
-        $order->amount = $request->input('amount');
-        $order->status = !empty($request->input('status')) ? $request->input('status') : 'created';
-        $order->user_details[] = [];
-        $order->user_details['full_name'] = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
-        $order->user_details['mobile'] = $request->input('user_mobile');
-        $order->user_details['email'] = $request->input('user_email');
-        $order->user_details['state'] = $request->input('state');
-        $order->user_details['city'] = $request->input('city');
+        $email = !empty($request->input('user_email')) ? $request->input('user_email') : '';
+        $mobile =  !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '';
+        $oldUser = User::where('email', $email)->orWhere('mobile', $mobile)->first();
+        if(empty($oldUser)){
+            $user = new User;
+            $user->name = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
+            $user->mobile =  $mobile;
+            $user->email = $email;
+            $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
+            $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
+            $user->save();
+        }
+        $order->discount = !empty($request->input('discount')) ? $request->input('discount') : '';
+        $order->coupon = !empty($request->input('coupon')) ? $request->input('coupon') : '';
+        $order->amount = !empty($request->input('amount')) ? $request->input('amount') : '';
+        $order->status = !empty($request->input('status')) ? $request->input('status') : 'proceed';
+        $order->user_details = [
+            'full_name'=> !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '',
+            'mobile'=> !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '',
+            'email'=> !empty($request->input('user_email')) ? $request->input('user_email') : '',
+            'state'=> !empty($request->input('state')) ? $request->input('state') : '',
+            'city'=> !empty($request->input('city')) ? $request->input('city') : ''
+        ];
 
         $order->save();
     
-        return redirect()->route('orders.index')->with('success', 'Order updated successfully');
+        return redirect()->back()->with('success', 'Order updated successfully');
     }
     
 }

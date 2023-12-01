@@ -30,16 +30,18 @@ class OrderController extends Controller
             'amount' => 'required|numeric|min:1',
             'status'=> 'required|string|max:255',
         ]);
-
-        $user = new User;
-        $user->name = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
-        $user->mobile =  !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '';
-        $user->email =!empty($request->input('user_email')) ? $request->input('user_email') : '';
-        $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
-        $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
-        $user->save();
-    
-    
+        $email = !empty($request->input('user_email')) ? $request->input('user_email') : '';
+        $mobile =  !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '';
+        $oldUser = User::where('email', $email)->orWhere('mobile', $mobile)->first();
+        if(empty($oldUser)){
+            $user = new User;
+            $user->name = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
+            $user->mobile =  $mobile;
+            $user->email = $email;
+            $user->user_type = !empty($request ->user_type) ? $request ->user_type : 'external';
+            $user->user_role = !empty($request ->user_role) ? $request ->user_role : 'Student';
+            $user->save();
+        }
         $order = new Order;
         $order->product_type = $request->input('product_type');
         $order->product_name = $request->input('product_name');

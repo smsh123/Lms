@@ -11,7 +11,10 @@
                 <div class="col-md-6">
                   <h1 class="font-weight-bold font-22">{{ !empty($CourseDescription['name']) ? $CourseDescription['name'] : '' }}</h1>
                   <p>{{ !empty($CourseDescription['synopsis']) ? $CourseDescription['synopsis'] : '' }}</p>
-                   <p class="card-text"><span class="font-weight-bold pr-2 align-middle font-22">{{ !empty($CourseDescription['selling_price']) ? '₹'.$CourseDescription['selling_price'].'/-' : '' }}</span><strike class="text-danger font-12 align-middle">{{ !empty($CourseDescription['original_price']) ? $CourseDescription['original_price'].'/-' : '' }}</strike></p>
+                  @if(!empty($CourseDescription['batch_start_date']))
+                    <p class="font-weight-bold">{{  $CourseDescription['batch_start_date'] }}</p>
+                  @endif
+                  <p class="card-text"><span class="font-weight-bold pr-2 align-middle font-22">{{ !empty($CourseDescription['selling_price']) ? '₹'.$CourseDescription['selling_price'].'/-' : '' }}</span><strike class="text-danger font-12 align-middle">{{ !empty($CourseDescription['original_price']) ? $CourseDescription['original_price'].'/-' : '' }}</strike></p>
                    <p class="mb-0"><a href="/course/{{ !empty($CourseDescription['slug']) ? $CourseDescription['slug'] : '' }}" class="btn btn-lg btn-theme-contrast rounded-pill stretched-link">{{ !empty($CourseDescription['selling_price']) && $CourseDescription['selling_price'] > 0 ? 'Buy Now' : 'Subscribe' }}</a></p>
                 </div>
                 <div class="col-md-6">

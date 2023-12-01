@@ -35,6 +35,9 @@ Route::post('/image-upload-post','ImageUploadController@imageUploadPost');
 Route::get('/get-course-module','SchedulingController@getModulesByCourse');
 Route::get('/get-course-submodule','SchedulingController@getSubModulesByModuleId');
 
+Route::get('/cart/{slug}', 'OrderController@addToCart');
+Route::post('/orders/store', 'OrderController@store');
+
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
@@ -122,6 +125,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/schedule/store', 'SchedulingController@store')->name('schedule.store');
     Route::get('/schedule/edit/{id}', 'SchedulingController@scheduleEdit')->name('schedule.edit'); 
     Route::post('/schedule/update', 'SchedulingController@update')->name('schedule.update'); 
+    Route::get('/orders', 'OrderController@index')->name('orders.index'); 
+    Route::get('/orders/add', 'OrderController@add')->name('orders.add');
+    Route::post('/orders/store', 'OrderController@store')->name('orders.store');
+    Route::get('/orders/edit/{id}', 'OrderController@edit')->name('orders.edit'); 
+    Route::post('/orders/update', 'OrderController@update')->name('orders.update'); 
 });
 
 

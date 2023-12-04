@@ -49,15 +49,15 @@
               </div>
             </form>
             <div class="card">
-              <div class="card-body text-center">
+              <form  method="get" action="/apply-coupon/TRAIL100" class="card-body text-center">
                 <label class="font-weight-bold">Have Your Coupon Code?</label>
                 <div class="input-group mb-3 mw-320 mx-auto">
                   <input type="text" class="form-control" placeholder="Coupon Code">
                   <div class="input-group-append">
-                    <button class="btn btn-success" type="button" id="button-addon2">Apply</button>
+                    <button class="btn btn-success" type="submit" id="button-addon2">Apply</button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
           <div class="col-4">

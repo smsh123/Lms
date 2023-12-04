@@ -13,7 +13,7 @@ class Coupon extends BaseModel
     public static function getCouponByCode($code) {
 
         if(!empty($code)){
-            $result = self::where('code',$code)->get()->toArray();
+            $result = self::where('code',$code)->get()->first()->toArray();
             return $result;
         }
     }

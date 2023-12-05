@@ -8,9 +8,10 @@
     <div class="container">
       @if(!empty($product_description))
         <div class="row">
-          <div class="col-8">
+          <div class="col-lg-8">
             <form class="card" method="post" action="/orders/store">
               @csrf
+              <div class="card-header font-weight-bold">Basic Details</div>
               <input type="hidden" name="referrer" value="{{ !empty($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ''}}" />
               <div class="card-body row">
                 <div class="form-group col-12">
@@ -49,6 +50,7 @@
               </div>
             </form>
             <div class="card">
+              <div class="card-header font-weight-bold">Offer & Discount</div>
               <form  method="get" action="/apply-coupon/TRAIL100" class="card-body text-center">
                 <label class="font-weight-bold">Have Your Coupon Code?</label>
                 <div class="input-group mb-3 mw-320 mx-auto">
@@ -60,7 +62,7 @@
               </form>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-lg-4">
             <div class="card">
               <div class="card-header font-weight-bold text-center">Product Details</div>
               <div class="card-body text-center">

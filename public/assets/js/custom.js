@@ -133,6 +133,7 @@ var CustomFunctions = {
                 $("#saved_order_id").val(data.saved_order._id);
                 $("#cart_step_1").slideUp();
                 $("#cart_step_2").slideDown();
+                $(".btn_checkout").show();
             },
             error: function(msg) {
                 console.log(msg);

@@ -33,6 +33,13 @@ class OrderController extends Controller
             'amount' => 'required|numeric|min:1',
             'status'=> 'required|string|max:255',
         ]);
+        $product_id = $request->input('product_id');
+        $product_type = $request->input('product_type');
+        if((!empty($product_type) && $product_type == 'course') && !empty($product_id)){
+            $productDescription = Course::find($product_id);
+        }else{
+            abort(404);
+        }
         $email = !empty($request->input('user_email')) ? $request->input('user_email') : '';
         $mobile =  !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '';
         $oldUser = User::where('email', $email)->orWhere('mobile', $mobile)->first();
@@ -53,19 +60,19 @@ class OrderController extends Controller
         }
         $order = new Order;
         $order->product_type = $request->input('product_type');
-        $order->product_name = $request->input('product_name');
+        $order->product_name = !empty($productDescription) && !empty($productDescription['name']) ? $productDescription['name'] : $request->input('product_name');
         $order->uid = SiteHelper::generateRandomString();
-        $order->product_id = $request->input('product_id');
-        $order->price = $request->input('price');
-        $order->discount = $request->input('discount');
+        $order->product_id = !empty($productDescription) && !empty($productDescription['_id']) ? $productDescription['_id'] : $request->input('product_id');
+        $order->price = !empty($productDescription) && !empty($productDescription['selling_price']) ? (int) $productDescription['selling_price'] : (int) $request->input('price');
+        $order->discount = (int) $request->input('discount');
         $order->coupon = $request->input('coupon');
-        $order->amount = $request->input('amount');
+        $order->amount = !empty($productDescription) && !empty($productDescription['selling_price']) ? (int) $productDescription['selling_price'] : (int) $request->input('amount');
         $order ->referrer = $request->input('referrer');
         $order->status = !empty($request->input('status')) ? $request->input('status') : 'created';
         $order->user_id = !empty($userId) ? $userId : ''; 
         $order->user_details = [
             'full_name'=> !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '',
-            'mobile'=> !empty($request->input('user_mobile')) ? $request->input('user_mobile') : '',
+            'mobile'=> !empty($request->input('user_mobile')) ? (int) $request->input('user_mobile') : '',
             'email'=> !empty($request->input('user_email')) ? $request->input('user_email') : '',
             'state'=> !empty($request->input('state')) ? $request->input('state') : '',
             'city'=> !empty($request->input('city')) ? $request->input('city') : ''
@@ -75,10 +82,11 @@ class OrderController extends Controller
 
         $savedOrder = Order::getOrderByUID($order->uid);
         $data = [
-            'saved_order' => !empty($savedOrder) ? $savedOrder[0] : []
+            'saved_order' => !empty($savedOrder) ? $savedOrder[0] : [],
+            'msg' => "Order Created Successfully"
         ];
         if(!empty($order ->referrer)){
-            return redirect()->back()->with('success', 'Order Created Successfully');
+            return $data;
         }else{
             return redirect()->back()->with('success', 'Order Created Successfully');
         }
@@ -127,7 +135,7 @@ class OrderController extends Controller
 
     public function applyCoupon(Request $request, $coupon , $orderId ='') {
         $coupon = Coupon::getCouponByCode($coupon);
-        $orderId = !empty($orderId) ? $orderId : '6569c14ec4f4b06c50018792';
+        $orderId =  !empty($request->input('orderId')) ? $request->input('orderId') : '';
         $order = Order::find($orderId);
         $orderAmout = !empty($order) && $order['price'] ? $order['price'] : ''; 
         $couponValue = '';

@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Course;
 use App\Helpers\SiteHelper;
 use App\Models\Coupon;
+use App\Models\Subscription;
 
 class OrderController extends Controller
 {
@@ -137,7 +138,7 @@ class OrderController extends Controller
         $coupon = Coupon::getCouponByCode($coupon);
         $orderId =  !empty($request->input('orderId')) ? $request->input('orderId') : '';
         $order = Order::find($orderId);
-        $orderAmout = !empty($order) && $order['price'] ? $order['price'] : ''; 
+        $orderAmout = !empty($order) && !empty($order['amount']) ? $order['amount'] : ''; 
         $couponValue = '';
         $status = 'Validating Coupon';
         $courseSlug = $request->input('slug');
@@ -161,20 +162,25 @@ class OrderController extends Controller
         }
 
         if((!empty($coupon['type']) && $coupon['type'] == 'discount')){
-            $amoutWithCoupon =  $orderAmout - $couponValue;
+            $amoutnWithCoupon =  $orderAmout - $couponValue;
+            if($amoutnWithCoupon < 0){
+                $amoutnWithCoupon = 0;
+            }
             $status = 'Applied';
             $msg = 'You Saved Rs-'.$couponValue.' with this order.';
             $data = [
                 "status" => $status,
                 "discount_value"=> !empty($couponValue) ? $couponValue : 0,
-                "order_amount" => !empty($amoutWithCoupon) ? $amoutWithCoupon : $orderAmout,
+                "order_amount" => !empty($amoutnWithCoupon) && $amoutnWithCoupon < $orderAmout || $amoutnWithCoupon == 0 ? $amoutnWithCoupon : $orderAmout,
                 "display_msg" => !empty($msg) ? $msg : ''
             ];
             if(!empty($order)){
                 $order->coupon_status = $status;
-                $order ->discount = !empty($couponValue) ? $couponValue : 0;
-                $order ->coupon = !empty($coupon['code']) ? $coupon['code'] : '';
-                $order ->amount =  !empty($amoutWithCoupon) ? $amoutWithCoupon : $orderAmout;
+                $order->discount = !empty($couponValue) ? $couponValue : 0;
+                $order->coupon = !empty($coupon['code']) ? $coupon['code'] : '';
+                if((!empty($amoutnWithCoupon) && $amoutnWithCoupon < $orderAmout) || $amoutnWithCoupon == 0){
+                    $order->amount =  $amoutnWithCoupon;
+                }
                 $order->save();
             }else{
                 return 'You have not created any order yet. Please create an order first.';
@@ -204,6 +210,111 @@ class OrderController extends Controller
             return $data;
         }
         return 'something went wrong';
+    }
+
+    public function paymentProcess(Request $request) {
+        $orderId =  !empty($request->input('orderId')) ? $request->input('orderId') : '';
+        if(empty($orderId)){
+            abort(404);
+        }
+        $order = Order::find($orderId);
+        $userId = !empty($order['user_id']) ? $order['user_id'] : '';
+        $userDetails = User::find($userId);
+        $cartAmount = !empty($order['amount']) || $order['amount'] == 0 ? $order['amount'] : '';
+      //  dd($cartAmount);
+        if(!empty($cartAmount) || $cartAmount == 0){
+            $order -> payment_details =[
+                "amount" => 0,
+                "payment_mode" => "AB_WALLET",
+                "status" => "SUCCESS",
+                "date" => date("Y/m/d"),
+                "time" => date("h:i:sa")
+            ]; 
+            $order->save();
+
+            $duration = strtotime("+3 Months");
+            $today = strtotime("today");
+            $subscription = new Subscription;
+            $subscription -> product_id = !empty($order['product_id']) ? $order['product_id'] : '';
+            $subscription -> product_type = !empty($order['product_type']) ? $order['product_type'] : '';
+            $subscription -> product_name = !empty($order['product_name']) ? $order['product_name'] : '';
+            $subscription -> uid = !empty($order['uid']) ? $order['uid'] : '';
+            $subscription -> user_id = !empty($order['user_id']) ? $order['user_id'] : '';
+            $subscription -> user_name = !empty($userDetails) && !empty($userDetails['name']) ? $userDetails['name'] : '';
+            $subscription -> start_date = date("Y-m-d h:i:sa",$today);
+            $subscription -> expiry_date = date("Y-m-d h:i:sa", $duration);
+            $subscription ->save();
+
+            $uid = !empty($order['uid']) ? $order['uid'] : '';
+            $subscriptionDetails = Subscription::getSubscriptionByUID($uid);
+
+            $data = [
+                "subscription" => !empty($subscriptionDetails) ? $subscriptionDetails : [],
+                "order_details" => !empty($order) ? $order : []
+            ];
+
+            return view('orders.success', $data);
+        }else{
+            $this->makePayment($request,$orderId);
+        } 
+    }
+
+    public function makePayment(Request $request,$orderId = '') {
+        $order = Order::find($orderId);
+        $cartAmount = !empty($order) && !empty($order['amount']) ? $order['amount'] : '';
+        $paymentMethod = !empty($request->input('payment_method')) ? $request->input('payment_method') : 'RazorPay';
+        if(empty($cartAmount) || empty($paymentMethod)){
+            abort(404);
+        }
+
+        $transactionDetails = [];
+        $transactionDetails['statue'] = 'failed';
+        $paymentStatus = !empty($transactionDetails['status']) ? $transactionDetails['status'] : 'failed';
+        $paidAmount = !empty($transactionDetails['amount']) ? $transactionDetails['amount'] : 0;
+
+        $data = [
+            "order_details" => !empty($order) ? $order : [],
+            "transaction" => !empty($transactionDetails) ? $transactionDetails : []
+        ];
+
+        if($paymentStatus == 'undefined' || $paymentStatus == 'failed' || $paymentStatus == '' || $paymentStatus == null){
+            return view('orders.failed',$data);
+        }elseif($paymentStatus == 'success' && $cartAmount != $paidAmount){
+            return view('orders.failed',$data);
+        }elseif($paymentStatus == 'success' && $cartAmount == $paidAmount){
+            $order -> payment_details =[
+                "amount" => !empty($paidAmount) ? $paidAmount : '',
+                "payment_mode" => !empty($paymentMethod) ? $paymentMethod : '',
+                "status" => "SUCCESS",
+                "date" => date("Y/m/d"),
+                "time" => date("h:i:sa")
+            ]; 
+            $order->save();
+
+            $duration = strtotime("+3 Months");
+            $today = strtotime("today");
+            $subscription = new Subscription;
+            $subscription -> product_id = !empty($order['product_id']) ? $order['product_id'] : '';
+            $subscription -> product_type = !empty($order['product_type']) ? $order['product_type'] : '';
+            $subscription -> product_name = !empty($order['product_name']) ? $order['product_name'] : '';
+            $subscription -> uid = !empty($order['uid']) ? $order['uid'] : '';
+            $subscription -> user_id = !empty($order['user_id']) ? $order['user_id'] : '';
+            $subscription -> user_name = !empty($userDetails) && !empty($userDetails['name']) ? $userDetails['name'] : '';
+            $subscription -> start_date = date("Y-m-d h:i:sa",$today);
+            $subscription -> expiry_date = date("Y-m-d h:i:sa", $duration);
+            $subscription ->save();
+
+            $uid = !empty($order['uid']) ? $order['uid'] : '';
+            $subscriptionDetails = Subscription::getSubscriptionByUID($uid);
+
+            $data = [
+                "subscription" => !empty($subscriptionDetails) ? $subscriptionDetails : [],
+                "order" => !empty($order) ? $order : []
+            ];
+
+            return view('orders.success', $data);
+        }
+
     }
     
     

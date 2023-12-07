@@ -133,6 +133,8 @@ var CustomFunctions = {
                 $("#saved_order_id").val(data.saved_order._id);
                 $("#cart_step_1").slideUp();
                 $("#cart_step_2").slideDown();
+                $('input[name="payment_method"]').val('razorPay');
+                $('input[name="orderId"]').val(data.saved_order._id);
                 $(".btn_checkout").show();
             },
             error: function(msg) {
@@ -180,6 +182,7 @@ var CustomFunctions = {
                 $("#coupon_input").prop('disabled','disabled');
                 $("#coupon_msg").text(data.display_msg);
                 $("#coupon_msg").addClass("text-success font-weight-bold");
+                $("#coupon_msg").removeClass("text-danger");
                 $(".btn_checkout").show();
             },
             error: function(msg) {
@@ -187,6 +190,7 @@ var CustomFunctions = {
                 var errors = msg.responseJSON;
                 $("#coupon_msg").text("Something went wrong");
                 $("#coupon_msg").addClass("text-danger font-weight-bold");
+                $("#coupon_msg").addClass("text-success");
             }
         });
 

@@ -64,7 +64,12 @@
               <input type="hidden" id="saved_order_id" />
             </div>
             <div class="text-center py-3">
-              <a href="" class="btn btn-lg btn-theme-contrast font-22 font-weight-bold btn_checkout" style="display:none;">Proceed to Checkout</a>
+              <form method="post" action="/make-payment">
+                @csrf
+                <input type="hidden" name="payment_method" />
+                <input type="hidden" name="orderId" />
+                <input type="submit" class="btn btn-lg btn-theme-contrast font-22 font-weight-bold btn_checkout" style="display:none;" value="Proceed to Checkout">              </form>
+              </form>
             </div>
           </div>
           <div class="col-lg-4">
@@ -79,9 +84,14 @@
                 <p class="font-32 font-weight-bold text-primary">{{ !empty($product_description['selling_price']) ? '₹'.$product_description['selling_price'].'/-' : '' }}</p>
                 <p class="font-12 text-muted">*inclusive all texes.</p>
               </div>
-              <div class="text-center py-3">
-                <a href="" class="btn btn-lg btn-theme-contrast font-22 font-weight-bold btn_checkout" style="display:none;">Proceed to Checkout</a>
-              </div>
+            </div>
+            <div class="text-center py-3">
+              <form method="post" action="/make-payment">
+                @csrf
+                <input type="hidden" name="payment_method" />
+                <input type="hidden" name="orderId" />
+                <input type="submit" class="btn btn-lg btn-theme-contrast font-22 font-weight-bold btn_checkout" style="display:none;" value="Proceed to Checkout">              </form>
+              </form>
             </div>
           </div>
         </div>

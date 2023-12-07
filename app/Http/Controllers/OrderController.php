@@ -138,15 +138,20 @@ class OrderController extends Controller
         $coupon = Coupon::getCouponByCode($coupon);
         $orderId =  !empty($request->input('orderId')) ? $request->input('orderId') : '';
         $order = Order::find($orderId);
+        $product_id = !empty($order['product_id']) ? $order['product_id'] : ''; 
+        $course = Course::find($product_id);
+        if(empty($course)){
+            return "Product Not Listed";
+        }
         $orderAmout = !empty($order) && !empty($order['amount']) ? $order['amount'] : ''; 
         $couponValue = '';
         $status = 'Validating Coupon';
-        $courseSlug = $request->input('slug');
-        $courseSlug = 'digital-marketing-certification-program';
+        $courseSlug = !empty($course['slug']) ? $course['slug'] : '';
+        // $courseSlug = 'digital-marketing-certification-program';
         if(!empty($coupon['status']) && $coupon['status'] == 'disable' ){
             return 'Invalid Coupon Code';
         }
-        if((!empty($coupon['courses']) && is_array($coupon['courses']) && !(in_array($courseSlug, $coupon['courses']))) || (!empty($coupon['courses']) && $coupon['courses'] != $courseSlug)){
+        if(!empty($coupon['courses']) && $coupon['courses'] != $courseSlug){
             return 'This coupon is not valid for this course!';
         }
         if(!empty($coupon['min_cart_value']) && $coupon['min_cart_value'] > $orderAmout){
@@ -214,6 +219,7 @@ class OrderController extends Controller
 
     public function paymentProcess(Request $request) {
         $orderId =  !empty($request->input('orderId')) ? $request->input('orderId') : '';
+        //dd($orderId,$request);
         if(empty($orderId)){
             abort(404);
         }
@@ -221,8 +227,8 @@ class OrderController extends Controller
         $userId = !empty($order['user_id']) ? $order['user_id'] : '';
         $userDetails = User::find($userId);
         $cartAmount = !empty($order['amount']) || $order['amount'] == 0 ? $order['amount'] : '';
-      //  dd($cartAmount);
-        if(!empty($cartAmount) || $cartAmount == 0){
+        //dd($cartAmount);
+        if((!empty($cartAmount) && $cartAmount == 0) || $cartAmount == 0){
             $order -> payment_details =[
                 "amount" => 0,
                 "payment_mode" => "AB_WALLET",
@@ -230,6 +236,7 @@ class OrderController extends Controller
                 "date" => date("Y/m/d"),
                 "time" => date("h:i:sa")
             ]; 
+            $order ->status = "PAID" ;
             $order->save();
 
             $duration = strtotime("+3 Months");
@@ -255,7 +262,7 @@ class OrderController extends Controller
 
             return view('orders.success', $data);
         }else{
-            $this->makePayment($request,$orderId);
+            return $this->makePayment($request,$orderId);
         } 
     }
 
@@ -263,6 +270,7 @@ class OrderController extends Controller
         $order = Order::find($orderId);
         $cartAmount = !empty($order) && !empty($order['amount']) ? $order['amount'] : '';
         $paymentMethod = !empty($request->input('payment_method')) ? $request->input('payment_method') : 'RazorPay';
+       // dd($order,$cartAmount,$paymentMethod);
         if(empty($cartAmount) || empty($paymentMethod)){
             abort(404);
         }
@@ -277,6 +285,7 @@ class OrderController extends Controller
             "transaction" => !empty($transactionDetails) ? $transactionDetails : []
         ];
 
+       // dd($paymentStatus,$cartAmount,$paidAmount);
         if($paymentStatus == 'undefined' || $paymentStatus == 'failed' || $paymentStatus == '' || $paymentStatus == null){
             return view('orders.failed',$data);
         }elseif($paymentStatus == 'success' && $cartAmount != $paidAmount){
@@ -289,6 +298,7 @@ class OrderController extends Controller
                 "date" => date("Y/m/d"),
                 "time" => date("h:i:sa")
             ]; 
+            $order ->status = "PAID" ;
             $order->save();
 
             $duration = strtotime("+3 Months");

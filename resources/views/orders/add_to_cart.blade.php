@@ -39,6 +39,7 @@
                   <input id="product_name" type="hidden" name="product_name" value="{{ !empty($product_description['name']) ? $product_description['name'] : ''}}" />
                   <input id="product_id" type="hidden" name="product_id" value="{{ !empty($product_description['_id']) ? $product_description['_id'] : ''}}" />
                   <input id="price" type="hidden" name="price" value="{{ !empty($product_description['selling_price']) ? $product_description['selling_price'] : '' }}" />
+                  <input id="course_slug" type="hidden" name="course_slug" value="{{ !empty($product_description['slug']) ? $product_description['slug'] : '' }}" />
                   <input type="hidden" name="discount" />
                   <input id="amount" type="hidden" name="amount" value="{{ !empty($product_description['selling_price']) ? $product_description['selling_price'] : '' }}" />
                   <input type="hidden" name="coupon" />

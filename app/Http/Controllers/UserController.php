@@ -22,7 +22,8 @@ class UserController extends Controller
 
         $userAvatar = $request->avatar_image;
         if(empty($userAvatar)){
-            $userAvatar = $this->createAvatar($request->name);
+            // $userAvatar = $this->createAvatar($request->name);
+            $userAvatar = "";
         }
         $user = new User();
         $user->name = $request->name;

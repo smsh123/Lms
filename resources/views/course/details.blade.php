@@ -5,10 +5,10 @@
     <div class="container py-3">
       @if(!empty($CourseDescription))
         <div class="container">
-          <div class="card">
+          <div class="card border-0 bg-transparent">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 order-2 order-lg-1">
                   <h1 class="font-weight-bold font-22">{{ !empty($CourseDescription['name']) ? $CourseDescription['name'] : '' }}</h1>
                   <p>{{ !empty($CourseDescription['synopsis']) ? $CourseDescription['synopsis'] : '' }}</p>
                   @if(!empty($CourseDescription['batch_start_date']))
@@ -17,8 +17,8 @@
                   <p class="card-text"><span class="font-weight-bold pr-2 align-middle font-22">{{ !empty($CourseDescription['selling_price']) ? '₹'.$CourseDescription['selling_price'].'/-' : '' }}</span><strike class="text-danger font-12 align-middle">{{ !empty($CourseDescription['original_price']) ? $CourseDescription['original_price'].'/-' : '' }}</strike></p>
                    <p class="mb-0"><a href="/cart/{{ !empty($CourseDescription['slug']) ? $CourseDescription['slug'] : '' }}?type=course&id={{ !empty($CourseDescription['_id']) ? $CourseDescription['_id'] : '' }}" class="btn btn-lg btn-theme-contrast rounded-pill stretched-link">{{ !empty($CourseDescription['selling_price']) && $CourseDescription['selling_price'] > 0 ? 'Buy Now' : 'Subscribe' }}</a></p>
                 </div>
-                <div class="col-md-6">
-                  <div class="ratio-image image_16-9">
+                <div class="col-md-6 order-1 order-lg-2">
+                  <div class="ratio-image image_16-9 border-radius-10 mb-2">
                     <img src="{{ !empty($CourseDescription['thumbnail_image']) ? $CourseDescription['thumbnail_image'] : '' }}" class="card-img-top" alt="{{ !empty($CourseDescription['name']) ? $CourseDescription['name'] : '' }}">
                   </div>
                 </div>

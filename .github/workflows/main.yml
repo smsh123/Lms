@@ -61,7 +61,7 @@ jobs:
     - name: Create Deployment Directory
       run: |
         sudo mkdir -p /var/www/prod/Lms
-        sudo chown -R $USER:$USER /var/www/prod/Lms
+        sudo chown -R ubuntu:ubuntu /var/www/prod/Lms
         echo "Deployment directory created and permissions set."
 
     - name: Deploy Your Laravel Application

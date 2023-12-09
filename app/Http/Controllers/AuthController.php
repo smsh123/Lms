@@ -26,7 +26,7 @@ class AuthController extends Controller
             'pwd' => 'required|min:8',
         ]);
     
-        $userAvatar = $this->createAvatar($request->name);    
+        $userAvatar = ""; //$this->createAvatar($request->name);    
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $request->mobile;

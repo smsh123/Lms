@@ -54,3 +54,4 @@ jobs:
         sudo rsync -av --exclude=.git --exclude=vendor . /var/www/prod/Lms
         cd /var/www/prod/Lms
         php artisan optimize
+

@@ -1,47 +1,4 @@
-# name: CI/CD Pipeline
-
-# on:
-#   push:
-#     branches:
-#       - master
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout repository
-#       uses: actions/checkout@v2
-
-#     - name: Setup PHP
-#       uses: shivammathur/setup-php@v2
-#       with:
-#         php-version: '8.1'
-
-#     # - name: Install dependencies
-#     #   run: |
-#     #     cd /var/www/prod/Lms
-#     #     composer install --ignore-platform-req=ext-mongodb
-
-#     # - name: Run tests
-#     #   run: |
-#     #     cd /var/www/prod/Lms
-#     #     phpunit
-
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#     - name: Setup SSH
-#       uses: webfactory/ssh-agent@v0.5.1
-#       with:
-#         ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-
-#     - name: Deploy to EC2
-#       run: |
-#         cd /var/www/prod/Lms
-#         git pull origin master
-name: CI/CD Pipeline
+name: CI/CD
 
 on:
   push:
@@ -53,24 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Create project directory (if not exists)
-      run: sudo mkdir -p /var/www/prod/Lms
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
 
-    - name: Set permissions on project directory
-      run: sudo chown -R ubuntu:ubuntu /var/www/prod/Lms
+    - name: Install Composer Dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Navigate to project directory
-      run: cd /var/www/prod/Lms
+    - name: Copy Environment File
+      run: cp .env.example .env
 
-    - name: Print current working directory
-      run: pwd
+    - name: Generate Application Key
+      run: php artisan key:generate
 
-    - name: Print directory contents
-      run: ls -l
-
-    - name: Git pull
-      run: git pull origin master
-
+    - name: Deploy Your Laravel Application (Adjust as Needed)
+      run: |
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+        php artisan migrate --force

@@ -49,8 +49,8 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Create Deployment Directory
-      run: mkdir -p /var/www/prod/Lms
+    # - name: Create Deployment Directory
+    #   run: mkdir -p /var/www/prod/Lms
 
     - name: Rsync to Deployment Directory
       run: pwd && whoami

@@ -15,7 +15,7 @@ class OrderController extends Controller
 {
     //
     public function index(Request $request){
-        // test
+        // test 123
         $orders = Order::all();
         return view('cms.orders.index')->with('orders',$orders);
     }

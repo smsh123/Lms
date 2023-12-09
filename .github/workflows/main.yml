@@ -19,7 +19,8 @@ jobs:
         php-version: '8.1'
 
     - name: Install Composer Dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: git pull origin master
+           composer install --prefer-dist --no-progress --no-suggest
 
     - name: Deploy Your Laravel Application (Adjust as Needed)
       run: |

@@ -57,7 +57,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create project directory (if not exists)
-      run: mkdir -p /var/www/prod/Lms
+      run: sudo mkdir -p /var/www/prod/Lms
+
+    - name: Set permissions on project directory
+      run: sudo chown -R ubuntu:ubuntu /var/www/prod/Lms
 
     - name: Navigate to project directory
       run: cd /var/www/prod/Lms

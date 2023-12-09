@@ -49,14 +49,8 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    # - name: Create Deployment Directory
-    #   run: mkdir -p /var/www/prod/Lms
-
-    - name: Rsync to Deployment Directory
-      run: pwd && whoami
-
-    - name: Deploy Your Laravel Application (Adjust as Needed)
+    - name: Deploy Your Laravel Application
       run: |
+        sudo rsync -av --exclude=.git --exclude=vendor . /var/www/prod/Lms
         cd /var/www/prod/Lms
         php artisan optimize
-

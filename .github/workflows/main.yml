@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd /var/www/prod/Lms
-        composer install
+        composer install --ignore-platform-req=ext-mongodb
 
     # - name: Run tests
     #   run: |

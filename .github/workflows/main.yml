@@ -38,6 +38,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Print Environment Information
+      run: |
+        echo "GitHub Actions Environment:"
+        env
+        echo "Current User:"
+        whoami
+        echo "Current Working Directory:"
+        pwd
+
     - name: Checkout Repository
       uses: actions/checkout@v2
 
@@ -50,9 +59,16 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Create Deployment Directory
-      run: sudo mkdir -p /var/www/prod/Lms && sudo chown -R $USER:$USER /var/www/prod/Lms
+      run: |
+        sudo mkdir -p /var/www/prod/Lms
+        sudo chown -R $USER:$USER /var/www/prod/Lms
+        echo "Deployment directory created and permissions set."
 
     - name: Deploy Your Laravel Application
-      run: rsync -av --exclude=.git --exclude=vendor . /var/www/prod/Lms
+      run: |
+        rsync -av --exclude=.git --exclude=vendor . /var/www/prod/Lms
+        echo "Code deployed to /var/www/prod/Lms."
+        echo "Contents of /var/www/prod/Lms:"
+        ls -la /var/www/prod/Lms
 
 

@@ -62,7 +62,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->product_type = $request->input('product_type');
         $order->product_name = !empty($productDescription) && !empty($productDescription['name']) ? $productDescription['name'] : $request->input('product_name');
-        $order->uid = SiteHelper::generateRandomString();
+        $order->uid = generateRandomString();
         $order->product_id = !empty($productDescription) && !empty($productDescription['_id']) ? $productDescription['_id'] : $request->input('product_id');
         $order->price = !empty($productDescription) && !empty($productDescription['selling_price']) ? (int) $productDescription['selling_price'] : (int) $request->input('price');
         $order->discount = (int) $request->input('discount');

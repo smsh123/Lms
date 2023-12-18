@@ -21,7 +21,7 @@
     ]
   ];
   $MenuSlug = 'global-navigation';
-  $menus = App\Helpers\SiteHelper::getMenuBySlug($MenuSlug);
+  $menus = getMenuBySlug($MenuSlug);
   //dd($menus);
 @endphp
 

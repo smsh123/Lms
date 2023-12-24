@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -40,13 +41,23 @@ class BaseModel extends Eloquent
         $result = self::all($fields);
         return is_object($result) ? $result->toArray() : $result;
     }
-    
-    public  static function getByIdWithFields($id,$fields = [])
+
+    public  static function getByIdWithFields($id, $fields = [])
     {
-        $result = self::where('_id',$id)->first($fields);
+        $result = self::where('_id', $id)->first($fields);
         return is_object($result) ? $result->toArray() : $result;
     }
-    
+    public static function searchByFields($fields = [])
+    {
+        $result = [];
+        if (!empty($fields)) {
+            $query = self::query();
 
+            foreach ($fields as $field => $value) {
+                $query->where($field, $value);
+            }
+            $result = $query->get();
+        }
+        return is_object($result) ? $result->toArray() : $result;
+    }
 }
-

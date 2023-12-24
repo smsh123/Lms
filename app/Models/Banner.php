@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Banner extends Eloquent
+class Banner extends BaseModel
 {
 
-    protected $collection = 'banners'; 
+    protected $collection = 'banners';
 
     protected $fillable = ['*'];
 

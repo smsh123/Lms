@@ -60,4 +60,8 @@ class BaseModel extends Eloquent
         }
         return is_object($result) ? $result->toArray() : $result;
     }
+    public static function paginateWithDefault($limit = 10, $columns = ['*'])
+    {
+        return static::paginate($limit, $columns);
+    }
 }

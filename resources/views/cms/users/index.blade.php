@@ -58,7 +58,7 @@
       </tbody>
     </table>
   </div>
-  <div class="py-3">
+  {{-- <div class="py-3">
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-end">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -68,5 +68,8 @@
         <li class="page-item"><a class="page-link" href="#">Next</a></li>
       </ul>
     </nav>
-  </div>
+  </div> --}}
+  <div class="d-flex justify-content-center">
+    {{ $users->links() }}
+</div>
 @stop

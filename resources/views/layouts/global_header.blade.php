@@ -2,6 +2,10 @@
 
   $isUserLoggedin = false;
   $isUserLoggedin = \Auth::user();
+  if($isUserLoggedin){
+    $user_details = getUserDetailsById($isUserLoggedin->_id);
+  }
+  
   $menuItems = [
     [
         'label' => 'home',
@@ -20,9 +24,9 @@
         'url' => '/success-stories',
     ]
   ];
-  $MenuSlug = 'global-navigation';
+  $MenuSlug = 'site-navigation';
   $menus = getMenuBySlug($MenuSlug);
-  //dd($menus);
+
 @endphp
 
 <div class="bg-theme-contrast py-3 px-3">
@@ -45,11 +49,30 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              @foreach ($menuItems as $key => $menu )
-                <li class="nav-item {{ !empty($menu['url']) && $menu['url'] == $_SERVER['REQUEST_URI'] ? 'active' : '' }}">
-                  <a class="nav-link px-3 text-capitalize" href="{{ !empty($menu['url']) ? $menu['url'] : '#' }}">{{ !empty($menu['label']) ? $menu['label'] : '-' }}</a>
+            @if(!empty($menus))
+              @foreach ($menus['items'] as $key => $menu )
+                <li class="nav-item {{ !empty($menu['link']) && $menu['link'] == $_SERVER['REQUEST_URI'] ? 'active' : '' }}">
+                  <a class="nav-link px-3 text-capitalize" href="{{ !empty($menu['link']) ? $menu['link'] : '#' }}">{{ !empty($menu['title']) ? $menu['title'] : '-' }}</a>
                 </li>
+                @if($key == 3)
+                  @break;
+                @endif
               @endforeach
+              @if(count($menus['items']) > 4)
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    More
+                  </a>
+                  <div class="dropdown-menu">
+                    @foreach ($menus['items'] as $key => $menu )
+                      @if($key > 3)
+                        <a class="dropdown-item text-capitalize" href="{{ !empty($menu['link']) ? $menu['link'] : '#' }}">{{ !empty($menu['title']) ? $menu['title'] : '-' }}</a>
+                      @endif
+                    @endforeach
+                  </div>
+                </li>
+              @endif
+            @endif
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <button class="btn bg-transparent text-dark mx-2 my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
@@ -154,10 +177,9 @@
           </div>
         </div>
         <div class="card-footer login_window_footer border-0 theme-contrast-gradient-container position-relative pt-5 wave_border_top_white footer"></div>
-      </div>\Auth::user()->user_type
+      </div>
     </div>
   @else
-    {{-- {{ dd(\Auth::user()); }} --}}
     <div id="profile_menu" class="login_window side_menu mx-auto position-fixed bg-white zindex-fixed">
       <div class="card border-0">
         <div class="card-header bg-transparent text-right border-0">
@@ -165,16 +187,15 @@
             <i class="bi bi-x-circle font-22 text-dark"></i>
           </a>
         </div>
-        {{-- {{ dd(\Auth::user()); }} --}}
         <div class="card-body">
           <div class="icon-100 mx-auto my-3">
             <div class="ratio-image image_1-1 bg-transparent rounded-circle">
-              <img src="{{ !empty(\Auth::user()->avatar_image) ? \Auth::user()->avatar_image : 'https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg' }}"  alt="username" onerror="this.src='https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg';" />
+              <img src="{{ !empty($user_details['avatar_image']) ? $user_details['avatar_image'] : 'https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg' }}"  alt="username" onerror="this.src='https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg';" />
             </div>
           </div>
           <h3 class="font-35 font-weight-bold text-uppercase text-center">{{ !empty(\Auth::user()->name) ? \Auth::user()->name : 'Student' }}</h3>
           <ul class="profile_menu_list mt-5 list-no-style p-0 mx-0">
-           @if(!empty(\Auth::user()->user_type) && !empty(\Auth::user()->user_type == 'internal'))
+           @if(!empty($user_details['user_type']) && $user_details['user_type'] == 'internal')
             <li class="py-3">
               <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/cms">
                  <div class="menu-icon align-self-center">
@@ -185,7 +206,7 @@
             </li>
             @endif
             <li class="py-3">
-              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/profile/{{ !empty(\Auth::user()->id) ? \Auth::user()->id : '' }}">
+              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/profile/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
                  <div class="menu-icon align-self-center">
                     <div class="icon-24 text-theme-contrast"><i class="bi bi-person-badge font-22"></i></div>
                   </div>
@@ -193,7 +214,7 @@
               </a>
             </li>
             <li class="py-3">
-              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/courses/{{ !empty(\Auth::user()->id) ? \Auth::user()->id : '' }}">
+              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/courses/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
                  <div class="menu-icon align-self-center">
                     <div class="icon-24 text-theme-contrast"><i class="bi bi-journals font-22"></i></div>
                   </div>
@@ -201,7 +222,7 @@
               </a>
             </li>
             <li class="py-3">
-              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/orders/{{ !empty(\Auth::user()->id) ? \Auth::user()->id : '' }}">
+              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/orders/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
                  <div class="menu-icon align-self-center">
                     <div class="icon-24 text-theme-contrast"><i class="bi bi-currency-rupee font-22"></i></div>
                   </div>
@@ -209,7 +230,7 @@
               </a>
             </li>
             <li class="py-3">
-              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/reports/{{ !empty(\Auth::user()->id) ? \Auth::user()->id : '' }}">
+              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/reports/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
                  <div class="menu-icon align-self-center">
                     <div class="icon-24 text-theme-contrast"><i class="bi bi-graph-up-arrow font-22"></i></div>
                   </div>

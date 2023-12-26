@@ -8,5 +8,13 @@ class Blog extends BaseModel
 {
     protected $collection = 'blogs';
     protected $fillable = ['*'];
+
+    public static function getBlogBySlug($slug) {
+
+        if(!empty($slug)){
+            $result = self::where('slug',$slug)->get()->toArray();
+            return $result;
+        }
+    }
 }
 

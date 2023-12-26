@@ -2,6 +2,8 @@
 
 use App\Models\Menu;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 function getAllPickList()
 {
@@ -167,7 +169,7 @@ function getAllPickList()
 function getMenuBySlug($slug = null)
 {
     $menus = Menu::getMenuBySlug($slug);
-    return isset($menus) && !empty($menus) ? $menus : [];
+    return isset($menus) && !empty($menus) ? $menus[0] : [];
 }
 
 function generateRandomString($length = 6)
@@ -270,4 +272,34 @@ function uploadFileToCentralStorage($file_path, $dir = null, $hostname = null, $
     $result = curl_exec($curl);
     curl_close($curl);
     return $result;
+}
+
+function checkUserLogingStatus()
+{
+    $isUserLoggedin = false;
+    $isUserLoggedin = \Auth::user(); 
+    if($isUserLoggedin){
+        $user_id = \Auth::user()->id;
+    }
+
+    $data = [
+        'login_status' => $isUserLoggedin,
+        'user_id' => !empty($user_id) ? $user_id : '' 
+    ];
+
+    return $data;
+}
+
+function getUserDetailsById($id = null)
+{
+    $isUserLoggedin = false;
+    $isUserLoggedin = \Auth::user(); 
+    if($isUserLoggedin && !empty($id) && $id != null){
+        $usersDetails = User::find($id);
+        if(!empty($usersDetails)){
+            $usersDetails = is_object($usersDetails) ? $usersDetails->toArray() : $usersDetails; 
+        }
+    }
+
+    return $usersDetails;
 }

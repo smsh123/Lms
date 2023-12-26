@@ -12,7 +12,7 @@
               <div class="ratio-image image_16-9">
                 <img src="{{ !empty($course['thumbnail_image']) ? $course['thumbnail_image'] : '' }}" class="card-img-top" alt="{{ !empty($course['name']) ? $course['name'] : '' }}">
               </div>
-              <div class="card-body theme-contrast-gradient-container-top">
+              <div class="card-body">
                 <h5 class="card-title font-16">{{ !empty($course['name']) ? $course['name'] : '' }}</h5>
                 <p class="card-text"><span class="font-weight-bold pr-2 align-middle font-22">{{ !empty($course['selling_price']) ? '₹'.$course['selling_price'].'/-' : '' }}</span><strike class="text-danger font-12 align-middle">{{ !empty($course['original_price']) ? $course['original_price'].'/-' : '' }}</strike></p>
                 <p class="mb-0"><a href="/course/{{ !empty($course['slug']) ? $course['slug'] : '' }}" class="btn btn-theme-contrast rounded-pill stretched-link">{{ !empty($course['selling_price']) && $course['selling_price'] > 0 ? 'Buy Now' : 'Subscribe' }}</a></p>

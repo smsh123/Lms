@@ -65,7 +65,6 @@ class MenuController extends Controller
         // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
             'status' => 'required',
         ]);
         $title = $request->input('title');
@@ -84,9 +83,7 @@ class MenuController extends Controller
         }
         $id = $request->input("id");
         $menu = Menu::find($id);
-        $menu = new Menu;
         $menu->name = $request->input('name');
-        $menu->slug = $request->input('slug');
         $menu->status = $request->input('status');
         $menu->items = $objects;
     

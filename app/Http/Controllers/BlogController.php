@@ -45,6 +45,11 @@ class BlogController extends Controller
         $Blogs = Blog::all();
         return view('blog.index')->with('blogs',$Blogs);
     }
+    public function blogDetails(Request $request, $slug){
+        $blogDescription = [];
+        $blogDescription = Blog::getBlogBySlug($slug);
+        return view('blog.details')->with('BlogDescription',!empty($blogDescription) ? $blogDescription[0] : []);
+    }
 
     public function blogEdit(Request $request, $id) {
         $blog = Blog::find($id);

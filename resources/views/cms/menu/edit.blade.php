@@ -62,21 +62,21 @@
                       <div class="row form-group">
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Item Title</label>
-                          <input type="text" class="form-control" name="title[{{ $key }}]" value="{{ !empty($submenu['title']) ? $submenu['title'] : '' }}" placeholder="Item Title" />
+                          <input type="text" class="form-control" name="title[]" value="{{ !empty($submenu['title']) ? $submenu['title'] : '' }}" placeholder="Item Title" />
                           @if ($errors->has('name'))
                             <p class="text-danger">{{ $errors->first('title') }}</p>
                           @endif
                         </div>
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Link</label>
-                          <input type="text" class="form-control" name="link[{{ $key }}]" placeholder="Item Link" value="{{ !empty($submenu['link']) ? $submenu['link'] : '' }}"  />
+                          <input type="text" class="form-control" name="link[]" placeholder="Item Link" value="{{ !empty($submenu['link']) ? $submenu['link'] : '' }}"  />
                           @if ($errors->has('slug'))
                             <p class="text-danger">{{ $errors->first('link') }}</p>
                           @endif
                         </div>
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Icon</label>
-                          <input type="text" class="form-control" name="icon[{{ $key }}]" placeholder="Icon Class" value="{{ !empty($submenu['icon']) ? $submenu['icon'] : '' }}"  />
+                          <input type="text" class="form-control" name="icon[]" placeholder="Icon Class" value="{{ !empty($submenu['icon']) ? $submenu['icon'] : '' }}"  />
                           @if ($errors->has('slug'))
                             <p class="text-danger">{{ $errors->first('icon') }}</p>
                           @endif

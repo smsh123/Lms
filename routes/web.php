@@ -25,6 +25,7 @@ Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');
 Route::get('/course/{slug}', 'CourseController@courseDetails');
 Route::get('/blogs', 'BlogController@listing');
+Route::get('/blogs/{slug}', 'BlogController@blogDetails');
 Route::get('/success-stories', 'TestimonialController@listing');
 Route::get('/pages', 'PageController@listing')->name('page.listing'); 
 Route::get('/pages/{slug}', 'PageController@pageBySlug')->name('page.index'); 

@@ -1,5 +1,6 @@
 @extends('cms.layouts.master')
 @section('body')
+@php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
   <div class="row my-3">
     <div class="col-12 col-lg-6"><h1>Add Menus</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/menus" class="btn btn-lg btn-secondary">View Menus</a></div>
@@ -25,10 +26,13 @@
           @endif
         </div>
         <div class="col-lg-4 align-self-center">
-          <label class="font-weight-bold mb-0">Lead Status</label>
+          <label class="font-weight-bold mb-0">Menu Status</label>
           <select name="status" class="form-control">
-            <option>Active</option>
-            <option>Deactive</option>
+            @if(!empty($global_picklist['status']))
+              @foreach ($global_picklist['status'] as $menu_status)
+                  <option value="{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}">{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}</option>
+              @endforeach
+            @endif
           </select>
         </div>
       </div>

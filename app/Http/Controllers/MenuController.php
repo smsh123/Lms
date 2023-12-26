@@ -18,6 +18,15 @@ class MenuController extends Controller
         return view('cms.menu.add');
     }
 
+    public function edit(Request $request, $id) {
+        $menus = Menu::find($id);
+        $data=[
+            'menus' => !empty($menus) ? $menus : []
+        ];
+        // dd($course);
+        return view('cms.menu.edit', $data);
+    }
+
     public function store(Request $request)
     {
         // dd($request->all(),$jsonObject = json_encode($objects));
@@ -49,6 +58,41 @@ class MenuController extends Controller
         $menu->save();
     
         return redirect()->route('menus.index')->with('success', 'Menu created successfully');
+    }
+
+    public function update(Request $request)
+    {
+        // dd($request->all(),$jsonObject = json_encode($objects));
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'status' => 'required',
+        ]);
+        $title = $request->input('title');
+        $link =  $request->input('link');
+        $icon = $request->input('icon');
+        $objects = [];
+        if (count($title) == count($link) && count($link) == count($icon)) {
+            $count = count($title);
+            for ($i = 0; $i < $count; $i++) {
+                $object = new \stdClass(); 
+                $object->title = $title[$i];
+                $object->link = $link[$i];
+                $object->icon = $icon[$i];
+                $objects[] = $object;
+            }
+        }
+        $id = $request->input("id");
+        $menu = Menu::find($id);
+        $menu = new Menu;
+        $menu->name = $request->input('name');
+        $menu->slug = $request->input('slug');
+        $menu->status = $request->input('status');
+        $menu->items = $objects;
+    
+        $menu->save();
+    
+        return redirect()->route('menus.index')->with('success', 'Menu Updated successfully');
     }
 
     

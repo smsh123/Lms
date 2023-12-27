@@ -10,6 +10,7 @@
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/tagsinput.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
@@ -102,6 +103,7 @@
         <script src="/assets/js/dashboard.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
         <script src='/assets/js/tagsinput.min.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src={{asset('/assets/js/custom.js')}}></script>
         <script>
         if($('.txteditor').length !== 0){
@@ -156,6 +158,7 @@
 
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);
+          $('.select_to').select2();
         });
         </script>
         

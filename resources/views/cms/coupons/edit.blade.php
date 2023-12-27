@@ -12,7 +12,7 @@
        <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Courses</label>
-          <select class="form-control" name="courses">
+          <select class="form-control select_to" name="courses[]" multiple="multiple" value="{{ !empty($coupons['courses']) ? $coupons['courses'] : '' }}">
             <option value="all">All Courses</option>
             @if(!empty($courses))
               @foreach ($courses as $course)

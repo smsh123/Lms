@@ -67,6 +67,12 @@
           <textarea class="form-control" rows="4"  placeholder="Course Synopsis ..." name="synopsis">{{$course->synopsis}}</textarea>
         </div>
       </div>
+       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Tags</label>
+          <input type="text" value="{{!empty($course->tags) ? $course->tags : ''}}" data-role="tagsinput" class="form-control" name="tags" />
+        </div>
+      </div>
       <fieldset class="border p-3 mb-3">
         <legend class="d-inline-block w-auto px-3">Price & Offer Details</legend>
         <div class="row form-group">

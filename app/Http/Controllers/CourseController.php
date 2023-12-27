@@ -46,6 +46,7 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
+        $course->tags = $request->input('tags');
     
         $course->save();
     
@@ -80,7 +81,6 @@ class CourseController extends Controller
         $course = Course::find($id);
         $course->name = $request->input('name');
         $course->name_hindi = $request->input('name_hindi');
-        $course->slug = $request->input('slug');
         $course->batch_start_date = $request->input('batch_start_date');
         $course->duration = $request->input('duration');
         $course->class_mode = $request->input('class_mode');
@@ -95,6 +95,7 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
+        $course->tags = $request->input('tags');
     
         $course->save();
     

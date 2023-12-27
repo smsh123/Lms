@@ -61,6 +61,12 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Tags</label>
+          <input type="text" value="{{ !empty($blogs['tags']) ? $blogs['tags'] : '' }}" data-role="tagsinput" class="form-control" name="tags" />
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-12 text-center">
           <input type="submit" class="btn btn-lg btn-primary" value="Submit" />
         </div>

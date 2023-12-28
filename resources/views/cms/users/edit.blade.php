@@ -83,11 +83,11 @@
       <div class="row form-group">
         <div class="col-12">
           <label class="font-weight-bold">Role</label>
-          <select class="form-control" name="user_role">
+          <select class="form-control select_to" name="user_role[]" multiple="multiple">
             <option>Select Role</option>
             @if(!empty($roles))
               @foreach ($roles as $key=> $role)
-                <option @if(!empty($users['role']) && $users['role'] == $role['name']) selected @endif>{{ $role['name'] }}</option>
+                <option @if(!empty($users['roles']) && in_array($role['name'],$users['roles'])) selected @endif>{{ $role['name'] }}</option>
               @endforeach
             @endif
           </select>

@@ -34,14 +34,20 @@ class UserController extends Controller
         $user->password = bcrypt($request->pwd);
         $user->user_type = !empty($request->user_type) ? $request->user_type : 'external';
         $user->user_role = !empty($request->user_role) ? $request->user_role : 'Student';
+        $user->facebook_profile = !empty($request->facebook_profile) ? $request->facebook_profile : '';
+        $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
+        $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
+        $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
         $user->save();
         return redirect()->back()->with('msg', 'User Registered Successfully!');
     }
     public function edit(Request $request, $id)
     {
         $users = User::find($id);
+        $roles = Role::all();
         $data = [
-            "users" => !empty($users) ? $users : []
+            "users" => !empty($users) ? $users : [],
+            "roles" => !empty($roles) ? $roles : []
         ];
         return view('cms.users.edit', $data);
     }
@@ -70,6 +76,10 @@ class UserController extends Controller
         $user->cover_image = $request->cover_image;
         $user->user_type = !empty($request->user_type) ? $request->user_type : 'external';
         $user->user_role = !empty($request->user_role) ? $request->user_role : 'Student';
+        $user->facebook_profile = !empty($request->facebook_profile) ? $request->facebook_profile : '';
+        $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
+        $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
+        $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
         $user->save();
         return redirect()->back()->with('msg', 'User Details Updated Successfully!');
     }
@@ -114,7 +124,11 @@ class UserController extends Controller
     }
     public function addUsers(Request $request)
     {
-        return view('cms.users.add');
+        $roles = Role::all();
+        $data = [
+            "roles" => !empty($roles) ? $roles : [],
+        ];
+        return view('cms.users.add',$data);
     }
     public function userRolesPermissions(Request $request, $id)
     {

@@ -30,8 +30,8 @@
           <label class="font-weight-bold">Mobile</label>
           <input type="number" class="form-control" name="mobile" placeholder="Mobile"  />
           @if ($errors->has('mobile'))
-          <p class="text-danger">{{ $errors->first('mobile') }}</p>
-        @endif
+            <p class="text-danger">{{ $errors->first('mobile') }}</p>
+          @endif
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Password</label>
@@ -48,6 +48,39 @@
           </select>
         </div>
        
+      </div>
+      <div class="row form-group">
+        <div class="col-12">
+          <label class="font-weight-bold">Role</label>
+          <select class="form-control" name="user_role">
+            <option>Select Role</option>
+            @if(!empty($roles))
+              @foreach ($roles as $key=> $role)
+                <option>{{ $role }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Facebook</label>
+          <input type="text" class="form-control" name="facebook_profile" placeholder="Facebook Profile Url" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">X Profile</label>
+          <input type="text" class="form-control" name="x_profile" placeholder="X (twitter) Profile Url" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">LinkedIn</label>
+          <input type="text" class="form-control" name="linkedin_profile" placeholder="LinkedIn Profile Url" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Youtube Link</label>
+          <input type="text" class="form-control" name="youtube_profile" placeholder="Youtube Channel Link" />
+        </div>
       </div>
       <div class="row form-group">
         <div class="col-12 col-lg-6">

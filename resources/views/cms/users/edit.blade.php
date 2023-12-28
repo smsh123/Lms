@@ -74,11 +74,44 @@
          <label class="font-weight-bold">User Type</label>
           <select id="user_type_select" class="form-control" name="user_type">
             <option value="external">User Type</option>
-            <option value="external">External</option>
-            <option value="internal">Internal</option>
+            <option @if(!empty($users['user_type']) && $users['user_type'] == "external") selected @endif value="external">External</option>
+            <option @if(!empty($users['user_type']) && $users['user_type'] == "internal") selected @endif value="internal">Internal</option>
           </select>
         </div>
        
+      </div>
+      <div class="row form-group">
+        <div class="col-12">
+          <label class="font-weight-bold">Role</label>
+          <select class="form-control" name="user_role">
+            <option>Select Role</option>
+            @if(!empty($roles))
+              @foreach ($roles as $key=> $role)
+                <option @if(!empty($users['role']) && $users['role'] == $role) selected @endif>{{ $role }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Facebook</label>
+          <input type="text" class="form-control" value="{{ !empty($users['facebook_profile']) ? $users['facebook_profile'] : '' }}" name="facebook_profile" placeholder="Facebook Profile Url" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">X Profile</label>
+          <input type="text" class="form-control" name="x_profile" value="{{ !empty($users['x_profile']) ? $users['x_profile'] : '' }}" placeholder="X (twitter) Profile Url" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">LinkedIn</label>
+          <input type="text" class="form-control" name="linkedin_profile" value="{{ !empty($users['linkedin_profile']) ? $users['linkedin_profile'] : '' }}" placeholder="LinkedIn Profile Url" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Youtube Link</label>
+          <input type="text" class="form-control" name="youtube_profile" value="{{ !empty($users['youtube_profile']) ? $users['youtube_profile'] : '' }}" placeholder="Youtube Channel Link" />
+        </div>
       </div>
       <div class="row form-group">
         <div class="col-12 text-center">

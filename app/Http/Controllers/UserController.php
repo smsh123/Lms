@@ -45,6 +45,7 @@ class UserController extends Controller
     {
         $users = User::find($id);
         $roles = Role::all(['name']);
+        $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "users" => !empty($users) ? $users : [],
             "roles" => !empty($roles) ? $roles : []
@@ -125,6 +126,7 @@ class UserController extends Controller
     public function addUsers(Request $request)
     {
         $roles = Role::all(['name']);
+        $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "roles" => !empty($roles) ? $roles : [],
         ];

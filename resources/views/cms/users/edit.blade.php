@@ -87,7 +87,7 @@
             <option>Select Role</option>
             @if(!empty($roles))
               @foreach ($roles as $key=> $role)
-                <option @if(!empty($users['role']) && $users['role'] == $role) selected @endif>{{ $role }}</option>
+                <option @if(!empty($users['role']) && $users['role'] == $role['name']) selected @endif>{{ $role['name'] }}</option>
               @endforeach
             @endif
           </select>

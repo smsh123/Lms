@@ -44,7 +44,7 @@ class UserController extends Controller
     public function edit(Request $request, $id)
     {
         $users = User::find($id);
-        $roles = Role::all();
+        $roles = Role::all(['name']);
         $data = [
             "users" => !empty($users) ? $users : [],
             "roles" => !empty($roles) ? $roles : []
@@ -124,7 +124,7 @@ class UserController extends Controller
     }
     public function addUsers(Request $request)
     {
-        $roles = Role::all();
+        $roles = Role::all(['name']);
         $data = [
             "roles" => !empty($roles) ? $roles : [],
         ];

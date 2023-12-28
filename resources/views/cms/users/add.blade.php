@@ -56,7 +56,7 @@
             <option>Select Role</option>
             @if(!empty($roles))
               @foreach ($roles as $key=> $role)
-                <option>{{ $role['name'] }}</option>
+                <option>{{ $role }}</option>
               @endforeach
             @endif
           </select>

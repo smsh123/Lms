@@ -67,6 +67,39 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-12 col-lg-6">
+          <label class="font-weight-bold">Thumbnail Image</label>
+          <div class="input-group upload-image mb-3">
+            <input id="inputImage" type="file" class="form-control" placeholder="Banner Image">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage','form-image-input','image-preview');" type="button" id="button-addon2">Upload</button>
+            </div>
+          </div>
+          <input id="form-image-input" type="hidden" class="form-control" value="{{ !empty($blogs['thumbnail_image']) ? $blogs['thumbnail_image'] : '' }}" name="thumbnail_image" />
+
+          <div class="w-100 mw-320">
+            <div class="ratio-image image_16-9">
+              <img id="image-preview" src="{{ !empty($blogs['thumbnail_image']) ? $blogs['thumbnail_image'] : '' }}" />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <label class="font-weight-bold">Blog Banner</label>
+          <div class="input-group upload-image mb-3">
+            <input id="inputImage_1" type="file" class="form-control" placeholder="Banner Image">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage_1','form-image-input_1','image-preview_1');" type="button" id="button-addon2">Upload</button>
+            </div>
+          </div>
+          <input id="form-image-input_1" type="hidden" class="form-control" value="{{ !empty($blogs['banner_image']) ? $blogs['banner_image'] : '' }}" name="banner_image" />
+          <div class="w-100 mw-320">
+            <div class="ratio-image image_16-9">
+              <img id="image-preview_1" src="{{ !empty($blogs['banner_image']) ? $blogs['banner_image'] : '' }}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-12 text-center">
           <input type="submit" class="btn btn-lg btn-primary" value="Submit" />
         </div>

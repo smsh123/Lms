@@ -36,6 +36,8 @@ class BlogController extends Controller
         $blog->synopsis = $request->input('synopsis');
         $blog->author = $request->input('author');
         $blog->tags = $request->input('tags');
+        $blog->thumbnail_image = $request->input('thumbnail_image');
+        $blog->banner_image = $request->input('banner_image');
     
         $blog->save();
     
@@ -77,6 +79,8 @@ class BlogController extends Controller
         $blog->synopsis = $request->input('synopsis');
         $blog->author = $request->input('author');
         $blog->tags = $request->input('tags');
+        $blog->thumbnail_image = $request->input('thumbnail_image');
+        $blog->banner_image = $request->input('banner_image');
     
         $blog->save();
     

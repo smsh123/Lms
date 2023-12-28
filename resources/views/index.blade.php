@@ -7,12 +7,18 @@
     @include('layouts.course_slider')
   @endif
   @include('layouts.study_materials')
-  @include('layouts.success_stories')
-  @include('layouts.mentors')
+  @if ($successStories)
+    @include('layouts.success_stories')
+  @endif
+  @if (!empty($teachers))
+    @include('layouts.mentors')
+  @endif
   @if(!empty($blogs))
     @include('layouts.story_slider')
   @endif
-  @include('layouts.testimonial')
+  @if(!empty($videoTestimonial))
+    @include('layouts.testimonial')
+  @endif
   @include('layouts.footer')
 @stop
 

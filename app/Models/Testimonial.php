@@ -13,7 +13,7 @@ class Testimonial extends BaseModel
     public static function getTestimonialByType($type) {
 
         if(!empty($type)){
-            $result = self::where('slug',$type)->get()->toArray();
+            $result = self::where('type',$type)->get()->toArray();
             return $result;
         }
     }    

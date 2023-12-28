@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Blog;
+use App\Models\User;
+use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
     public function index(Request $request){
         $blogs =  Blog::all();
         $courses =  Course::all();
+        $teachers = User::getUserByRole('Teacher');
+        $successStories = Testimonial::getTestimonialByType('SV');
+        $videoTestimonial = Testimonial::getTestimonialByType('V');
         $data = [
             'blogs' => !empty($blogs) ? $blogs : [],
-            'courses' => !empty($courses) ? $courses :[] 
+            'courses' => !empty($courses) ? $courses :[],
+            'teachers' => !empty($teachers) ? $teachers : [],
+            'successStories' => !empty($successStories) ? $successStories : [],
+            'videoTestimonial' => !empty($videoTestimonial) ? $videoTestimonial : [] 
         ];
         return view('index', $data);
    }

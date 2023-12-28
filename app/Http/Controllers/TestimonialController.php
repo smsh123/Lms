@@ -34,6 +34,7 @@ class TestimonialController extends Controller
         $testimonial->image = $request->input('image');
         $testimonial->video = $request->input('video');
         $testimonial->status = $request->input('status');
+        $testimonial->thumbnail_image = $request->input('thumbnail_image');
        
     
         $testimonial->save();
@@ -72,6 +73,7 @@ class TestimonialController extends Controller
         $testimonial->image = $request->input('image');
         $testimonial->video = $request->input('video');
         $testimonial->status = $request->input('status');
+        $testimonial->thumbnail_image = $request->input('thumbnail_image');
     
         $testimonial->save();
     

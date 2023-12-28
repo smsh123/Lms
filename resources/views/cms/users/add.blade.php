@@ -83,6 +83,16 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Expertise</label>
+          <input type="text" class="form-control" name="expertise" placeholder="Expertise/Designation" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Highest Qualification</label>
+          <input type="text" class="form-control" name="qualification" placeholder="Qualification" />
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-12 col-lg-6">
           <label class="font-weight-bold">User Image</label>
           <div class="input-group upload-image mb-3">

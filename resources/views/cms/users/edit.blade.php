@@ -114,6 +114,16 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Expertise</label>
+          <input type="text" class="form-control" name="expertise" value="{{ !empty($users['expertise']) ? $users['expertise'] : '' }}" placeholder="Expertise/Designation" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Highest Qualification</label>
+          <input type="text" class="form-control" name="qualification" value="{{ !empty($users['qualification']) ? $users['qualification'] : '' }}" placeholder="Qualification" />
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-12 text-center">
           <input type="submit" class="btn btn-lg btn-primary" value="Update" />
         </div>

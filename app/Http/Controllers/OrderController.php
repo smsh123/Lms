@@ -151,7 +151,7 @@ class OrderController extends Controller
         if(!empty($coupon['status']) && $coupon['status'] == 'disable' ){
             return 'Invalid Coupon Code';
         }
-        if(!empty($coupon['courses']) && $coupon['courses'] != $courseSlug){
+        if(!empty($coupon['courses']) && !in_array($courseSlug,$coupon['courses'])){
             return 'This coupon is not valid for this course!';
         }
         if(!empty($coupon['min_cart_value']) && $coupon['min_cart_value'] > $orderAmout){

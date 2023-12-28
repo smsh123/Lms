@@ -24,7 +24,7 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'courses' => 'required|string|max:255',
+            'courses' => 'required',
             'code' => 'required|string|max:10|unique:coupons',
             'type' => 'required|string|max:255',
             'unit' => 'required|string|max:255',
@@ -64,7 +64,7 @@ class CouponController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'courses' => 'required|string|max:255',
+            'courses' => 'required',
             'code' => 'required|string|max:10',
             'type' => 'required|string|max:255',
             'unit' => 'required|string|max:255',

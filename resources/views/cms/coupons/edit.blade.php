@@ -5,6 +5,7 @@
     <div class="col-12 col-lg-6 text-right"><a href="/cms/coupons" class="btn btn-lg btn-secondary">View Coupons</a></div>
   </div>
 
+
   <form class="card" method="post" action="/cms/coupons/update">
     @csrf
     <input type="hidden" value="{{ !empty($coupons['id']) ? $coupons['id'] : '' }}" name="id" />
@@ -12,11 +13,15 @@
        <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Courses</label>
-          <select class="form-control select_to" name="courses[]" multiple="multiple" value="{{ !empty($coupons['courses']) ? $coupons['courses'] : '' }}">
+          <select class="form-control select_to" name="courses[]" multiple="multiple">
             <option value="all">All Courses</option>
             @if(!empty($courses))
               @foreach ($courses as $course)
-                  <option @if(!empty($coupons['courses']) && $coupons['courses'] == $course['slug']) selected @endif value="{{ !empty($course['slug']) ? $course['slug'] : ''}}">{{ !empty($course['name']) ? $course['name'] : ''}}</option>
+                  @php
+                    $course_slug = !empty($course['slug']) ? $course['slug'] : '';
+                    $course_name = !empty($course['name']) ? $course['name'] : '';
+                  @endphp
+                  <option @if(!empty($coupons['courses']) && in_array($course_slug,$coupons['courses'])) selected @endif value="{{ $course_slug }}">{{ $course_name }}</option>
               @endforeach
             @endif
           </select>

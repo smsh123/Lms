@@ -73,7 +73,7 @@
           <td>{{!empty($order->status) ? $order->status : ''}}</td>
           <td class="text-nowrap">
             <a href="/cms/orders/edit/{{$order->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/orders/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/orders/delete/{{$order->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach

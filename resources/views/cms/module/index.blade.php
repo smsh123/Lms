@@ -41,7 +41,7 @@
           <td class="text-nowrap">
             <a href="/cms/modules/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/modules/edit/{{$module->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/modules/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/modules/delete/{{$module->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach

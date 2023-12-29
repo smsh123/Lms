@@ -49,7 +49,7 @@
           <td class="text-nowrap">
             <a href="/cms/pages/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/pages/edit/{{$page->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/pages/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/pages/delete/{{$page->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach

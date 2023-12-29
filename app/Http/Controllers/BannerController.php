@@ -38,5 +38,12 @@ class BannerController extends Controller
     public function addBanners(Request $request){
         return view('cms.banners.add');
     }
+
+    public function destroy($id)
+    {
+        $banner = Banner::find($id);
+        $banner->delete();
+        return redirect()->back()->with('msg', 'Banner Deleted Successfully!');
+    }
     
 }

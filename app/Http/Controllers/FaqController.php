@@ -86,5 +86,12 @@ class FaqController extends Controller
         return redirect()->route('faq.index')->with('msg', 'Faq Updated successfully');
     }
 
+    public function destroy($id)
+    {
+        $faq = Faq::find($id);
+        $faq->delete();
+        return redirect()->back()->with('msg', 'Faq Deleted Successfully!');
+    }
+
     
 }

@@ -92,5 +92,12 @@ class MenuController extends Controller
         return redirect()->route('menus.index')->with('success', 'Menu Updated successfully');
     }
 
+    public function destroy($id)
+    {
+        $menu = Menu::find($id);
+        $menu->delete();
+        return redirect()->back()->with('msg', 'Menu Deleted Successfully!');
+    }
+
     
 }

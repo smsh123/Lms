@@ -97,5 +97,12 @@ class CourseModuleMappingController extends Controller
         return view("cms.course_module_mapping.index")->with('msg', 'Mapping created successfully');
     }
 
+    public function destroy($id)
+    {
+        $mapping = CourseModuleMapping::find($id);
+        $mapping->delete();
+        return redirect()->back()->with('msg', 'Mapping Deleted Successfully!');
+    }
+
     
 }

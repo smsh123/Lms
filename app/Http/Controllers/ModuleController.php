@@ -90,5 +90,12 @@ class ModuleController extends Controller
         return redirect()->route('modules.index')->with('success', 'Module Updated successfully');
     }
 
+    public function destroy($id)
+    {
+        $module = Module::find($id);
+        $module->delete();
+        return redirect()->back()->with('msg', 'Module Deleted Successfully!');
+    }
+
     
 }

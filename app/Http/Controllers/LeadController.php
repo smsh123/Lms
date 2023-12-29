@@ -64,5 +64,14 @@ class LeadController extends Controller
     
         return redirect()->back()->with('msg', 'Lead updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $leads = Leads::find($id);
+        $leads->delete();
+        return redirect()->back()->with('msg', 'Leads Deleted Successfully!');
+    }
+
+    
     
 }

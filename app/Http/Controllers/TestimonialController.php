@@ -79,5 +79,12 @@ class TestimonialController extends Controller
     
         return redirect()->route('testimonial.index')->with('msg', 'Testimonial updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $testimonial = Testimonial::find($id);
+        $testimonial->delete();
+        return redirect()->back()->with('msg', 'Testimonial Deleted Successfully!');
+    }
     
 }

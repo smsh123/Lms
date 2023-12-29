@@ -51,7 +51,7 @@
           <td class="text-nowrap">
             <a href="/cms/leads/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/leads/edit/{{$lead->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/leads/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/leads/delete/{{$lead->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach

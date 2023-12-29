@@ -92,5 +92,13 @@ class PageController extends Controller
     
         return redirect()->route('pages.index')->with('success', 'Page updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $page = Page::find($id);
+        $page->delete();
+        return redirect()->back()->with('msg', 'Page Deleted Successfully!');
+    }
+
     
 }

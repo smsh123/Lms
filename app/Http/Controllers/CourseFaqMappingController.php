@@ -97,5 +97,12 @@ class CourseFaqMappingController extends Controller
         return view("cms.course_faq_mapping.index")->with('msg', 'Mapping created successfully');
     }
 
+    public function destroy($id)
+    {
+        $mapping = CourseFaqMapping::find($id);
+        $mapping->delete();
+        return redirect()->back()->with('msg', 'Mapping Deleted Successfully!');
+    }
+
     
 }

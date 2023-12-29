@@ -157,4 +157,11 @@ class UserController extends Controller
         $user->save();
         return redirect('/cms/users')->with('msg', 'User Roles and Permissions Updated Successfully!');
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back()->with('msg', 'User Deleted Successfully!');
+    }
 }

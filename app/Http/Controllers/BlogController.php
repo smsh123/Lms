@@ -86,5 +86,12 @@ class BlogController extends Controller
     
         return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $blog = Blog::find($id);
+        $blog->delete();
+        return redirect()->back()->with('msg', 'Blog Deleted Successfully!');
+    }
     
 }

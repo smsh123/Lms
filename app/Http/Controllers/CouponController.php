@@ -89,5 +89,12 @@ class CouponController extends Controller
     
         return redirect()->route('coupons.index')->with('msg', 'Coupon updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $coupon = Coupon::find($id);
+        $coupon->delete();
+        return redirect()->back()->with('msg', 'Coupon Deleted Successfully!');
+    }
     
 }

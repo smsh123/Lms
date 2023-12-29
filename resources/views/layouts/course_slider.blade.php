@@ -6,10 +6,10 @@
           <p class="font-14 text-center">We designed our courses that suits for all category of students. We match our programs pace with the students.</p>
         </div>
         <div class="swiper swiper_with_progress">
-          <div class="swiper-wrapper align-items-stretch row">
+          <div class="swiper-wrapper row">
           @foreach ($courses as $key => $course )
             <div class="swiper-slide  bg-transparent col-lg-4 col-10">
-              <div class="card border-radius-25 h-100 w-100">
+              <div class="card border-radius-25 w-100">
                 <div class="card-header bg-transparent p-0">
                   <div class="ratio-image image_16-9 bg-transparent">
                     <img src="{{ !empty($course['thumbnail_image']) ? $course['thumbnail_image'] : '' }}" alt="course_thumbnail" />

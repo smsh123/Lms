@@ -136,6 +136,11 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/orders/store', 'OrderController@store')->name('orders.store');
     Route::get('/orders/edit/{id}', 'OrderController@edit')->name('orders.edit'); 
     Route::post('/orders/update', 'OrderController@update')->name('orders.update'); 
+    Route::get('/subscriptions', 'OrderController@index')->name('subscriptions.index'); 
+    Route::get('/subscriptions/add', 'OrderController@add')->name('subscriptions.add');
+    Route::post('/subscriptions/store', 'OrderController@store')->name('subscriptions.store');
+    Route::get('/subscriptions/edit/{id}', 'OrderController@edit')->name('subscriptions.edit'); 
+    Route::post('/subscriptions/update', 'OrderController@update')->name('subscriptions.update'); 
 });
 
 

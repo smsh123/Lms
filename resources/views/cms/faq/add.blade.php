@@ -82,46 +82,5 @@
         </div>
       </div>
     </div>
-  </form>
-
-  <script>
-        var count = 2; // Initialize count for dynamically generated fields (assuming you already have one card)
-
-        // Add More button click event
-       function addMore() {
-            var newCard = $('#accordionExample .card:first').clone();
-            var cardId = 'card' + count;
-            newCard.attr('id', cardId);
-            // Update the card's ID and button attributes
-            newCard.find('.card-header').attr('id', 'heading' + count);
-            newCard.find('button').attr({
-                'data-target': '#collapse' + count,
-                'aria-controls': 'collapse' + count,
-            });
-            newCard.find('button').text("Item#"+count);
-            newCard.find('a').attr({
-                'data-card-id': cardId
-            });
-            // Update the collapse div's ID and input names
-            newCard.find('.card-body').attr('id', 'collapse' + count);
-            newCard.find('input[name="title[]"]').attr('name', 'title[]');
-            newCard.find('input[name="duration[]"]').attr('name', 'duration[]');
-
-            // Reset input values
-            newCard.find('input').val('');
-
-            // Append the new card to the accordion
-            $('#accordionExample').append(newCard);
-            $('#accordionExample').on('click', '.delete-card', function() {
-            var cardId = $(this).data('card-id');
-            $('#' + cardId).remove();
-        });
-            // Increment the count
-            count++;
-        }
-        $('#accordionExample').on('click', '.delete-card', function() {
-            var cardId = $(this).data('card-id');
-            $('#' + cardId).remove();
-        });   
-</script>  
+  </form> 
 @stop

@@ -35,9 +35,11 @@ class ImageUploadController extends Controller
 
         // save uploaded image filename here to your database
 
-        return response()->json([
-            'message' => 'Image uploaded successfully.',
-           'image' => '/images/uploaded/' . $filename
-        ], 200);
+        return redirect()->back()->with('msg', 'Image Uploaded Successfully!');
+
+        // return response()->json([
+        //     'message' => 'Image uploaded successfully.',
+        //    'image' => '/images/uploaded/' . $filename
+        // ], 200);
     }
 }

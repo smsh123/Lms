@@ -30,8 +30,8 @@
           <label class="font-weight-bold">Course Slug</label>
           <input type="text" class="form-control" name="slug" placeholder="course slug"  />
           @if ($errors->has('slug'))
-          <p class="text-danger">{{ $errors->first('slug') }}</p>
-        @endif
+            <p class="text-danger">{{ $errors->first('slug') }}</p>
+          @endif
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Batch Start Date</label>
@@ -50,6 +50,28 @@
             <option value="live">Live</option>
             <option value="recorded">Recorded</option>
             <option value="offline">Offline</option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Mentors</label>
+          <select class="form-control select_to" name="mentors[]" multiple="multiple">
+            <option>Select</option>
+            @if(!empty($mentors))
+              @foreach ($mentors as $key => $mentor )
+                <option value="{{ !empty($mentor['_id']) ? $mentor['_id'] : '' }}">{{ !empty($mentor['name']) ? $mentor['name'].' - ' : '' }}{{ !empty($mentor['_id']) ? $mentor['_id'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Course Type</label>
+          <select class="form-control" name="course_type">
+            <option>Select</option>
+            <option value="class">Class</option>
+            <option value="ebook">E-Book</option>
+            <option value="audio_book">Audio Book</option>
           </select>
         </div>
       </div>

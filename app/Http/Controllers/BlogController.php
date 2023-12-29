@@ -13,7 +13,7 @@ class BlogController extends Controller
         return view('cms.blog.index')->with('blogs',$Blogs);
     }
     public function add(Request $request){
-        $users = User::all();
+        $users = User::getUserByRole('Author');
         $data=[
             'users' => !empty($users) ? $users : []
         ];

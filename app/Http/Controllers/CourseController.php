@@ -15,7 +15,12 @@ class CourseController extends Controller
         return view('cms.courses.index')->with('courses',$courses);
     }
     public function add(Request $request){
-    return view('cms.courses.add');
+        $mentors = User::getUserByRole('Teacher');
+        $data = [
+            'mentors' => !empty($mentors) ? $mentors : [], 
+        ];
+        
+        return view('cms.courses.add',$data);
     }
     public function store(Request $request)
     {
@@ -47,6 +52,8 @@ class CourseController extends Controller
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
         $course->tags = $request->input('tags');
+        $course->mentors = $request->input('mentors');
+        $course->course_type = $request->input('course_type');
     
         $course->save();
     
@@ -64,8 +71,13 @@ class CourseController extends Controller
 
     public function courseEdit(Request $request, $id) {
         $course = Course::find($id);
+        $mentors = User::getUserByRole('Teacher');
+        $data = [
+            'course' => !empty($course) ? $course : [],
+            'mentors' => !empty($mentors) ? $mentors : []
+        ];
         // dd($course);
-        return view('cms.courses.edit')->with('course',$course);
+        return view('cms.courses.edit',$data);
     }
     public function update(Request $request)
     {
@@ -96,6 +108,8 @@ class CourseController extends Controller
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
         $course->tags = $request->input('tags');
+        $course->mentors = $request->input('mentors');
+        $course->course_type = $request->input('course_type');
     
         $course->save();
     

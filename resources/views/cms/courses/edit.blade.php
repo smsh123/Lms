@@ -46,9 +46,31 @@
           <label class="font-weight-bold">Class Mode</label>
           <select class="form-control" name="class_mode" value="{{$course->class_mode}}">
             <option>Select</option>
-            <option value="live">Live</option>
-            <option value="recorded">Recorded</option>
-            <option value="offline">Offline</option>
+            <option @if(!empty($course->class_mode) && $course->class_mode =="live") selected @endif value="live">Live</option>
+            <option @if(!empty($course->class_mode) && $course->class_mode =="recorded") selected @endif value="recorded">Recorded</option>
+            <option @if(!empty($course->class_mode) && $course->class_mode =="offline") selected @endif value="offline">Offline</option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Mentors</label>
+          <select class="form-control select_to" name="mentors[]" multiple="multiple">
+            <option>Select</option>
+            @if(!empty($mentors))
+              @foreach ($mentors as $key => $mentor )
+                <option @if(!empty($course->mentors) && in_array($mentor['_id'],$course->mentors)) selected @endif value="{{ !empty($mentor['_id']) ? $mentor['_id'] : '' }}">{{ !empty($mentor['name']) ? $mentor['name'].' - ' : '' }}{{ !empty($mentor['_id']) ? $mentor['_id'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Course Type</label>
+          <select class="form-control" name="course_type">
+            <option>Select</option>
+            <option @if(!empty($course->course_type) && $course->course_type =="class") selected @endif value="class">Class</option>
+            <option @if(!empty($course->course_type) && $course->course_type =="ebook") selected @endif value="ebook">E-Book</option>
+            <option @if(!empty($course->course_type) && $course->course_type =="audio_book") selected @endif value="audio_book">Audio Book</option>
           </select>
         </div>
       </div>

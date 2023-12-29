@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->cover_image = $request->cover_image;
         $user->password = bcrypt($request->pwd);
         $user->user_type = !empty($request->user_type) ? $request->user_type : 'external';
-        $user->user_role = !empty($request->user_role) ? $request->user_role : [];
+        $user->roles = !empty($request->user_role) ? $request->user_role : [];
         $user->facebook_profile = !empty($request->facebook_profile) ? $request->facebook_profile : '';
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
@@ -78,7 +78,7 @@ class UserController extends Controller
         }
         $user->cover_image = $request->cover_image;
         $user->user_type = !empty($request->user_type) ? $request->user_type : 'external';
-        $user->user_role = !empty($request->user_role) ? $request->user_role : [];
+        $user->roles = !empty($request->user_role) ? $request->user_role : [];
         $user->facebook_profile = !empty($request->facebook_profile) ? $request->facebook_profile : '';
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';

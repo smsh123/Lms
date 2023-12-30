@@ -159,6 +159,9 @@
         $(document).ready(function(){
           setTimeout(function(){autoDismissAlerts();},5000);
           $('.select_to').select2();
+          $('form').keypress(function(e){
+              if ( e.which == 13 ) return false;
+          }); 
         });
         </script>
 

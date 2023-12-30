@@ -122,9 +122,6 @@ class UserController extends Controller
     }
     public function listUsers(Request $request)
     {
-        if (!User::hasPermissions(["Create:User"])) {
-            return response()->json(['error' => 'User has no permission to vew list'], 403);
-        }
         // $users = User::all();
         $users = User::paginateWithDefault(2);
         $data = [

@@ -46,9 +46,9 @@ class UserController extends Controller
     }
     public function edit(Request $request, $id)
     {
-        if(!in_array('Edit User',\Auth::user()->permissions)){
-            return redirect()->back()->with('error', 'Permission Denied');
-        }
+        // if(!in_array('Edit User',\Auth::user()->permissions)){
+        //     return redirect()->back()->with('error', 'Permission Denied');
+        // }
         $users = User::find($id);
         $roles = Role::all(['name']);
         $roles = is_object($roles) ? $roles->toArray() : $roles;

@@ -17,6 +17,9 @@ class SubscriptionController extends Controller
     }
 
     public function edit(Request $request, $id) {
+        if(!in_array('Edit Subscription',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $subscription = Subscription::find($id);
         $data=[
             "subscriptions" => !empty($subscription) ? $subscription : [],

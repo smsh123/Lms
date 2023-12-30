@@ -24,6 +24,12 @@ class ImageUploadController extends Controller
      */
     public function imageUploadPost(Request $request)
     {
+        if(!in_array('Upload Image',\Auth::user()->permissions)){
+           // return redirect()->back()->with('error', 'Permission Denied');
+            return response()->json([
+                'error' => 'Permission Denied'
+            ], 200);
+        }
        // dd($request->all());
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

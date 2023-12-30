@@ -36,11 +36,17 @@ class BannerController extends Controller
         return view('cms.banners.index',$data);
     }
     public function addBanners(Request $request){
+        if(!in_array('Add Banner',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.banners.add');
     }
 
     public function destroy($id)
     {
+        if(!in_array('Delete Banner',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $banner = Banner::find($id);
         $banner->delete();
         return redirect()->back()->with('msg', 'Banner Deleted Successfully!');

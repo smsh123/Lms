@@ -16,9 +16,15 @@ class PermissionController extends Controller
         return view('cms.permissions.index',$data);
     }
     public function add(Request $request){
+        if(!in_array('Add Permission',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.permissions.add');
     }
     public function edit(Request $request,$id){
+        if(!in_array('Edit Permission',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $role = Permission::find($id);
         return view('cms.permissions.edit')->with('role',$role);
     }
@@ -40,6 +46,9 @@ class PermissionController extends Controller
         return redirect('/cms/permissions')->with('msg', 'Permission Registered Successfully!');
     }
     public function delete(Request $request,$id){
+        if(!in_array('Delete Permission',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $role = Permission::find($id); 
         if ($role) {
             $role->delete(); 

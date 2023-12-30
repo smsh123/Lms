@@ -15,6 +15,9 @@ class CouponController extends Controller
         return view('cms.coupons.index')->with('coupons',$coupons);
       }
     public function add(Request $request){
+        if(!in_array('Add Coupon',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $courses = Course::all();
         $data = [
             'courses' => !empty($courses) ? $courses : [] 
@@ -52,6 +55,9 @@ class CouponController extends Controller
     }
 
     public function couponEdit(Request $request, $id) {
+        if(!in_array('Edit Coupon',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $coupons =Coupon::find($id);
         $courses = Course::all();
         // dd($coupons);
@@ -92,6 +98,9 @@ class CouponController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Coupon',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $coupon = Coupon::find($id);
         $coupon->delete();
         return redirect()->back()->with('msg', 'Coupon Deleted Successfully!');

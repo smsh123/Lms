@@ -18,6 +18,9 @@ class SchedulingController extends Controller
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }
     public function add(Request $request){
+        if(!in_array('Add Schedule',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $courses = Course::all();
         $teachers = User::getUserByRole('Teacher');
         $data = [
@@ -59,6 +62,9 @@ class SchedulingController extends Controller
     }
 
     public function scheduleEdit(Request $request, $id) {
+        if(!in_array('Edit Schedule',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $schedules = Schedule::find($id);
         $courses = Course::all();
         $teachers = User::getUserByRole('Teacher');
@@ -111,7 +117,7 @@ class SchedulingController extends Controller
             return $modules;
 
         }else{
-            dd('Course Id Not Found');
+            return 'Course Id Not Found';
         }
         
     }
@@ -124,7 +130,7 @@ class SchedulingController extends Controller
             return $moduleDetails;
 
         }else{
-            dd('Module Id Not Found');
+            return 'Module Id Not Found';
         }
         
     }

@@ -13,6 +13,9 @@ class BlogController extends Controller
         return view('cms.blog.index')->with('blogs',$Blogs);
     }
     public function add(Request $request){
+        if(!in_array('Add Blog',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $users = User::getUserByRole('Author');
         $data=[
             'users' => !empty($users) ? $users : []
@@ -69,6 +72,9 @@ class BlogController extends Controller
     }
 
     public function blogEdit(Request $request, $id) {
+        if(!in_array('Edit Blog',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $blog = Blog::find($id);
         $users = User::getUserByRole('Author');
         $data=[
@@ -106,6 +112,9 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Blog',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $blog = Blog::find($id);
         $blog->delete();
         return redirect()->back()->with('msg', 'Blog Deleted Successfully!');

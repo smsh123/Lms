@@ -15,10 +15,16 @@ class FaqController extends Controller
     }
 
     public function add(Request $request){
+        if(!in_array('Add Faq',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.faq.add');
     }
 
     public function edit(Request $request, $id) {
+        if(!in_array('Edit Faq',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $faqs = Faq::find($id);
         $data=[
             'faqs' => !empty($faqs) ? $faqs : []
@@ -88,6 +94,9 @@ class FaqController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Faq',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $faq = Faq::find($id);
         $faq->delete();
         return redirect()->back()->with('msg', 'Faq Deleted Successfully!');

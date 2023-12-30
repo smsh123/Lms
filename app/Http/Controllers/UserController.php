@@ -45,6 +45,9 @@ class UserController extends Controller
     }
     public function edit(Request $request, $id)
     {
+        if(!in_array('Edit User',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $users = User::find($id);
         $roles = Role::all(['name']);
         $roles = is_object($roles) ? $roles->toArray() : $roles;
@@ -129,6 +132,9 @@ class UserController extends Controller
     }
     public function addUsers(Request $request)
     {
+        if(!in_array('Add User',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $roles = Role::all(['name']);
         $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
@@ -160,6 +166,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete User',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('msg', 'User Deleted Successfully!');

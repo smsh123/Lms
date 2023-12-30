@@ -13,6 +13,9 @@ class LeadController extends Controller
         return view('cms.lead.index')->with('leads',$Leads);
     }
     public function add(Request $request){
+        if(!in_array('Add Lead',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.lead.add');
     }
     public function store(Request $request)
@@ -39,6 +42,9 @@ class LeadController extends Controller
     }
 
     public function leadEdit(Request $request, $id) {
+        if(!in_array('Edit Lead',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $leads = Leads::find($id);
         // dd($course);
         return view('cms.lead.edit')->with('Lead',$leads);
@@ -67,6 +73,9 @@ class LeadController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Lead',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $leads = Leads::find($id);
         $leads->delete();
         return redirect()->back()->with('msg', 'Leads Deleted Successfully!');

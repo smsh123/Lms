@@ -16,6 +16,9 @@ class TestimonialController extends Controller
         return view('cms.testimonial.index')->with('testimonial',$testimonials,'users',!empty($users) ? $users : []);
       }
     public function add(Request $request){
+        if(!in_array('Add Testimonial',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $users = User::all();
         return view('cms.testimonial.add')->with('users',!empty($users) ? $users : []);
     }
@@ -48,6 +51,9 @@ class TestimonialController extends Controller
     }
 
     public function testimonialEdit(Request $request, $id) {
+        if(!in_array('Edit Testimonial',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $testimonials =Testimonial::find($id);
         $users = User::all();
         $data = [
@@ -82,6 +88,9 @@ class TestimonialController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Testimonial',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $testimonial = Testimonial::find($id);
         $testimonial->delete();
         return redirect()->back()->with('msg', 'Testimonial Deleted Successfully!');

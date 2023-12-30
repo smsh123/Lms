@@ -15,10 +15,16 @@ class ModuleController extends Controller
     }
 
     public function add(Request $request){
+        if(!in_array('Add Module',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.module.add');
     }
 
     public function edit(Request $request, $id) {
+        if(!in_array('Edit Module',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $module = Module::find($id);
         $data=[
             'module' => !empty($module) ? $module : []
@@ -92,6 +98,9 @@ class ModuleController extends Controller
 
     public function destroy($id)
     {
+        if(!in_array('Delete Module',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $module = Module::find($id);
         $module->delete();
         return redirect()->back()->with('msg', 'Module Deleted Successfully!');

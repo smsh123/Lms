@@ -16,7 +16,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href={{asset('/assets/css/app.css')}} />
     @php session(['global_picklist' => App\Helpers\SiteHelper::getAllPickList()]); @endphp
-
+@php
+  if(!isset(\Auth::user()->permissions) || empty(\Auth::user()->permissions)){
+      \Auth::user()->permissions = [];
+  }
+@endphp
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

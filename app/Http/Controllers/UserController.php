@@ -40,6 +40,7 @@ class UserController extends Controller
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
+        $user->permissions = !empty($request->permissions) ? $request->permissions : [];
         $user->save();
         return redirect()->back()->with('msg', 'User Registered Successfully!');
     }
@@ -88,6 +89,7 @@ class UserController extends Controller
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
+        $user->permissions = !empty($request->permissions) ? $request->permissions : [];
         $user->save();
         return redirect()->back()->with('msg', 'User Details Updated Successfully!');
     }

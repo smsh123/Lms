@@ -94,6 +94,10 @@
           <label class="font-weight-bold">Tags</label>
           <input type="text" value="{{!empty($course->tags) ? $course->tags : ''}}" data-role="tagsinput" class="form-control" name="tags" />
         </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Highlights</label>
+          <input type="text" value="{{!empty($course->highlights) ? $course->highlights : ''}}" data-role="tagsinput" class="form-control" name="highlights" />
+        </div>
       </div>
       <fieldset class="border p-3 mb-3">
         <legend class="d-inline-block w-auto px-3">Price & Offer Details</legend>

@@ -54,6 +54,7 @@ class CourseController extends Controller
         $course->tags = $request->input('tags');
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
+        $course->highlights = $request->input('highlights');
     
         $course->save();
     
@@ -110,6 +111,8 @@ class CourseController extends Controller
         $course->tags = $request->input('tags');
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
+        $course->highlights = $request->input('highlights');
+        
     
         $course->save();
     

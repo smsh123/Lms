@@ -6,7 +6,7 @@
           <p class="font-14 text-center">We designed our courses that suits for all category of students. We match our programs pace with the students.</p>
         </div>
         <div class="swiper swiper_with_progress">
-          <div class="swiper-wrapper row flex-nowrap">
+          <div class="swiper-wrapper row flex-nowrap justify-content-start">
           @foreach ($courses as $key => $course )
             <div class="swiper-slide  bg-transparent col-lg-4 col-10">
               <div class="card border-radius-25 w-100">

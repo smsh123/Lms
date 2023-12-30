@@ -5,7 +5,27 @@
     <link data-n-head="ssr" rel="shortcut icon" type="image/x-icon" href="/assets/image/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>ARYABHATT Classes - Click To Success</title>
+    @if(!empty($page_type) && $page_type == 'course-page' )
+      <title>{{ !empty($courses['meta_title']) ? $courses['meta_title'] : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($courses['meta_description']) ? $courses['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($courses['meta_keywords']) ? $courses['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+    @elseif (!empty($page_type) && $page_type == 'course-details-page')
+      <title>{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($CourseDescription['meta_keywords']) ? $CourseDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+    @elseif (!empty($page_type) && $page_type == 'blog-page')
+      <title>{{ !empty($blogs['meta_title']) ? $blogs['meta_title'] : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($blogs['meta_description']) ? $blogs['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($blogs['meta_keywords']) ? $blogs['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+    @elseif (!empty($page_type) && $page_type == 'blog-details-page')
+      <title>{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($BlogDescription['meta_description']) ? $BlogDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($BlogDescription['meta_keywords']) ? $BlogDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+    @else
+      <title>ARYABHATT Classes - Click To Success</title>
+      <meta name="description" content="Join Our Online Classes for Smart Online Learning Experience'">
+      <meta name="keywords" content="Aryabhatt Classes, Online Smart Learning, Online Classes">
+    @endif
      <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -13,8 +33,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-     <link rel="stylesheet" href="/assets/css/app.css" />
-     <script src="https://accounts.google.com/gsi/client" async></script>
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <script src="https://accounts.google.com/gsi/client" async></script>
      <style>
        .swiper {
       width: 100%;

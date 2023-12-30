@@ -31,6 +31,9 @@ class PageController extends Controller
         $page = new Page;
         $page->name = $request->input('name');
         $page->name_hindi = $request->input('name_hindi');
+        $page->meta_title = $request->input('meta_title');
+        $page->meta_keywords = $request->input('meta_keywords');
+        $page->meta_description = $request->input('meta_description');
         $page->slug = $request->input('slug');
         $page->description = $request->input('description');
         $page->synopsis = $request->input('synopsis');
@@ -83,6 +86,9 @@ class PageController extends Controller
         $page = Page::find($id);
         $page->name = $request->input('name');
         $page->name_hindi = $request->input('name_hindi');
+        $page->meta_title = $request->input('meta_title');
+        $page->meta_keywords = $request->input('meta_keywords');
+        $page->meta_description = $request->input('meta_description');
         $page->slug = $request->input('slug');
         $page->description = $request->input('description');
         $page->synopsis = $request->input('synopsis');

@@ -65,12 +65,20 @@ class CourseController extends Controller
     }
     public function listing(Request $request){
         $courses = Course::all();
-        return view('course.index')->with('courses',$courses);
+        $data = [
+            'courses' => !empty($courses) ? $courses : [],
+            'page_type' => 'course-page' 
+        ];
+        return view('course.index',$data);
     }
     public function courseDetails(Request $request, $slug){
         $courseDescription = [];
         $courseDescription = Course::getCourseBySlug($slug);
-        return view('course.details')->with('CourseDescription',!empty($courseDescription) ? $courseDescription[0] : []);
+        $data = [
+            'CourseDescription' => !empty($courseDescription) ? $courseDescription : [],
+            'page_type' => 'course-details-page' 
+        ];
+        return view('course.details',$data);
     }
 
     public function courseEdit(Request $request, $id) {

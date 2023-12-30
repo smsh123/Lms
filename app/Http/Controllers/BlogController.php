@@ -49,12 +49,20 @@ class BlogController extends Controller
     public function listing(Request $request){
 
         $Blogs = Blog::all();
-        return view('blog.index')->with('blogs',$Blogs);
+        $data = [
+            'blogs' => !empty($Blogs) ? $Blogs : [],
+            'page_type' => 'blog-page' 
+        ];
+        return view('blog.index',$data);
     }
     public function blogDetails(Request $request, $slug){
         $blogDescription = [];
         $blogDescription = Blog::getBlogBySlug($slug);
-        return view('blog.details')->with('BlogDescription',!empty($blogDescription) ? $blogDescription[0] : []);
+        $data = [
+            'BlogDescription' => !empty($blogDescription) ? $blogDescription : [],
+            'page_type' => 'blog-details-page' 
+        ];
+        return view('blog.details',$data);
     }
 
     public function blogEdit(Request $request, $id) {

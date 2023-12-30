@@ -27,6 +27,31 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
+          <label class="font-weight-bold">Meta Title</label>
+          <input type="text" class="form-control" name="meta_title" value="{{ !empty($pages['meta_title']) ? $pages['meta_title'] : '' }}" placeholder="Meta Title" />
+          @if ($errors->has('meta_title'))
+            <p class="text-danger">{{ $errors->first('meta_title') }}</p>
+          @endif
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Meta Keywords</label>
+          <input type="text" class="form-control" data-role="tagsinput" name="meta_keywords" value="{{ !empty($pages['meta_keywords']) ? $pages['meta_keywords'] : '' }}" placeholder="Keywords" />
+          @if ($errors->has('meta_keywords'))
+          <p class="text-danger">{{ $errors->first('meta_keywords') }}</p>
+        @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Meta Description</label>
+          <textarea class="form-control" name="meta_description">{{ !empty($pages['meta_description']) ? $pages['meta_description'] : '' }}</textarea>
+          @if ($errors->has('meta_description'))
+            <p class="text-danger">{{ $errors->first('meta_description') }}</p>
+          @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Page Slug</label>
           <input type="text" class="form-control" name="slug" placeholder="Page slug" value="{{ !empty($pages['slug']) ? $pages['slug'] : '' }}" readonly  />
           @if ($errors->has('slug'))

@@ -16,9 +16,9 @@ class PermissionController extends Controller
         return view('cms.permissions.index',$data);
     }
     public function add(Request $request){
-        // if(!in_array('Add Permission',\Auth::user()->permissions)){
-        //     return redirect()->back()->with('error', 'Permission Denied');
-        // }
+        if(!in_array('Add Permission',\Auth::user()->permissions)){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         return view('cms.permissions.add');
     }
     public function edit(Request $request,$id){

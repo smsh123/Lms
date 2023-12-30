@@ -59,18 +59,13 @@
       </tbody>
     </table>
   </div>
-  {{-- <div class="py-3">
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-end">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav>
-  </div> --}}
-  <div class="d-flex justify-content-center">
-    {{ $users->links() }}
-</div>
+  <nav aria-label="Page navigation" class="my-3">
+    <ul class="pagination justify-content-end">
+      <li class="page-item"><a class="page-link" href="{{$users->previousPageUrl()}}">Previous</a></li>
+      @for($i=1;$i<=$users->lastPage();$i++)
+        <li class="page-item"><a class="page-link" href="{{$users->url($i)}}">{{$i}}</a></li>
+      @endfor
+      <li class="page-item"><a class="page-link" href="{{$users->nextPageUrl()}}">Next</a></li>
+    </ul>
+  </nav>
 @stop

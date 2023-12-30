@@ -6,7 +6,7 @@
   </div>
 
 
-  <form class="card" method="post" action="/cms/roles/store">
+  <form class="card" method="post" action="/cms/permissions/store">
     @csrf
     <div class="card-body">
       <div class="row form-group">

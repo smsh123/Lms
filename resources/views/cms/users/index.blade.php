@@ -48,6 +48,7 @@
             {{-- <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a> --}}
             <a href="/cms/users/permissions/{{$user->_id}}" class="mx-1" title="view roles and permission "><span data-feather="user-check"></span></a>
             <a href="/cms/users/edit/{{$user->_id}}" class="mx-1" title="Edit User Details"><span data-feather="edit"></span></a>
+            <a href="/cms/users/delete/{{$user->_id}}" class="mx-1" title="Edit User Details"><span data-feather="trash"></span></a>
             {{-- <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a> --}}
           </td>
         </tr>

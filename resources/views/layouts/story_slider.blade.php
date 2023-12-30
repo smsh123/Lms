@@ -6,7 +6,7 @@
         <p class="font-14 text-center">Our Blog writters push daily updates on our new offerings and latest offers and course structure on our blog section.</p>
       </div>
       <div class="swiper swiper_with_progress">
-        <div class="swiper-wrapper row flex-nowrap justify-content-start">
+        <div class="swiper-wrapper row flex-nowrap justify-content-start no-gutters">
         @foreach ($blogs as $key => $blog )
           <div class="swiper-slide bg-transparent col-lg-4 col-10">
             <div class="card border-radius-25">

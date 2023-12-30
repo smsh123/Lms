@@ -19,10 +19,35 @@
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Course Name Hindi</label>
-          <input type="text" class="form-control" name="name_hn" placeholder="Course Name Hindi" />
-          @if ($errors->has('name_hn'))
-          <p class="text-danger">{{ $errors->first('name_hn') }}</p>
+          <input type="text" class="form-control" name="name_hindi" placeholder="Course Name Hindi" />
+          @if ($errors->has('name_hindi'))
+          <p class="text-danger">{{ $errors->first('name_hindi') }}</p>
         @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Meta Title</label>
+          <input type="text" class="form-control" name="meta_title" placeholder="Meta Title" />
+          @if ($errors->has('meta_title'))
+            <p class="text-danger">{{ $errors->first('meta_title') }}</p>
+          @endif
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Meta Keywords</label>
+          <input type="text" class="form-control" data-role="tagsinput" name="meta_keywords" placeholder="Keywords" />
+          @if ($errors->has('meta_keywords'))
+          <p class="text-danger">{{ $errors->first('meta_keywords') }}</p>
+        @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Meta Description</label>
+          <textarea class="form-control" name="meta_description"></textarea>
+          @if ($errors->has('meta_description'))
+            <p class="text-danger">{{ $errors->first('meta_description') }}</p>
+          @endif
         </div>
       </div>
       <div class="row form-group">

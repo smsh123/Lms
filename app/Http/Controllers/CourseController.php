@@ -26,7 +26,7 @@ class CourseController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'name_hn' => 'required|string|max:255',
+            'name_hindi' => 'required|string|max:255',
             'description' => 'required|string',
             'original_price' => 'required|numeric|min:0',
             'selling_price' => 'required|numeric|min:0',
@@ -35,6 +35,9 @@ class CourseController extends Controller
     
         $course = new Course;
         $course->name = $request->input('name');
+        $course->meta_title = $request->input('meta_title');
+        $course->meta_keywords = $request->input('meta_keywords');
+        $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
         $course->slug = $request->input('slug');
         $course->batch_start_date = $request->input('batch_start_date');
@@ -84,7 +87,7 @@ class CourseController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'name_hn' => 'required|string|max:255',
+            'name_hindi' => 'required|string|max:255',
             'description' => 'required|string',
             'original_price' => 'required|numeric|min:0',
             'selling_price' => 'required|numeric|min:0',
@@ -93,6 +96,9 @@ class CourseController extends Controller
         $id = $request->input("id",'');
         $course = Course::find($id);
         $course->name = $request->input('name');
+        $course->meta_title = $request->input('meta_title');
+        $course->meta_keywords = $request->input('meta_keywords');
+        $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
         $course->batch_start_date = $request->input('batch_start_date');
         $course->duration = $request->input('duration');

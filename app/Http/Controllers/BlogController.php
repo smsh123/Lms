@@ -31,6 +31,9 @@ class BlogController extends Controller
         $blog = new Blog;
         $blog->name = $request->input('name');
         $blog->name_hindi = $request->input('name_hindi');
+        $blog->meta_title = $request->input('meta_title');
+        $blog->meta_keywords = $request->input('meta_keywords');
+        $blog->meta_description = $request->input('meta_description');
         $blog->slug = $request->input('slug');
         $blog->description = $request->input('description');
         $blog->synopsis = $request->input('synopsis');
@@ -75,6 +78,9 @@ class BlogController extends Controller
         $blog = Blog::find($id);
         $blog->name = $request->input('name');
         $blog->name_hindi = $request->input('name_hindi');
+        $blog->meta_title = $request->input('meta_title');
+        $blog->meta_keywords = $request->input('meta_keywords');
+        $blog->meta_description = $request->input('meta_description');
         $blog->description = $request->input('description');
         $blog->synopsis = $request->input('synopsis');
         $blog->author = $request->input('author');

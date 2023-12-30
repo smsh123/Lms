@@ -51,6 +51,9 @@ class BlogController extends Controller
         $Blogs = Blog::all();
         $data = [
             'blogs' => !empty($Blogs) ? $Blogs : [],
+            'meta_title'=>'Career oriented stories | Aryabhatt Classes',
+            'meta_keywords'=>'career, aryabhatt stories, aryabhatt classes, blogs, stories, job news, job updates',
+            'meta_description'=>'Authors at aryabhatt classes writes veriety of stories to keep you updated with latest career news and latest job updates.',
             'page_type' => 'blog-page' 
         ];
         return view('blog.index',$data);
@@ -59,7 +62,7 @@ class BlogController extends Controller
         $blogDescription = [];
         $blogDescription = Blog::getBlogBySlug($slug);
         $data = [
-            'BlogDescription' => !empty($blogDescription) ? $blogDescription : [],
+            'BlogDescription' => !empty($blogDescription) ? $blogDescription[0] : [],
             'page_type' => 'blog-details-page' 
         ];
         return view('blog.details',$data);

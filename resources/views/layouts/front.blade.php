@@ -14,7 +14,7 @@
       <meta name="description" content="{{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($CourseDescription['meta_keywords']) ? $CourseDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
     @elseif (!empty($page_type) && $page_type == 'blog-page')
-      <title>{{ !empty($meta_title') ? $meta_title : 'Smart Online Learning'}}</title>
+      <title>{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($meta_keywords) ? $meta_keywords : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
     @elseif (!empty($page_type) && $page_type == 'blog-details-page')

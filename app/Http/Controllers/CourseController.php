@@ -67,6 +67,9 @@ class CourseController extends Controller
         $courses = Course::all();
         $data = [
             'courses' => !empty($courses) ? $courses : [],
+            'meta_title'=>'Explore our highly optimized and personlised courses',
+            'meta_keywords'=>'skills courses, smart classes, online classes, courses',
+            'meta_description'=>'Aryabhatt classes desing personlised courses that suits to every individuals. Lets explore our highly optimized and personlised courses to boost your career',
             'page_type' => 'course-page' 
         ];
         return view('course.index',$data);
@@ -75,7 +78,7 @@ class CourseController extends Controller
         $courseDescription = [];
         $courseDescription = Course::getCourseBySlug($slug);
         $data = [
-            'CourseDescription' => !empty($courseDescription) ? $courseDescription : [],
+            'CourseDescription' => !empty($courseDescription) ? $courseDescription[0] : [],
             'page_type' => 'course-details-page' 
         ];
         return view('course.details',$data);

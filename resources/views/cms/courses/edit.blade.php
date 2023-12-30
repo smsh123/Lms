@@ -90,7 +90,7 @@
         </div>
       </div>
        <div class="row form-group">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Tags</label>
           <input type="text" value="{{!empty($course->tags) ? $course->tags : ''}}" data-role="tagsinput" class="form-control" name="tags" />
         </div>

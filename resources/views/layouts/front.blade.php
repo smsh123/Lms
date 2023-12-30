@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     @if(!empty($page_type) && $page_type == 'course-page' )
-      <title>{{ !empty($courses['meta_title']) ? $courses['meta_title'] : 'Smart Online Learning'}}</title>
-      <meta name="description" content="{{ !empty($courses['meta_description']) ? $courses['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
-      <meta name="keywords" content="{{ !empty($courses['meta_keywords']) ? $courses['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <title>{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($meta_keywords) ? $meta_keywords : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
     @elseif (!empty($page_type) && $page_type == 'course-details-page')
       <title>{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($CourseDescription['meta_keywords']) ? $CourseDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
     @elseif (!empty($page_type) && $page_type == 'blog-page')
-      <title>{{ !empty($blogs['meta_title']) ? $blogs['meta_title'] : 'Smart Online Learning'}}</title>
-      <meta name="description" content="{{ !empty($blogs['meta_description']) ? $blogs['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
-      <meta name="keywords" content="{{ !empty($blogs['meta_keywords']) ? $blogs['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <title>{{ !empty($meta_title') ? $meta_title : 'Smart Online Learning'}}</title>
+      <meta name="description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}">
+      <meta name="keywords" content="{{ !empty($meta_keywords) ? $meta_keywords : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
     @elseif (!empty($page_type) && $page_type == 'blog-details-page')
       <title>{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($BlogDescription['meta_description']) ? $BlogDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">

@@ -2,7 +2,7 @@
 @section('body')
 @php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1>Edit Testimonial</h1></div>
+    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Edit Testimonial</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/testimonials" class="btn btn-lg btn-secondary">View Testimonials</a></div>
   </div>
 

@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-12"><h1>Mappings</h1></div>
+    <div class="col-12 col-lg-12"><h1 class="font-weight-bold font-32 my-3 text-warning">Mappings</h1></div>
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     <div class="col mb-4">

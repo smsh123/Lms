@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-12"><h1>Create Course Faq Mapping</h1></div>
+    <div class="col-12 col-lg-12"><h1 class="font-weight-bold font-32 my-3 text-warning">Create Course Faq Mapping</h1></div>
   </div>
   <div class="card">
     <div class="card-header">

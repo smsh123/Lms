@@ -52,7 +52,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="course slug" value="{{$course->slug}}" />
+          <input type="text" class="form-control" name="slug" placeholder="course slug" value="{{$course->slug}}" readonly />
           @if ($errors->has('slug'))
           <p class="text-danger">{{ $errors->first('slug') }}</p>
         @endif

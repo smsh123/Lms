@@ -45,6 +45,10 @@ class BlockController extends Controller
         $title = $request->input('title');
         $link =  $request->input('link');
         $icon = $request->input('icon');
+        $short_description = $request->input('short_description');
+        $long_description = $request->input('long_description');
+        $extra_info = $request->input('extra_info');
+        $image = $request->input('image');
         $objects = [];
         if (count($title) == count($link) && count($link) == count($icon)) {
             $count = count($title);
@@ -53,6 +57,10 @@ class BlockController extends Controller
                 $object->title = $title[$i];
                 $object->link = $link[$i];
                 $object->icon = $icon[$i];
+                $object->short_description = $short_description[$i];
+                $object->long_description = $long_description[$i];
+                $object->extra_info = $extra_info[$i];
+                $object->image = $image[$i];
                 $objects[] = $object;
             }
         }
@@ -77,6 +85,10 @@ class BlockController extends Controller
         $title = $request->input('title');
         $link =  $request->input('link');
         $icon = $request->input('icon');
+        $short_description = $request->input('short_description');
+        $long_description = $request->input('long_description');
+        $extra_info = $request->input('extra_info');
+        $image = $request->input('image');
         $objects = [];
         if (count($title) == count($link) && count($link) == count($icon)) {
             $count = count($title);
@@ -85,6 +97,10 @@ class BlockController extends Controller
                 $object->title = $title[$i];
                 $object->link = $link[$i];
                 $object->icon = $icon[$i];
+                $object->short_description = $short_description[$i];
+                $object->long_description = $long_description[$i];
+                $object->extra_info = $extra_info[$i];
+                $object->image = $image[$i];
                 $objects[] = $object;
             }
         }

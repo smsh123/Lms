@@ -6,7 +6,9 @@
   @if(!empty($courses))
     @include('layouts.course_slider')
   @endif
-  @include('layouts.study_materials')
+  @if(!empty($ebooks))
+    @include('layouts.study_materials')
+  @endif
   @if ($successStories)
     @include('layouts.success_stories')
   @endif

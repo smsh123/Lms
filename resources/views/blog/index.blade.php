@@ -3,7 +3,7 @@
   @include('layouts.global_header')
   <div class="theme-contrast-gradient-container-bottom position-relative">
     <div class="container">
-      <h1 class="font-weight-bold font-32 text-center py-3">Stories from Our Writters</h1>
+      <h1 class="font-weight-bold font-32 text-center py-3">Stories from Our Writers</h1>
       @if(!empty($blogs))
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2">
          @foreach ($blogs as $key => $blog )

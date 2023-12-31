@@ -17,5 +17,12 @@ class Course extends BaseModel
             return $result;
         }
     }
+    public static function getCourseByType($type) {
+
+        if(!empty($type)){
+            $result = self::where('course_type',$type)->get()->toArray();
+            return $result;
+        }
+    }
 }
 

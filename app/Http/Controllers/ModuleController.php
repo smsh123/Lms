@@ -88,7 +88,6 @@ class ModuleController extends Controller
         $id = $request->input("id");
         $module = Module::find($id);
         $module->name = $request->input('name');
-        $module->slug = $request->input('slug');
         $module->status = $request->input('status');
         $module->items = $objects;
     

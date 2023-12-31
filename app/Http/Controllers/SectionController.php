@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\User;
+use App\Models\Course;
+use App\Models\Blog;
 
 class SectionController extends Controller
 {
@@ -19,7 +21,16 @@ class SectionController extends Controller
         if(!User::hasPermissions(["Add Section"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.section.add');
+        $mentors = User::getUserByRole('Teacher');
+        $courses = Course::all();
+        $blogs = Blog::all();
+        $data = [
+            'mentors' => !empty($mentors) ? $mentors : [],
+            'courses' =>  !empty($courses) ? $courses : [],
+            'blogs' => !empty($blogs) ? $blogs : []
+        ];
+
+        return view('cms.section.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -27,10 +38,15 @@ class SectionController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $sections = Section::find($id);
-        $data=[
+        $mentors = User::getUserByRole('Teacher');
+        $courses = Course::all();
+        $blogs = Blog::all();
+        $data = [
+            'mentors' => !empty($mentors) ? $mentors : [],
+            'courses' =>  !empty($courses) ? $courses : [],
+            'blogs' => !empty($blogs) ? $blogs : [],
             'sections' => !empty($sections) ? $sections : []
         ];
-        // dd($course);
         return view('cms.section.edit', $data);
     }
 
@@ -39,29 +55,24 @@ class SectionController extends Controller
         // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:menus',
-            'status' => 'required',
+            'slug' => 'required|string|max:255|unique:sections',
+            'description' => 'required',
         ]);
-        $title = $request->input('title');
-        $link =  $request->input('link');
-        $icon = $request->input('icon');
-        $objects = [];
-        if (count($title) == count($link) && count($link) == count($icon)) {
-            $count = count($title);
-            for ($i = 0; $i < $count; $i++) {
-                $object = new \stdClass(); 
-                $object->title = $title[$i];
-                $object->link = $link[$i];
-                $object->icon = $icon[$i];
-                $objects[] = $object;
-            }
-        }
+
         $section= new Section;
         $section->name = $request->input('name');
+        $section->display_title = $request->input('display_title');
         $section->slug = $request->input('slug');
-        $section->status = $request->input('status');
-        $section->items = $objects;
-    
+        $section->tagline = $request->input('tagline');
+        $section->listitems = $request->input('listitems');
+        $section->mentors = $request->input('mentors');
+        $section->blogs = $request->input('blogs');
+        $section->courses = $request->input('courses');
+        $section->description = $request->input('description');
+        $section->synopsis = $request->input('synopsis');
+        $section->thumbnail_image = $request->input('thumbnail_image');
+        $section->banner_image = $request->input('banner_image');
+
         $section->save();
     
         return redirect()->route('sections.index')->with('success', 'Section created successfully');
@@ -69,33 +80,27 @@ class SectionController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->all(),$jsonObject = json_encode($objects));
         $request->validate([
             'name' => 'required|string|max:255',
-            'status' => 'required',
+            'description' => 'required',
         ]);
-        $title = $request->input('title');
-        $link =  $request->input('link');
-        $icon = $request->input('icon');
-        $objects = [];
-        if (count($title) == count($link) && count($link) == count($icon)) {
-            $count = count($title);
-            for ($i = 0; $i < $count; $i++) {
-                $object = new \stdClass(); 
-                $object->title = $title[$i];
-                $object->link = $link[$i];
-                $object->icon = $icon[$i];
-                $objects[] = $object;
-            }
-        }
+
         $id = $request->input("id");
         $section= Section::find($id);
         $section->name = $request->input('name');
-        $section->status = $request->input('status');
-        $section->items = $objects;
-    
+        $section->display_title = $request->input('display_title');
+        $section->tagline = $request->input('tagline');
+        $section->listitems = $request->input('listitems');
+        $section->mentors = $request->input('mentors');
+        $section->blogs = $request->input('blogs');
+        $section->courses = $request->input('courses');
+        $section->description = $request->input('description');
+        $section->synopsis = $request->input('synopsis');
+        $section->thumbnail_image = $request->input('thumbnail_image');
+        $section->banner_image = $request->input('banner_image');
+
         $section->save();
-    
+
         return redirect()->route('sections.index')->with('success', 'Section Updated successfully');
     }
 

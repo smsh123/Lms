@@ -61,6 +61,16 @@
         'url' => '/cms/menus',
     ],
     [
+        'label' => 'section',
+        'icon'=>'codesandbox',
+        'url' => '/cms/sections',
+    ],
+    [
+        'label' => 'content block',
+        'icon'=>'file-text',
+        'url' => '/cms/blocks',
+    ],
+    [
         'label' => 'module',
         'icon'=>'airplay',
         'url' => '/cms/modules',

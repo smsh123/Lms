@@ -153,6 +153,18 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions.index'); 
     Route::get('/subscriptions/edit/{id}', 'SubscriptionController@edit')->name('subscriptions.edit'); 
     Route::post('/subscriptions/update', 'SubscriptionController@update')->name('subscriptions.update'); 
+    Route::get('/sections', 'SectionController@index')->name('sections.index');
+    Route::get('/sections/add', 'SectionController@add')->name('sections.add');
+    Route::get('/sections/edit/{id}', 'SectionController@edit')->name('sections.edit');
+    Route::get('/sections/delete/{id}', 'SectionController@destroy')->name('sections.delete');
+    Route::post('/sections/update', 'SectionController@update')->name('sections.update');
+    Route::post('/sections/store', 'SectionController@store')->name('sections.store');
+    Route::get('/blocks', 'BlockController@index')->name('blocks.index');
+    Route::get('/blocks/add', 'BlockController@add')->name('blocks.add');
+    Route::get('/blocks/edit/{id}', 'BlockController@edit')->name('blocks.edit');
+    Route::get('/blocks/delete/{id}', 'BlockController@destroy')->name('blocks.delete');
+    Route::post('/blocks/update', 'BlockController@update')->name('blocks.update');
+    Route::post('/blocks/store', 'BlockController@store')->name('blocks.store');
 });
 
 

@@ -15,7 +15,7 @@ class CourseController extends Controller
         return view('cms.courses.index')->with('courses',$courses);
     }
     public function add(Request $request){
-        if(!in_array('Add Course',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Course"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $mentors = User::getUserByRole('Teacher');
@@ -88,9 +88,10 @@ class CourseController extends Controller
     }
 
     public function courseEdit(Request $request, $id) {
-        if(!in_array('Edit Course',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Course"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+       
         $course = Course::find($id);
         $mentors = User::getUserByRole('Teacher');
         $data = [
@@ -144,7 +145,7 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Course',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Course"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $course = Course::find($id);

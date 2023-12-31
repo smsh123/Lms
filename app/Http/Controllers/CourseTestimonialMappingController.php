@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\Course;
 use App\Models\CourseTestimonialMapping;
+use App\Models\User;
 
 
 class CourseTestimonialMappingController extends Controller
@@ -19,7 +20,7 @@ class CourseTestimonialMappingController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $testimonials = Testimonial::all();
@@ -32,7 +33,7 @@ class CourseTestimonialMappingController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $mappings = CourseTestimonialMapping::find($id);
@@ -105,7 +106,7 @@ class CourseTestimonialMappingController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $mapping = CourseTestimonialMapping::find($id);

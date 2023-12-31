@@ -13,7 +13,7 @@ class PageController extends Controller
         return view('cms.pages.index')->with('pages',$Pages);
     }
     public function add(Request $request){
-        if(!in_array('Add Page',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Page"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $users = User::all();
@@ -68,7 +68,7 @@ class PageController extends Controller
     }
 
     public function pageEdit(Request $request, $id) {
-        if(!in_array('Edit Page',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Page"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $pages = Page::find($id);
@@ -107,7 +107,7 @@ class PageController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Page',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Page"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $page = Page::find($id);

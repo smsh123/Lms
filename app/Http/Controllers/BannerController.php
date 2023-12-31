@@ -29,7 +29,7 @@ class BannerController extends Controller
         return redirect()->back()->with('msg', 'Banner Added Successfully!');
     }
     public function listBanners(Request $request){
-        $banners = Banner::all();
+        $banners = Banner::paginateWithDefault(10);
         $data = [
             'banners'=>!empty($banners) ? $banners : []
         ];

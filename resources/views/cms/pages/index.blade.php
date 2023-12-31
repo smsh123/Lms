@@ -57,13 +57,13 @@
     </table>
   </div>
   <div class="py-3">
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" class="my-3">
       <ul class="pagination justify-content-end">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="{{$pages->previousPageUrl()}}">Previous</a></li>
+        @for($i=1;$i<=$pages->lastPage();$i++)
+          <li class="page-item"><a class="page-link" href="{{$pages->url($i)}}">{{$i}}</a></li>
+        @endfor
+        <li class="page-item"><a class="page-link" href="{{$pages->nextPageUrl()}}">Next</a></li>
       </ul>
     </nav>
   </div>

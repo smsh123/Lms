@@ -14,7 +14,7 @@ class SchedulingController extends Controller
     //
     public function index(Request $request){
 
-        $schedules = Schedule::all();
+        $schedules = Schedule::paginateWithDefault(10);
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }
     public function add(Request $request){

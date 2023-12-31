@@ -11,7 +11,7 @@ class CouponController extends Controller
     //
     public function index(Request $request){
 
-        $coupons =Coupon::all();
+        $coupons =Coupon::paginateWithDefault(10);
         return view('cms.coupons.index')->with('coupons',$coupons);
       }
     public function add(Request $request){

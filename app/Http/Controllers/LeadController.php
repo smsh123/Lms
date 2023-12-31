@@ -9,7 +9,7 @@ use App\Models\Leads;
 class LeadController extends Controller
 {
     public function index(Request $request){
-        $Leads = Leads::all();
+        $Leads = Leads::paginateWithDefault(10);
         return view('cms.lead.index')->with('leads',$Leads);
     }
     public function add(Request $request){

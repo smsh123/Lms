@@ -11,7 +11,7 @@ class RoleController extends Controller
     //
     public function index(Request $request){
         // dd(Role::roleHasPermission("Create:User1"),User::hasPermissions(["Create:User"]));
-        $roles = Role::all();
+        $roles = Role::paginateWithDefault(10);
         $data = [
             'roles'=>!empty($roles) ? $roles : []
         ];

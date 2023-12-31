@@ -12,7 +12,7 @@ class SubscriptionController extends Controller
     //
     public function index(Request $request){
 
-        $subscriptions = Subscription::all();
+        $subscriptions = Subscription::paginateWithDefault(10);
         return view('cms.subscription.index')->with('subscriptions',$subscriptions);
     }
 

@@ -11,7 +11,7 @@ class TestimonialController extends Controller
     //
     public function index(Request $request){
 
-        $testimonials =Testimonial::all();
+        $testimonials =Testimonial::paginateWithDefault(10);
         $users = User::all();
         return view('cms.testimonial.index')->with('testimonial',$testimonials,'users',!empty($users) ? $users : []);
       }

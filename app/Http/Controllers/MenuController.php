@@ -10,7 +10,7 @@ class MenuController extends Controller
     //
     public function index(Request $request) 
     {
-        $menus = Menu::all();
+        $menus = Menu::paginateWithDefault(10);
         return view('cms.menu.index')->with('menus',$menus);
     }
 

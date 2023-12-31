@@ -10,7 +10,7 @@ class FaqController extends Controller
     //
     public function index(Request $request) 
     {
-        $faqs = Faq::all();
+        $faqs = Faq::paginateWithDefault(10);
         return view('cms.faq.index')->with('faqs',$faqs);
     }
 

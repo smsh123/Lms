@@ -11,7 +11,7 @@ class CourseController extends Controller
     //
     public function index(Request $request){
 
-        $courses = Course::all();
+        $courses = Course::paginateWithDefault(10);
         return view('cms.courses.index')->with('courses',$courses);
     }
     public function add(Request $request){

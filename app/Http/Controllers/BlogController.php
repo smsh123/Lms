@@ -9,7 +9,7 @@ use App\Models\Blog;
 class BlogController extends Controller
 {
     public function index(Request $request){
-        $Blogs = Blog::all();
+        $Blogs = Blog::paginateWithDefault(10);
         return view('cms.blog.index')->with('blogs',$Blogs);
     }
     public function add(Request $request){

@@ -14,7 +14,7 @@ class CourseTestimonialMappingController extends Controller
     public function index(Request $request) 
     {
         //$modules = Module::all();
-        $mappings = CourseTestimonialMapping::all();
+        $mappings = CourseTestimonialMapping::paginateWithDefault(10);
         return view('cms.course_testimonial_mapping.index')->with('mappings',$mappings);
     }
 

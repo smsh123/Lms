@@ -123,7 +123,7 @@ class UserController extends Controller
     public function listUsers(Request $request)
     {
         // $users = User::all();
-        $users = User::paginateWithDefault(5);
+        $users = User::paginateWithDefault(10);
         $data = [
             'users' => !empty($users) ? $users : []
         ];

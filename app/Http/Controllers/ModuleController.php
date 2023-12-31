@@ -10,7 +10,7 @@ class ModuleController extends Controller
     //
     public function index(Request $request) 
     {
-        $modules = Module::all();
+        $modules = Module::paginateWithDefault(10);
         return view('cms.module.index')->with('modules',$modules);
     }
 

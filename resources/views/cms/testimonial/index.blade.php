@@ -54,7 +54,7 @@
           <td class="text-nowrap">
             <a href="/cms/testimonials/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/testimonials/edit/{{$testimonial->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/testimonials/delete/{{$testimonial->id}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+            <a href="/cms/testimonials/delete/{{$testimonial->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>
         </tr>
         @endforeach
@@ -62,13 +62,13 @@
     </table>
   </div>
   <div class="py-3">
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" class="my-3">
       <ul class="pagination justify-content-end">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link" href="{{$testimonial->previousPageUrl()}}">Previous</a></li>
+        @for($i=1;$i<=$testimonial->lastPage();$i++)
+          <li class="page-item"><a class="page-link" href="{{$testimonial->url($i)}}">{{$i}}</a></li>
+        @endfor
+        <li class="page-item"><a class="page-link" href="{{$testimonial->nextPageUrl()}}">Next</a></li>
       </ul>
     </nav>
   </div>

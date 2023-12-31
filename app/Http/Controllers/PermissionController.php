@@ -9,7 +9,7 @@ class PermissionController extends Controller
 {
     //
     public function index(Request $request){
-        $permissions = Permission::all();
+        $permissions = Permission::paginateWithDefault(10);
         $data = [
             'permissions'=>!empty($permissions) ? $permissions : []
         ];

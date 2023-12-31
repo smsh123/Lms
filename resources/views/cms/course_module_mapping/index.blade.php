@@ -33,6 +33,18 @@
     </table>
   </div>
 
+  <div class="py-3">
+    <nav aria-label="Page navigation" class="my-3">
+      <ul class="pagination justify-content-end">
+        <li class="page-item"><a class="page-link" href="{{$mappings->previousPageUrl()}}">Previous</a></li>
+        @for($i=1;$i<=$mappings->lastPage();$i++)
+          <li class="page-item"><a class="page-link" href="{{$mappings->url($i)}}">{{$i}}</a></li>
+        @endfor
+        <li class="page-item"><a class="page-link" href="{{$mappings->nextPageUrl()}}">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+
   @endif
 
 @stop

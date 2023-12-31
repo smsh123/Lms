@@ -9,7 +9,7 @@ use App\Models\Page;
 class PageController extends Controller
 {
     public function index(Request $request){
-        $Pages = Page::all();
+        $Pages = Page::paginateWithDefault(10);
         return view('cms.pages.index')->with('pages',$Pages);
     }
     public function add(Request $request){

@@ -14,7 +14,7 @@ class CourseModuleMappingController extends Controller
     public function index(Request $request) 
     {
         //$modules = Module::all();
-        $mappings = CourseModuleMapping::all();
+        $mappings = CourseModuleMapping::paginateWithDefault(10);
         return view('cms.course_module_mapping.index')->with('mappings',$mappings);
     }
 

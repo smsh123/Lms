@@ -122,7 +122,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order = is_object($order) ? $order->toArray() : $order;
         // dd($order);
-        return view('cms.orders.edit')->with('order', $order);
+        return view('cms.orders.edit')->with('orders', $order);
     }
     public function update(Request $request)
     {

@@ -13,7 +13,7 @@ class TestimonialController extends Controller
 
         $testimonials =Testimonial::paginateWithDefault(10);
         $users = User::all();
-        return view('cms.testimonial.index')->with('testimonial',$testimonials,'users',!empty($users) ? $users : []);
+        return view('cms.testimonial.index')->with('testimonials',$testimonials,'users',!empty($users) ? $users : []);
       }
     public function add(Request $request){
         if(!User::hasPermissions(["Add Testimonial"])){

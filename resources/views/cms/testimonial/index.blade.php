@@ -41,7 +41,7 @@
           </tr>
       </thead>
       <tbody>
-        @foreach ($testimonial as $testimonial)
+        @foreach ($testimonials as $testimonial)
         <tr>
           <td>{{$testimonial->user}}</td>
           <td>{{$testimonial->type}}</td>
@@ -64,11 +64,11 @@
   <div class="py-3">
     <nav aria-label="Page navigation" class="my-3">
       <ul class="pagination justify-content-end">
-        <li class="page-item"><a class="page-link" href="{{$testimonial->previousPageUrl()}}">Previous</a></li>
-        @for($i=1;$i<=$testimonial->lastPage();$i++)
-          <li class="page-item"><a class="page-link" href="{{$testimonial->url($i)}}">{{$i}}</a></li>
+        <li class="page-item"><a class="page-link" href="{{$testimonials->previousPageUrl()}}">Previous</a></li>
+        @for($i=1;$i<=$testimonials->lastPage();$i++)
+          <li class="page-item"><a class="page-link" href="{{$testimonials->url($i)}}">{{$i}}</a></li>
         @endfor
-        <li class="page-item"><a class="page-link" href="{{$testimonial->nextPageUrl()}}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="{{$testimonials->nextPageUrl()}}">Next</a></li>
       </ul>
     </nav>
   </div>

@@ -12,7 +12,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Page Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Page Name" value="{{ !empty($pages['name']) ? $pages['name'] : '' }}" />
+          <input type="text" id="title" class="form-control" name="name" placeholder="Page Name" value="{{ !empty($pages['name']) ? $pages['name'] : '' }}" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif

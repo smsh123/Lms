@@ -2,31 +2,31 @@
 @section('body')
 @php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Add Menus</h1></div>
-    <div class="col-12 col-lg-6 text-right"><a href="/cms/menus" class="btn btn-lg btn-secondary">View Menus</a></div>
+    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Add Block</h1></div>
+    <div class="col-12 col-lg-6 text-right"><a href="/cms/menus" class="btn btn-lg btn-secondary">View Blocks</a></div>
   </div>
 
 
-  <form class="card" method="post" action="/cms/menus/store">
+  <form class="card" method="post" action="/cms/blocks/store">
     @csrf
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-4">
-          <label class="font-weight-bold">Menu Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="menu Name" />
+          <label class="font-weight-bold">Block Name</label>
+          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="block Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
         <div class="col-lg-4">
           <label class="font-weight-bold">menu Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="menu slug"  />
+          <input type="text" class="form-control" name="slug" placeholder="block slug"  />
           @if ($errors->has('slug'))
             <p class="text-danger">{{ $errors->first('slug') }}</p>
           @endif
         </div>
         <div class="col-lg-4 align-self-center">
-          <label class="font-weight-bold mb-0">Menu Status</label>
+          <label class="font-weight-bold mb-0">block Status</label>
           <select name="status" class="form-control">
             @if(!empty($global_picklist['status']))
               @foreach ($global_picklist['status'] as $menu_status)
@@ -74,8 +74,36 @@
                     <div class="col-lg-4">
                       <label class="font-weight-bold">Icon</label>
                       <input type="text" class="form-control" name="icon[]" placeholder="Icon Class"  />
-                      @if ($errors->has('slug'))
+                      @if ($errors->has('icon'))
                         <p class="text-danger">{{ $errors->first('icon') }}</p>
+                      @endif
+                    </div>
+                    <div class="col-lg-4">
+                      <label class="font-weight-bold">Short Description</label>
+                      <textarea type="text" class="form-control" name="short_description[]" placeholder="Short Description"></textarea>
+                      @if ($errors->has('short_description'))
+                        <p class="text-danger">{{ $errors->first('short_description') }}</p>
+                      @endif
+                    </div>
+                    <div class="col-lg-4">
+                      <label class="font-weight-bold">Long Description</label>
+                      <textarea type="text" class="form-control" name="long_description[]" placeholder="Long Description"></textarea>
+                      @if ($errors->has('long_description'))
+                        <p class="text-danger">{{ $errors->first('long_description') }}</p>
+                      @endif
+                    </div>
+                    <div class="col-lg-4">
+                      <label class="font-weight-bold">Extra Info</label>
+                      <textarea type="text" class="form-control" name="extra_info[]" placeholder="Extra Info"></textarea>
+                      @if ($errors->has('extra_info'))
+                        <p class="text-danger">{{ $errors->first('extra_info') }}</p>
+                      @endif
+                    </div>
+                    <div class="col-lg-4">
+                      <label class="font-weight-bold">Image</label>
+                      <input type="text" class="form-control" name="image[]" placeholder="Image URL" />
+                      @if ($errors->has('image'))
+                        <p class="text-danger">{{ $errors->first('image') }}</p>
                       @endif
                     </div>
                   </div>

@@ -14,14 +14,14 @@
       <div class="row form-group">
         <div class="col-lg-4">
           <label class="font-weight-bold">Menu Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" value="{{ !empty($menus['name']) ? $menus['name'] : '' }}" name="name" placeholder="menu Name" />
+          <input type="text" id="title" class="form-control" value="{{ !empty($menus['name']) ? $menus['name'] : '' }}" name="name" placeholder="menu Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
         <div class="col-lg-4">
           <label class="font-weight-bold">menu Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="menu slug" value="{{ !empty($menus['slug']) ? $menus['slug'] : '' }}"  />
+          <input type="text" class="form-control" name="slug" placeholder="menu slug" value="{{ !empty($menus['slug']) ? $menus['slug'] : '' }}" readonly  />
           @if ($errors->has('slug'))
             <p class="text-danger">{{ $errors->first('slug') }}</p>
           @endif

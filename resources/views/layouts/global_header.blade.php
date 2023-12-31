@@ -29,14 +29,14 @@
 
 @endphp
 
-<div class="bg-theme-contrast py-3 px-3">
+{{-- <div class="bg-theme-contrast py-3 px-3">
   <div class="container text-center text-white font-weight-bold">
     <p class="mb-0">
       <span class="brand-txt mx-2 align-middle">ARYABHATT Class</span>
       launches specialised courses for class 10th & 12th Exam. <a class="text-white align-middle px-3" href="#"> Know More <i class="bi bi-arrow-right mx-2"></i></a>
     </p>
   </div>
-</div>
+</div> --}}
 <div class="gloabl-header" style="background-color: #fff;">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">

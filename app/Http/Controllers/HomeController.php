@@ -13,12 +13,14 @@ class HomeController extends Controller
     public function index(Request $request){
         $blogs =  Blog::all();
         $courses =  Course::all();
+        $ebooks = Course::getCourseByType('ebook');
         $teachers = User::getUserByRole('Teacher');
         $successStories = Testimonial::getTestimonialByType('SV');
         $videoTestimonial = Testimonial::getTestimonialByType('V');
         $data = [
             'blogs' => !empty($blogs) ? $blogs : [],
             'courses' => !empty($courses) ? $courses :[],
+            'ebooks' => !empty($ebooks) ? $ebooks : [],
             'teachers' => !empty($teachers) ? $teachers : [],
             'successStories' => !empty($successStories) ? $successStories : [],
             'videoTestimonial' => !empty($videoTestimonial) ? $videoTestimonial : [] 

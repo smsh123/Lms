@@ -2,36 +2,36 @@
 @section('body')
 @php $global_picklist = session()->has('global_picklist') ? session('global_picklist') : [] ; @endphp
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Edit Menus</h1></div>
-    <div class="col-12 col-lg-6 text-right"><a href="/cms/menus" class="btn btn-lg btn-secondary">View Menus</a></div>
+    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Edit Block</h1></div>
+    <div class="col-12 col-lg-6 text-right"><a href="/cms/blocks" class="btn btn-lg btn-secondary">View Blocks</a></div>
   </div>
 
 
-  <form class="card" method="post" action="/cms/menus/update">
+  <form class="card" method="post" action="/cms/blocks/update">
     @csrf
-    <input type="hidden" name="id" value="{{ !empty($menus['_id']) ? $menus['_id'] : '' }}"  />
+    <input type="hidden" name="id" value="{{ !empty($blocks['_id']) ? $blocks['_id'] : '' }}"  />
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-4">
-          <label class="font-weight-bold">Menu Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" value="{{ !empty($menus['name']) ? $menus['name'] : '' }}" name="name" placeholder="menu Name" />
+          <label class="font-weight-bold">Block Name</label>
+          <input type="text" id="title" class="form-control" value="{{ !empty($blocks['name']) ? $blocks['name'] : '' }}" name="name" placeholder="menu Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
         <div class="col-lg-4">
-          <label class="font-weight-bold">menu Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="menu slug" value="{{ !empty($menus['slug']) ? $menus['slug'] : '' }}"  />
+          <label class="font-weight-bold">Block Slug</label>
+          <input type="text" class="form-control" name="slug" placeholder="menu slug" value="{{ !empty($blocks['slug']) ? $blocks['slug'] : '' }}" readonly  />
           @if ($errors->has('slug'))
             <p class="text-danger">{{ $errors->first('slug') }}</p>
           @endif
         </div>
         <div class="col-lg-4 align-self-center">
-          <label class="font-weight-bold mb-0">Menu Status</label>
+          <label class="font-weight-bold mb-0">Block Status</label>
           <select name="status" class="form-control">
             @if(!empty($global_picklist['status']))
               @foreach ($global_picklist['status'] as $menu_status)
-                  <option {{ !empty($menus['status']) && $menus['status'] == $menu_status['label'] ? "selected" : ''}} value="{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}">{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}</option>
+                  <option {{ !empty($blocks['status']) && $blocks['status'] == $menu_status['label'] ? "selected" : ''}} value="{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}">{{ !empty($menu_status['label']) ? $menu_status['label'] : '' }}</option>
               @endforeach
             @endif
           </select>
@@ -42,14 +42,14 @@
       <div class="row form-group">
         <div class="col-lg-12">
           <div class="accordion" id="accordionExample">
-            @if(!empty($menus['items']))
-              @foreach ($menus['items'] as $key => $submenu)
+            @if(!empty($blocks['items']))
+              @foreach ($blocks['items'] as $key => $blockitem)
                 <div class="card" id="card{{ $key }}">
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0 d-flex justify-content-between">
                       <div class="align-self-center flex-fill">
                         <button class="btn font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Item# {{ !empty($submenu['title']) ? $submenu['title'] : '' }}
+                          Item# {{ !empty($blockitem['title']) ? $blockitem['title'] : '' }}
                         </button>
                       </div>
                       <div class="align-self-center">
@@ -62,23 +62,55 @@
                       <div class="row form-group">
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Item Title</label>
-                          <input type="text" class="form-control" name="title[]" value="{{ !empty($submenu['title']) ? $submenu['title'] : '' }}" placeholder="Item Title" />
+                          <input type="text" class="form-control" name="title[]" value="{{ !empty($blockitem['title']) ? $blockitem['title'] : '' }}" placeholder="Item Title" />
                           @if ($errors->has('name'))
                             <p class="text-danger">{{ $errors->first('title') }}</p>
                           @endif
                         </div>
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Link</label>
-                          <input type="text" class="form-control" name="link[]" placeholder="Item Link" value="{{ !empty($submenu['link']) ? $submenu['link'] : '' }}"  />
+                          <input type="text" class="form-control" name="link[]" placeholder="Item Link" value="{{ !empty($blockitem['link']) ? $blockitem['link'] : '' }}"  />
                           @if ($errors->has('slug'))
                             <p class="text-danger">{{ $errors->first('link') }}</p>
                           @endif
                         </div>
                         <div class="col-lg-4">
                           <label class="font-weight-bold">Icon</label>
-                          <input type="text" class="form-control" name="icon[]" placeholder="Icon Class" value="{{ !empty($submenu['icon']) ? $submenu['icon'] : '' }}"  />
+                          <input type="text" class="form-control" name="icon[]" placeholder="Icon Class" value="{{ !empty($blockitem['icon']) ? $blockitem['icon'] : '' }}"  />
                           @if ($errors->has('slug'))
                             <p class="text-danger">{{ $errors->first('icon') }}</p>
+                          @endif
+                        </div>
+                        <div class="col-lg-4">
+                          <label class="font-weight-bold">Short Description</label>
+                          <textarea type="text" class="form-control" name="short_description[]" placeholder="Short Description">
+                            {{ !empty($blockitem['short_description']) ? $blockitem['short_description'] : '' }}
+                          </textarea>
+                          @if ($errors->has('short_description'))
+                            <p class="text-danger">{{ $errors->first('short_description') }}</p>
+                          @endif
+                        </div>
+                        <div class="col-lg-4">
+                          <label class="font-weight-bold">Long Description</label>
+                          <textarea type="text" class="form-control" name="long_description[]" placeholder="Long Description">
+                            {{ !empty($blockitem['long_description']) ? $blockitem['long_description'] : '' }}
+                          </textarea>
+                          @if ($errors->has('long_description'))
+                            <p class="text-danger">{{ $errors->first('long_description') }}</p>
+                          @endif
+                        </div>
+                        <div class="col-lg-4">
+                          <label class="font-weight-bold">Extra Info</label>
+                          <textarea type="text" class="form-control" name="extra_info[]" value="{{ !empty($blockitem['extra_info']) ? $blockitem['extra_info'] : '' }}" placeholder="Extra Info"></textarea>
+                          @if ($errors->has('extra_info'))
+                            <p class="text-danger">{{ $errors->first('extra_info') }}</p>
+                          @endif
+                        </div>
+                        <div class="col-lg-4">
+                          <label class="font-weight-bold">Image</label>
+                          <input type="text" class="form-control" name="image[]" placeholder="Image URL" value="{{ !empty($blockitem['image']) ? $blockitem['image'] : '' }}" />
+                          @if ($errors->has('image'))
+                            <p class="text-danger">{{ $errors->first('image') }}</p>
                           @endif
                         </div>
                       </div>

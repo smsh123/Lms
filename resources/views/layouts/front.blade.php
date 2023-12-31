@@ -145,11 +145,7 @@
       var swiper = new Swiper(".swiper_with_progress", {
         spaceBetween: 30,
         centeredSlides: false,
-        slidesPerView: 1.3,
-        {{-- autoplay: {
-          delay: 3500,
-          disableOnInteraction: false
-        }, --}}
+        slidesPerView: 1,
         pagination: {
           el: ".swiper-pagination",
           clickable: true

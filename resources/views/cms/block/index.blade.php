@@ -1,7 +1,7 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1>Menus</h1></div>
+    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Menus</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/menus/add" class="btn btn-lg btn-secondary">Add Menus</a></div>
   </div>
   <fieldset class="border mb-3 p-3">

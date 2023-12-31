@@ -120,7 +120,8 @@ class OrderController extends Controller
     public function edit(Request $request, $id)
     {
         $order = Order::find($id);
-        dd($order);
+        $order = is_object($order) ? $order->toArray() : $order;
+        // dd($order);
         return view('cms.orders.edit')->with('order', $order);
     }
     public function update(Request $request)

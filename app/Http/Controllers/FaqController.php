@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Faq;
+use App\Models\User;
 
 class FaqController extends Controller
 {
@@ -15,14 +16,14 @@ class FaqController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Faq',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Faq"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.faq.add');
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Faq',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Faq"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $faqs = Faq::find($id);
@@ -94,7 +95,7 @@ class FaqController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Faq',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Faq"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $faq = Faq::find($id);

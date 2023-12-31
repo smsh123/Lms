@@ -13,9 +13,10 @@ class LeadController extends Controller
         return view('cms.lead.index')->with('leads',$Leads);
     }
     public function add(Request $request){
-        if(!in_array('Add Lead',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        
         return view('cms.lead.add');
     }
     public function store(Request $request)
@@ -42,7 +43,7 @@ class LeadController extends Controller
     }
 
     public function leadEdit(Request $request, $id) {
-        if(!in_array('Edit Lead',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $leads = Leads::find($id);
@@ -73,7 +74,7 @@ class LeadController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Lead',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $leads = Leads::find($id);

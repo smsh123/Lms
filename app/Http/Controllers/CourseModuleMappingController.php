@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Course;
 use App\Models\CourseModuleMapping;
-
+use App\Models\User;
 
 class CourseModuleMappingController extends Controller
 {
@@ -19,7 +19,7 @@ class CourseModuleMappingController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $modules = Module::all();
@@ -32,9 +32,10 @@ class CourseModuleMappingController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+     
         $mappings = CourseModuleMapping::find($id);
         $modules = Module::all();
         $courses = Course::all();
@@ -105,7 +106,7 @@ class CourseModuleMappingController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $mapping = CourseModuleMapping::find($id);

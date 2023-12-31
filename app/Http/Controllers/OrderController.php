@@ -120,9 +120,8 @@ class OrderController extends Controller
         return view('orders.add_to_cart', $data);
     }
 
-    public function edit(Request $request, $id)
-    {
-        if (!User::hasPermissions(["Edit Order"])) {
+    public function edit(Request $request, $id) {
+        if(!User::hasPermissions(["Edit Order"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $order = Order::find($id);

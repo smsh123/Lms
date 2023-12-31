@@ -18,7 +18,7 @@ class SchedulingController extends Controller
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }
     public function add(Request $request){
-        if(!in_array('Add Schedule',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Schedule"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $courses = Course::all();
@@ -62,7 +62,7 @@ class SchedulingController extends Controller
     }
 
     public function scheduleEdit(Request $request, $id) {
-        if(!in_array('Edit Schedule',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Schedule"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $schedules = Schedule::find($id);

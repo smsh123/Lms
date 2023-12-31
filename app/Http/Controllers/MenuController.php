@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\User;
 
 class MenuController extends Controller
 {
@@ -15,14 +16,14 @@ class MenuController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Menu',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Menu"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.menu.add');
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Menu',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Menu"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $menus = Menu::find($id);
@@ -100,7 +101,7 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Menu',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Menu"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $menu = Menu::find($id);

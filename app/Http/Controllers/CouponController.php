@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\User;
 
 class CouponController extends Controller
 {
@@ -15,7 +16,7 @@ class CouponController extends Controller
         return view('cms.coupons.index')->with('coupons',$coupons);
       }
     public function add(Request $request){
-        if(!in_array('Add Coupon',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Coupon"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $courses = Course::all();
@@ -55,7 +56,7 @@ class CouponController extends Controller
     }
 
     public function couponEdit(Request $request, $id) {
-        if(!in_array('Edit Coupon',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Coupon"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $coupons =Coupon::find($id);
@@ -98,7 +99,7 @@ class CouponController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Coupon',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Coupon"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $coupon = Coupon::find($id);

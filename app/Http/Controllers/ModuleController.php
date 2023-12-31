@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Module;
+use App\Models\User;
 
 class ModuleController extends Controller
 {
@@ -15,14 +16,14 @@ class ModuleController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Module',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Module"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.module.add');
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Module',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Module"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $module = Module::find($id);
@@ -98,7 +99,7 @@ class ModuleController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Module',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Module"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $module = Module::find($id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageUploadRequest;
+use App\Models\User;
   
 class ImageUploadController extends Controller
 {
@@ -24,8 +25,7 @@ class ImageUploadController extends Controller
      */
     public function imageUploadPost(Request $request)
     {
-        if(!in_array('Upload Image',\Auth::user()->permissions)){
-           // return redirect()->back()->with('error', 'Permission Denied');
+        if(!User::hasPermissions(["Upload Image"])){
             return response()->json([
                 'error' => 'Permission Denied'
             ], 200);

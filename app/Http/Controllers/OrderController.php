@@ -116,7 +116,7 @@ class OrderController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Order',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Order"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $order = Order::find($id);

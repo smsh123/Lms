@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Faq;
 use App\Models\Course;
 use App\Models\CourseFaqMapping;
+use App\Models\User;
 
 
 class CourseFaqMappingController extends Controller
@@ -19,7 +20,7 @@ class CourseFaqMappingController extends Controller
     }
 
     public function add(Request $request){
-        if(!in_array('Add Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $faqs = Faq::all();
@@ -32,9 +33,11 @@ class CourseFaqMappingController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        if(!in_array('Edit Mapping',\Auth::user()->permissions)){
+
+        if(!User::hasPermissions(["Edit Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        
         $mappings = CourseFaqMapping::find($id);
         $faqs = Faq::all();
         $courses = Course::all();
@@ -105,7 +108,7 @@ class CourseFaqMappingController extends Controller
 
     public function destroy($id)
     {
-        if(!in_array('Delete Mapping',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Mapping"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $mapping = CourseFaqMapping::find($id);

@@ -18,13 +18,13 @@ class RoleController extends Controller
         return view('cms.roles.index',$data);
     }
     public function add(Request $request){
-        if(!in_array('Add Role',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Add Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.roles.add');
     }
     public function edit(Request $request,$id){
-        if(!in_array('Edit Role',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Edit Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $role = Role::find($id);
@@ -48,7 +48,7 @@ class RoleController extends Controller
         return redirect('/cms/roles')->with('msg', 'Role Registered Successfully!');
     }
     public function delete(Request $request,$id){
-        if(!in_array('Delete Role',\Auth::user()->permissions)){
+        if(!User::hasPermissions(["Delete Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $role = Role::find($id); 

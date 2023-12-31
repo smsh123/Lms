@@ -15,7 +15,7 @@
         </div>
         <div class="col-6">
           <lable class="font-weight-bold">Order Date</lable>
-          <p>{{ !empty($orders['created_at']) ? date_format($orders['created_at'],'d/m/Y') :  '' }}</p>
+          <p>{{ !empty($orders['created_at']) ? (new DateTime($orders['created_at']))->format('d/m/Y')  :  '' }}</p>
         </div>
       </div>
       <div class="row">

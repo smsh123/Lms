@@ -16,14 +16,14 @@ class BlockController extends Controller
     }
 
     public function add(Request $request){
-        if(!User::hasPermissions(["Add Menu"])){
+        if(!User::hasPermissions(["Add Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.block.add');
     }
 
     public function edit(Request $request, $id) {
-        if(!User::hasPermissions(["Edit Menu"])){
+        if(!User::hasPermissions(["Edit Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $blocks = Block::find($id);
@@ -101,7 +101,7 @@ class BlockController extends Controller
 
     public function destroy($id)
     {
-        if(!User::hasPermissions(["Delete Menu"])){
+        if(!User::hasPermissions(["Delete Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $block= Block::find($id);

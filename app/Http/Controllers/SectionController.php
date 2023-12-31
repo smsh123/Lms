@@ -16,14 +16,14 @@ class SectionController extends Controller
     }
 
     public function add(Request $request){
-        if(!User::hasPermissions(["Add Menu"])){
+        if(!User::hasPermissions(["Add Section"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         return view('cms.section.add');
     }
 
     public function edit(Request $request, $id) {
-        if(!User::hasPermissions(["Edit Menu"])){
+        if(!User::hasPermissions(["Edit Section"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $sections = Section::find($id);
@@ -101,7 +101,7 @@ class SectionController extends Controller
 
     public function destroy($id)
     {
-        if(!User::hasPermissions(["Delete Menu"])){
+        if(!User::hasPermissions(["Delete Section"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $section= Section::find($id);

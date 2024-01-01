@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Blog;
+use App\Models\Course;
 
 class BlogController extends Controller
 {
@@ -64,8 +65,10 @@ class BlogController extends Controller
     public function blogDetails(Request $request, $slug){
         $blogDescription = [];
         $blogDescription = Blog::getBlogBySlug($slug);
+        $courses =  Course::all();
         $data = [
             'BlogDescription' => !empty($blogDescription) ? $blogDescription[0] : [],
+            'courses' => !empty($courses) ? $courses : [], 
             'page_type' => 'blog-details-page' 
         ];
         return view('blog.details',$data);

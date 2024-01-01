@@ -61,7 +61,6 @@
         <div class="col-lg-6">
           <label class="font-weight-bold">Author</label>
           <select class="form-control" name="author">
-            <option>Select Author</option>
             @if(!empty($users))
               @foreach ($users as $user)
                 <option value="{{ !empty($user['id']) ? $user['id'] : ''}}">{{ !empty($user['name']) ? $user['name'] : ''}}</option>

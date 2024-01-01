@@ -1,6 +1,6 @@
 @if (!empty($blogs))
-  <div class="position-relative">
-    <div class="mb-3">
+  <div class="position-relative my-3">
+    <div class="my-3">
       <h3 class="font-22 font-weight-bold">More Stories From Authors</h3>
     </div>
     <div class="row flex-nowrap justify-content-start">

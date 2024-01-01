@@ -26,12 +26,7 @@
                 @php
                   $tags = explode(',',$BlogDescription['tags']);
                 @endphp
-                @if(!empty($tags))
-                  <h3 class="font-weight-bold font-22 mb-3">Tags</h3>
-                  @foreach ($tags as $key => $tag )
-                    <a href="{{ !empty($tag) ? '/tags/'.str_replace(' ','-',$tag) : '' }}" class="btn btn-rounded-pill btn-light mb-3 mr-2">{{ !empty($tag) ? $tag : ''}}</a>
-                  @endforeach
-                @endif
+                @include('layouts.tags_widget')
               @endif
             @endif
             @if(!empty($author))
@@ -39,10 +34,11 @@
                 <div class="card-body">
                   <div class="d-flex flex-wrap">
                     <div class="align-self-center">
-                      <div class="icon-150 mx-auto">
-                        <div class="ratio-image image_1-1 bg-transparent rounded-circle">
+                      <div class="icon-150 mx-auto text-center">
+                        <div class="ratio-image image_1-1 bg-transparent rounded-circle mb-3">
                           <img src="{{ !empty($author['avatar_image']) ? $author['avatar_image'] : ''}}" alt="{{ !empty($author['name']) ? $author['name'] : ''}}" />
                         </div>
+                        <div class="badge badge-secondary text-white font-12">Author</div>
                       </div>
                     </div>
                     <div class="align-self-center flex-fill pl-5 text-center text-lg-left">
@@ -117,12 +113,7 @@
             @php
               $tags = explode(',',$BlogDescription['tags']);
             @endphp
-            @if(!empty($tags))
-              <h3 class="font-weight-bold font-22 mb-3">Tags</h3>
-              @foreach ($tags as $key => $tag )
-                <a href="{{ !empty($tag) ? '/tags/'.str_replace(' ','-',$tag) : '' }}" class="btn btn-rounded-pill btn-light mb-3 mr-2">{{ !empty($tag) ? $tag : ''}}</a>
-              @endforeach
-            @endif
+            @include('layouts.tags_widget')
           @endif
         </div>
       </div>

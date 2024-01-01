@@ -19,6 +19,56 @@
                 {!! $BlogDescription['description'] !!}      
               </div>
             @endif
+            @if(!empty($author))
+              <div class="card border-radius-25">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap">
+                    <div class="align-self-center">
+                      <div class="icon-150 mx-auto">
+                        <div class="ratio-image image_1-1 bg-transparent rounded-circle">
+                          <img src="{{ !empty($author['avatar_image']) ? $author['avatar_image'] : ''}}" alt="{{ !empty($author['name']) ? $author['name'] : ''}}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="align-self-center flex-fill pl-5 text-center text-lg-left">
+                      <h3 class="font-weight-bold text-theme">{{ !empty($author['name']) ? $author['name'] : ''}}</h3>
+                      <p class="mb-0"><i class="bi bi-briefcase font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">{{ !empty($author['expertise']) ? $author['expertise'] : 'Star Faculty'  }}</span></p>
+                      <p class="mb-0"><i class="bi bi-mortarboard font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">{{ !empty($author['qualification']) ? $author['qualification'] : 'Academics'  }}</span></p>
+                      <ul class="list-unstyled my-3">
+                        @if(!empty($author['facebook_profile']))
+                          <li class="d-inline-block mr-2">
+                              <a class="facebook auw_event_share icon-facebook" share-type="facebook" href="{{ $author['facebook_profile'] }}">
+                                <i class="bi bi-facebook"></i>
+                              </a>
+                          </li>
+                        @endif
+                        @if(!empty($author['x_profile']))
+                          <li class="d-inline-block mr-2">
+                              <a class="twitter auw_event_share icon-twitter" share-type="twitter" href="{{ $author['x_profile'] }}" >
+                                <i class="bi bi-twitter-x"></i>
+                              </a>
+                          </li>
+                        @endif
+                        @if(!empty($author['linkedin_profile']))
+                          <li class="d-inline-block mr-2">
+                              <a class="whatsapp auw_event_share icon-whatsapp" share-type="whatsapp" href="{{ $author['linkedin_profile'] }}" >
+                                <i class="bi bi-linkedin"></i>
+                              </a>
+                          </li>
+                        @endif
+                        @if(!empty($author['youtube_profile']))
+                          <li class="d-inline-block mr-2">
+                              <a class="whatsapp auw_event_share icon-whatsapp" share-type="whatsapp" href="{{ $author['youtube_profile'] }}">
+                                <i class="bi bi-youtube"></i>
+                              </a>
+                          </li>
+                        @endif
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
           @else
             <div class="alert alert-danger text-center my-5 text-center font-weight-bold">
               Something Went Wrong!!.

@@ -66,9 +66,13 @@ class BlogController extends Controller
         $blogDescription = [];
         $blogDescription = Blog::getBlogBySlug($slug);
         $courses =  Course::all();
+        $blogDescription = !empty($blogDescription) ? $blogDescription[0] : [];
+        $authorId = !empty($blogDescription['author']) ? $blogDescription['author'] : ''; 
+        $author = User::find($authorId);
         $data = [
-            'BlogDescription' => !empty($blogDescription) ? $blogDescription[0] : [],
+            'BlogDescription' => !empty($blogDescription) ? $blogDescription : [],
             'courses' => !empty($courses) ? $courses : [], 
+            'author' => !empty($author) ? $author : [],
             'page_type' => 'blog-details-page' 
         ];
         return view('blog.details',$data);

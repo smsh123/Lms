@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Helpers\SiteHelper;
 use App\Models\Coupon;
 use App\Models\Subscription;
+use App\Models\Leads;
 
 class OrderController extends Controller
 {

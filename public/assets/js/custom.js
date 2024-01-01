@@ -116,6 +116,12 @@ var CustomFunctions = {
         form.append("status", status.val());
         form.append("referrer", referrer.val());
 
+        var leads = new FormData();
+        leads.append("name", user_full_name.val());
+        leads.append("email", user_email.val());
+        leads.append("mobile", user_mobile.val());
+        leads.append("course_interested", product_name.val());
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -136,6 +142,21 @@ var CustomFunctions = {
                 $('input[name="payment_method"]').val('razorPay');
                 $('input[name="orderId"]').val(data.saved_order._id);
                 $(".btn_checkout").show();
+            },
+            error: function(msg) {
+                console.log(msg);
+                var errors = msg.responseJSON;
+            }
+        });
+
+        $.ajax({
+            url: '/leads/store', 
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: leads,
+            success: function(data) {
+                console.log(data);
             },
             error: function(msg) {
                 console.log(msg);

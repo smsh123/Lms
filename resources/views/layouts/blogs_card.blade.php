@@ -3,7 +3,7 @@
     <div class="my-3">
       <h3 class="font-22 font-weight-bold">More Stories From Authors</h3>
     </div>
-    <div class="row flex-nowrap justify-content-start">
+    <div class="row flex-wrap justify-content-start">
       @foreach ($blogs as $key => $blog )
         @if($key == 8) @break @endif
         <div class="col-lg-4 col-md-6 col-12">

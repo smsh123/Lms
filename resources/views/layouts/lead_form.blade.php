@@ -4,8 +4,8 @@
       <p class="font-14">Learn from India's Smart Teachers</p>
     </div>
     <div class="card-body">
-      <form method="post" action="/cms/leads/store">
-      @csrf
+      <form method="post" action="/leads/store">
+        @csrf
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Your Name" name="name" />
           @if ($errors->has('name'))

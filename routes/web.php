@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
  /* All front Url */
 Route::get('/', 'HomeController@index');
+Route::post('/leads/store', 'LeadController@store');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');

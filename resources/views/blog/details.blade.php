@@ -7,6 +7,7 @@
         <div class="col-lg-8">
           @if(!empty($BlogDescription))
             <h1>{{ !empty($BlogDescription['name']) ? $BlogDescription['name'] : '' }}</h1>
+            @include('layouts.share_widget')
             <p class="bg-light-blue p-3 border-radius-10">{{ !empty($BlogDescription['synopsis']) ? $BlogDescription['synopsis'] : '' }}</p>
             @if(!empty($BlogDescription['thumbnail_image']))
               <div class="ratio-image image_16-9 my-3">

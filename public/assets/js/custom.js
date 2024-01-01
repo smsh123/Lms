@@ -149,21 +149,6 @@ var CustomFunctions = {
             }
         });
 
-        $.ajax({
-            url: '/leads/store', 
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            data: leads,
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(msg) {
-                console.log(msg);
-                var errors = msg.responseJSON;
-            }
-        });
-
     }
 
     },

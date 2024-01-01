@@ -24,7 +24,7 @@
         </a>
       </li>
       <li class="d-inline-block mx-1">
-        <a href="https://wa.me/?text={{ !empty($caption) ? $caption : ''}}{{ !empty($url) ? $url : ''}}" target="_blank" class="text-success">
+        <a href="https://wa.me/?text={{ !empty($caption) ? $caption.' ' : ''}}{{ !empty($url) ? $url : ''}}" target="_blank" class="text-success">
           <i class="bi bi-whatsapp font-22"></i>
         </a>
       </li>

@@ -65,6 +65,7 @@ class BlogController extends Controller
     public function blogDetails(Request $request, $slug){
         $blogDescription = [];
         $blogDescription = Blog::getBlogBySlug($slug);
+        $blogs = Blog::all();
         $courses =  Course::all();
         $blogDescription = !empty($blogDescription) ? $blogDescription[0] : [];
         $authorId = !empty($blogDescription['author']) ? $blogDescription['author'] : ''; 
@@ -73,6 +74,7 @@ class BlogController extends Controller
             'BlogDescription' => !empty($blogDescription) ? $blogDescription : [],
             'courses' => !empty($courses) ? $courses : [], 
             'author' => !empty($author) ? $author : [],
+            'blogs' => !empty($blogs) ? $blogs : [],
             'page_type' => 'blog-details-page' 
         ];
         return view('blog.details',$data);

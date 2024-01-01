@@ -87,6 +87,16 @@ class OrderController extends Controller
 
         $order->save();
 
+        $lead = new Leads;
+        $lead->name = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
+        $lead->email = !empty($request->input('user_mobile')) ? (int) $request->input('user_mobile') : '';
+        $lead->mobile = !empty($request->input('user_email')) ? $request->input('user_email') : '';
+        $lead->course_interested = !empty($productDescription) && !empty($productDescription['name']) ? $productDescription['name'] : $request->input('product_name');
+        $lead->synopsis = !empty($request->input('synopsis')) ? $request->input('synopsis') : '';
+        $lead->status = !empty($request->input('status')) ? $request->input('status') : 'Active';
+        $lead->save();
+    
+
         $savedOrder = Order::getOrderByUID($order->uid);
         $data = [
             'saved_order' => !empty($savedOrder) ? $savedOrder[0] : [],

@@ -6,6 +6,10 @@
       <div class="row">
         <div class="col-lg-8">
           @if(!empty($BlogDescription))
+            @php
+              $url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+              $caption = !empty($BlogDescription['name']) ? $BlogDescription['name'] : 'Blog Title';
+            @endphp
             <h1>{{ !empty($BlogDescription['name']) ? $BlogDescription['name'] : '' }}</h1>
             @include('layouts.share_widget')
             <p class="bg-light-blue p-3 border-radius-10">{{ !empty($BlogDescription['synopsis']) ? $BlogDescription['synopsis'] : '' }}</p>
@@ -15,9 +19,20 @@
               </div>
             @endif
             @if(!empty($BlogDescription['description']))
-              <div>
+              <div class="story_details_container">
                 {!! $BlogDescription['description'] !!}      
               </div>
+              @if(!empty( $BlogDescription['tags']))
+                @php
+                  $tags = explode(',',$BlogDescription['tags']);
+                @endphp
+                @if(!empty($tags))
+                  <h3 class="font-weight-bold font-22 mb-3">Tags</h3>
+                  @foreach ($tags as $key => $tag )
+                    <a href="{{ !empty($tag) ? '/tags/'.str_replace(' ','-',$tag) : '' }}" class="btn btn-rounded-pill btn-light mb-3 mr-2">{{ !empty($tag) ? $tag : ''}}</a>
+                  @endforeach
+                @endif
+              @endif
             @endif
             @if(!empty($author))
               <div class="card border-radius-25">
@@ -68,6 +83,9 @@
                   </div>
                 </div>
               </div>
+            @endif
+            @if(!empty($blogs))
+              @include('layouts.blogs_card')
             @endif
           @else
             <div class="alert alert-danger text-center my-5 text-center font-weight-bold">

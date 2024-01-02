@@ -2,7 +2,7 @@
 @section('body')
   @include('layouts.global_header')
   <div class="theme-contrast-gradient-container-bottom position-relative py-3">
-    <div class="container bg-white py-3">
+    <div class="container bg-white py-4 px-4 border-radius-25">
       <div class="row">
         <div class="col-lg-8">
           @if(!empty($BlogDescription))

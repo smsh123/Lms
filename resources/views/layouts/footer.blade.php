@@ -1,4 +1,4 @@
- <div class="bg-theme-contrast py-5 text-white position-relative py-5 wave_border_top_white footer">
+ <div class="bg-theme-contrast py-5 text-white position-relative">
   <div class="container">
     <div class="row">
       <div class="col-12">

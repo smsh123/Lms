@@ -19,9 +19,6 @@
                   $highlights = !empty($CourseDescription['highlights']) ? explode(',',$CourseDescription['highlights']) : '' ;
                 @endphp
                 @include('layouts.highlights_widget')
-                @if(!empty($CourseDescription['batch_start_date']))
-                  <p class="font-weight-bold">{{  $CourseDescription['batch_start_date'] }}</p>
-                @endif
                 <p class="card-text"><span class="font-weight-bold pr-2 align-middle font-22">{{ !empty($CourseDescription['selling_price']) ? '₹'.$CourseDescription['selling_price'].'/-' : '' }}</span><strike class="text-danger font-12 align-middle">{{ !empty($CourseDescription['original_price']) ? $CourseDescription['original_price'].'/-' : '' }}</strike></p>
                   <p class="mb-0"><a href="/cart/{{ !empty($CourseDescription['slug']) ? $CourseDescription['slug'] : '' }}?type=course&id={{ !empty($CourseDescription['_id']) ? $CourseDescription['_id'] : '' }}" class="btn btn-lg btn-theme-contrast rounded-pill">{{ !empty($CourseDescription['selling_price']) && $CourseDescription['selling_price'] > 0 ? 'Buy Now' : 'Subscribe' }}</a></p>
               </div>
@@ -34,7 +31,7 @@
           </div>
         </div>
         @if(!empty($CourseDescription['description']))
-          <div class="container my-3 px-lg-3 px-0">
+          <div class="container my-3 px-0">
             <div class="card border-radius-25 mb-3">
               <div class="card-body">
                 <div class="row">
@@ -47,11 +44,11 @@
                     <div class="card">
                       <div class="card-body text-center">
                           @if(!empty($CourseDescription['batch_start_date']))
-                            <p class="mb-1  text-theme-contrast">New Batch</p>
+                            <p class="mb-1 p-2 bg-theme-contrast text-white">New Batch</p>
                             <p class="font-22 font-weight-bold">{{ !empty($CourseDescription['batch_start_date']) ? date_format(date_create($CourseDescription['batch_start_date']),'d/m/Y') : '' }}</p>
                           @endif
                           @if(!empty($CourseDescription['duration']))
-                            <p class="text-theme-contrast mb-1">Course Duration</p>
+                            <p class="mb-1 p-2 bg-theme-contrast text-white">Course Duration</p>
                             <p class="font-22 font-weight-bold">{{ !empty($CourseDescription['duration']) ? $CourseDescription['duration'].' Days' : '' }}</p>
                           @endif
 

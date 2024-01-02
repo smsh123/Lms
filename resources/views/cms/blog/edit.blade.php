@@ -87,6 +87,9 @@
       <div class="row form-group">
         <div class="col-lg-12">
           <label class="font-weight-bold">Tags</label>
+          @php
+            $tags = !empty($course->tags) ? implode(',',$course->tags) : '';
+          @endphp
           <input type="text" value="{{ !empty($blogs['tags']) ? $blogs['tags'] : '' }}" data-role="tagsinput" class="form-control" name="tags" />
         </div>
       </div>

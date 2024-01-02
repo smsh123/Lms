@@ -45,7 +45,7 @@ class CourseController extends Controller
         $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
         $course->slug = $request->input('slug');
-        $course->batch_start_date = $request->input('batch_start_date');
+        $course->batch_start_date = $request->input('start_date');
         $course->duration = $request->input('duration');
         $course->class_mode = $request->input('class_mode');
         $course->description = $request->input('description');
@@ -145,7 +145,7 @@ class CourseController extends Controller
         $course->meta_keywords = $request->input('meta_keywords');
         $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
-        $course->batch_start_date = $request->input('batch_start_date');
+        $course->batch_start_date = $request->input('start_date');
         $course->duration = $request->input('duration');
         $course->class_mode = $request->input('class_mode');
         $course->description = $request->input('description');

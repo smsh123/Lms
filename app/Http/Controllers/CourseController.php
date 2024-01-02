@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\CourseModuleMapping;
+use App\Models\Module;
 
 class CourseController extends Controller
 {
@@ -80,8 +82,33 @@ class CourseController extends Controller
     public function courseDetails(Request $request, $slug){
         $courseDescription = [];
         $courseDescription = Course::getCourseBySlug($slug);
+        if(!empty($courseDescription)){
+            $courseDescription = $courseDescription[0];
+        }
+        if(!empty($courseDescription)){
+            $mentors = !empty($courseDescription['mentors']) ? $courseDescription['mentors'] : [];
+            if(!empty($mentors)){
+                foreach($mentors as $key => $mentor){
+                    $id = !empty($mentor) ? $mentor : '';
+                    $mentor_details = User::where('_id',$id)->first();
+                    $mentors[$key] = (!empty($mentor_details) && is_object($mentor_details) ) ? $mentor_details->toArray() : [];
+                }
+            }
+
+            $course_modules = CourseModuleMapping::getModulesByCourseId($courseDescription['_id']);
+            $course_modules = !empty($course_modules) ? $course_modules[0] : [];
+            if(!empty($course_modules['modules'])){
+                foreach($course_modules['modules'] as $key => $module){
+                    $id = !empty($module['moduleId']) ? $module['moduleId'] : ''; 
+                    $module = Module::find($id);
+                    $modules[$key] = (!empty($module) && is_object($module)) ? $module->toArray() : []; 
+                }
+            }
+        }
         $data = [
-            'CourseDescription' => !empty($courseDescription) ? $courseDescription[0] : [],
+            'CourseDescription' => !empty($courseDescription) ? $courseDescription : [],
+            'teachers' => !empty($mentors) ? $mentors : [],
+            'modules' => !empty($modules) ? $modules : [],
             'page_type' => 'course-details-page' 
         ];
         return view('course.details',$data);

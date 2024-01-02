@@ -10,7 +10,8 @@
               $url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
               $caption = !empty($BlogDescription['name']) ? $BlogDescription['name'] : 'Blog Title';
             @endphp
-            <h1>{{ !empty($BlogDescription['name']) ? $BlogDescription['name'] : '' }}</h1>
+            <h1 class="font-32 mb-2">{{ !empty($BlogDescription['name']) ? $BlogDescription['name'] : '' }}</h1>
+            <p class="text-muted">{{ 'Published Date -'.date_format(date_create($BlogDescription['created_at']),'d/m/Y') }}{{ !empty($author['name']) ? ', Author - '.$author['name'] : ''}}</p>
             @include('layouts.share_widget')
             <p class="bg-light-blue p-3 border-radius-10">{{ !empty($BlogDescription['synopsis']) ? $BlogDescription['synopsis'] : '' }}</p>
             @if(!empty($BlogDescription['thumbnail_image']))
@@ -32,7 +33,7 @@
             @if(!empty($author))
               <div class="card border-radius-25">
                 <div class="card-body">
-                  <div class="d-flex flex-wrap">
+                  <div class="d-flex flex-wrap justify-content-center justify-content-lg-start">
                     <div class="align-self-center">
                       <div class="icon-150 mx-auto text-center">
                         <div class="ratio-image image_1-1 bg-transparent rounded-circle mb-3">
@@ -41,7 +42,7 @@
                         <div class="badge badge-secondary text-white font-12">Author</div>
                       </div>
                     </div>
-                    <div class="align-self-center flex-fill pl-5 text-center text-lg-left">
+                    <div class="align-self-center flex-fill pl-0 pl-lg-5 text-center text-lg-left">
                       <h3 class="font-weight-bold text-theme">{{ !empty($author['name']) ? $author['name'] : ''}}</h3>
                       <p class="mb-0"><i class="bi bi-briefcase font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">{{ !empty($author['expertise']) ? $author['expertise'] : 'Star Faculty'  }}</span></p>
                       <p class="mb-0"><i class="bi bi-mortarboard font-22 align-middle text-theme-contrast"></i><span class="align-center mx-2 font-14">{{ !empty($author['qualification']) ? $author['qualification'] : 'Academics'  }}</span></p>

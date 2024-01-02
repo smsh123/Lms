@@ -29,7 +29,7 @@
         </a>
       </li>
       <li class="d-inline-block mx-1">
-        <a href="mailto:?subject={ !empty($caption) ? $caption : ''}}&body={{ !empty($url) ? $url : ''}}" class="text-danger">
+        <a href="mailto:?subject={{ !empty($caption) ? $caption : ''}}&body={{ !empty($url) ? $url : ''}}" class="text-danger">
           <i class="bi bi-envelope font-22"></i>
         </a>
       </li>

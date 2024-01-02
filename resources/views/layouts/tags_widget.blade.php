@@ -5,7 +5,9 @@
   @endphp
   @foreach ($tags as $key => $tag )
     @if($i == 3) @php $i = 0; @endphp  @endif
-    <a href="{{ !empty($tag) ? '/tags/'.str_replace(' ','-',$tag) : '' }}" class="btn rounded-pill @if($i == 0) bg-light-blue @elseif ($i == 1) bg-light-pink @else bg-light-yellow @endif mb-3 mr-2">{{ !empty($tag) ? $tag : ''}}</a>
+    <a href="{{ !empty($tag) ? '/tags/'.str_replace(' ','-',$tag) : '' }}" class="btn rounded-pill @if($i == 0) bg-light-blue @elseif ($i == 1) bg-light-pink @else bg-light-yellow @endif mb-3 mr-2">
+      {{ !empty($tag) ? $tag : ''}}
+    </a>
     @php
       $i++;
     @endphp

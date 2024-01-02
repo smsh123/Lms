@@ -23,10 +23,7 @@
               <div class="story_details_container">
                 {!! $BlogDescription['description'] !!}      
               </div>
-              @if(!empty( $BlogDescription['tags']))
-                @php
-                  $tags = explode(',',$BlogDescription['tags']);
-                @endphp
+              @if(!empty($tags))
                 @include('layouts.tags_widget')
               @endif
             @endif
@@ -110,10 +107,7 @@
               </div>
             @endforeach
           @endif
-          @if(!empty( $BlogDescription['tags']))
-            @php
-              $tags = explode(',',$BlogDescription['tags']);
-            @endphp
+          @if(!empty($tags))
             @include('layouts.tags_widget')
           @endif
         </div>

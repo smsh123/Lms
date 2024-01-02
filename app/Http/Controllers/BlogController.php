@@ -46,7 +46,7 @@ class BlogController extends Controller
         $blog->description = $request->input('description');
         $blog->synopsis = $request->input('synopsis');
         $blog->author = !empty($author) ? $author : '';
-        $blog->tags = $request->input('tags');
+        $blog->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : [];
         $blog->thumbnail_image = $request->input('thumbnail_image');
         $blog->banner_image = $request->input('banner_image');
     
@@ -74,11 +74,20 @@ class BlogController extends Controller
         $blogDescription = !empty($blogDescription) ? $blogDescription[0] : [];
         $authorId = !empty($blogDescription['author']) ? $blogDescription['author'] : ''; 
         $author = User::find($authorId);
+        if(!empty($blogDescription['tags'])){
+            if(is_array($blogDescription['tags'])){
+                $tags = $blogDescription['tags'];
+            }
+            else{
+                $tags = explode(',',$blogDescription['tags']);
+            }
+        }
         $data = [
             'BlogDescription' => !empty($blogDescription) ? $blogDescription : [],
             'courses' => !empty($courses) ? $courses : [], 
             'author' => !empty($author) ? $author : [],
             'blogs' => !empty($blogs) ? $blogs : [],
+            'tags' => !empty($tags) ? $tags : [],
             'page_type' => 'blog-details-page' 
         ];
         return view('blog.details',$data);
@@ -118,7 +127,7 @@ class BlogController extends Controller
         $blog->description = $request->input('description');
         $blog->synopsis = $request->input('synopsis');
         $blog->author = !empty($author) ? $author : '';
-        $blog->tags = $request->input('tags');
+        $blog->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : [];
         $blog->thumbnail_image = $request->input('thumbnail_image');
         $blog->banner_image = $request->input('banner_image');
     

@@ -57,7 +57,7 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
-        $course->tags = $request->input('tags');
+        $course->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : '';
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');
@@ -132,7 +132,7 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
-        $course->tags = $request->input('tags');
+        $course->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : [];
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');

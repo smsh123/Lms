@@ -34,7 +34,7 @@
           </div>
         </div>
         @if(!empty($CourseDescription['description']))
-          <div class="container my-3">
+          <div class="container my-3 px-lg-3 px-0">
             <div class="card border-radius-25 mb-3">
               <div class="card-body">
                 <div class="row">

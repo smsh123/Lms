@@ -84,6 +84,16 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
+          <label class="font-weight-bold">Instagram</label>
+          <input type="text" class="form-control" name="instagram" placeholder="Instagram Profile Url" />
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Other Profile Url</label>
+          <input type="text" class="form-control" name="other_profile" placeholder="Other Profile Url" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Expertise</label>
           <input type="text" class="form-control" name="expertise" placeholder="Expertise/Designation" />
         </div>

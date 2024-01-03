@@ -38,6 +38,8 @@ class UserController extends Controller
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
+        $user->instagram = !empty($request->instagram) ? $request->instagram : '';
+        $user->other_profile = !empty($request->other_profile) ? $request->other_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
         $user->permissions = !empty($request->permissions) ? $request->permissions : [];
@@ -87,6 +89,8 @@ class UserController extends Controller
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
+        $user->instagram = !empty($request->instagram) ? $request->instagram : '';
+        $user->other_profile = !empty($request->other_profile) ? $request->other_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
         $user->permissions = !empty($request->permissions) ? $request->permissions : [];

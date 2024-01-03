@@ -120,7 +120,7 @@
             <option>Select</option>
             @if(!empty($tools))
               @foreach ($tools as $key => $tool )
-                <option @if(!empty($course->tools) && in_array($tool['link'],$course->tools)) selected @endif value="{{ !empty($tool['link']) ? $tool['link'] : '' }}">{{ !empty($tool['name']) ? $tool['name'].' - ' : '' }}{</option>
+                <option @if(!empty($course->tools) && in_array($tool['slug'],$course->tools)) selected @endif value="{{ !empty($tool['slug']) ? $tool['slug'] : '' }}">{{ !empty($tool['name']) ? $tool['name'] : '' }}</option>
               @endforeach
             @endif
           </select>

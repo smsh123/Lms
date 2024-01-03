@@ -52,6 +52,13 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
     Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories.edit'); 
     Route::get('/categories/delete/{id}', 'CategoryController@destroy')->name('categories.delete'); 
+    Route::post('/categories/update', 'CategoryController@update')->name('categories.update'); 
+    Route::get('/tools', 'ToolsController@index')->name('tools.index'); 
+    Route::get('/tools/add', 'ToolsController@add')->name('tools.add');
+    Route::post('/tools/store', 'ToolsController@store')->name('tools.store');
+    Route::get('/tools/edit/{id}', 'ToolsController@edit')->name('tools.edit'); 
+    Route::get('/tools/delete/{id}', 'ToolsController@destroy')->name('tools.delete'); 
+    Route::post('/tools/update', 'ToolsController@update')->name('tools.update'); 
     Route::get('/courses', 'CourseController@index')->name('courses.index'); 
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');

@@ -121,7 +121,7 @@
             <option>Select</option>
             @if(!empty($tools))
               @foreach ($tools as $key => $tool )
-                <option value="{{ !empty($tool['link']) ? $tool['link'] : '' }}">{{ !empty($tool['name']) ? $tool['name'].' - ' : '' }}{</option>
+                <option value="{{ !empty($tool['slug']) ? $tool['slug'] : '' }}">{{ !empty($tool['name']) ? $tool['name'] : '' }}</option>
               @endforeach
             @endif
           </select>

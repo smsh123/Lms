@@ -1,25 +1,25 @@
 @extends('cms.layouts.master')
 @section('body')
   <div class="row my-3">
-    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Add Category</h1></div>
-    <div class="col-12 col-lg-6 text-right"><a href="/cms/categories" class="btn btn-lg btn-secondary">View Categories</a></div>
+    <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Add Tools</h1></div>
+    <div class="col-12 col-lg-6 text-right"><a href="/cms/tools" class="btn btn-lg btn-secondary">View Tools</a></div>
   </div>
 
 
-  <form class="card" method="post" action="/cms/categories/store">
+  <form class="card" method="post" action="/cms/tools/store">
     @csrf
     <div class="card-body">
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Category Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Category Name" />
+          <label class="font-weight-bold">Tool Name</label>
+          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Tool Name" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
          <div class="col-lg-6">
-          <label class="font-weight-bold">Category Name Hindi</label>
-          <input type="text" class="form-control" name="name_hindi" placeholder="Category Name Hindi" />
+          <label class="font-weight-bold">Tool Name Hindi</label>
+          <input type="text" class="form-control" name="name_hindi" placeholder="Tool Name Hindi" />
           @if ($errors->has('name_hindi'))
           <p class="text-danger">{{ $errors->first('name_hindi') }}</p>
         @endif
@@ -27,33 +27,8 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
-          <label class="font-weight-bold">Meta Title</label>
-          <input type="text" class="form-control" name="meta_title" placeholder="Meta Title" />
-          @if ($errors->has('meta_title'))
-            <p class="text-danger">{{ $errors->first('meta_title') }}</p>
-          @endif
-        </div>
-         <div class="col-lg-6">
-          <label class="font-weight-bold">Meta Keywords</label>
-          <input type="text" class="form-control" data-role="tagsinput" name="meta_keywords" placeholder="Keywords" />
-          @if ($errors->has('meta_keywords'))
-          <p class="text-danger">{{ $errors->first('meta_keywords') }}</p>
-        @endif
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-12">
-          <label class="font-weight-bold">Meta Description</label>
-          <textarea class="form-control" name="meta_description"></textarea>
-          @if ($errors->has('meta_description'))
-            <p class="text-danger">{{ $errors->first('meta_description') }}</p>
-          @endif
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-6">
-          <label class="font-weight-bold">Category Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="Category slug"  />
+          <label class="font-weight-bold">Tool Slug</label>
+          <input type="text" class="form-control" name="slug" placeholder="Tool slug"  />
           @if ($errors->has('slug'))
             <p class="text-danger">{{ $errors->first('slug') }}</p>
           @endif
@@ -65,8 +40,8 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
-          <label class="font-weight-bold">Category Description</label>
-          <textarea class="form-control txteditor" rows="6" placeholder="Category Description ..." name="description"></textarea>
+          <label class="font-weight-bold">Tool Description</label>
+          <textarea class="form-control txteditor" rows="6" placeholder="Tool Description ..." name="description"></textarea>
           @if ($errors->has('description'))
           <p class="text-danger">{{ $errors->first('description') }}</p>
         @endif
@@ -74,8 +49,8 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
-          <label class="font-weight-bold">Category Synopsis</label>
-          <textarea class="form-control" rows="4"  placeholder="Category Synopsis ..." name="synopsis"></textarea>
+          <label class="font-weight-bold">Tool Synopsis</label>
+          <textarea class="form-control" rows="4"  placeholder="Tool Synopsis ..." name="synopsis"></textarea>
         </div>
       </div>
       <div class="row form-group">
@@ -96,7 +71,7 @@
           </div>
         </div>
         <div class="col-12 col-lg-6">
-          <label class="font-weight-bold">Category Banner</label>
+          <label class="font-weight-bold">Tool Banner</label>
           <div class="input-group upload-image mb-3">
             <input id="inputImage_1" type="file" class="form-control" placeholder="Banner Image">
             <div class="input-group-append">

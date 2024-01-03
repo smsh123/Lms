@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseModuleMapping;
 use App\Models\Module;
 use App\Models\Category;
+use App\Models\Tool;
 
 class CourseController extends Controller
 {
@@ -22,10 +23,12 @@ class CourseController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $categories = Category::all();
+        $tools = Tool::all();
         $mentors = User::getUserByRole('Teacher');
         $data = [
             'mentors' => !empty($mentors) ? $mentors : [], 
-            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : []
         ];
         
         return view('cms.courses.add',$data);
@@ -127,11 +130,13 @@ class CourseController extends Controller
        
         $course = Course::find($id);
         $categories = Category::all();
+        $tools = Tool::all();
         $mentors = User::getUserByRole('Teacher');
         $data = [
             'course' => !empty($course) ? $course : [],
             'mentors' => !empty($mentors) ? $mentors : [],
-            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : []
         ];
         // dd($course);
         return view('cms.courses.edit',$data);

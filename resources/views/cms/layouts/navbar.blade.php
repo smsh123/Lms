@@ -6,6 +6,11 @@
         'url' => '/cms',
     ],
     [
+        'label' => 'categories',
+        'icon'=>'grid',
+        'url' => '/cms/categories',
+    ],
+    [
         'label' => 'courses',
         'icon'=>'book',
         'url' => '/cms/courses',
@@ -39,6 +44,11 @@
         'label' => 'banners',
         'icon'=>'image',
         'url' => '/cms/banners',
+    ],
+    [
+        'label' => 'tools',
+        'icon'=>'folder-plus',
+        'url' => '/cms/tools',
     ],
     [
         'label' => 'testimonials',

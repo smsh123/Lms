@@ -16,7 +16,7 @@
             <option>Select</option>
             @if(!empty($categories))
               @foreach ($categories as $key => $category )
-                <option value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'].' - ' : '' }}{</option>
+                <option value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'] : '' }}</option>
               @endforeach
             @endif
           </select>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Blog;
 use App\Models\Course;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
@@ -18,9 +19,11 @@ class BlogController extends Controller
         if(!User::hasPermissions(["Add Blog"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        $categories = Category::all();
         $users = User::getUserByRole('Author');
         $data=[
-            'users' => !empty($users) ? $users : []
+            'users' => !empty($users) ? $users : [],
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
         ];
         return view('cms.blog.add',$data);
     }
@@ -100,9 +103,11 @@ class BlogController extends Controller
         }
         $blog = Blog::find($id);
         $users = User::getUserByRole('Author');
+        $categories = Category::all();
         $data=[
             'users' => !empty($users) ? $users : [],
-            'blogs' => !empty($blog) ? $blog : []
+            'blogs' => !empty($blog) ? $blog : [],
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
         ];
         // dd($course);
         return view('cms.blog.edit', $data);

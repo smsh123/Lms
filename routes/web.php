@@ -47,6 +47,11 @@ Route::any('/make-payment', 'OrderController@paymentProcess');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
+    Route::get('/categories', 'CategoryController@index')->name('categories.index'); 
+    Route::get('/categories/add', 'CategoryController@add')->name('categories.add');
+    Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
+    Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories.edit'); 
+    Route::get('/categories/delete/{id}', 'CategoryController@destroy')->name('categories.delete'); 
     Route::get('/courses', 'CourseController@index')->name('courses.index'); 
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');

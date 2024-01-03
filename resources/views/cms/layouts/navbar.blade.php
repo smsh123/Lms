@@ -6,6 +6,11 @@
         'url' => '/cms',
     ],
     [
+        'label' => 'brand',
+        'icon'=>'settings',
+        'url' => '/cms/brands',
+    ],
+    [
         'label' => 'categories',
         'icon'=>'grid',
         'url' => '/cms/categories',

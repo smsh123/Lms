@@ -47,6 +47,12 @@ Route::any('/make-payment', 'OrderController@paymentProcess');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index'); 
+    Route::get('/brands', 'BrandController@index')->name('brands.index'); 
+    Route::get('/brands/add', 'BrandController@add')->name('brands.add');
+    Route::post('/brands/store', 'BrandController@store')->name('brands.store');
+    Route::get('/brands/edit/{id}', 'BrandController@edit')->name('brands.edit'); 
+    Route::get('/brands/delete/{id}', 'BrandController@destroy')->name('brands.delete'); 
+    Route::post('/brands/update', 'BrandController@update')->name('brands.update'); 
     Route::get('/categories', 'CategoryController@index')->name('categories.index'); 
     Route::get('/categories/add', 'CategoryController@add')->name('categories.add');
     Route::post('/categories/store', 'CategoryController@store')->name('categories.store');

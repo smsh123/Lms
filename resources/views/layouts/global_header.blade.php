@@ -39,7 +39,7 @@
 </div> --}}
 <div class="gloabl-header" style="background-color: #fff;">
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
         <a class="navbar-brand" href="/">
           <img src="/assets/image/logo.png" class="brand-logo" alt="AryaBhat Classes" />
         </a>

@@ -10,6 +10,19 @@
     <input type="hidden" value="{{ !empty($blogs['id']) ? $blogs['id'] : '' }}" name="id" />
     <div class="card-body">
       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Category</label>
+          <select class="form-control select_to" name="category">
+            <option>Select</option>
+            @if(!empty($categories))
+              @foreach ($categories as $key => $category )
+                <option @if(!empty($blogs->category) && $blogs->category == $category['slug']) selected @endif value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'].' - ' : '' }}{</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Blog Name</label>
           <input type="text" id="title" class="form-control" name="name" placeholder="Blog Name" value="{{ !empty($blogs['name']) ? $blogs['name'] : '' }}" />

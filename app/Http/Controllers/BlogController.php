@@ -37,6 +37,7 @@ class BlogController extends Controller
         $author = !empty($request->input('author')) ? $request->input('author') : $loggedInUserId;
     
         $blog = new Blog;
+        $blog->category = $request->input('category');
         $blog->name = $request->input('name');
         $blog->name_hindi = $request->input('name_hindi');
         $blog->meta_title = $request->input('meta_title');
@@ -119,6 +120,7 @@ class BlogController extends Controller
 
         $id = $request->input("id");
         $blog = Blog::find($id);
+        $blog->category = $request->input('category');
         $blog->name = $request->input('name');
         $blog->name_hindi = $request->input('name_hindi');
         $blog->meta_title = $request->input('meta_title');

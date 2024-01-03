@@ -8,6 +8,19 @@
     @csrf
     <div class="card-body">
       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Category</label>
+          <select class="form-control select_to" name="category">
+            <option>Select</option>
+            @if(!empty($categories))
+              @foreach ($categories as $key => $category )
+                <option @if(!empty($course->category) && $course->category == $category['slug']) selected @endif value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'].' - ' : '' }}{</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Name</label>
           <input type="text" class="form-control" name="name" placeholder="Course Name" value="{{$course->name}}"/>
@@ -73,6 +86,7 @@
             <option>Select</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="live") selected @endif value="live">Live</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="recorded") selected @endif value="recorded">Recorded</option>
+            <option @if(!empty($course->course_type) && $course->course_type =="live_and_recorded") selected @endif  value="live_and_recorded">Live & Recorded</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="offline") selected @endif value="offline">Offline</option>
           </select>
         </div>
@@ -97,6 +111,26 @@
             <option @if(!empty($course->course_type) && $course->course_type =="ebook") selected @endif value="ebook">E-Book</option>
             <option @if(!empty($course->course_type) && $course->course_type =="audio_book") selected @endif value="audio_book">Audio Book</option>
           </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Tools</label>
+          <select class="form-control select_to" name="tools[]" multiple="multiple">
+            <option>Select</option>
+            @if(!empty($tools))
+              @foreach ($tools as $key => $tool )
+                <option @if(!empty($course->tools) && in_array($tool['link'],$course->tools)) selected @endif value="{{ !empty($tool['link']) ? $tool['link'] : '' }}">{{ !empty($tool['name']) ? $tool['name'].' - ' : '' }}{</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Skills</label>
+          <input type="text" class="form-control" data-role="tagsinput" value="{{!empty($course->skills) ? $course->skills : ''}}" name="skills" placeholder="Skills" />
+          @if ($errors->has('skills'))
+          <p class="text-danger">{{ $errors->first('skills') }}</p>
+        @endif
         </div>
       </div>
       <div class="row form-group">

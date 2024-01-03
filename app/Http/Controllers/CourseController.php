@@ -39,6 +39,7 @@ class CourseController extends Controller
         ]);
     
         $course = new Course;
+        $course->category = $request->input('category');
         $course->name = $request->input('name');
         $course->meta_title = $request->input('meta_title');
         $course->meta_keywords = $request->input('meta_keywords');
@@ -63,6 +64,8 @@ class CourseController extends Controller
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');
+        $course->tools = $request->input('tools');
+        $course->skills = $request->input('skills');
     
         $course->save();
     
@@ -140,6 +143,8 @@ class CourseController extends Controller
         ]);
         $id = $request->input("id",'');
         $course = Course::find($id);
+        
+        $course->category = $request->input('category');
         $course->name = $request->input('name');
         $course->meta_title = $request->input('meta_title');
         $course->meta_keywords = $request->input('meta_keywords');
@@ -163,7 +168,8 @@ class CourseController extends Controller
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');
-        
+        $course->tools = $request->input('tools');
+        $course->skills = $request->input('skills');
     
         $course->save();
     

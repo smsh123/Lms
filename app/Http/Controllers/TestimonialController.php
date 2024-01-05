@@ -10,7 +10,9 @@ class TestimonialController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Testimonial"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $testimonials =Testimonial::paginateWithDefault(10);
         $users = User::all();
         return view('cms.testimonial.index')->with('testimonials',$testimonials,'users',!empty($users) ? $users : []);

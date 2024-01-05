@@ -17,7 +17,7 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
-        if (!User::hasPermissions(["Edit Order"])) {
+        if (!User::hasPermissions(["View Order"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         // ci cd test

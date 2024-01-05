@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     public function index(Request $request){
+        if(!User::hasPermissions(["View Blog"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $Blogs = Blog::paginateWithDefault(10);
         return view('cms.blog.index')->with('blogs',$Blogs);
     }

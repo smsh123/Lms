@@ -11,6 +11,9 @@ class FaqController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View FAQ"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $faqs = Faq::paginateWithDefault(10);
         return view('cms.faq.index')->with('faqs',$faqs);
     }

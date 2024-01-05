@@ -13,6 +13,9 @@ class CourseModuleMappingController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Mapping"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         //$modules = Module::all();
         $mappings = CourseModuleMapping::paginateWithDefault(10);
         return view('cms.course_module_mapping.index')->with('mappings',$mappings);

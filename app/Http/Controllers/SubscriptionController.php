@@ -11,7 +11,9 @@ class SubscriptionController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Subscription"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $subscriptions = Subscription::paginateWithDefault(10);
         return view('cms.subscription.index')->with('subscriptions',$subscriptions);
     }

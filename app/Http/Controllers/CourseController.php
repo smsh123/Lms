@@ -14,7 +14,9 @@ class CourseController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Course"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $courses = Course::paginateWithDefault(10);
         return view('cms.courses.index')->with('courses',$courses);
     }

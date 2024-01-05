@@ -11,6 +11,10 @@ class CategoryController extends Controller
     //
     public function index(Request $request){
 
+        if(!User::hasPermissions(["View Category"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
+
         $categories = Category::paginateWithDefault(10);
         return view('cms.categories.index')->with('categories',$categories);
     }

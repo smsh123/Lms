@@ -126,6 +126,9 @@ class UserController extends Controller
     }
     public function listUsers(Request $request)
     {
+        if(!User::hasPermissions(["View User"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         // $users = User::all();
         $users = User::paginateWithDefault(10);
         $data = [

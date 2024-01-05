@@ -11,6 +11,9 @@ class ToolsController extends Controller
     //
     public function index(Request $request){
 
+        if(!User::hasPermissions(["View Tool"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $tools = Tool::paginateWithDefault(10);
         return view('cms.tools.index')->with('tools',$tools);
     }

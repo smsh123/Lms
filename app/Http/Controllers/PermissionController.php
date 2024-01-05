@@ -10,6 +10,9 @@ class PermissionController extends Controller
 {
     //
     public function index(Request $request){
+        if(!User::hasPermissions(["View Permission"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $permissions = Permission::paginateWithDefault(10);
         $data = [
             'permissions'=>!empty($permissions) ? $permissions : []

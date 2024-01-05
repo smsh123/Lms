@@ -11,6 +11,9 @@ class ModuleController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Module"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $modules = Module::paginateWithDefault(10);
         return view('cms.module.index')->with('modules',$modules);
     }

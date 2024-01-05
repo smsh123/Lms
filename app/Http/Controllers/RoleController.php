@@ -10,6 +10,9 @@ class RoleController extends Controller
 {
     //
     public function index(Request $request){
+        if(!User::hasPermissions(["View Role"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         // dd(Role::roleHasPermission("Create:User1"),User::hasPermissions(["Create:User"]));
         $roles = Role::paginateWithDefault(10);
         $data = [

@@ -10,7 +10,12 @@ class BlockController extends Controller
 {
     //
     public function index(Request $request) 
-    {
+    {    
+        
+        if(!User::hasPermissions(["View Content Block"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
+
         $blocks = Block::paginateWithDefault(10);
         return view('cms.block.index')->with('blocks',$blocks);
     }

@@ -14,6 +14,10 @@ class SchedulingController extends Controller
     //
     public function index(Request $request){
 
+        if(!User::hasPermissions(["View Schedule"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
+
         $schedules = Schedule::paginateWithDefault(10);
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }

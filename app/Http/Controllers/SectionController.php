@@ -13,6 +13,9 @@ class SectionController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Section"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $sections = Section::paginateWithDefault(10);
         return view('cms.section.index')->with('sections',$sections);
     }

@@ -9,6 +9,9 @@ use App\Models\Leads;
 class LeadController extends Controller
 {
     public function index(Request $request){
+        if(!User::hasPermissions(["View Lead"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $Leads = Leads::paginateWithDefault(10);
         return view('cms.lead.index')->with('leads',$Leads);
     }

@@ -14,6 +14,9 @@ class CourseTestimonialMappingController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Mapping"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         //$modules = Module::all();
         $mappings = CourseTestimonialMapping::paginateWithDefault(10);
         return view('cms.course_testimonial_mapping.index')->with('mappings',$mappings);

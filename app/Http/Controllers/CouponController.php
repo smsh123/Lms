@@ -11,7 +11,9 @@ class CouponController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Coupon"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $coupons =Coupon::paginateWithDefault(10);
         return view('cms.coupons.index')->with('coupons',$coupons);
       }

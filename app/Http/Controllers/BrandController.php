@@ -10,6 +10,9 @@ class BrandController extends Controller
 {
     //
     public function index(Request $request){
+        if(!User::hasPermissions(["View Brand"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
 
         $brands = Brand::paginateWithDefault(10);
         return view('cms.brands.index')->with('brands',$brands);

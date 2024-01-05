@@ -30,7 +30,8 @@ class CourseController extends Controller
         $data = [
             'mentors' => !empty($mentors) ? $mentors : [], 
             'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
-            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : []
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : [],
+            'page_group' => 'course'
         ];
         
         return view('cms.courses.add',$data);
@@ -138,7 +139,8 @@ class CourseController extends Controller
             'course' => !empty($course) ? $course : [],
             'mentors' => !empty($mentors) ? $mentors : [],
             'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
-            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : []
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : [],
+            'page_group' => 'course'
         ];
         // dd($course);
         return view('cms.courses.edit',$data);

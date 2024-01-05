@@ -22,8 +22,12 @@ class CategoryController extends Controller
         if(!User::hasPermissions(["Add Category"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+
+        $data = [
+            'page_group' => 'category'
+        ];
         
-        return view('cms.categories.add');
+        return view('cms.categories.add',$data);
     }
     public function store(Request $request)
     {
@@ -82,6 +86,7 @@ class CategoryController extends Controller
         $categories = Category::find($id);
         $data = [
             'categories' => !empty($categories) ? $categories : [],
+            'page_group' => 'category'
         ];
         return view('cms.categories.edit',$data);
     }

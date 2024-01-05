@@ -24,14 +24,21 @@ class RoleController extends Controller
         if(!User::hasPermissions(["Add Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.roles.add');
+        $data = [
+            'page_group' => 'role'
+        ];
+        return view('cms.roles.add',$data);
     }
     public function edit(Request $request,$id){
         if(!User::hasPermissions(["Edit Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $role = Role::find($id);
-        return view('cms.roles.edit')->with('role',$role);
+        $data = [
+            'page_group' => 'role',
+            'role' => $role
+        ];
+        return view('cms.roles.edit',$data);
     }
     public function store(Request $request){
             $this->validate($request, [

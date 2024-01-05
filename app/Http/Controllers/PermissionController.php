@@ -23,14 +23,21 @@ class PermissionController extends Controller
         if(!User::hasPermissions(["Add Permission"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.permissions.add');
+        $data = [
+            'page_group' => 'permission'
+        ];
+        return view('cms.permissions.add',$data);
     }
     public function edit(Request $request,$id){
         if(!User::hasPermissions(["Edit Permission"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $role = Permission::find($id);
-        return view('cms.permissions.edit')->with('role',$role);
+        $data = [
+            'role' => $role,
+            'page_group' => 'permission'
+        ];
+        return view('cms.permissions.edit',$data);
     }
     public function store(Request $request){
             $this->validate($request, [

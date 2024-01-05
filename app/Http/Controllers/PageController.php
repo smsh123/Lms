@@ -21,7 +21,8 @@ class PageController extends Controller
         }
         $users = User::all();
         $data=[
-            'users' => !empty($users) ? $users : []
+            'users' => !empty($users) ? $users : [],
+            'page_group' => 'user'
         ];
         return view('cms.pages.add',$data);
     }
@@ -78,7 +79,8 @@ class PageController extends Controller
         $users = User::all();
         $data=[
             'users' => !empty($users) ? $users : [],
-            'pages' => !empty($pages) ? $pages : []
+            'pages' => !empty($pages) ? $pages : [],
+            'page_group' => 'user'
         ];
         // dd($course);
         return view('cms.pages.edit', $data);

@@ -26,7 +26,8 @@ class BlogController extends Controller
         $users = User::getUserByRole('Author');
         $data=[
             'users' => !empty($users) ? $users : [],
-            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'page_group' => 'blog'
         ];
         return view('cms.blog.add',$data);
     }
@@ -110,7 +111,8 @@ class BlogController extends Controller
         $data=[
             'users' => !empty($users) ? $users : [],
             'blogs' => !empty($blog) ? $blog : [],
-            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : []
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'page_group' => 'blog'
         ];
         // dd($course);
         return view('cms.blog.edit', $data);

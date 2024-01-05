@@ -56,7 +56,8 @@ class UserController extends Controller
         $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "users" => !empty($users) ? $users : [],
-            "roles" => !empty($roles) ? $roles : []
+            "roles" => !empty($roles) ? $roles : [],
+            'page_group' => 'user'
         ];
         return view('cms.users.edit', $data);
     }
@@ -145,6 +146,7 @@ class UserController extends Controller
         $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "roles" => !empty($roles) ? $roles : [],
+            'page_group' => 'user'
         ];
         return view('cms.users.add',$data);
     }

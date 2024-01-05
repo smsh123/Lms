@@ -25,6 +25,7 @@ class SubscriptionController extends Controller
         $subscription = Subscription::find($id);
         $data=[
             "subscriptions" => !empty($subscription) ? $subscription : [],
+            'page_group' => 'subscription'
         ];
         return view('cms.subscription.edit',$data);
     }

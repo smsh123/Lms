@@ -21,8 +21,10 @@ class ToolsController extends Controller
         if(!User::hasPermissions(["Add Tools"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        
-        return view('cms.tools.add');
+        $data = [
+            'page_group' => 'tool'
+        ];
+        return view('cms.tools.add',$data);
     }
     public function store(Request $request)
     {
@@ -55,6 +57,7 @@ class ToolsController extends Controller
         $tools = Tool::find($id);
         $data = [
             'tools' => !empty($tools) ? $tools : [],
+            'page_group' => 'tool'
         ];
         return view('cms.tools.edit',$data);
     }

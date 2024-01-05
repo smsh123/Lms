@@ -24,7 +24,10 @@ class BlockController extends Controller
         if(!User::hasPermissions(["Add Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.block.add');
+        $data = [
+            'page_group' => 'block'
+        ];
+        return view('cms.block.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -32,8 +35,10 @@ class BlockController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $blocks = Block::find($id);
+
         $data=[
-            'blocks' => !empty($blocks) ? $blocks : []
+            'blocks' => !empty($blocks) ? $blocks : [],
+            'page_group' => 'block'
         ];
         // dd($course);
         return view('cms.block.edit', $data);

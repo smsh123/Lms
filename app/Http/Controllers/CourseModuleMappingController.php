@@ -29,7 +29,8 @@ class CourseModuleMappingController extends Controller
         $courses = Course::all();
         $data=[
             "courses" => !empty($courses) ? $courses : [],
-            "modules" =>  !empty($modules) ? $modules : []
+            "modules" =>  !empty($modules) ? $modules : [],
+            'page_group' => 'mapping'
         ];
         return view('cms.course_module_mapping.add', $data);
     }
@@ -45,7 +46,8 @@ class CourseModuleMappingController extends Controller
         $data=[
             "courses" => !empty($courses) ? $courses : [],
             "modules" =>  !empty($modules) ? $modules : [],
-            "mappings" =>  !empty($mappings) ? $mappings : []
+            "mappings" =>  !empty($mappings) ? $mappings : [],
+            'page_group' => 'mapping'
         ];
         // dd($course);
         return view('cms.course_module_mapping.edit', $data);

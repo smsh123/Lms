@@ -22,7 +22,10 @@ class MenuController extends Controller
         if(!User::hasPermissions(["Add Menu"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.menu.add');
+        $data = [
+            'page_group' => 'menu'
+        ];
+        return view('cms.menu.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -31,7 +34,8 @@ class MenuController extends Controller
         }
         $menus = Menu::find($id);
         $data=[
-            'menus' => !empty($menus) ? $menus : []
+            'menus' => !empty($menus) ? $menus : [],
+            'page_group' => 'menu'
         ];
         // dd($course);
         return view('cms.menu.edit', $data);

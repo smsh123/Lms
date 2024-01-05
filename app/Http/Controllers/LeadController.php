@@ -19,8 +19,11 @@ class LeadController extends Controller
         if(!User::hasPermissions(["Add Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        $data = [
+            'page_group' => 'lead'
+        ];
         
-        return view('cms.lead.add');
+        return view('cms.lead.add',$data);
     }
     public function store(Request $request)
     {
@@ -50,8 +53,12 @@ class LeadController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $leads = Leads::find($id);
+        $data = [
+            'page_group' => 'lead',
+            'Lead' => !empty($leads) ? $leads : []
+        ];
         // dd($course);
-        return view('cms.lead.edit')->with('Lead',$leads);
+        return view('cms.lead.edit',$data);
     }
     public function update(Request $request)
     {

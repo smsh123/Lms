@@ -30,7 +30,8 @@ class SectionController extends Controller
         $data = [
             'mentors' => !empty($mentors) ? $mentors : [],
             'courses' =>  !empty($courses) ? $courses : [],
-            'blogs' => !empty($blogs) ? $blogs : []
+            'blogs' => !empty($blogs) ? $blogs : [],
+            'page_group' => 'section'
         ];
 
         return view('cms.section.add',$data);
@@ -48,7 +49,8 @@ class SectionController extends Controller
             'mentors' => !empty($mentors) ? $mentors : [],
             'courses' =>  !empty($courses) ? $courses : [],
             'blogs' => !empty($blogs) ? $blogs : [],
-            'sections' => !empty($sections) ? $sections : []
+            'sections' => !empty($sections) ? $sections : [],
+            'page_group' => 'section'
         ];
         return view('cms.section.edit', $data);
     }

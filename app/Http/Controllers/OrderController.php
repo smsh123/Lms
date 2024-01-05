@@ -137,8 +137,12 @@ class OrderController extends Controller
         }
         $order = Order::find($id);
         $order = is_object($order) ? $order->toArray() : $order;
+        $data = [
+            'orders' => $order,
+            'page_group' => 'module'
+        ];
         // dd($order);
-        return view('cms.orders.edit')->with('orders', $order);
+        return view('cms.orders.edit',$data);
     }
     public function update(Request $request)
     {

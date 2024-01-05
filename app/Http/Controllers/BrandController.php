@@ -21,8 +21,12 @@ class BrandController extends Controller
         if(!User::hasPermissions(["Add Brands"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+
+        $data = [
+            'page_group' => 'brand'
+        ];
         
-        return view('cms.brands.add');
+        return view('cms.brands.add',$data);
     }
     public function store(Request $request)
     {
@@ -66,6 +70,7 @@ class BrandController extends Controller
         $brands = Brand::find($id);
         $data = [
             'brands' => !empty($brands) ? $brands : [],
+            'page_group' => 'brand'
         ];
         return view('cms.brands.edit',$data);
     }

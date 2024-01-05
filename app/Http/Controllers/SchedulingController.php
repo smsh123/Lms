@@ -29,7 +29,8 @@ class SchedulingController extends Controller
         $teachers = User::getUserByRole('Teacher');
         $data = [
             "courses"=>!empty($courses) ? $courses : [],
-            "teachers"=>!empty($teachers) ? $teachers : []   
+            "teachers"=>!empty($teachers) ? $teachers : [],
+            'page_group' => 'schedule'
         ];
         return view('cms.scheduling.add',$data);
     }
@@ -76,6 +77,7 @@ class SchedulingController extends Controller
             "schedule" => !empty($schedules) ? $schedules : [],
             "courses" => !empty($courses) ? $courses : [],
             "teachers" => !empty($teachers) ? $teachers : [],
+            'page_group' => 'schedule'
         ];
         // dd($course);
         return view('cms.scheduling.edit',$data);

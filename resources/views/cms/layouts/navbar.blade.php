@@ -185,7 +185,7 @@
             @if((!empty($isUserLoggedin->permissions) && in_array($required_permission,$isUserLoggedin->permissions)) || $required_permission == 'not_required')
                 <li class="nav-item @if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) active @elseif(!empty($page_group) && $page_group == $selected_page_group) active @endif">
                     <a class="nav-link @if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) text-warning @elseif(!empty($page_group) && $page_group == $selected_page_group) text-warning @else text-primary @endif" href="{{ !empty($menus['url']) ? $menus['url'] : '#' }}">
-                    <span class="@if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) text-primary @elseif(!empty($page_group) && $page_group == $selected_page_group) text-primary @else text-warning @endif" data-feather="{{ !empty($menus['icon']) ? $menus['icon'] : '#' }}"></span>
+                    <span class="@if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) text-warning @elseif(!empty($page_group) && $page_group == $selected_page_group) text-warning @else text-theme @endif" data-feather="{{ !empty($menus['icon']) ? $menus['icon'] : '#' }}"></span>
                     {{ !empty($menus['label']) ? $menus['label'] : '#' }}
                     </a>
                 </li>

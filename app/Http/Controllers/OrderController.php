@@ -113,10 +113,12 @@ class OrderController extends Controller
         } else {
             abort(404);
         }
-
+        $user = \Auth::user();
         $data = [
-            "product_description" => !empty($productDescription) ? $productDescription : []
+            "product_description" => !empty($productDescription) ? $productDescription : [],
+            "user" => !empty($user) && is_object($user) ? $user->toArray() : []
         ];
+        // dd($data, $user);
         return view('orders.add_to_cart', $data);
     }
 
@@ -361,6 +363,7 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         dd($request->all());
+        // $this->paymentProcess($request);
     }
 
     public function fail(Request $request)

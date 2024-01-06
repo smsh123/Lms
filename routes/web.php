@@ -43,9 +43,9 @@ Route::post('/orders/update', 'OrderController@update');
 Route::post('/apply-coupon/{coupon}', 'OrderController@applyCoupon');
 Route::any('/make-payment', 'OrderController@paymentProcess');
 // Route::get('/razorpay/create-order', 'RazorpayController@initiatePayment');
-Route::get('/razorpay/initiate-payment', 'RazorpayController@initiatePayment');
-Route::post('/order/success', 'OrderController@success');
-Route::post('/order/fail', 'OrderController@fail');
+Route::any('/razorpay/initiate-payment', 'RazorpayController@initiatePayment');
+Route::any('/order/success', 'OrderController@success')->name('order.success');
+Route::any('/order/fail', 'OrderController@fail')->name('order.fail');
 Route::post('/razorpay/payment-callback', 'RazorpayController@paymentCallback');
 
 /* All cms routes */

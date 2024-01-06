@@ -10,7 +10,12 @@ class BlockController extends Controller
 {
     //
     public function index(Request $request) 
-    {
+    {    
+        
+        if(!User::hasPermissions(["View Content Block"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
+
         $blocks = Block::paginateWithDefault(10);
         return view('cms.block.index')->with('blocks',$blocks);
     }
@@ -19,7 +24,10 @@ class BlockController extends Controller
         if(!User::hasPermissions(["Add Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.block.add');
+        $data = [
+            'page_group' => 'block'
+        ];
+        return view('cms.block.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -27,8 +35,10 @@ class BlockController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $blocks = Block::find($id);
+
         $data=[
-            'blocks' => !empty($blocks) ? $blocks : []
+            'blocks' => !empty($blocks) ? $blocks : [],
+            'page_group' => 'block'
         ];
         // dd($course);
         return view('cms.block.edit', $data);
@@ -45,6 +55,10 @@ class BlockController extends Controller
         $title = $request->input('title');
         $link =  $request->input('link');
         $icon = $request->input('icon');
+        $short_description = $request->input('short_description');
+        $long_description = $request->input('long_description');
+        $extra_info = $request->input('extra_info');
+        $image = $request->input('image');
         $objects = [];
         if (count($title) == count($link) && count($link) == count($icon)) {
             $count = count($title);
@@ -53,6 +67,10 @@ class BlockController extends Controller
                 $object->title = $title[$i];
                 $object->link = $link[$i];
                 $object->icon = $icon[$i];
+                $object->short_description = $short_description[$i];
+                $object->long_description = $long_description[$i];
+                $object->extra_info = $extra_info[$i];
+                $object->image = $image[$i];
                 $objects[] = $object;
             }
         }
@@ -77,6 +95,10 @@ class BlockController extends Controller
         $title = $request->input('title');
         $link =  $request->input('link');
         $icon = $request->input('icon');
+        $short_description = $request->input('short_description');
+        $long_description = $request->input('long_description');
+        $extra_info = $request->input('extra_info');
+        $image = $request->input('image');
         $objects = [];
         if (count($title) == count($link) && count($link) == count($icon)) {
             $count = count($title);
@@ -85,6 +107,10 @@ class BlockController extends Controller
                 $object->title = $title[$i];
                 $object->link = $link[$i];
                 $object->icon = $icon[$i];
+                $object->short_description = $short_description[$i];
+                $object->long_description = $long_description[$i];
+                $object->extra_info = $extra_info[$i];
+                $object->image = $image[$i];
                 $objects[] = $object;
             }
         }

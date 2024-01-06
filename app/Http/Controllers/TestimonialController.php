@@ -10,7 +10,9 @@ class TestimonialController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Testimonial"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $testimonials =Testimonial::paginateWithDefault(10);
         $users = User::all();
         return view('cms.testimonial.index')->with('testimonials',$testimonials,'users',!empty($users) ? $users : []);
@@ -20,7 +22,11 @@ class TestimonialController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $users = User::all();
-        return view('cms.testimonial.add')->with('users',!empty($users) ? $users : []);
+        $data = [
+            'page_group' => 'testimonial',
+            'users'=> !empty($users) ? $users : [],
+        ];
+        return view('cms.testimonial.add',$data);
     }
     public function store(Request $request)
     {
@@ -58,7 +64,8 @@ class TestimonialController extends Controller
         $users = User::all();
         $data = [
             "testimonial" => $testimonials,
-            "users" => !empty($users) ? $users : []
+            "users" => !empty($users) ? $users : [],
+            'page_group' => 'testimonial',
         ];
         return view('cms.testimonial.edit',$data);
     }

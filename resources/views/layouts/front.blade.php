@@ -5,26 +5,74 @@
     <link data-n-head="ssr" rel="shortcut icon" type="image/x-icon" href="/assets/image/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
+    @php
+      $base_url = "https://$_SERVER[HTTP_HOST]";
+    @endphp
     @if(!empty($page_type) && $page_type == 'course-page' )
       <title>{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($meta_keywords) ? $meta_keywords : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <meta property="og:image" content="{{ $base_url }}/assets/image/logo.png">
+      <meta property="og:image:width" content="300">
+      <meta property="og:image:height" content="300">
+      <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:headline" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}">
+      <meta name="twitter:description" content="t={{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:image" content="{{ $base_url }}/assets/image/logo.png">
     @elseif (!empty($page_type) && $page_type == 'course-details-page')
       <title>{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($CourseDescription['meta_keywords']) ? $CourseDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <meta property="og:image" content="{{ !empty($CourseDescription['thumbnail_image']) ? $base_url.$CourseDescription['thumbnail_image'] : $base_url.'/assets/image/logo.png'}}">
+      <meta property="og:image:width" content="300">
+      <meta property="og:image:height" content="300">
+      <meta property="og:title" content="{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}" />
+      <meta property="og:headline" content="{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}" />
+      <meta property="og:description" content="{{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:title" content="{{ !empty($CourseDescription['meta_title']) ? $CourseDescription['meta_title'] : 'Smart Online Learning'}}">
+      <meta name="twitter:description" content="t={{ !empty($CourseDescription['meta_description']) ? $CourseDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:image" content="{{ !empty($CourseDescription['thumbnail_image']) ? $base_url.$CourseDescription['thumbnail_image'] : $base_url.'/assets/image/logo.png'}}">
     @elseif (!empty($page_type) && $page_type == 'blog-page')
       <title>{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($meta_keywords) ? $meta_keywords : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <meta property="og:image" content="{{ $base_url }}/assets/image/logo.png">
+      <meta property="og:image:width" content="300">
+      <meta property="og:image:height" content="300">
+      <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:headline" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}">
+      <meta name="twitter:description" content="t={{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:image" content="{{ $base_url }}/assets/image/logo.png">
     @elseif (!empty($page_type) && $page_type == 'blog-details-page')
       <title>{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}</title>
       <meta name="description" content="{{ !empty($BlogDescription['meta_description']) ? $BlogDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}">
       <meta name="keywords" content="{{ !empty($BlogDescription['meta_keywords']) ? $BlogDescription['meta_keywords'] : 'Aryabhatt Classes, Online Smart Learning, Online Classes' }}">
+      <meta property="og:image" content="{{ !empty($BlogDescription['thumbnail_image']) ? $base_url.$BlogDescription['thumbnail_image'] : $base_url.'/assets/image/logo.png'}}">
+      <meta property="og:image:width" content="300">
+      <meta property="og:image:height" content="300">
+      <meta property="og:title" content="{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}" />
+      <meta property="og:headline" content="{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}" />
+      <meta property="og:description" content="{{ !empty($BlogDescription['meta_description']) ? $BlogDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:title" content="{{ !empty($BlogDescription['meta_title']) ? $BlogDescription['meta_title'] : 'Smart Online Learning'}}">
+      <meta name="twitter:description" content="t={{ !empty($BlogDescription['meta_description']) ? $BlogDescription['meta_description'] : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:image" content="{{ !empty($BlogDescription['thumbnail_image']) ? $base_url.$BlogDescription['thumbnail_image'] : $base_url.'/assets/image/logo.png'}}">
     @else
       <title>ARYABHATT Classes - Click To Success</title>
       <meta name="description" content="Join Our Online Classes for Smart Online Learning Experience'">
       <meta name="keywords" content="Aryabhatt Classes, Online Smart Learning, Online Classes">
+      <meta property="og:image" content="{{ $base_url }}/assets/image/logo.png">
+      <meta property="og:image:width" content="300">
+      <meta property="og:image:height" content="300">
+      <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:headline" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}" />
+      <meta property="og:description" content="{{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:title" content="{{ !empty($meta_title) ? $meta_title : 'Smart Online Learning'}}">
+      <meta name="twitter:description" content="t={{ !empty($meta_description) ? $meta_description : 'Join Our Online Classes for Smart Online Learning Experience'}}" />
+      <meta name="twitter:image" content="{{ $base_url }}/assets/image/logo.png">
     @endif
      <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">

@@ -14,6 +14,9 @@ class CourseFaqMappingController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Mapping"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         //$modules = Module::all();
         $mappings = CourseFaqMapping::paginateWithDefault(10);
         return view('cms.course_faq_mapping.index')->with('mappings',$mappings);
@@ -27,7 +30,8 @@ class CourseFaqMappingController extends Controller
         $courses = Course::all();
         $data=[
             "courses" => !empty($courses) ? $courses : [],
-            "faqs" =>  !empty($faqs) ? $faqs : []
+            "faqs" =>  !empty($faqs) ? $faqs : [],
+            'page_group' => 'mapping'
         ];
         return view('cms.course_faq_mapping.add', $data);
     }
@@ -44,7 +48,8 @@ class CourseFaqMappingController extends Controller
         $data=[
             "courses" => !empty($courses) ? $courses : [],
             "faqs" =>  !empty($faqs) ? $faqs : [],
-            "mappings" =>  !empty($mappings) ? $mappings : []
+            "mappings" =>  !empty($mappings) ? $mappings : [],
+            'page_group' => 'mapping'
         ];
         // dd($course);
         return view('cms.course_faq_mapping.edit', $data);

@@ -14,14 +14,14 @@
       <div class="row form-group">
         <div class="col-lg-4">
           <label class="font-weight-bold">Module Name</label>
-          <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Module Name" value="{{ !empty($module['name']) ? $module['name'] : ''}}" />
+          <input type="text" id="title" class="form-control" name="name" placeholder="Module Name" value="{{ !empty($module['name']) ? $module['name'] : ''}}" />
           @if ($errors->has('name'))
             <p class="text-danger">{{ $errors->first('name') }}</p>
           @endif
         </div>
         <div class="col-lg-4">
           <label class="font-weight-bold">Module Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="Module Slug" value="{{ !empty($module['slug']) ? $module['slug'] : ''}}"  />
+          <input type="text" class="form-control" name="slug" placeholder="Module Slug" value="{{ !empty($module['slug']) ? $module['slug'] : ''}}" readonly  />
           @if ($errors->has('slug'))
             <p class="text-danger">{{ $errors->first('slug') }}</p>
           @endif

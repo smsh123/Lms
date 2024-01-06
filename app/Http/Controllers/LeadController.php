@@ -9,6 +9,9 @@ use App\Models\Leads;
 class LeadController extends Controller
 {
     public function index(Request $request){
+        if(!User::hasPermissions(["View Lead"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $Leads = Leads::paginateWithDefault(10);
         return view('cms.lead.index')->with('leads',$Leads);
     }
@@ -16,8 +19,11 @@ class LeadController extends Controller
         if(!User::hasPermissions(["Add Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        $data = [
+            'page_group' => 'lead'
+        ];
         
-        return view('cms.lead.add');
+        return view('cms.lead.add',$data);
     }
     public function store(Request $request)
     {
@@ -47,8 +53,12 @@ class LeadController extends Controller
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $leads = Leads::find($id);
+        $data = [
+            'page_group' => 'lead',
+            'Lead' => !empty($leads) ? $leads : []
+        ];
         // dd($course);
-        return view('cms.lead.edit')->with('Lead',$leads);
+        return view('cms.lead.edit',$data);
     }
     public function update(Request $request)
     {

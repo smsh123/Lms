@@ -24,9 +24,9 @@
         <div class="py-3 text-center">
           <p class="font-weight-bold">Customer Support Details</p>
           <p class="font-22">Call Us</p>
-          <p class="font-weight-bold font-32">1800 00 1111</p>
+          <p class="font-weight-bold font-32">9319818659</p>
           <p class="font-22">Chat with Us</p>Don't worry you can get in touch with our support team in case your money has been debited or you want to process this order via offline payments.
-          <p class="font-weight-bold font-32">8090 11 2020</p>
+          <p class="font-weight-bold font-32">9319818659</p>
           <p class="font-22">Write Us</p>
           <p class="font-weight-bold font-22">support@aryabhattclasses.com</p>
         </div>

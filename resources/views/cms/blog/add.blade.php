@@ -10,6 +10,19 @@
     @csrf
     <div class="card-body">
       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Category</label>
+          <select class="form-control select_to" name="category">
+            <option>Select</option>
+            @if(!empty($categories))
+              @foreach ($categories as $key => $category )
+                <option value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Blog Name</label>
           <input type="text" id="title" onkeyup="CreateAndSetSlug()" class="form-control" name="name" placeholder="Blog Name" />
@@ -61,7 +74,6 @@
         <div class="col-lg-6">
           <label class="font-weight-bold">Author</label>
           <select class="form-control" name="author">
-            <option>Select Author</option>
             @if(!empty($users))
               @foreach ($users as $user)
                 <option value="{{ !empty($user['id']) ? $user['id'] : ''}}">{{ !empty($user['name']) ? $user['name'] : ''}}</option>

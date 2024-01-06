@@ -11,6 +11,9 @@ class FaqController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View FAQ"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $faqs = Faq::paginateWithDefault(10);
         return view('cms.faq.index')->with('faqs',$faqs);
     }
@@ -19,7 +22,10 @@ class FaqController extends Controller
         if(!User::hasPermissions(["Add Faq"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.faq.add');
+        $data = [
+            'page_group' => 'faq'
+        ];
+        return view('cms.faq.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -28,7 +34,8 @@ class FaqController extends Controller
         }
         $faqs = Faq::find($id);
         $data=[
-            'faqs' => !empty($faqs) ? $faqs : []
+            'faqs' => !empty($faqs) ? $faqs : [],
+            'page_group' => 'faq'
         ];
         // dd($course);
         return view('cms.faq.edit', $data);

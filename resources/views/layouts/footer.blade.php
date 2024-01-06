@@ -1,4 +1,4 @@
- <div class="bg-theme-contrast py-5 text-white position-relative py-5 wave_border_top_white footer">
+ <div class="bg-theme-contrast py-5 text-white position-relative">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -14,8 +14,8 @@
     <div class="d-flex row justify-content-between">
       <div class="col-12 col-lg-4">
         <h3 class="font-22">Aryabhatt Classes</h3>
-        <p>C-21, Sector-59, Noida - 201301</p>
-        <p>+91 9112 28 9890</p>
+        <p>H 89 Sector 63 Noida</p>
+        <p>+91 9319818659</p>
         <p><a href="mailto:support@aryabhattclass.com" class="text-white">support@aryabhattclass.com</a>
       </div>
       <div class="col-12 col-lg-4">

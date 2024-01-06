@@ -14,6 +14,9 @@ class CourseTestimonialMappingController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Mapping"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         //$modules = Module::all();
         $mappings = CourseTestimonialMapping::paginateWithDefault(10);
         return view('cms.course_testimonial_mapping.index')->with('mappings',$mappings);
@@ -27,7 +30,8 @@ class CourseTestimonialMappingController extends Controller
         $courses = Course::all();
         $data=[
             "courses" => !empty($courses) ? $courses : [],
-            "testimonials" =>  !empty($testimonials) ? $testimonials : []
+            "testimonials" =>  !empty($testimonials) ? $testimonials : [],
+            'page_group' => 'mapping'
         ];
         return view('cms.course_testimonial_mapping.add', $data);
     }
@@ -42,7 +46,8 @@ class CourseTestimonialMappingController extends Controller
         $data=[
             "courses" => !empty($courses) ? $courses : [],
             "testimonials" =>  !empty($testimonials) ? $testimonials : [],
-            "mappings" =>  !empty($mappings) ? $mappings : []
+            "mappings" =>  !empty($mappings) ? $mappings : [],
+            'page_group' => 'mapping'
         ];
         // dd($course);
         return view('cms.course_testimonial_mapping.edit', $data);

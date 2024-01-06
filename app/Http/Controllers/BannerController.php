@@ -29,6 +29,9 @@ class BannerController extends Controller
         return redirect()->back()->with('msg', 'Banner Added Successfully!');
     }
     public function listBanners(Request $request){
+        if(!User::hasPermissions(["View Banner"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $banners = Banner::paginateWithDefault(10);
         $data = [
             'banners'=>!empty($banners) ? $banners : []
@@ -39,7 +42,10 @@ class BannerController extends Controller
         if(!User::hasPermissions(["Add Banner"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.banners.add');
+        $data = [
+            'page_group' => 'coupon'
+        ];
+        return view('cms.banners.add',$data);
     }
 
     public function destroy($id)

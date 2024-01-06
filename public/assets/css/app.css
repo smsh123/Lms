@@ -89,7 +89,7 @@
     font-weight:bold;
     }
     .brand-logo{
-    height:85px;
+    height:70px;
     width:auto;
     }
     .btn-theme{
@@ -152,6 +152,7 @@
         transition:all 0.5s;
       }
     @media only screen and (max-width: 768px) {
+    .module-header{display:block !important; opacity:1 !important;}
     .font-32{font-size:24px !important;} .font-22 {font-size:18px !important;}.font-16d-18m{font-size:18px !important; }
     .login_window{
         top: auto;

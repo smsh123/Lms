@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\CourseModuleMapping;
+use App\Models\Module;
+use App\Models\Category;
+use App\Models\Tool;
 
 class CourseController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Course"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $courses = Course::paginateWithDefault(10);
         return view('cms.courses.index')->with('courses',$courses);
     }
@@ -18,9 +24,14 @@ class CourseController extends Controller
         if(!User::hasPermissions(["Add Course"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        $categories = Category::all();
+        $tools = Tool::all();
         $mentors = User::getUserByRole('Teacher');
         $data = [
             'mentors' => !empty($mentors) ? $mentors : [], 
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : [],
+            'page_group' => 'course'
         ];
         
         return view('cms.courses.add',$data);
@@ -37,13 +48,14 @@ class CourseController extends Controller
         ]);
     
         $course = new Course;
+        $course->category = $request->input('category');
         $course->name = $request->input('name');
         $course->meta_title = $request->input('meta_title');
         $course->meta_keywords = $request->input('meta_keywords');
         $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
         $course->slug = $request->input('slug');
-        $course->batch_start_date = $request->input('batch_start_date');
+        $course->batch_start_date = $request->input('start_date');
         $course->duration = $request->input('duration');
         $course->class_mode = $request->input('class_mode');
         $course->description = $request->input('description');
@@ -57,10 +69,12 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
-        $course->tags = $request->input('tags');
+        $course->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : '';
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');
+        $course->tools = $request->input('tools');
+        $course->skills = $request->input('skills');
     
         $course->save();
     
@@ -80,8 +94,33 @@ class CourseController extends Controller
     public function courseDetails(Request $request, $slug){
         $courseDescription = [];
         $courseDescription = Course::getCourseBySlug($slug);
+        if(!empty($courseDescription)){
+            $courseDescription = $courseDescription[0];
+        }
+        if(!empty($courseDescription)){
+            $mentors = !empty($courseDescription['mentors']) ? $courseDescription['mentors'] : [];
+            if(!empty($mentors)){
+                foreach($mentors as $key => $mentor){
+                    $id = !empty($mentor) ? $mentor : '';
+                    $mentor_details = User::where('_id',$id)->first();
+                    $mentors[$key] = (!empty($mentor_details) && is_object($mentor_details) ) ? $mentor_details->toArray() : [];
+                }
+            }
+
+            $course_modules = CourseModuleMapping::getModulesByCourseId($courseDescription['_id']);
+            $course_modules = !empty($course_modules) ? $course_modules[0] : [];
+            if(!empty($course_modules['modules'])){
+                foreach($course_modules['modules'] as $key => $module){
+                    $id = !empty($module['moduleId']) ? $module['moduleId'] : ''; 
+                    $module = Module::find($id);
+                    $modules[$key] = (!empty($module) && is_object($module)) ? $module->toArray() : []; 
+                }
+            }
+        }
         $data = [
-            'CourseDescription' => !empty($courseDescription) ? $courseDescription[0] : [],
+            'CourseDescription' => !empty($courseDescription) ? $courseDescription : [],
+            'teachers' => !empty($mentors) ? $mentors : [],
+            'modules' => !empty($modules) ? $modules : [],
             'page_type' => 'course-details-page' 
         ];
         return view('course.details',$data);
@@ -93,10 +132,15 @@ class CourseController extends Controller
         }
        
         $course = Course::find($id);
+        $categories = Category::all();
+        $tools = Tool::all();
         $mentors = User::getUserByRole('Teacher');
         $data = [
             'course' => !empty($course) ? $course : [],
-            'mentors' => !empty($mentors) ? $mentors : []
+            'mentors' => !empty($mentors) ? $mentors : [],
+            'categories'=>!empty($categories) && is_object($categories) ? $categories->toArray() : [],
+            'tools'=>!empty($tools) && is_object($tools) ? $tools->toArray() : [],
+            'page_group' => 'course'
         ];
         // dd($course);
         return view('cms.courses.edit',$data);
@@ -113,12 +157,14 @@ class CourseController extends Controller
         ]);
         $id = $request->input("id",'');
         $course = Course::find($id);
+        
+        $course->category = $request->input('category');
         $course->name = $request->input('name');
         $course->meta_title = $request->input('meta_title');
         $course->meta_keywords = $request->input('meta_keywords');
         $course->meta_description = $request->input('meta_description');
         $course->name_hindi = $request->input('name_hindi');
-        $course->batch_start_date = $request->input('batch_start_date');
+        $course->batch_start_date = $request->input('start_date');
         $course->duration = $request->input('duration');
         $course->class_mode = $request->input('class_mode');
         $course->description = $request->input('description');
@@ -132,11 +178,12 @@ class CourseController extends Controller
         $course->offer_details = $request->input('offer_details');
         $course->thumbnail_image = $request->input('thumbnail_image');
         $course->banner_image = $request->input('banner_image');
-        $course->tags = $request->input('tags');
+        $course->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : [];
         $course->mentors = $request->input('mentors');
         $course->course_type = $request->input('course_type');
         $course->highlights = $request->input('highlights');
-        
+        $course->tools = $request->input('tools');
+        $course->skills = $request->input('skills');
     
         $course->save();
     

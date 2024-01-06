@@ -38,6 +38,8 @@ class UserController extends Controller
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
+        $user->instagram = !empty($request->instagram) ? $request->instagram : '';
+        $user->other_profile = !empty($request->other_profile) ? $request->other_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
         $user->permissions = !empty($request->permissions) ? $request->permissions : [];
@@ -54,7 +56,8 @@ class UserController extends Controller
         $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "users" => !empty($users) ? $users : [],
-            "roles" => !empty($roles) ? $roles : []
+            "roles" => !empty($roles) ? $roles : [],
+            'page_group' => 'user'
         ];
         return view('cms.users.edit', $data);
     }
@@ -87,6 +90,8 @@ class UserController extends Controller
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
         $user->youtube_profile = !empty($request->youtube_profile) ? $request->youtube_profile : '';
+        $user->instagram = !empty($request->instagram) ? $request->instagram : '';
+        $user->other_profile = !empty($request->other_profile) ? $request->other_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
         $user->permissions = !empty($request->permissions) ? $request->permissions : [];
@@ -122,6 +127,9 @@ class UserController extends Controller
     }
     public function listUsers(Request $request)
     {
+        if(!User::hasPermissions(["View User"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         // $users = User::all();
         $users = User::paginateWithDefault(10);
         $data = [
@@ -138,6 +146,7 @@ class UserController extends Controller
         $roles = is_object($roles) ? $roles->toArray() : $roles;
         $data = [
             "roles" => !empty($roles) ? $roles : [],
+            'page_group' => 'user'
         ];
         return view('cms.users.add',$data);
     }

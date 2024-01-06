@@ -11,7 +11,9 @@ class CouponController extends Controller
 {
     //
     public function index(Request $request){
-
+        if(!User::hasPermissions(["View Coupon"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $coupons =Coupon::paginateWithDefault(10);
         return view('cms.coupons.index')->with('coupons',$coupons);
       }
@@ -21,7 +23,8 @@ class CouponController extends Controller
         }
         $courses = Course::all();
         $data = [
-            'courses' => !empty($courses) ? $courses : [] 
+            'courses' => !empty($courses) ? $courses : [] ,
+            'page_group' => 'coupon'
         ];
         return view('cms.coupons.add',$data);
     }
@@ -64,7 +67,8 @@ class CouponController extends Controller
         // dd($coupons);
         $data = [
             "coupons" => $coupons,
-            "courses" => !empty($courses) ? $courses : []
+            "courses" => !empty($courses) ? $courses : [],
+            'page_group' => 'coupon'
         ];
         return view('cms.coupons.edit',$data);
     }

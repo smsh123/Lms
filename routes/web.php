@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 /* All front Url */
 
 Route::get('/', 'HomeController@index');
+Route::post('/leads/store', 'LeadController@store');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
@@ -26,6 +27,7 @@ Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');
 Route::get('/course/{slug}', 'CourseController@courseDetails');
 Route::get('/blogs', 'BlogController@listing');
+Route::get('/tags/{tag}', 'TagController@index');
 Route::get('/blogs/{slug}', 'BlogController@blogDetails');
 Route::get('/success-stories', 'TestimonialController@listing');
 Route::get('/pages', 'PageController@listing')->name('page.listing');
@@ -51,6 +53,24 @@ Route::post('/razorpay/payment-callback', 'RazorpayController@paymentCallback');
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/', 'DashboardController@index');
+    Route::get('/brands', 'BrandController@index')->name('brands.index');
+    Route::get('/brands/add', 'BrandController@add')->name('brands.add');
+    Route::post('/brands/store', 'BrandController@store')->name('brands.store');
+    Route::get('/brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
+    Route::get('/brands/delete/{id}', 'BrandController@destroy')->name('brands.delete');
+    Route::post('/brands/update', 'BrandController@update')->name('brands.update');
+    Route::get('/categories', 'CategoryController@index')->name('categories.index');
+    Route::get('/categories/add', 'CategoryController@add')->name('categories.add');
+    Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
+    Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories.edit');
+    Route::get('/categories/delete/{id}', 'CategoryController@destroy')->name('categories.delete');
+    Route::post('/categories/update', 'CategoryController@update')->name('categories.update');
+    Route::get('/tools', 'ToolsController@index')->name('tools.index');
+    Route::get('/tools/add', 'ToolsController@add')->name('tools.add');
+    Route::post('/tools/store', 'ToolsController@store')->name('tools.store');
+    Route::get('/tools/edit/{id}', 'ToolsController@edit')->name('tools.edit');
+    Route::get('/tools/delete/{id}', 'ToolsController@destroy')->name('tools.delete');
+    Route::post('/tools/update', 'ToolsController@update')->name('tools.update');
     Route::get('/courses', 'CourseController@index')->name('courses.index');
     Route::get('/courses/add', 'CourseController@add')->name('courses.add');
     Route::post('/courses/store', 'CourseController@store')->name('courses.store');

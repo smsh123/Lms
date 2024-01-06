@@ -8,6 +8,19 @@
     @csrf
     <div class="card-body">
       <div class="row form-group">
+        <div class="col-lg-12">
+          <label class="font-weight-bold">Category</label>
+          <select class="form-control select_to" name="category">
+            <option>Select</option>
+            @if(!empty($categories))
+              @foreach ($categories as $key => $category )
+                <option @if(!empty($course->category) && $course->category == $category['slug']) selected @endif value="{{ !empty($category['slug']) ? $category['slug'] : '' }}">{{ !empty($category['name']) ? $category['name'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Name</label>
           <input type="text" class="form-control" name="name" placeholder="Course Name" value="{{$course->name}}"/>
@@ -27,14 +40,14 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Meta Title</label>
-          <input type="text" class="form-control" name="meta_title" value="{{ !empty($course['meta_title']) ? $course['meta_title'] : '' }}" placeholder="Meta Title" />
+          <input type="text" class="form-control" name="meta_title" value="{{ !empty($course->meta_title) ? $course->meta_title : '' }}" placeholder="Meta Title" />
           @if ($errors->has('meta_title'))
             <p class="text-danger">{{ $errors->first('meta_title') }}</p>
           @endif
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Meta Keywords</label>
-          <input type="text" class="form-control" data-role="tagsinput" name="meta_keywords" value="{{ !empty($course['meta_keywords']) ? $course['meta_keywords'] : '' }}" placeholder="Keywords" />
+          <input type="text" class="form-control" data-role="tagsinput" name="meta_keywords" value="{{ !empty($course->meta_keywords) ? $course->meta_keywords : '' }}" placeholder="Keywords" />
           @if ($errors->has('meta_keywords'))
           <p class="text-danger">{{ $errors->first('meta_keywords') }}</p>
         @endif
@@ -43,7 +56,7 @@
       <div class="row form-group">
         <div class="col-lg-12">
           <label class="font-weight-bold">Meta Description</label>
-          <textarea class="form-control" name="meta_description">{{ !empty($course['meta_description']) ? $course['meta_description'] : '' }}</textarea>
+          <textarea class="form-control" name="meta_description">{{ !empty($course->meta_description) ? $course->meta_description : '' }}</textarea>
           @if ($errors->has('meta_description'))
             <p class="text-danger">{{ $errors->first('meta_description') }}</p>
           @endif
@@ -52,7 +65,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Course Slug</label>
-          <input type="text" class="form-control" name="slug" placeholder="course slug" value="{{$course->slug}}" />
+          <input type="text" class="form-control" name="slug" placeholder="course slug" value="{{$course->slug}}" readonly />
           @if ($errors->has('slug'))
           <p class="text-danger">{{ $errors->first('slug') }}</p>
         @endif
@@ -73,6 +86,7 @@
             <option>Select</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="live") selected @endif value="live">Live</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="recorded") selected @endif value="recorded">Recorded</option>
+            <option @if(!empty($course->course_type) && $course->course_type =="live_and_recorded") selected @endif  value="live_and_recorded">Live & Recorded</option>
             <option @if(!empty($course->class_mode) && $course->class_mode =="offline") selected @endif value="offline">Offline</option>
           </select>
         </div>
@@ -100,9 +114,29 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Tools</label>
+          <select class="form-control select_to" name="tools[]" multiple="multiple">
+            <option>Select</option>
+            @if(!empty($tools))
+              @foreach ($tools as $key => $tool )
+                <option @if(!empty($course->tools) && in_array($tool['slug'],$course->tools)) selected @endif value="{{ !empty($tool['slug']) ? $tool['slug'] : '' }}">{{ !empty($tool['name']) ? $tool['name'] : '' }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+         <div class="col-lg-6">
+          <label class="font-weight-bold">Skills</label>
+          <input type="text" class="form-control" data-role="tagsinput" value="{{!empty($course->skills) ? $course->skills : ''}}" name="skills" placeholder="Skills" />
+          @if ($errors->has('skills'))
+          <p class="text-danger">{{ $errors->first('skills') }}</p>
+        @endif
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-12">
           <label class="font-weight-bold">Course Description</label>
-          <textarea class="form-control txteditor" rows="6" placeholder="Course Description ..." name="description">{{$course->description}}</textarea>
+          <textarea class="form-control txteditor" rows="6" placeholder="Course Description" name="description">{{$course->description}}</textarea>
           @if ($errors->has('description'))
           <p class="text-danger">{{ $errors->first('description') }}</p>
         @endif
@@ -117,7 +151,14 @@
        <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Tags</label>
-          <input type="text" value="{{!empty($course->tags) ? $course->tags : ''}}" data-role="tagsinput" class="form-control" name="tags" />
+          @php
+            if(!empty($course->tags) && is_array($course->tags)){
+              $tags = !empty($course->tags) ? implode(',',$course->tags) : '';
+            }elseif(!empty($course->tags)){
+              $tags = $course->tags;
+            }
+          @endphp
+          <input type="text" value="{{ $tags }}" data-role="tagsinput" class="form-control" name="tags" />
         </div>
         <div class="col-lg-6">
           <label class="font-weight-bold">Highlights</label>
@@ -207,11 +248,11 @@
               <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage','form-image-input','image-preview');" type="button" id="button-addon2">Upload</button>
             </div>
           </div>
-          <input id="form-image-input" type="hidden" class="form-control" name="thumbnail_image" />
+          <input id="form-image-input" type="hidden" value="{{ !empty($course->thumbnail_image) ? $course->thumbnail_image : '' }}" class="form-control" name="thumbnail_image" />
 
           <div class="w-100 mw-320">
             <div class="ratio-image image_16-9">
-              <img id="image-preview" src="{{ !empty($course['thumbnail_image']) ? $course['thumbnail_image'] : '' }}" />
+              <img id="image-preview" src="{{ !empty($course->thumbnail_image) ? $course->thumbnail_image : '' }}" />
             </div>
           </div>
         </div>
@@ -223,10 +264,10 @@
               <button class="btn btn-outline-secondary" onclick="CustomFunctions.uploadImage('inputImage_1','form-image-input_1','image-preview_1');" type="button" id="button-addon2">Upload</button>
             </div>
           </div>
-          <input id="form-image-input_1" type="hidden" class="form-control" name="banner_image" />
+          <input id="form-image-input_1" type="hidden" value="{{ !empty($course->banner_image) ? $course->banner_image : '' }}" class="form-control" name="banner_image" />
           <div class="w-100 mw-320">
             <div class="ratio-image image_16-9">
-              <img id="image-preview_1" src="{{ !empty($course['banner_image']) ? $course['banner_image'] : '' }}" />
+              <img id="image-preview_1" src="{{ !empty($course->banner_image) ? $course->banner_image : '' }}" />
             </div>
           </div>
         </div>

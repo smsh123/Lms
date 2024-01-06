@@ -11,6 +11,9 @@ class ModuleController extends Controller
     //
     public function index(Request $request) 
     {
+        if(!User::hasPermissions(["View Module"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $modules = Module::paginateWithDefault(10);
         return view('cms.module.index')->with('modules',$modules);
     }
@@ -19,7 +22,10 @@ class ModuleController extends Controller
         if(!User::hasPermissions(["Add Module"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        return view('cms.module.add');
+        $data = [
+            'page_group' => 'module'
+        ];
+        return view('cms.module.add',$data);
     }
 
     public function edit(Request $request, $id) {
@@ -28,7 +34,8 @@ class ModuleController extends Controller
         }
         $module = Module::find($id);
         $data=[
-            'module' => !empty($module) ? $module : []
+            'module' => !empty($module) ? $module : [],
+            'page_group' => 'module'
         ];
         // dd($course);
         return view('cms.module.edit', $data);
@@ -88,7 +95,6 @@ class ModuleController extends Controller
         $id = $request->input("id");
         $module = Module::find($id);
         $module->name = $request->input('name');
-        $module->slug = $request->input('slug');
         $module->status = $request->input('status');
         $module->items = $objects;
     

@@ -4,8 +4,8 @@
       <p class="font-14">Learn from India's Smart Teachers</p>
     </div>
     <div class="card-body">
-      <form method="post" action="/cms/leads/store">
-      @csrf
+      <form method="post" action="/leads/store">
+        @csrf
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Your Name" name="name" />
           @if ($errors->has('name'))
@@ -27,8 +27,11 @@
         <div class="form-group">
           <select class="form-control" name="course_interested">
             <option value="0">Select Course</option>
-            <option value="Course 1">Course 1</option>
-            <option value="Course 2">Course 2</option>
+            @if(!empty($courses))
+              @foreach ($courses as $course)
+                <option value="{{ !empty($course['name']) ? $course['name'].'(' : '' }}{{ !empty($course['slug']) ? $course['slug'].')' : '' }}">{{ !empty($course['name']) ? $course['name'] : '' }}</option>
+              @endforeach
+            @endif
           </select>
           @if ($errors->has('course_interested'))
             <p class="text-danger">{{ $errors->first('course_interested') }}</p>

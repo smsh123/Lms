@@ -14,6 +14,10 @@ class SchedulingController extends Controller
     //
     public function index(Request $request){
 
+        if(!User::hasPermissions(["View Schedule"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
+
         $schedules = Schedule::paginateWithDefault(10);
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }
@@ -25,7 +29,8 @@ class SchedulingController extends Controller
         $teachers = User::getUserByRole('Teacher');
         $data = [
             "courses"=>!empty($courses) ? $courses : [],
-            "teachers"=>!empty($teachers) ? $teachers : []   
+            "teachers"=>!empty($teachers) ? $teachers : [],
+            'page_group' => 'schedule'
         ];
         return view('cms.scheduling.add',$data);
     }
@@ -72,6 +77,7 @@ class SchedulingController extends Controller
             "schedule" => !empty($schedules) ? $schedules : [],
             "courses" => !empty($courses) ? $courses : [],
             "teachers" => !empty($teachers) ? $teachers : [],
+            'page_group' => 'schedule'
         ];
         // dd($course);
         return view('cms.scheduling.edit',$data);

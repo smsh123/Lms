@@ -10,13 +10,14 @@ use App\Models\Course;
 use App\Helpers\SiteHelper;
 use App\Models\Coupon;
 use App\Models\Subscription;
+use App\Models\Leads;
 
 class OrderController extends Controller
 {
     //
     public function index(Request $request)
     {
-        if (!User::hasPermissions(["Edit Order"])) {
+        if (!User::hasPermissions(["View Order"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         // ci cd test
@@ -86,6 +87,16 @@ class OrderController extends Controller
 
         $order->save();
 
+        $lead = new Leads;
+        $lead->name = !empty($request->input('user_full_name')) ? $request->input('user_full_name') : '';
+        $lead->email = !empty($request->input('user_mobile')) ? (int) $request->input('user_mobile') : '';
+        $lead->mobile = !empty($request->input('user_email')) ? $request->input('user_email') : '';
+        $lead->course_interested = !empty($productDescription) && !empty($productDescription['name']) ? $productDescription['name'] : $request->input('product_name');
+        $lead->synopsis = !empty($request->input('synopsis')) ? $request->input('synopsis') : '';
+        $lead->status = !empty($request->input('status')) ? $request->input('status') : 'Active';
+        $lead->save();
+    
+
         $savedOrder = Order::getOrderByUID($order->uid);
         $data = [
             'saved_order' => !empty($savedOrder) ? $savedOrder[0] : [],
@@ -129,8 +140,12 @@ class OrderController extends Controller
         }
         $order = Order::find($id);
         $order = is_object($order) ? $order->toArray() : $order;
+        $data = [
+            'orders' => $order,
+            'page_group' => 'module'
+        ];
         // dd($order);
-        return view('cms.orders.edit')->with('orders', $order);
+        return view('cms.orders.edit',$data);
     }
     public function update(Request $request)
     {

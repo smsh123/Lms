@@ -9,6 +9,9 @@ use App\Models\Page;
 class PageController extends Controller
 {
     public function index(Request $request){
+        if(!User::hasPermissions(["View Page"])){
+            return redirect()->back()->with('error', 'Permission Denied');
+        }
         $Pages = Page::paginateWithDefault(10);
         return view('cms.pages.index')->with('pages',$Pages);
     }
@@ -18,7 +21,8 @@ class PageController extends Controller
         }
         $users = User::all();
         $data=[
-            'users' => !empty($users) ? $users : []
+            'users' => !empty($users) ? $users : [],
+            'page_group' => 'user'
         ];
         return view('cms.pages.add',$data);
     }
@@ -75,7 +79,8 @@ class PageController extends Controller
         $users = User::all();
         $data=[
             'users' => !empty($users) ? $users : [],
-            'pages' => !empty($pages) ? $pages : []
+            'pages' => !empty($pages) ? $pages : [],
+            'page_group' => 'user'
         ];
         // dd($course);
         return view('cms.pages.edit', $data);
@@ -95,7 +100,6 @@ class PageController extends Controller
         $page->meta_title = $request->input('meta_title');
         $page->meta_keywords = $request->input('meta_keywords');
         $page->meta_description = $request->input('meta_description');
-        $page->slug = $request->input('slug');
         $page->description = $request->input('description');
         $page->synopsis = $request->input('synopsis');
         $page->author = $request->input('author');

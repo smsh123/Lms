@@ -51,18 +51,18 @@ class User extends Authenticatable
             return $result;
         }
     }
-    public static function searchByFields($fields = [])
+    public static function searchByFields($fields = [], $limit = 10)
     {
         $result = [];
         if (!empty($fields)) {
             $query = self::query();
 
             foreach ($fields as $field => $value) {
-                $query->where($field, $value);
+                $query->where($field, 'regex', "/$value/i");
             }
-            $result = $query->get();
+            $result = $query->paginate($limit);
         }
-        return is_object($result) ? $result->toArray() : $result;
+        return $result;
     }
     public static function paginateWithDefault($limit = 10, $columns = ['*'])
     {

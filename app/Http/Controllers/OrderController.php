@@ -408,6 +408,11 @@ class OrderController extends Controller
 
     public function fail(Request $request)
     {
-        dd($request->all());
+      //  dd($request->all());
+        $data = [
+            "order_details" => !empty($order) ? $order : [],
+            "status" => !empty($request->input('status')) ? $request->input('status') : ''
+        ];
+        return view('orders.failed', $data);
     }
 }

@@ -6,7 +6,7 @@
     @php dd($saved_order); @endphp
    @endif --}}
     <div class="container">
-      @if((!empty($order_details) && !empty($transaction)) || (!empty($order_details) && !empty($subscription)))
+      @if(!empty($order_details) && !empty($subscription))
         <div class="card border-success mb-4 mw-768 mx-auto">
           <div class="card-body text-center">
             <h1 class="font-32 font-weight-bold text-success">Congratulations!</h1>

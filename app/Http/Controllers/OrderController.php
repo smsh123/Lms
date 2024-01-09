@@ -375,10 +375,35 @@ class OrderController extends Controller
         }
     }
 
-    public function success(Request $request)
+    public function success(Request $request, $orderId = '', $status = '')
     {
-        dd($request->all());
-        // $this->paymentProcess($request);
+        $orderId = $request ->input("orderId");
+        $payment_status = $request->input("status");
+        $order = Order::find($orderId);
+
+        $duration = strtotime("+3 Months");
+        $today = strtotime("today");
+        $subscription = new Subscription;
+        $subscription->product_id = !empty($order['product_id']) ? $order['product_id'] : '';
+        $subscription->product_type = !empty($order['product_type']) ? $order['product_type'] : '';
+        $subscription->product_name = !empty($order['product_name']) ? $order['product_name'] : '';
+        $subscription->uid = !empty($order['uid']) ? $order['uid'] : '';
+        $subscription->user_id = !empty($order['user_id']) ? $order['user_id'] : '';
+        $subscription->user_name = !empty($userDetails) && !empty($userDetails['name']) ? $userDetails['name'] : '';
+        $subscription->start_date = date("Y-m-d h:i:sa", $today);
+        $subscription->expiry_date = date("Y-m-d h:i:sa", $duration);
+        $subscription->save();
+
+        $uid = !empty($order['uid']) ? $order['uid'] : '';
+        $subscriptionDetails = Subscription::getSubscriptionByUID($uid);
+
+        $data = [
+            "subscription" => !empty($subscriptionDetails) ? $subscriptionDetails : [],
+            "order_details" => !empty($order) ? $order : []
+        ];
+
+        return view('orders.success', $data);
+        
     }
 
     public function fail(Request $request)

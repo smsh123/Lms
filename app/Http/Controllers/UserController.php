@@ -48,7 +48,7 @@ class UserController extends Controller
     }
     public function edit(Request $request, $id)
     {
-        if(!User::hasPermissions(["Edit User"])){
+        if (!User::hasPermissions(["Edit User"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $users = User::find($id);
@@ -127,11 +127,18 @@ class UserController extends Controller
     }
     public function listUsers(Request $request)
     {
-        if(!User::hasPermissions(["View User"])){
+        if (!User::hasPermissions(["View User"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        // $users = User::all();
-        $users = User::paginateWithDefault(10);
+        if (!empty($request->email)) {
+            $users = User::searchByFields(['email' => $request->email]);
+        } elseif (!empty($request->mobile)) {
+            $users = User::searchByFields(['mobile' => $request->mobile]);
+        } elseif (!empty($request->name)) {
+            $users = User::searchByFields(['name' => $request->name]);
+        } else {
+            $users = User::paginateWithDefault(10);
+        }
         $data = [
             'users' => !empty($users) ? $users : []
         ];
@@ -139,7 +146,7 @@ class UserController extends Controller
     }
     public function addUsers(Request $request)
     {
-        if(!User::hasPermissions(["Add User"])){
+        if (!User::hasPermissions(["Add User"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $roles = Role::all(['name']);
@@ -148,7 +155,7 @@ class UserController extends Controller
             "roles" => !empty($roles) ? $roles : [],
             'page_group' => 'user'
         ];
-        return view('cms.users.add',$data);
+        return view('cms.users.add', $data);
     }
     public function userRolesPermissions(Request $request, $id)
     {
@@ -174,7 +181,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        if(!User::hasPermissions(["Delete User"])){
+        if (!User::hasPermissions(["Delete User"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $user = User::find($id);

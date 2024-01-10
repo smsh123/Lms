@@ -16,23 +16,23 @@
               <div id="cart_step_1" class="card-body row">
                 <div class="form-group col-12">
                   <label class="forn-weight-bold">Full Name</label>
-                  <input id="user_full_name" type="text" name="user_full_name" class="form-control" />
+                  <input id="user_full_name" type="text" name="user_full_name" class="form-control" value="{{@$user['name']}}" />
                 </div>
                 <div class="form-group col-12 col-lg-6">
                   <label class="forn-weight-bold">Mobile</label>
-                  <input id="user_mobile" type="number" name="user_mobile" class="form-control" />
+                  <input id="user_mobile" type="number" name="user_mobile" class="form-control" value="{{@$user['mobile']}}" />
                 </div>
                 <div class="form-group col-12 col-lg-6">
                   <label class="forn-weight-bold">Email</label>
-                  <input id="user_email" type="email" name="user_email" class="form-control" />
+                  <input id="user_email" type="email" name="user_email" class="form-control" value="{{@$user['email']}}" />
                 </div>
                 <div class="form-group col-12 col-lg-6">
                   <label class="forn-weight-bold">State</label>
-                  <input id="state" type="text" name="state" class="form-control" />
+                  <input id="state" type="text" name="state" class="form-control" value="{{@$user['state']}}" />
                 </div>
                 <div class="form-group col-12 col-lg-6">
                   <label class="forn-weight-bold">City</label>
-                  <input id="city" type="text" name="city" class="form-control" />
+                  <input id="city" type="text" name="city" class="form-control"  value="{{@$user['city']}}"/>
                 </div>
                 <div class="form-group col-12">
                   <input id="product_type" type="hidden" name="product_type" value="{{ !empty($product_description['productType']) ? $product_description['productType'] : ''}}" />
@@ -65,7 +65,7 @@
               <input type="hidden" id="saved_order_id" />
             </div>
             <div class="text-center py-3">
-              <form method="post" action="/make-payment">
+              <form method="post" action="/razorpay/initiate-payment">
                 @csrf
                 <input type="hidden" name="payment_method" />
                 <input type="hidden" name="orderId" />
@@ -87,7 +87,7 @@
               </div>
             </div>
             <div class="text-center py-3">
-              <form method="post" action="/make-payment">
+              <form method="post" action="/razorpay/initiate-payment">
                 @csrf
                 <input type="hidden" name="payment_method" />
                 <input type="hidden" name="orderId" />

@@ -54,7 +54,7 @@ class BaseModel extends Eloquent
             $query = self::query();
 
             foreach ($fields as $field => $value) {
-                $query->where($field, $value);
+                $query->where($field, 'regex', "/$value/i");
             }
             $result = $query->get();
         }

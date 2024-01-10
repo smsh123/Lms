@@ -6,23 +6,26 @@
   </div>
   <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>
+    <form action="" method="get">
     <div class="row">
+      @csrf
       <div class="form-group col-lg-4 col-md-6">
-        <label>User Name</label>
-        <input type="text" class="form-control" placeholder="Title of Course" />
+        <label>Name</label>
+        <input type="text" name="name" id="_name" class="form-control" placeholder="Name" />
       </div>
       <div class="form-group col-lg-4 col-md-6">
         <label>Email</label>
-        <input type="email" class="form-control" />
+        <input type="text" name="email" id="_email" class="form-control" />
       </div>
       <div class="form-group col-lg-4 col-md-6">
         <label>Mobile</label>
-        <input type="number" class="form-control" />
+        <input type="number" name="mobile" id="_mobile" class="form-control" />
       </div>
       <div class="form-group col-lg-12 text-center">
-        <input type="button" class="btn btn-primary" value="Search" >
+        <input type="submit" class="btn btn-primary" value="Search" >
       </div>
     </div>
+  </form>
   </fieldset>
   <div class="overflow-auto w-100">
     <table class="table table-striped table-bordered">

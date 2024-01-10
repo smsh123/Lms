@@ -202,7 +202,22 @@
           $('#accordionExample').on('click', '.delete-card', function() {
               var cardId = $(this).data('card-id');
               $('#' + cardId).remove();
-          });   
+          });  
+          function populateFormFromURL() {
+          var url = window.location.href;
+          var urlParams = new URLSearchParams(url);
+          urlParams.forEach(function(paramValue, paramName) {
+                let id = `_${paramName}`;
+                let element = document.getElementById(id);
+                if (element) {
+                    // console.log(urlParams,element, paramValue);
+                    element.value = paramValue || '';
+                }
+            });
+        }
+        window.onload = function() {
+            populateFormFromURL();
+        };
       </script>  
         
         <style>

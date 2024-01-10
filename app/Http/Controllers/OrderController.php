@@ -124,15 +124,18 @@ class OrderController extends Controller
         } else {
             abort(404);
         }
-
+        $user = \Auth::user();
         $data = [
-            "product_description" => !empty($productDescription) ? $productDescription : []
+            "product_description" => !empty($productDescription) ? $productDescription : [],
+            "user" => !empty($user) && is_object($user) ? $user->toArray() : []
         ];
+        // dd($data, $user);
         return view('orders.add_to_cart', $data);
     }
 
-    public function edit(Request $request, $id) {
-        if(!User::hasPermissions(["Edit Order"])){
+    public function edit(Request $request, $id)
+    {
+        if (!User::hasPermissions(["Edit Order"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
         $order = Order::find($id);
@@ -370,5 +373,46 @@ class OrderController extends Controller
 
             return view('orders.success', $data);
         }
+    }
+
+    public function success(Request $request, $orderId = '', $status = '')
+    {
+        $orderId = $request ->input("orderId");
+        $payment_status = $request->input("status");
+        $order = Order::find($orderId);
+
+        $duration = strtotime("+3 Months");
+        $today = strtotime("today");
+        $subscription = new Subscription;
+        $subscription->product_id = !empty($order['product_id']) ? $order['product_id'] : '';
+        $subscription->product_type = !empty($order['product_type']) ? $order['product_type'] : '';
+        $subscription->product_name = !empty($order['product_name']) ? $order['product_name'] : '';
+        $subscription->uid = !empty($order['uid']) ? $order['uid'] : '';
+        $subscription->user_id = !empty($order['user_id']) ? $order['user_id'] : '';
+        $subscription->user_name = !empty($userDetails) && !empty($userDetails['name']) ? $userDetails['name'] : '';
+        $subscription->start_date = date("Y-m-d h:i:sa", $today);
+        $subscription->expiry_date = date("Y-m-d h:i:sa", $duration);
+        $subscription->save();
+
+        $uid = !empty($order['uid']) ? $order['uid'] : '';
+        $subscriptionDetails = Subscription::getSubscriptionByUID($uid);
+
+        $data = [
+            "subscription" => !empty($subscriptionDetails) ? $subscriptionDetails : [],
+            "order_details" => !empty($order) ? $order : []
+        ];
+
+        return view('orders.success', $data);
+        
+    }
+
+    public function fail(Request $request)
+    {
+      //  dd($request->all());
+        $data = [
+            "order_details" => !empty($order) ? $order : [],
+            "status" => !empty($request->input('status')) ? $request->input('status') : ''
+        ];
+        return view('orders.failed', $data);
     }
 }

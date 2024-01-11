@@ -180,7 +180,7 @@
   <body>
     @yield('body')
 
-
+    @include('layouts.footer')
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
@@ -283,7 +283,25 @@
       }
       $(document).ready(function(){
         setTimeout(function(){autoDismissAlerts();},5000);
+        if($('#sticky-bottom').length!==0){
+          $('#sticky-bottom').addClass("opened");
+        }
         
+      });
+    </script>
+    <script>
+      $(window).scroll(function(e) {
+          if($('#sticky-bottom').length!==0){
+              var $el = $('#sticky-bottom');
+              $el.addClass("opened");
+              var doc_height=$(document).height();
+              var isPositionFixed = $el.css('bottom') == '0px';
+              if (window.innerHeight + window.scrollY >= document.body.clientHeight-200) {
+                  $el.removeClass("opened");
+              }else if(!isPositionFixed){
+                $el.addClass("opened");
+              }
+          }
       });
     </script>
   </body>

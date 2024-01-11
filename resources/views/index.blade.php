@@ -21,6 +21,5 @@
   @if(!empty($videoTestimonial))
     @include('layouts.testimonial')
   @endif
-  @include('layouts.footer')
 @stop
 

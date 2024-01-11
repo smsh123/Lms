@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Menu;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -302,4 +303,10 @@ function getUserDetailsById($id = null)
     }
 
     return $usersDetails;
+}
+
+function getBrandBySlug($slug = null)
+{
+    $brands = Brand::getBrandsBySlug($slug);
+    return isset($brands) && !empty($brands) ? $brands[0] : [];
 }

@@ -74,7 +74,5 @@
   @include('layouts.mentors')
   @include('layouts.story_slider')
   @include('layouts.testimonial')
-
-  @include('layouts.footer')
 @stop
 

@@ -17,7 +17,16 @@ class CourseController extends Controller
         if(!User::hasPermissions(["View Course"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $courses = Course::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $courses = Course::searchByFields(['name' => $request->name]);
+        } elseif(!empty($request->slug)){
+            $courses = Course::searchByFields(['slug' => $request->slug]);
+        }elseif(!empty($request->course_type)){
+            $courses = Course::searchByFields(['course_type' => $request->course_type]);
+        } else {
+            $courses = Course::paginateWithDefault(10);
+        }
+        
         return view('cms.courses.index')->with('courses',$courses);
     }
     public function add(Request $request){

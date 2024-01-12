@@ -12,7 +12,18 @@ class LeadController extends Controller
         if(!User::hasPermissions(["View Lead"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $Leads = Leads::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $Leads = Leads::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->email)) {
+            $Leads = Leads::searchByFields(['email' => $request->email]);
+        }elseif (!empty($request->mobile)) {
+            $Leads = Leads::searchByFields(['mobile' => $request->mobile]);
+        }elseif (!empty($request->course_interested)) {
+            $Leads = Leads::searchByFields(['course_interested' => $request->course_interested]);
+        }else {
+            $Leads = Leads::paginateWithDefault(10);
+        }
+        
         return view('cms.lead.index')->with('leads',$Leads);
     }
     public function add(Request $request){

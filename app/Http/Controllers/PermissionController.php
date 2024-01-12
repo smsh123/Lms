@@ -13,7 +13,12 @@ class PermissionController extends Controller
         if(!User::hasPermissions(["View Permission"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $permissions = Permission::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $permissions = Permission::searchByFields(['name' => $request->name]);
+        } else {
+            $permissions = Permission::paginateWithDefault(10);
+        }
+        
         $data = [
             'permissions'=>!empty($permissions) ? $permissions : []
         ];

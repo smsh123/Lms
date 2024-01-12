@@ -13,8 +13,12 @@ class RoleController extends Controller
         if(!User::hasPermissions(["View Role"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        // dd(Role::roleHasPermission("Create:User1"),User::hasPermissions(["Create:User"]));
-        $roles = Role::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $roles = Role::searchByFields(['name' => $request->name]);
+        } else {
+            $roles = Role::paginateWithDefault(10);
+        }
+        
         $data = [
             'roles'=>!empty($roles) ? $roles : []
         ];

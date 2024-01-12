@@ -14,7 +14,14 @@ class MenuController extends Controller
         if(!User::hasPermissions(["View Menu"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $menus = Menu::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $menus = Menu::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->slug)) {
+            $menus = Menu::searchByFields(['slug' => $request->slug]);
+        }else {
+            $menus = Menu::paginateWithDefault(10);
+        }
+        
         return view('cms.menu.index')->with('menus',$menus);
     }
 

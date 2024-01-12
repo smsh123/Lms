@@ -13,8 +13,14 @@ class BrandController extends Controller
         if(!User::hasPermissions(["View Brand"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        if (!empty($request->name)) {
+            $brands = Brand::searchByFields(['name' => $request->name]);
+        } elseif(!empty($request->slug)){
+            $brands = Brand::searchByFields(['slug' => $request->slug]);
+        } else {
+            $brands = Brand::paginateWithDefault(10);
+        }
 
-        $brands = Brand::paginateWithDefault(10);
         return view('cms.brands.index')->with('brands',$brands);
     }
     public function add(Request $request){

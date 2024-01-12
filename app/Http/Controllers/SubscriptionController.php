@@ -14,7 +14,18 @@ class SubscriptionController extends Controller
         if(!User::hasPermissions(["View Subscription"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $subscriptions = Subscription::paginateWithDefault(10);
+        if (!empty($request->product_id)) {
+            $subscriptions = Subscription::searchByFields(['product_id' => $request->product_id]);
+        } elseif (!empty($request->product_name)) {
+            $subscriptions = Subscription::searchByFields(['product_name' => $request->product_name]);
+        } elseif (!empty($request->uid)) {
+            $subscriptions = Subscription::searchByFields(['uid' => $request->uid]);
+        }elseif (!empty($request->user_id)) {
+            $subscriptions = Subscription::searchByFields(['user_id' => $request->user_id]);
+        } else {
+            $subscriptions = Subscription::paginateWithDefault(10);
+        }
+        
         return view('cms.subscription.index')->with('subscriptions',$subscriptions);
     }
 

@@ -15,7 +15,14 @@ class BlogController extends Controller
         if(!User::hasPermissions(["View Blog"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $Blogs = Blog::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $Blogs = Blog::searchByFields(['name' => $request->name]);
+        } elseif(!empty($request->slug)){
+            $Blogs = Blog::searchByFields(['slug' => $request->slug]);
+        } else {
+            $Blogs = Blog::paginateWithDefault(10);
+        }
+        
         return view('cms.blog.index')->with('blogs',$Blogs);
     }
     public function add(Request $request){

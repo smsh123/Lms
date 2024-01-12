@@ -12,7 +12,14 @@ class PageController extends Controller
         if(!User::hasPermissions(["View Page"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $Pages = Page::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $Pages = Page::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->slug)) {
+            $Pages = Page::searchByFields(['slug' => $request->slug]);
+        }else {
+            $Pages = Page::paginateWithDefault(10);
+        }
+
         return view('cms.pages.index')->with('pages',$Pages);
     }
     public function add(Request $request){

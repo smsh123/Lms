@@ -14,7 +14,16 @@ class CouponController extends Controller
         if(!User::hasPermissions(["View Coupon"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $coupons =Coupon::paginateWithDefault(10);
+        if (!empty($request->code)) {
+           $coupons =Coupon::searchByFields(['code' => $request->code]);
+        } elseif(!empty($request->unit)){
+           $coupons =Coupon::searchByFields(['unit' => $request->unit]);
+        }elseif(!empty($request->type)){
+           $coupons =Coupon::searchByFields(['type' => $request->type]);
+        } else {
+            $coupons =Coupon::paginateWithDefault(10);
+        }
+        
         return view('cms.coupons.index')->with('coupons',$coupons);
       }
     public function add(Request $request){

@@ -20,8 +20,17 @@ class OrderController extends Controller
         if (!User::hasPermissions(["View Order"])) {
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        // ci cd test
-        $orders = Order::paginateWithDefault(10);
+        if (!empty($request->product_name)) {
+            $orders = Order::searchByFields(['product_name' => $request->product_name]);
+        } elseif (!empty($request->uid)) {
+            $orders = Order::searchByFields(['uid' => $request->uid]);
+        }elseif (!empty($request->status)) {
+            $orders = Order::searchByFields(['status' => $request->status]);
+        }else {
+            $orders = Order::paginateWithDefault(10);
+        }
+
+        
         return view('cms.orders.index')->with('orders', $orders);
     }
     public function add(Request $request)

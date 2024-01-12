@@ -17,8 +17,19 @@ class SchedulingController extends Controller
         if(!User::hasPermissions(["View Schedule"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        if (!empty($request->course)) {
+            $schedules = Schedule::searchByFields(['course' => $request->course]);
+        } elseif (!empty($request->module)) {
+            $schedules = Schedule::searchByFields(['module' => $request->module]);
+        } elseif (!empty($request->sub_module)) {
+            $schedules = Schedule::searchByFields(['sub_module' => $request->sub_module]);
+        }elseif (!empty($request->teacher)) {
+            $schedules = Schedule::searchByFields(['teacher' => $request->teacher]);
+        }else {
+            $schedules = Schedule::paginateWithDefault(10);
+        }
 
-        $schedules = Schedule::paginateWithDefault(10);
+        
         return view('cms.scheduling.index')->with('schedules',$schedules);
     }
     public function add(Request $request){

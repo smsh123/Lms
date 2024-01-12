@@ -16,7 +16,16 @@ class SectionController extends Controller
         if(!User::hasPermissions(["View Section"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $sections = Section::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $sections = Section::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->display_title)) {
+            $sections = Section::searchByFields(['display_title' => $request->display_title]);
+        } elseif (!empty($request->tagline)) {
+            $sections = Section::searchByFields(['tagline' => $request->tagline]);
+        }else {
+            $sections = Section::paginateWithDefault(10);
+        }
+        
         return view('cms.section.index')->with('sections',$sections);
     }
 

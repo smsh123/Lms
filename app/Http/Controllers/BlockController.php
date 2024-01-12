@@ -15,8 +15,14 @@ class BlockController extends Controller
         if(!User::hasPermissions(["View Content Block"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-
-        $blocks = Block::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $blocks = Block::searchByFields(['name' => $request->name]);
+        } elseif(!empty($request->slug)){
+            $blocks = Block::searchByFields(['slug' => $request->slug]);
+        } else {
+            $blocks = Block::paginateWithDefault(10);
+        }
+        
         return view('cms.block.index')->with('blocks',$blocks);
     }
 

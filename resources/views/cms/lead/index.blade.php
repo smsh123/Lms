@@ -19,7 +19,7 @@
         </div>
         <div class="form-group col-lg-4 col-md-6">
           <label>Mobile</label>
-          <input type="text" name="mobile" id="_mobile" class="form-control" />
+          <input type="number" name="mobile" id="_mobile" class="form-control" />
         </div>
         <div class="form-group col-lg-4 col-md-6">
           <label>Course</label>

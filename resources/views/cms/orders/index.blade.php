@@ -10,7 +10,7 @@
         @csrf
         <div class="form-group col-lg-4 col-md-6">
           <label>Product Name</label>
-          <input type="text" name="product_name" id="_name" class="form-control" placeholder="Product Name" />
+          <input type="text" name="product_name" id="_product_name" class="form-control" placeholder="Product Name" />
         </div>
         <div class="form-group col-lg-4 col-md-6">
           <label>Order UID</label>

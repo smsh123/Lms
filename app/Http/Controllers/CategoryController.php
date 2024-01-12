@@ -14,8 +14,15 @@ class CategoryController extends Controller
         if(!User::hasPermissions(["View Category"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
+        if (!empty($request->name)) {
+            $categories = Category::searchByFields(['name' => $request->name]);
+        } elseif(!empty($request->slug)){
+            $categories = Category::searchByFields(['slug' => $request->slug]);
+        } else {
+            $categories = Category::paginateWithDefault(10);
+        }
 
-        $categories = Category::paginateWithDefault(10);
+        
         return view('cms.categories.index')->with('categories',$categories);
     }
     public function add(Request $request){

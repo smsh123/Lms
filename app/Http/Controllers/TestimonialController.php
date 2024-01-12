@@ -13,7 +13,16 @@ class TestimonialController extends Controller
         if(!User::hasPermissions(["View Testimonial"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $testimonials =Testimonial::paginateWithDefault(10);
+        if (!empty($request->name)) {
+            $testimonials =Testimonial::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->type)) {
+            $testimonials =Testimonial::searchByFields(['type' => $request->type]);
+        } elseif (!empty($request->user)) {
+            $testimonials =Testimonial::searchByFields(['user' => $request->user]);
+        } else {
+            $testimonials =Testimonial::paginateWithDefault(10);
+        }
+        
         $users = User::all();
         return view('cms.testimonial.index')->with('testimonials',$testimonials,'users',!empty($users) ? $users : []);
       }

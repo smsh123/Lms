@@ -14,7 +14,13 @@ class ToolsController extends Controller
         if(!User::hasPermissions(["View Tool"])){
             return redirect()->back()->with('error', 'Permission Denied');
         }
-        $tools = Tool::paginateWithDefault(10);
+        if (!empty($request->name)) {
+             $tools = Tool::searchByFields(['name' => $request->name]);
+        } elseif (!empty($request->slug)) {
+             $tools = Tool::searchByFields(['slug' => $request->slug]);
+        } else {
+            $tools = Tool::paginateWithDefault(10);
+        }
         return view('cms.tools.index')->with('tools',$tools);
     }
     public function add(Request $request){

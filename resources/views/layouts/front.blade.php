@@ -295,7 +295,7 @@
               var $el = $('#sticky-bottom');
               $el.addClass("opened");
               var doc_height=$(document).height();
-              var isPositionFixed = $el.css('bottom') == '0px';
+              var isPositionFixed = $el.css('bottom') == '5px';
               if (window.innerHeight + window.scrollY >= document.body.clientHeight-200) {
                   $el.removeClass("opened");
               }else if(!isPositionFixed){

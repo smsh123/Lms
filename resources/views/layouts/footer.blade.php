@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-around align-items-stretch flex-nowrap">
           @foreach ($footerNav['items'] as $key => $item)
             <div class="align-self-start text-center pb-2 flex-fill">
-              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-dark' : 'text-theme-contrat' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
+              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-dark' : 'text-theme-contrast' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
                 <div class="icon-24 mx-auto mb-2">
                   <i class="{{!empty($item['icon']) ? $item['icon'] : '' }} font-22"></i>
                 </div>

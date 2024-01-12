@@ -6,25 +6,26 @@
   </div>
   <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>
-    <div class="row">
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Course Name</label>
-        <input type="text" class="form-control" placeholder="Title of Course" />
+    <form action="" method="get">
+      <div class="row">
+        @csrf
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Name</label>
+          <input type="text" name="name" id="_name" class="form-control" placeholder="Name" />
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Slug</label>
+          <input type="text" name="slug" id="_slug" class="form-control" />
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Type</label>
+          <input type="text" name="course_type" id="_course_type" class="form-control" />
+        </div>
+        <div class="form-group col-lg-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Search" >
+        </div>
       </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Starting Date</label>
-        <input type="date" class="form-control" />
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Created By</label>
-        <select class="form-control">
-          <option>Select</option>
-        </select>
-      </div>
-      <div class="form-group col-lg-12 text-center">
-        <input type="button" class="btn btn-primary" value="Search" >
-      </div>
-    </div>
+    </form>
   </fieldset>
   <div class="overflow-auto w-100">
     <table class="table table-striped table-bordered">

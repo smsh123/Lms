@@ -6,12 +6,18 @@
   </div>
   <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>
-    <div class="row">
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Role Name</label>
-        <input type="text" class="form-control" placeholder="Role Name" />
+    <form action="" method="get">
+      <div class="row">
+        @csrf
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Role</label>
+          <input type="text" name="name" id="_name" class="form-control" placeholder="Name" />
+        </div>
+        <div class="form-group col-lg-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Search" >
+        </div>
       </div>
-    </div>
+    </form>
   </fieldset>
   <div class="overflow-auto w-100">
     <table class="table table-striped table-bordered">

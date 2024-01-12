@@ -5,43 +5,26 @@
   </div>
   <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>
-    <div class="row">
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Order UID</label>
-        <input type="text" class="form-control" placeholder="UID" />
+    <form action="" method="get">
+      <div class="row">
+        @csrf
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Product Name</label>
+          <input type="text" name="product_name" id="_name" class="form-control" placeholder="Product Name" />
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Order UID</label>
+          <input type="text" name="uid" id="_uid" class="form-control" />
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Order Status</label>
+          <input type="text" name="status" id="_status" class="form-control" />
+        </div>
+        <div class="form-group col-lg-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Search" >
+        </div>
       </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Name</label>
-        <input type="text" class="form-control" placeholder="Name of User" />
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Email</label>
-        <input type="text" class="form-control" placeholder="Email" />
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Email</label>
-        <input type="number" class="form-control" placeholder="Phone" />
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Order Date</label>
-        <input type="date" class="form-control" />
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Payment Status</label>
-        <select class="form-control">
-          <option>Select</option>
-        </select>
-      </div>
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Product Type</label>
-        <select class="form-control">
-          <option>Select</option>
-        </select>
-      </div>
-      <div class="form-group col-lg-12 text-center">
-        <input type="button" class="btn btn-primary" value="Search" >
-      </div>
-    </div>
+    </form>
   </fieldset>
   <div class="overflow-auto w-100">
     <table class="table table-striped table-bordered">

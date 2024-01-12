@@ -4,14 +4,20 @@
     <div class="col-12 col-lg-6"><h1 class="font-weight-bold font-32 my-3 text-warning">Permissions</h1></div>
     <div class="col-12 col-lg-6 text-right"><a href="/cms/permissions/add" class="btn btn-lg btn-secondary">Add Permissions</a></div>
   </div>
-  <fieldset class="border mb-3 p-3">
+ <fieldset class="border mb-3 p-3">
     <legend class="d-inline-block font-weight-bold w-auto">Search</legend>
-    <div class="row">
-      <div class="form-group col-lg-4 col-md-6">
-        <label>Permission Name</label>
-        <input type="text" class="form-control" placeholder="Permission Name" />
+    <form action="" method="get">
+      <div class="row">
+        @csrf
+        <div class="form-group col-lg-4 col-md-6">
+          <label>Permission</label>
+          <input type="text" name="name" id="_name" class="form-control" placeholder="Name" />
+        </div>
+        <div class="form-group col-lg-12 text-center">
+          <input type="submit" class="btn btn-primary" value="Search" >
+        </div>
       </div>
-    </div>
+    </form>
   </fieldset>
   <div class="overflow-auto w-100">
     <table class="table table-striped table-bordered">

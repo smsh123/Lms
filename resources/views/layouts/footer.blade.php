@@ -10,8 +10,8 @@
     <div id="sticky-bottom" class="d-block d-md-none d-lg-none position-fixed footer-m-nav w-100 bg-secondary pt-2">
         <div class="d-flex justify-content-around align-items-stretch flex-nowrap">
           @foreach ($footerNav['items'] as $key => $item)
-            <div class="align-self-start text-center pb-2 flex-fill {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'border-3 border-warning border-top-0 border-right-0 border-left-0' : 'text-white' }}">
-              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-warning' : 'text-white' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
+            <div class="align-self-start text-center pb-2 flex-fill {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'border-3 border-primary border-top-0 border-right-0 border-left-0' : 'text-white' }}">
+              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-primary' : 'text-white' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
                 <div class="icon-24 mx-auto mb-2">
                   <i class="{{!empty($item['icon']) ? $item['icon'] : '' }} font-22"></i>
                 </div>

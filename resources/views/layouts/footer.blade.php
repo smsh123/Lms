@@ -23,9 +23,9 @@
           @if(!$isUserLoggedin)
             <div class="align-self-start text-center pb-2 flex-fill">
               <a class="text-white card-link d-block" href="javascript:void(0)" onclick="openLoginWindow()">
-                <div class="icon-26 mx-auto mb-2"><div class="ratio-image image_1-1 rounded-circle">
-                  <img src="https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg"  alt="username" />
-                </div></div>
+                <div class="icon-24 mx-auto mb-2">
+                  <i class="bi bi-person font-22"></i>
+                </div>
                 <div class="font-14">Login</div>
               </a>
             </div>

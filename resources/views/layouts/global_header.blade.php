@@ -74,7 +74,7 @@
               @endif
             @endif
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0 d-none d-md-block">
               <button class="btn bg-transparent text-dark mx-2 my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
               <a href="/course" class="btn btn-theme-contrast my-2 mx-2 my-sm-0" type="submit">Buy A Course</a>
               @if(!$isUserLoggedin)

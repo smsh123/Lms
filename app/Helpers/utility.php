@@ -4,6 +4,7 @@ use App\Models\Menu;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use App\Models\Block;
 use Illuminate\Support\Facades\Auth;
 
 function getAllPickList()
@@ -309,4 +310,10 @@ function getBrandBySlug($slug = null)
 {
     $brands = Brand::getBrandsBySlug($slug);
     return isset($brands) && !empty($brands) ? $brands[0] : [];
+}
+
+function getBlockBySlug($slug = null)
+{
+    $blocks = Block::getBlockBySlug($slug);
+    return isset($blocks) && !empty($blocks) ? $blocks[0] : [];
 }

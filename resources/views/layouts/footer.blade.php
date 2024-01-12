@@ -7,11 +7,11 @@
     $isUserLoggedin = \Auth::user();
  @endphp
   @if(!empty($footerNav) && !empty($footerNav['items']))
-    <div id="sticky-bottom" class="d-block d-md-none d-lg-none position-fixed footer-m-nav w-100 bg-secondary pt-2">
+    <div id="sticky-bottom" class="d-block d-md-none d-lg-none position-fixed footer-m-nav w-100 bg-white border border-muted shadow-sm pt-2 rounded-pill">
         <div class="d-flex justify-content-around align-items-stretch flex-nowrap">
           @foreach ($footerNav['items'] as $key => $item)
-            <div class="align-self-start text-center pb-2 flex-fill {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'border-3 border-primary border-top-0 border-right-0 border-left-0' : 'text-white' }}">
-              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-primary' : 'text-white' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
+            <div class="align-self-start text-center pb-2 flex-fill">
+              <a class="card-link d-block {{ !empty($item['link']) && $item['link'] == $_SERVER['REQUEST_URI'] ? 'text-dark' : 'text-theme-contrat' }}" href="{{!empty($item['link']) ? $item['link'] : '' }}">
                 <div class="icon-24 mx-auto mb-2">
                   <i class="{{!empty($item['icon']) ? $item['icon'] : '' }} font-22"></i>
                 </div>
@@ -22,7 +22,7 @@
           @endforeach
           @if(!$isUserLoggedin)
             <div class="align-self-start text-center pb-2 flex-fill">
-              <a class="text-white card-link d-block" href="javascript:void(0)" onclick="openLoginWindow()">
+              <a class="text-theme-contrast card-link d-block" href="javascript:void(0)" onclick="openLoginWindow()">
                 <div class="icon-24 mx-auto mb-2">
                   <i class="bi bi-person font-22"></i>
                 </div>
@@ -31,7 +31,7 @@
             </div>
           @else
             <div class="align-self-start text-center pb-2 flex-fill">
-              <a class="text-white card-link d-block" href="javascript:void(0)" onclick="openProfileMenu()">
+              <a class="text-theme-contrast card-link d-block" href="javascript:void(0)" onclick="openProfileMenu()">
                 <div class="icon-26 mx-auto mb-2"><div class="ratio-image image_1-1 rounded-circle"><img src="{{ !empty(\Auth::user()->avatar_image) ? \Auth::user()->avatar_image : 'https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg' }}"  alt="username" onerror="this.src='https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg';" /></div></div>
                 <div class="font-14">{{ !empty(\Auth::user()->name) ? \Auth::user()->name : 'User' }}</div>
               </a>

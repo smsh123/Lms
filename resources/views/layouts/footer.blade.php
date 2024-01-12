@@ -61,7 +61,7 @@
         <div class="col-12 col-lg-4 text-center text-md-left text-lg-left">
           <h3 class="font-22">{{ !empty($brandDetails['name']) ? $brandDetails['name'] : 'Brand Name' }}</h3>
           <p>{{ !empty($brandDetails['address']) ? $brandDetails['address'] : 'Brand Address' }}</p>
-          <p>{{ !empty($brandDetails['phone']) ? $brandDetails['phone'] : '-' }}</p>
+          <p><a href="tel:{{ !empty($brandDetails['phone']) ? '+91'.$brandDetails['phone'] : '-' }}" class="card-link text-dark">{{ !empty($brandDetails['phone']) ? $brandDetails['phone'] : '-' }}</a></p>
           <p><a href="mailto:{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}" class="text-white">{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}</a>
           <ul class="d-flex justify-content-center justify-content-md-start align-items-stretch my-3 mx-0 p-0 list-no-style">
             @if(!empty($brandDetails['facebook']) )

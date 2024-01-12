@@ -33,7 +33,7 @@
             <div class="align-self-start text-center pb-2 flex-fill">
               <a class="text-theme-contrast card-link d-block" href="javascript:void(0)" onclick="openProfileMenu()">
                 <div class="icon-26 mx-auto mb-2"><div class="ratio-image image_1-1 rounded-circle"><img src="{{ !empty(\Auth::user()->avatar_image) ? \Auth::user()->avatar_image : 'https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg' }}"  alt="username" onerror="this.src='https://spiderimg1.safalta.com/assets/images/safalta.com/2020/02/05/profile-default_5e3a70b0d2b90.jpg';" /></div></div>
-                <div class="font-14">{{ !empty(\Auth::user()->name) ? \Auth::user()->name : 'User' }}</div>
+                <div class="font-14">Profile</div>
               </a>
             </div>
           @endif

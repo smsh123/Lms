@@ -22,6 +22,21 @@
           <input type="submit" class="btn btn-lg btn-primary" value="Save" />
         </div>
     </div>
+    <div class="row form-group">
+      <div class="col-12">
+        <label class="font-weight-bold">Permission</label>
+        <select class="form-control select_to" name="permissions[]" multiple="multiple">
+          <option>Select Permission</option>
+          @if(!empty($permissions))
+            @foreach ($permissions as $key=> $permission)
+              <option
+               @if(!empty($role['permissions']) && in_array($permission['name'],$role['permissions'])) selected @endif
+               >{{ $permission['name'] }}</option>
+            @endforeach
+          @endif
+        </select>
+      </div>
+    </div>
   </form>
 
 

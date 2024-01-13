@@ -182,7 +182,7 @@
                 $required_permission = !empty($menus['permission']) ? $menus['permission'] : 'not_required' ; 
                 $selected_page_group = !empty($menus['page_group']) ? $menus['page_group'] : 'dashboard';
             @endphp
-            @if (\App\Models\User::hasPermissions(['$required_permission']) || $required_permission == 'not_required' )
+            @if (\App\Models\User::hasPermissions([$required_permission]) || $required_permission == 'not_required' )
             {{-- @if((!empty($isUserLoggedin->permissions) && in_array($required_permission,$isUserLoggedin->permissions)) || $required_permission == 'not_required') --}}
                 <li class="nav-item @if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) active @elseif(!empty($page_group) && $page_group == $selected_page_group) active @endif">
                     <a class="nav-link @if(!empty($menus['url']) && $menus['url'] == $_SERVER['REQUEST_URI']) text-dark @elseif(!empty($page_group) && $page_group == $selected_page_group) text-dark @else text-info @endif" href="{{ !empty($menus['url']) ? $menus['url'] : '#' }}">

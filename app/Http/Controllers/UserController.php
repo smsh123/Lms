@@ -54,9 +54,13 @@ class UserController extends Controller
         $users = User::find($id);
         $roles = Role::all(['name']);
         $roles = is_object($roles) ? $roles->toArray() : $roles;
+
+        $permissions = Permission::all(['name']);
+        $permissions = is_object($permissions) ? $permissions->toArray() : $permissions;
         $data = [
             "users" => !empty($users) ? $users : [],
             "roles" => !empty($roles) ? $roles : [],
+            "permissions" => !empty($permissions) ? $permissions : [],
             'page_group' => 'user'
         ];
         return view('cms.users.edit', $data);
@@ -86,6 +90,7 @@ class UserController extends Controller
         $user->cover_image = $request->cover_image;
         $user->user_type = !empty($request->user_type) ? $request->user_type : 'external';
         $user->roles = !empty($request->user_role) ? $request->user_role : [];
+        $user->permissions = !empty($request->user_permission) ? $request->user_permission : [];
         $user->facebook_profile = !empty($request->facebook_profile) ? $request->facebook_profile : '';
         $user->x_profile = !empty($request->x_profile) ? $request->x_profile : '';
         $user->linkedin_profile = !empty($request->linkedin_profile) ? $request->linkedin_profile : '';
@@ -94,7 +99,6 @@ class UserController extends Controller
         $user->other_profile = !empty($request->other_profile) ? $request->other_profile : '';
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
-        $user->permissions = !empty($request->permissions) ? $request->permissions : [];
         $user->save();
         return redirect()->back()->with('msg', 'User Details Updated Successfully!');
     }
@@ -151,8 +155,11 @@ class UserController extends Controller
         }
         $roles = Role::all(['name']);
         $roles = is_object($roles) ? $roles->toArray() : $roles;
+        $permissions = Permission::all(['name']);
+        $permissions = is_object($permissions) ? $permissions->toArray() : $permissions;
         $data = [
             "roles" => !empty($roles) ? $roles : [],
+            "permissions" => !empty($permissions) ? $permissions : [],
             'page_group' => 'user'
         ];
         return view('cms.users.add', $data);

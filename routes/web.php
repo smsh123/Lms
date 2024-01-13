@@ -49,6 +49,8 @@ Route::any('/razorpay/initiate-payment', 'RazorpayController@initiatePayment');
 Route::any('/order/success', 'OrderController@success')->name('order.success');
 Route::any('/order/fail', 'OrderController@fail')->name('order.fail');
 Route::post('/razorpay/payment-callback', 'RazorpayController@paymentCallback');
+Route::get('auth/google', 'GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
 
 /* All cms routes */
 Route::prefix('cms')->middleware(['internal'])->group(function () {

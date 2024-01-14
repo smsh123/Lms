@@ -161,9 +161,9 @@
             </div>
           </form>
           <div class="py-3">
-            <div id="g_id_onload"
-                  data-client_id="YOUR_GOOGLE_CLIENT_ID"
-                  data-login_uri="https://your.domain/your_login_endpoint"
+            {{-- <div id="g_id_onload"
+                  data-client_id="781813580899-2upmv3ck2s2fggkkaolqbf7r951ug9h6.apps.googleusercontent.com"
+                  data-login_uri="http://localhost:8000/auth/google"
                   data-auto_prompt="false">
               </div>
               <div class="g_id_signin"
@@ -173,7 +173,10 @@
                   data-text="sign_in_with"
                   data-shape="rectangular"
                   data-logo_alignment="center">
-              </div>
+              </div> --}}
+              <a href="{{ url('auth/google') }}" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2 btn-google">
+                <strong>Login With Google</strong>
+              </a> 
           </div>
         </div>
         <div class="card-footer login_window_footer border-0 theme-contrast-gradient-container position-relative pt-5 wave_border_top_white footer"></div>

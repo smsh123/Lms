@@ -63,6 +63,19 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-12">
+          <label class="font-weight-bold">Permission</label>
+          <select class="form-control select_to" name="user_permission[]" multiple="multiple">
+            <option>Select Permission</option>
+            @if(!empty($permissions))
+              @foreach ($permissions as $key=> $permission)
+                <option @if(!empty($users['permissions']) && in_array($permission['name'],$users['permissions'])) selected @endif>{{ $permission['name'] }}</option>
+              @endforeach
+            @endif
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Facebook</label>
           <input type="text" class="form-control" name="facebook_profile" placeholder="Facebook Profile Url" />

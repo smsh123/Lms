@@ -36,7 +36,7 @@ return [
     'google' => [
         'client_id' => env('G_CLIENT_ID', '781813580899-2upmv3ck2s2fggkkaolqbf7r951ug9h6.apps.googleusercontent.com'),
         'client_secret' => env('G_CLIENT_SECRET', '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'),
-        'redirect' => env('G_REDIRECT_URL', 'http://localhost:8000/auth/google/callback')
+        'redirect' => env('G_REDIRECT_URL', 'https://www.aryabhattclasses.com/auth/google/callback')
     ],
 
 

@@ -9,7 +9,7 @@
         <div class="swiper-wrapper flex-nowrap justify-content-start">
         @foreach ($blogs as $key => $blog )
           <div class="swiper-slide bg-transparent">
-            <div class="card border-radius-25">
+            <div class="card border-radius-25 w-100">
               <div class="card-header bg-transparent p-0 border-0">
                 <div class="ratio-image image_16-9 bg-transparent">
                   <img src="{{ !empty($blog['thumbnail_image']) ? $blog['thumbnail_image'] : '' }}" alt="blog_thumbnail" />

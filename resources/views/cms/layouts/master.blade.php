@@ -143,6 +143,8 @@
               }
               else if(entityType == "faq"){
                 $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='faq_id[]' readonly /><input type='text' name='faq_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
+              }else if(entityType == "testimonial"){
+                $("#"+targetId).append("<li class='d-inline-block mx-2 mb-2'><input type='hidden' id='"+selected_id+"' value='"+selected_id+"' name='testimonial_id[]' readonly /><input type='text' name='testimonial_name[]' class='btn btn-outline-info rounded-pill' value='"+selected_module+"' /></li>");
               }
               
             }

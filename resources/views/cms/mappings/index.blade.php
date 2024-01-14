@@ -1,5 +1,21 @@
 @extends('cms.layouts.master')
 @section('body')
+  @if (session('error'))
+    <div class="alert alert-danger custom-alert font-weight-bold">
+        {{ session('error') }}
+    </div>
+  @elseif (session('msg'))
+    <div class="alert alert-success custom-alert font-weight-bold">
+        {{ session('msg') }}
+    </div>
+  @elseif (session('msg_focus'))
+    <div class="alert alert-warning alert-fixed alert-dismissible fade show" role="alert">
+      {!! html_entity_decode(session('msg_focus')) !!}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  @endif
   <div class="row my-3">
     <div class="col-12 col-lg-12"><h1 class="font-weight-bold font-32 my-3 text-warning">Mappings</h1></div>
   </div>

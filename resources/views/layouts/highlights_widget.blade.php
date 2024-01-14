@@ -1,16 +1,16 @@
 @if(!empty($highlights))
-  <div class="py-2">
+  <ul class="my-1 list-no-style px-0">
     @php
       $i = 0;
     @endphp
     @foreach ($highlights as $key => $highlight )
       @if($i == 3) @php $i = 0; @endphp  @endif
-      <span class="btn rounded-pill font-12 @if($i == 0) bg-light-blue border-dark-blue @elseif ($i == 1) bg-light-pink @else bg-light-yellow @endif mb-2 mr-1">
-        {{ !empty($highlight) ? $highlight : ''}}
-      </span>
+      <li class="font-12 mb-1">
+        <i class="bi bi-check2 text-theme-contrast mr-2"></i>{{ !empty($highlight) ? $highlight : ''}}
+      </li>
       @php
         $i++;
       @endphp
     @endforeach
-  </div>
+  </ul>
 @endif

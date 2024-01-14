@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\CourseModuleMapping;
+use App\Models\CourseTestimonialMapping;
+use App\Models\CourseFaqMapping;
 use App\Models\Module;
 use App\Models\Category;
 use App\Models\Tool;
+use App\Models\Blog;
+use App\Models\Faq;
+use App\Models\Testimonial;
 
 class CourseController extends Controller
 {
@@ -125,11 +130,57 @@ class CourseController extends Controller
                     $modules[$key] = (!empty($module) && is_object($module)) ? $module->toArray() : []; 
                 }
             }
+            $course_faqs = CourseFaqMapping::getFaqByCourseId($courseDescription['_id']);
+            $course_faqs = !empty($course_faqs) ? $course_faqs[0] : [];
+            if(!empty($course_faqs['faqs'])){
+                foreach($course_faqs['faqs'] as $key => $faq){
+                    $id = !empty($faq['faqId']) ? $faq['faqId'] : ''; 
+                    $faq = Faq::find($id);
+                    $faqs[$key] = (!empty($faq) && is_object($faq)) ? $faq->toArray() : []; 
+                }
+            }
+            $course_testimonial = CourseTestimonialMapping::getTestimonialByCourseId($courseDescription['_id']);
+            $course_testimonial = !empty($course_testimonial) ? $course_testimonial[0] : [];
+            if(!empty($course_testimonial['testimonials'])){
+                foreach($course_testimonial['testimonials'] as $key => $testimonial){
+                    $id = !empty($testimonial['testimonialId']) ? $testimonial['testimonialId'] : ''; 
+                    $testimonial = Testimonial::find($id);
+                    $testimonials[$key] = (!empty($testimonial) && is_object($testimonial)) ? $testimonial->toArray() : []; 
+                }
+            }
+            if(!empty($testimonials)){
+                foreach($testimonials as $key => $testimonial){
+                    $authorId = !empty($testimonial['user']) ? explode('-',$testimonial['user']) : '';
+                    $review_user_id = '';
+                    if(!empty($authorId)){
+                        $review_user_id = $authorId[0];
+                    }
+                    $user_profile_info = User::find($review_user_id);
+                    $testimonials[$key]['user_info'] = (!empty($user_profile_info) && is_object($user_profile_info)) ? $user_profile_info->toArray() : [];
+                }
+            }
+            $course_tools = !empty($courseDescription['tools']) ? $courseDescription['tools'] : [];
+           
+            if(!empty( $course_tools)){
+                foreach( $course_tools as $key => $tool){
+                    $slug = !empty($tool) ? $tool : ''; 
+                    $tool = Tool::getToolsBySlug($slug);
+                    $tools[$key] = !empty($tool)  ? $tool[0] : []; 
+                }
+            }
+
+            $skills = !empty($courseDescription['skills']) ? explode(',',$courseDescription['skills']) : [];
+            $blogs = Blog::all();
         }
         $data = [
             'CourseDescription' => !empty($courseDescription) ? $courseDescription : [],
             'teachers' => !empty($mentors) ? $mentors : [],
             'modules' => !empty($modules) ? $modules : [],
+            'tools' => !empty($tools) ? $tools : [],
+            'skills' => !empty($skills) ? $skills : [],
+            'blogs' => !empty($blogs) ? $blogs : [],
+            'faqs' => !empty($faqs) ? $faqs : [],
+            'testimonials'=>!empty($testimonials) ? $testimonials : [],
             'page_type' => 'course-details-page' 
         ];
         return view('course.details',$data);

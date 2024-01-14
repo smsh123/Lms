@@ -77,7 +77,7 @@ class CourseModuleMappingController extends Controller
     
         $mapping->save();
     
-        return view("cms.course_module_mapping.index")->with('msg', 'Mapping created successfully');
+        return redirect()->route('mapping.index')->with('success', 'Mapping Updated successfully');
     }
 
     public function update(Request $request)
@@ -106,7 +106,7 @@ class CourseModuleMappingController extends Controller
     
         $mapping->save();
     
-        return view("cms.course_module_mapping.index")->with('msg', 'Mapping created successfully');
+        return redirect()->route('mapping.index')->with('success', 'Mapping Updated successfully');
     }
 
     public function destroy($id)

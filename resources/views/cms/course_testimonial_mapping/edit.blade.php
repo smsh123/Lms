@@ -51,8 +51,8 @@
           @foreach ($testimonials as  $key => $testimonial)
             <li class="list-group-item col-12 col-md-6 col-lg-4 border">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($testimonial['id']) ? $testimonial['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($testimonial['name']) ? $testimonial['name'] : '' }}"  @if(!empty($mappings['testimonials'])) @foreach ($mappings['testimonials'] as $testimonialArray) @if($testimonialArray['testimonialId'] == $testimonial['id']) checked @endif @endforeach  @endif entity-type="testimonial">
-                <label class="form-check-label" for="inlineCheckbox{{ $key }}">{{ !empty($testimonial['name']) ? $testimonial['name'] : '' }}</label>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $key }}" value="{{ !empty($testimonial['id']) ? $testimonial['id'] : '' }}" name="check_select" onChange="selectForMap(this,'selected_input')" data-label="{{ !empty($testimonial['synopsis']) ? $testimonial['synopsis'] : '' }}"  @if(!empty($mappings['testimonials'])) @foreach ($mappings['testimonials'] as $testimonialArray) @if($testimonialArray['testimonialId'] == $testimonial['_id']) checked @endif @endforeach  @endif entity-type="testimonial">
+                <label class="form-check-label" for="inlineCheckbox{{ $key }}">{{ !empty($testimonial['synopsis']) ? $testimonial['synopsis'] : '' }}</label>
               </div>
             </li>
           @endforeach

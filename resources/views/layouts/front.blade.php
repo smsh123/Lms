@@ -286,6 +286,10 @@
         if($('#sticky-bottom').length!==0){
           $('#sticky-bottom').addClass("opened");
         }
+        $(".page_section_nav").find('a').click(function(){
+          $(this).parents('ul').find('.active').removeClass('active');
+          $(this).addClass('active');
+        });
         
       });
     </script>

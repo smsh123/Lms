@@ -1,6 +1,6 @@
   
    @if(!empty($videoTestimonial))
-    <section class="py-5 mb-5">
+    <section class="py-5 mb-5" id="reviews">
       <div class="px-5">
             <h3 class="font-32 font-weight-bold text-center">Students Writes About Classes on Wall</h3>
             <p class="font-14 text-center ">Student's tells their feedback and we feel prod that given them mentorship.</p>

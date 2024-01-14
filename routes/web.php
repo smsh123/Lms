@@ -131,7 +131,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/faq/edit/{id}', 'FaqController@edit')->name('faq.edit');
     Route::get('/faq/delete/{id}', 'FaqController@destroy')->name('faq.delete');
     Route::post('/faq/update', 'FaqController@update')->name('faq.update');
-    Route::get('/mappings', 'MappingController@listing');
+    Route::get('/mappings', 'MappingController@listing')->name('mapping.index');
     Route::get('/course-module-mapping', 'CourseModuleMappingController@index');
     Route::get('/course-module-mapping/add', 'CourseModuleMappingController@add');
     Route::get('/course-module-mapping/edit/{id}', 'CourseModuleMappingController@edit');
@@ -147,7 +147,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::get('/course-testimonial-mapping', 'CourseTestimonialMappingController@index');
     Route::get('/course-testimonial-mapping/add', 'CourseTestimonialMappingController@add');
     Route::get('/course-testimonial-mapping/edit/{id}', 'CourseTestimonialMappingController@edit');
-    Route::get('/course/delete/{id}', 'CourseTestimonialMappingController@destroy')->name('course.delete');
+    Route::get('/course-testimonial-mapping/delete/{id}', 'CourseTestimonialMappingController@destroy')->name('course.delete');
     Route::post('/course-testimonial-mapping/store', 'CourseTestimonialMappingController@store');
     Route::post('/course-testimonial-mapping/update', 'CourseTestimonialMappingController@update');
     Route::get('/roles', 'RoleController@index');

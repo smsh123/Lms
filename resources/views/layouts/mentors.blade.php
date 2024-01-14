@@ -1,5 +1,5 @@
 @if (!empty($teachers))
-  <div class="container py-3 my-5 overflow-hidden">
+  <div class="container py-3 my-5 overflow-hidden" id="faculties">
     <div class="d-flex row align-items-stretch">
       <div class="mb-5 mw-450 mx-auto col-12 col-lg-6 align-self-center">
         <h3 class="font-32 font-weight-bold text-center">Our Experts You Mentors</h3>

@@ -37,7 +37,7 @@
     </p>
   </div>
 </div> --}}
-<div class="gloabl-header" style="background-color: #fff;">
+<div class="gloabl-header border border-top-0 border-right-0 border-left-0" style="background-color: #fff;">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light p-0">
         <a class="navbar-brand" href="/">

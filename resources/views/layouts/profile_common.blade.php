@@ -7,7 +7,7 @@
   }
 @endphp
 @if ($isUserLoggedin && !empty($user_details))
-  <div class="bg-white h-100 min-vh-100 sticky-top overflow-auto">
+  <div class="bg-white h-100 min-vh-100 sticky-top overflow-auto d-none d-lg-block">
      <div class="card border-top-0 border-left-0 border-bottom-0 bg-transparent">
         <div class="card-body">
           <div class="icon-100 mx-auto my-3">

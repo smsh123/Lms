@@ -3,7 +3,7 @@
   @include('layouts.global_header')
   <div class="min-vh-100 container">
     <div class="row">
-      <div class="col-12 col-lg-4 d-lg-block">
+      <div class="col-12 col-lg-4 d-none d-lg-block">
         @include('layouts.profile_common')
       </div>
       <div class="col-12 col-lg-8">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Course;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -23,9 +25,32 @@ class ProfileController extends Controller
         ];
         return view ('profile.index',$data);
     }
-    public function courses(Request $request)
+    public function courses(Request $request,$id)
     {
-        return view ('profile.courses');
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $userId = !empty($user_details['_id']) ? $user_details['_id'] : '';
+            $subscriptions = Subscription::getSubscriptionsByUserId($userId);
+            if(!empty($subscriptions)){
+                foreach ($subscriptions as $key => $subscription){
+                    if(!empty($subscription['product_type']) && $subscription['product_type'] == 'course'){
+                        $course_id = !empty($subscription['product_id']) ? $subscription['product_id'] : ''; 
+                        $course_details = Course::find($course_id);
+                        $course_details = !empty($course_details) && is_object($course_details) ? $course_details->toArray() : $course_details; 
+                        $subscriptions[$key]['product_details'] = $course_details;
+                    }
+                }
+            }
+        }else{
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "subscriptions" => !empty($subscriptions) ? $subscriptions : []
+        ];
+        return view ('profile.courses',$data);
     }
     public function orders(Request $request)
     {

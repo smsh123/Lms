@@ -168,10 +168,16 @@
       .page_section_nav .active i{color:#fff !important;}
       a.nav-link{color:#333;}
       a.nav-link i{color:var(--theme_contrast_color) !important;}
-      .profile_info_card{margin-top:-150px;}
+      .profile_info_card{margin-top:-125px;}
       .profile_info_image{margin-top:-80px;}
     @media only screen and (max-width: 768px) {
+    .profile_info_image {
+      margin-top: -50px;
+      width: 75px !important;
+    }
+    .profile_info_card{margin-top:-40px; max-width:96% !important;}
     .module-header{display:block !important; opacity:1 !important;}
+    .profile_info_card .nav-link{font-size:14px;}
     .font-32{font-size:24px !important;} .font-22 {font-size:18px !important;}.font-16d-18m{font-size:18px !important; }
     .login_window{
         top: auto;

@@ -3,11 +3,9 @@
   @include('layouts.global_header')
   <div class="min-vh-100 container">
     <div class="row no-gutters">
-      <div class="col-12 col-lg-4 d-none d-lg-block">
+      <div class="col-12">
         @include('layouts.profile_common')
-      </div>
-      <div class="col-12 col-lg-8">
-        @include('layouts.profile_common_nav')
+        
          <h3 class="font-weight-bold font-22 text-center">My Courses</h3>
       </div>
     </div>

@@ -168,6 +168,8 @@
       .page_section_nav .active i{color:#fff !important;}
       a.nav-link{color:#333;}
       a.nav-link i{color:var(--theme_contrast_color) !important;}
+      .profile_info_card{margin-top:-150px;}
+      .profile_info_image{margin-top:-80px;}
     @media only screen and (max-width: 768px) {
     .module-header{display:block !important; opacity:1 !important;}
     .font-32{font-size:24px !important;} .font-22 {font-size:18px !important;}.font-16d-18m{font-size:18px !important; }

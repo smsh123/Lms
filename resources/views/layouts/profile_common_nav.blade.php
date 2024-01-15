@@ -7,7 +7,7 @@
   }
 @endphp
   @if ($isUserLoggedin && !empty($user_details))
-    <div class="page_section_nav bg-white sticky-top mt-3 mb-3 border border-top-0  border-right-0 border-left-0 overflow-auto" style="top:0px;">
+    <div class="page_section_nav bg-white sticky-top mt-3 mb-3 border-0 overflow-auto" style="top:0px;">
       <div class="container">
         <ul class="nav nav-pills nav-fill flex-nowrap">
             <li class="nav-item text-nowrap">

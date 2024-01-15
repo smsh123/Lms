@@ -170,6 +170,19 @@
       a.nav-link i{color:var(--theme_contrast_color) !important;}
       .profile_info_card{margin-top:-125px;}
       .profile_info_image{margin-top:-80px;}
+      .profile_option_link{position: relative; padding-right:20px;}
+      .profile_option_link::after{
+        content:"";
+        position:absolute;
+        height:16px;
+        width:16px;
+        border-top:3px solid #dadada;
+        border-right:3px solid #dadada;
+        top:50%;
+        margin-top:-8px;
+        right:10px;
+        transform: rotate(45deg);
+      }
     @media only screen and (max-width: 768px) {
     .profile_info_image {
       margin-top: -50px;

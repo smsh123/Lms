@@ -164,6 +164,27 @@
       .footer-m-nav{right:0px; left:0px;}
       .course-checkout-card{margin-top:-195px;}
       .main-feature-bar{margin-top:-45px;}
+      .page_section_nav::-webkit-scrollbar {
+        width: 2px;
+        height:2px;
+        opacity:0;
+      }
+      .page_section_nav::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0);
+        opacity:0;
+      }
+      
+      /* Handle */
+      page_section_nav::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0);
+        opacity:0;
+      }
+      
+      /* Handle on hover */
+      page_section_nav::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        opacity:0;
+      }
       .theme-tav-container .active,.page_section_nav .active {background-color: var(--theme_contrast_color) !important; border-color: var(--theme_contrast_color) !important;}
       .page_section_nav .active i{color:#fff !important;}
       a.nav-link{color:#333;}

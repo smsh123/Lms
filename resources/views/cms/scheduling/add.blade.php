@@ -44,7 +44,7 @@
             <p class="text-danger">{{ $errors->first('sub_module') }}</p>
           @endif
         </div>
-         <div class="col-lg-6">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Class Start Time</label>
           <input type="datetime-local" class="form-control" name="class_start_time" />
           @if ($errors->has('class_start_time'))
@@ -112,6 +112,23 @@
             <p class="text-danger">{{ $errors->first('class_type') }}</p>
           @endif
         </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Day No.</label>
+          <input type="text" class="form-control" name="day_count" placeholder="Day No." />
+          @if ($errors->has('day_count'))
+            <p class="text-danger">{{ $errors->first('day_count') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Duration</label>
+          <input type="text" class="form-control" name="duration" placeholder="Duration" />
+          @if ($errors->has('duration'))
+            <p class="text-danger">{{ $errors->first('duration') }}</p>
+          @endif
+        </div>
+
       </div>
       <div class="row form-group">
         <div class="col-12 text-center">

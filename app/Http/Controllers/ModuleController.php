@@ -72,6 +72,8 @@ class ModuleController extends Controller
         $module->name = $request->input('name');
         $module->slug = $request->input('slug');
         $module->status = $request->input('status');
+        $module->duration = $request->input('duration');
+        $module->teacher = $request->input('teacher');
         $module->items = $objects;
     
         $module->save();
@@ -103,6 +105,8 @@ class ModuleController extends Controller
         $module = Module::find($id);
         $module->name = $request->input('name');
         $module->status = $request->input('status');
+        $module->duration = $request->input('duration');
+        $module->teacher = $request->input('teacher');
         $module->items = $objects;
     
         $module->save();

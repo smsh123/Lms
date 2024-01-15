@@ -37,6 +37,22 @@
           </select>
         </div>
       </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Study Duration (In Days)</label>
+          <input type="number"  class="form-control" name="duration" value="{{ !empty($module['duration']) ? $module['duration'] : ''}}" placeholder="Duration" />
+          @if ($errors->has('duration'))
+            <p class="text-danger">{{ $errors->first('duration') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Teacher</label>
+          <input type="text" class="form-control" name="teacher" value="{{ !empty($module['teacher']) ? $module['teacher'] : ''}}" placeholder="Teacher Name"  />
+          @if ($errors->has('teacher'))
+            <p class="text-danger">{{ $errors->first('teacher') }}</p>
+          @endif
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="row form-group">

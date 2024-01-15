@@ -72,7 +72,7 @@
         </div>
          <div class="col-lg-6">
           <label class="font-weight-bold">Batch Start Date</label>
-          <input type="date" class="form-control" name="start_date" value="{{$course->start_date}}"/>
+          <input type="date" class="form-control" name="start_date" value="{{!empty($course->batch_start_date) ? date($course->batch_start_date) : ''}}"/>
         </div>
       </div>
       <div class="row form-group">

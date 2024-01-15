@@ -72,6 +72,8 @@ class SchedulingController extends Controller
         $schedule->video_type = $request->input('video_type');
         $schedule->study_material = $request->input('study_material');
         $schedule->class_type = $request->input('class_type');
+        $schedule->day_count = $request->input('day_count');
+        $schedule->duration = $request->input('duration');
         $schedule->save();
     
         return redirect()->route('schedule.index')->with('success', 'Schedule created successfully');
@@ -121,6 +123,8 @@ class SchedulingController extends Controller
         $schedule->video_type = $request->input('video_type');
         $schedule->study_material = $request->input('study_material');
         $schedule->class_type = $request->input('class_type');
+        $schedule->day_count = $request->input('day_count');
+        $schedule->duration = $request->input('duration');
         $schedule->save();
     
         return redirect()->route('schedule.index')->with('success', 'Schedule created successfully');

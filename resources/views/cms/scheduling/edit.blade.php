@@ -113,6 +113,23 @@
         </div>
       </div>
       <div class="row form-group">
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Day No.</label>
+          <input type="text" class="form-control" name="day_count" value="{{ !empty($schedule['day_count']) ? $schedule['day_count'] : ''}}" placeholder="Day No." />
+          @if ($errors->has('day_count'))
+            <p class="text-danger">{{ $errors->first('day_count') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Duration</label>
+          <input type="text" class="form-control" name="duration" value="{{ !empty($schedule['duration']) ? $schedule['duration'] : ''}}" placeholder="Duration" />
+          @if ($errors->has('duration'))
+            <p class="text-danger">{{ $errors->first('duration') }}</p>
+          @endif
+        </div>
+
+      </div>
+      <div class="row form-group">
         <div class="col-12 text-center">
           <input type="submit" class="btn btn-lg btn-primary" value="Submit" />
         </div>

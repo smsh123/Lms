@@ -129,7 +129,7 @@
  <div class="py-2 bg-theme">
   @if(!empty($footerImpLinks))
     <div class="text-center mb-2 d-flex justify-content-center flex-wrap align-items-stretch">
-      @foreach ($footerImpLinks as $key => $link )
+      @foreach ($footerImpLinks['items'] as $key => $link )
         <div class="align-self-center"><a href="{{ !empty($link['link']) ? $link['link'] : '' }}" class="card-link text-white">{{ !empty($link['title']) ? $link['title'] : '' }}</a></div>
       @endforeach
     </div>

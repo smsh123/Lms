@@ -29,10 +29,10 @@
               </div>
               {{-- </div> --}}
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 px-2 px-lg-1">
               <div class="tab-content module-container" id="v-pills-tabContent">
                 @foreach ($modules as $key => $module)
-                  <div class="tab-pane fade module-header {{ $key == 0 ? 'show active' : '' }}" id="tab_content_{{ $key }}" role="tabpanel" aria-labelledby="v-pills-home-tab_{{ $key }}">
+                  <div class="tab-pane px-0 fade module-header {{ $key == 0 ? 'show active' : '' }}" id="tab_content_{{ $key }}" role="tabpanel" aria-labelledby="v-pills-home-tab_{{ $key }}">
                     @if(!empty($module) && !empty($module['items']))
                       <div class="card">
                         <div class="card-header bg-theme-contrast text-white font-weight-bold">
@@ -41,13 +41,13 @@
                           @endphp
                           <p class="m-0">{{ !empty($module['name']) ? '('.$index.') '.$module['name'] : '' }}</p>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body px-1">
                           <ul class="list-group list-group-flush">
                             @foreach ($module['items'] as $submodule)
                               <li class="list-group-item">
                                 <div class="d-flex flex-nowrap justify-content-around align-items-stretch row">
-                                  <div class="flex-fill align-self-center col-10">{{ !empty($submodule['title']) ? $submodule['title'] : '' }}</div>
-                                  <div class="flex-fill align-self-center col-12 text-center"><span class="text-muted">{{ !empty($submodule['duration']) ? $submodule['duration'].' (Hrs)' : '' }}</span></div>
+                                  <div class="flex-fill align-self-center col-10 font-12">{{ !empty($submodule['title']) ? $submodule['title'] : '' }}</div>
+                                  <div class="flex-fill align-self-center col-12 text-center font-12"><span class="text-muted">{{ !empty($submodule['duration']) ? $submodule['duration'].' (Hrs)' : '' }}</span></div>
                                 </div>
                                 
                               </li>

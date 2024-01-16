@@ -49,6 +49,7 @@
           <td class="text-nowrap">
             {{-- <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a> --}}
             {{-- <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a> --}}
+            <a href="/cms/users/toggle-status/{{$user->id}}" class="mx-1 {{ !empty($user->is_public) && $user->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/users/permissions/{{$user->_id}}" class="mx-1" title="view roles and permission "><span data-feather="user-check"></span></a>
             <a href="/cms/users/edit/{{$user->_id}}" class="mx-1" title="Edit User Details"><span data-feather="edit"></span></a>
             <a href="/cms/users/delete/{{$user->_id}}" class="mx-1" title="Edit User Details"><span data-feather="trash"></span></a>

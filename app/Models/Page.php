@@ -16,5 +16,12 @@ class Page extends BaseModel
             return $result;
         }
     }   
+
+    public static function getActivePages() {
+
+        $result = self::where('is_public', 1)->get()->toArray();
+        return $result;
+
+    }
 }
 

@@ -61,8 +61,8 @@ class CategoryController extends Controller
     
         return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
-    public function listing(Request $request){
-        $categories = Category::all();
+    public function categories(Request $request){
+        $categories = Category::getActiveCategories();
         $data = [
             'categories' => !empty($categories) ? $categories : [],
             'meta_title'=>'Explore our highly optimized and personlised courses',

@@ -20,9 +20,15 @@ class Course extends BaseModel
     public static function getCourseByType($type) {
 
         if(!empty($type)){
-            $result = self::where('course_type',$type)->get()->toArray();
+            $result = self::where('course_type',$type)->where('is_public',1)->get()->toArray();
             return $result;
         }
+    }
+    public static function getActiveCourses() {
+
+        $result = self::where('is_public', 1)->get()->toArray();
+        return $result;
+
     }
 }
 

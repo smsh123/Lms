@@ -46,7 +46,7 @@
           <td>{{$category->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/categories/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/categories/toggle-status/{{$category->id}}" class="mx-1 {{ !empty($category->is_public) && $category->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/categories/edit/{{$category->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/categories/delete/{{$category->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

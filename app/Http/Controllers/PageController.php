@@ -52,6 +52,7 @@ class PageController extends Controller
         $page->description = $request->input('description');
         $page->synopsis = $request->input('synopsis');
         $page->author = $request->input('author');
+        $page->is_public = 0;
     
         $page->save();
     
@@ -59,7 +60,7 @@ class PageController extends Controller
     }
     public function listing(Request $request){
 
-        $pages = Page::all();
+        $pages = Page::getActivePages();
         $data=[
             "pages"=>!empty($pages) ? $pages : [] 
         ];
@@ -114,6 +115,24 @@ class PageController extends Controller
         $page->save();
     
         return redirect()->route('pages.index')->with('success', 'Page updated successfully');
+    }
+
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $page = Page::find($id);
+            $status = !empty($page->is_public) ? $page->is_public : 0 ;
+            if($status == 1){
+                $page->is_public = 0;
+                $page->save();
+                return redirect()->back()->with('success', 'Page unpublished successfully');
+            } elseif($status == 0){
+                $page->is_public = 1;
+                $page->save();
+                return redirect()->back()->with('success', 'Page published successfully');
+            }
+        }else{
+            abort(404);
+        }
     }
 
     public function destroy($id)

@@ -43,6 +43,7 @@ class UserController extends Controller
         $user->expertise = !empty($request->expertise) ? $request->expertise : '';
         $user->qualification = !empty($request->qualification) ? $request->qualification : '';
         $user->permissions = !empty($request->permissions) ? $request->permissions : [];
+        $user->is_public = 0;
         $user->save();
         return redirect()->back()->with('msg', 'User Registered Successfully!');
     }
@@ -184,6 +185,24 @@ class UserController extends Controller
         $user->permissions = $request->input('permissions', []);
         $user->save();
         return redirect('/cms/users')->with('msg', 'User Roles and Permissions Updated Successfully!');
+    }
+
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $user = User::find($id);
+            $status = !empty($user->is_public) ? $user->is_public : 1 ;
+            if($status == 1){
+                $user->is_public = 0;
+                $user->save();
+                return redirect()->back()->with('success', 'User unpublished successfully');
+            } elseif($status == 0){
+                $user->is_public = 1;
+                $user->save();
+                return redirect()->back()->with('success', 'User published successfully');
+            }
+        }else{
+            abort(404);
+        }
     }
 
     public function destroy($id)

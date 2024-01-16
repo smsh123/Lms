@@ -47,7 +47,7 @@ class User extends Authenticatable
     public static function getUserByRole($role = '')
     {
         if (!empty($role)) {
-            $result = self::where('roles', $role)->get()->toArray();
+            $result = self::where('roles', $role)->where('is_public',1)->get()->toArray();
             return $result;
         }
     }

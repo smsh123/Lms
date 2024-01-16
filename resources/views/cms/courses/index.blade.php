@@ -50,7 +50,7 @@
           <td>{{$course->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/courses/toggle-status/{{$course->id}}" class="mx-1 {{ !empty($course->is_public) && $course->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/courses/edit/{{$course->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/courses/delete/{{$course->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

@@ -89,14 +89,28 @@ class CourseController extends Controller
         $course->highlights = $request->input('highlights');
         $course->tools = $request->input('tools');
         $course->skills = $request->input('skills');
+        $course->is_public = 0;
     
         $course->save();
     
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
     public function listing(Request $request){
-        $courses = Course::all();
+        $courses = Course::getCourseByType('class');
         $data = [
+            'page_title' => 'Courses',
+            'courses' => !empty($courses) ? $courses : [],
+            'meta_title'=>'Explore our highly optimized and personlised courses',
+            'meta_keywords'=>'skills courses, smart classes, online classes, courses',
+            'meta_description'=>'Aryabhatt classes desing personlised courses that suits to every individuals. Lets explore our highly optimized and personlised courses to boost your career',
+            'page_type' => 'course-page' 
+        ];
+        return view('course.index',$data);
+    }
+    public function ebookListing(Request $request){
+        $courses = Course::getCourseByType('ebook');
+        $data = [
+            'page_title' => 'Ebooks',
             'courses' => !empty($courses) ? $courses : [],
             'meta_title'=>'Explore our highly optimized and personlised courses',
             'meta_keywords'=>'skills courses, smart classes, online classes, courses',
@@ -248,6 +262,24 @@ class CourseController extends Controller
         $course->save();
     
         return redirect()->route('courses.index')->with('success', 'Course updated successfully');
+    }
+
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $course = Course::find($id);
+            $status = !empty($course->is_public) ? $course->is_public : 0 ;
+            if($status == 1){
+                $course->is_public = 0;
+                $course->save();
+                return redirect()->back()->with('success', 'Course unpublished successfully');
+            } elseif($status == 0){
+                $course->is_public = 1;
+                $course->save();
+                return redirect()->back()->with('success', 'Course published successfully');
+            }
+        }else{
+            abort(404);
+        }
     }
 
     public function destroy($id)

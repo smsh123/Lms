@@ -11,8 +11,8 @@ use App\Models\Testimonial;
 class HomeController extends Controller
 {
     public function index(Request $request){
-        $blogs =  Blog::all();
-        $courses =  Course::all();
+        $blogs =  Blog::getActiveBlogs();
+        $courses =  Course::getCourseByType('class');
         $ebooks = Course::getCourseByType('ebook');
         $teachers = User::getUserByRole('Teacher');
         $successStories = Testimonial::getTestimonialByType('SV');

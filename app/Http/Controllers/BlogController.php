@@ -64,6 +64,7 @@ class BlogController extends Controller
         $blog->tags = !empty($request->input('tags')) ? explode(',',$request->input('tags')) : [];
         $blog->thumbnail_image = $request->input('thumbnail_image');
         $blog->banner_image = $request->input('banner_image');
+        $blog->is_public = 0;
     
         $blog->save();
     
@@ -71,7 +72,7 @@ class BlogController extends Controller
     }
     public function listing(Request $request){
 
-        $Blogs = Blog::all();
+        $Blogs = Blog::getActiveBlogs();
         $data = [
             'blogs' => !empty($Blogs) ? $Blogs : [],
             'meta_title'=>'Career oriented stories | Aryabhatt Classes',
@@ -153,6 +154,24 @@ class BlogController extends Controller
         $blog->save();
     
         return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
+    }
+
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $blog = Blog::find($id);
+            $status = !empty($blog->is_public) ? $blog->is_public : 0 ;
+            if($status == 1){
+                $blog->is_public = 0;
+                $blog->save();
+                return redirect()->back()->with('success', 'Blog unpublished successfully');
+            } elseif($status == 0){
+                $blog->is_public = 1;
+                $blog->save();
+                return redirect()->back()->with('success', 'Blog published successfully');
+            }
+        }else{
+            abort(404);
+        }
     }
 
     public function destroy($id)

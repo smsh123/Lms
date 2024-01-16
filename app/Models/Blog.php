@@ -16,5 +16,11 @@ class Blog extends BaseModel
             return $result;
         }
     }
+    public static function getActiveBlogs() {
+
+        $result = self::where('is_public', 1)->get()->toArray();
+        return $result;
+
+    }
 }
 

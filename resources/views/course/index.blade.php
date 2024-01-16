@@ -3,7 +3,7 @@
   @include('layouts.global_header')
   <div class="theme-contrast-gradient-container-bottom position-relative">
     <div class="container">
-      <h1 class="font-weight-bold font-32 text-center py-3">Our Featured Courses</h1>
+      <h1 class="font-weight-bold font-32 text-center py-3">Our Featured {{ !empty($page_title) ? $page_title : '' }}</h1>
       @if(!empty($courses))
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2">
          @foreach ($courses as $key => $course )

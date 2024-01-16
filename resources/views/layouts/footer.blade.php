@@ -3,6 +3,7 @@
     $footerCourses = getMenuBySlug('footer-courses');
     $footerStories = getMenuBySlug('footer-stories');
     $footerNav = getMenuBySlug('footer-nav');
+    $footerImpLinks = getMenuBySlug('footer-important-links');
     $isUserLoggedin = false;
     $isUserLoggedin = \Auth::user();
  @endphp
@@ -124,4 +125,14 @@
       @endif
     </div>
   </div>
+ </div>
+ <div class="py-2 bg-theme">
+  @if(!empty($footerImpLinks))
+    <div class="text-center mb-2 d-flex justify-content-center flex-wrap align-items-stretch">
+      @foreach ($footerImpLinks as $key => $link )
+        <div class="align-self-center"><a href="{{ !empty($link['link']) ? $link['link'] : '' }}" class="card-link text-white">{{ !empty($link['title']) ? $link['title'] : '' }}</a></div>
+      @endforeach
+    </div>
+  @endif
+    <p class="text-center text-white mb-0">&copy {{ !empty($brandDetails['name']) ? $brandDetails['name'] : 'Brand Name' }}{{ ' '.date('Y').'-'.date('Y')+1 }}</p>
  </div>

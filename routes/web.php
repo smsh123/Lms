@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 /* All front Url */
 
 Route::get('/', 'HomeController@index');
+Route::get('/contact-us', 'HomeController@contact');
 Route::post('/leads/store', 'LeadController@store');
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
@@ -24,7 +25,7 @@ Route::get('/profile/{id}', 'ProfileController@profile');
 Route::get('/edit-profile/{id}', 'ProfileController@editProfile');
 Route::get('/support/{id}', 'ProfileController@getSupport');
 Route::post('/profile/update', 'ProfileController@profileUpdate');
-Route::get('/courses/{id}', 'ProfileController@courses');
+Route::get('/my-courses/{id}', 'ProfileController@courses');
 Route::get('/orders/{id}', 'ProfileController@orders');
 Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');

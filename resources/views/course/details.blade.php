@@ -52,7 +52,7 @@
               <div class="card-body">
                 @if(!empty($CourseDescription['class_mode']))
                   <p class="mb-1">
-                    <span class="badge badge-warning text-white text-capitalize">{{ !empty($CourseDescription['class_mode']) ? str_replace('_',$CourseDescription['class_mode']) : '' }}</span>
+                    <span class="badge badge-warning text-white text-capitalize">{{ !empty($CourseDescription['class_mode']) ? str_replace('_',' ',$CourseDescription['class_mode']) : '' }}</span>
                   </p>
                 @endif
                 <h5 class="card-title">{{ !empty($CourseDescription['name']) ? $CourseDescription['name'] : '' }}</h5>

@@ -16,7 +16,7 @@
             </a>
           </li>
           <li class="nav-item text-nowrap">
-            <a class="nav-link @if(!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == '/courses/'.$user_details['_id']) active @endif" href="/courses/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}" >
+            <a class="nav-link @if(!empty($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == '/my-courses/'.$user_details['_id']) active @endif" href="/courses/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}" >
               <div class="icon-24 mx-auto"><i class="bi bi-journals font-22"></i></div>
               <span>My Courses</span>
             </a>

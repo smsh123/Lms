@@ -217,7 +217,7 @@
               </a>
             </li>
             <li class="py-3">
-              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/courses/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
+              <a  class="d-flex text-dark card-link font-22 justify-content-center" href="/my-courses/{{ !empty($user_details['_id']) ? $user_details['_id']  : '' }}">
                  <div class="menu-icon align-self-center">
                     <div class="icon-24 text-theme-contrast"><i class="bi bi-journals font-22"></i></div>
                   </div>

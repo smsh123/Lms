@@ -23,7 +23,8 @@
                                             <div class="icon-48 mb-2 mx-auto">
                                                 <i class="bi bi-telephone text-info font-32 "></i>
                                             </div>
-                                            <a href="tel:{{ !empty($brandDetails['phone']) ? '+91'.$brandDetails['phone'] : '-' }}" class="card-link stretched-link text-dark">{{ !empty($brandDetails['phone']) ? '+91'.$brandDetails['phone'] : '-' }}</a>
+                                            <a href="tel:{{ !empty($brandDetails['phone']) ? '+91'.$brandDetails['phone'] : '-' }}" class="card-link stretched-link text-dark"><span class="d-none d-md-block">{{ !empty($brandDetails['phone']) ? '+91'.$brandDetails['phone'] : '-' }}</span></a>
+                        
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +34,7 @@
                                             <div class="icon-48 mb-2 mx-auto">
                                                 <i class="bi bi-envelope-at text-warning font-32"></i>
                                             </div>
-                                            <a href="mailto:{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}" class="card-link stretched-link text-dark">{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}</a>
+                                            <a href="mailto:{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}" class="card-link stretched-link text-dark"><span class="d-none d-md-block">{{ !empty($brandDetails['email']) ? $brandDetails['email'] : '-' }}</span></a>
                                         </div>
                                     </div>
                                 </div>

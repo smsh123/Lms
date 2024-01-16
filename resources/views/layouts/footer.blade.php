@@ -130,7 +130,7 @@
   @if(!empty($footerImpLinks))
     <div class="text-center mb-2 d-flex justify-content-center flex-wrap align-items-stretch">
       @foreach ($footerImpLinks['items'] as $key => $link )
-        <div class="align-self-center">@if($key != 0) | @endif<a href="{{ !empty($link['link']) ? $link['link'] : '' }}" class="card-link text-white px-2">{{ !empty($link['title']) ? $link['title'] : '' }}</a></div>
+        <div class="align-self-center">@if($key != 0) <span class="text-white">|</span> @endif<a href="{{ !empty($link['link']) ? $link['link'] : '' }}" class="card-link text-white px-2">{{ !empty($link['title']) ? $link['title'] : '' }}</a></div>
       @endforeach
     </div>
   @endif

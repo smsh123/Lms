@@ -293,6 +293,9 @@
         $(".module-container .card-header").click(function(){
           $(this).parents('.module-header').addClass('active').siblings('.active').removeClass('active');
         });
+        $(".faq-container .question-box .card-header").click(function(){
+          $(this).parents('.question-box').addClass('active').siblings('.active').removeClass('active');
+        });
         
       });
     </script>

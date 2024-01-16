@@ -1,5 +1,5 @@
   @if(!empty($faqs))
-    <div class="container my-4" id="faqs">
+    <div class="container my-4 faq-container" id="faqs">
         <div class="card-header bg-transparent border-0">
           <h3 class="font-22 font-weight-bold mb-0"><span class="text-theme-contrast pr-2">FAQ</span>Frequently Asked Question</h3>
         </div>

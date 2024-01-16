@@ -12,7 +12,7 @@
           </div>
           
         </div>
-        <div class="card-body">
+        <div class="card-body px-2">
           <div class="row">
             <div class="col-md-3 d-none d-md-block">
               {{-- <div class="nav flex-column nav-pills border h-100" id="v-pills-tab" role="tablist" aria-orientation="vertical"> --}}
@@ -44,7 +44,7 @@
                         <div class="card-body px-1">
                           <ul class="list-group list-group-flush">
                             @foreach ($module['items'] as $submodule)
-                              <li class="list-group-item">
+                              <li class="list-group-item px-1">
                                 <div class="d-flex flex-nowrap justify-content-around align-items-stretch row">
                                   <div class="flex-fill align-self-center col-10 font-12">{{ !empty($submodule['title']) ? $submodule['title'] : '' }}</div>
                                   <div class="flex-fill align-self-center col-12 text-center font-12"><span class="text-muted">{{ !empty($submodule['duration']) ? $submodule['duration'].' (Hrs)' : '' }}</span></div>

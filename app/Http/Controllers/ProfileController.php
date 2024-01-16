@@ -70,8 +70,21 @@ class ProfileController extends Controller
         ];
         return view ('profile.orders',$data);
     }
-    public function reports(Request $request)
+    public function reports(Request $request, $id)
     {
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $user_id = !empty($user_details['_id']) ? $user_details['_id'] : '';
+            //$reports = Order::getOrderByUserId($user_id);
+        }else{
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "reports" => !empty($reports) ?  $reports : []
+        ];
         return view ('profile.reports');
     }
     public function editProfile(Request $request, $id)

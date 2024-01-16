@@ -26,12 +26,33 @@ class HomeController extends Controller
             'videoTestimonial' => !empty($videoTestimonial) ? $videoTestimonial : [] 
         ];
         return view('index', $data);
-   }
-   public function contact(Request $request){
-    $brandDetails = getBrandBySlug('aryabhatt-classes');
-    $data = [
-        'brandDetails' => !empty($brandDetails) ? $brandDetails : []
-    ];
-    return view('home.contact', $data);
-}
+    }
+    public function contact(Request $request){
+        $brandDetails = getBrandBySlug('aryabhatt-classes');
+        $data = [
+            'brandDetails' => !empty($brandDetails) ? $brandDetails : []
+        ];
+        return view('home.contact', $data);
+    }
+    public function about(Request $request){
+        $brandDetails = getBrandBySlug('aryabhatt-classes');
+        $data = [
+            'brandDetails' => !empty($brandDetails) ? $brandDetails : []
+        ];
+        return view('home.about', $data);
+    }
+    public function terms(Request $request){
+        $brandDetails = getBrandBySlug('aryabhatt-classes');
+        $data = [
+            'brandDetails' => !empty($brandDetails) ? $brandDetails : []
+        ];
+        return view('home.terms', $data);
+    }
+    public function privacy(Request $request){
+        $brandDetails = getBrandBySlug('aryabhatt-classes');
+        $data = [
+            'brandDetails' => !empty($brandDetails) ? $brandDetails : []
+        ];
+        return view('home.privacy', $data);
+    }
 }

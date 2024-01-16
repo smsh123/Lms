@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/contact-us', 'HomeController@contact');
 Route::get('/about-us', 'HomeController@about');
-Route::get('/term-and-conditions', 'HomeController@terms');
+Route::get('/terms-and-conditions', 'HomeController@terms');
 Route::get('/privacy-policy', 'HomeController@privacy');
 Route::post('/leads/store', 'LeadController@store');
 Route::post('register', 'AuthController@register');

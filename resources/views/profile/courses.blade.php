@@ -34,8 +34,8 @@
                   <p class="font-14 mb-1">{{ !empty($subscription['product_details']['name']) ? $subscription['product_details']['name'] : '' }}</p>
                   @if(!empty($subscription['expiry_date']) && $subscription['expiry_date'] > date("Y-m-d"))
                     <p class="font-12 text-muted mb-0">{{ !empty($subscription['expiry_date']) ? 'Valid Till - '.date_format(date_create($subscription['expiry_date']),'d M Y') : '' }}</p>
-                  @elseif(!empty($subscription['expiry_date']) && $subscription['expiry_date'] == date("Y-m-d"))
-                    <p class="font-12 text-warning mb-0">{{ !empty($subscription['expiry_date']) ? 'Expires on - '.date_format(date_create($subscription['expiry_date']),'d M Y') : '' }}</p>
+                  @elseif(!empty($subscription['expiry_date']) && $subscription['expiry_date'] > date("Y-m-d") && !empty($subscription['expiry_date']) && $subscription['expiry_date'] < date('Y-m-d',strtotime("+1 days")); date("Y-m-d") )
+                    <p class="font-12 text-warning mb-0">{{ !empty($subscription['expiry_date']) ? 'Expiring on - '.date_format(date_create($subscription['expiry_date']),'d M Y') : '' }}</p>
                   @else
                     <p class="font-12 text-danger mb-0">{{ !empty($subscription['expiry_date']) ? 'Expired on - '.date_format(date_create($subscription['expiry_date']),'d M Y') : '' }}</p>
                   @endif
@@ -53,7 +53,13 @@
         @endforeach
       </div>
     @else
-
+      <div class="card mw-768 mx-auto my-3">
+        <div class="card-body text-center">
+          <div class="card-text text-theme-contrast font-weight-bold font-22 mb-3">{{ !empty(\Auth::user()->name) ? 'Hi, '.\Auth::user()->name : 'Hi, Student' }}</div>
+          <p class="text-dark">It seems that you haven't suscribed any courses yet. You can lift up your skills with our featue courses.</p>
+          <p><a href="/course" class="btn-lg btn-theme-contrast">Explore Courses</a></p>
+        </div>
+      </div>
     @endif
   </div>
 @stop

@@ -34,7 +34,7 @@ Route::get('/my-courses/{id}', 'ProfileController@courses');
 Route::get('/orders/{id}', 'ProfileController@orders');
 Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/course', 'CourseController@listing');
-Route::get('/eboos', 'CourseController@ebookListing');
+Route::get('/ebooks', 'CourseController@ebookListing');
 Route::get('/course/{slug}', 'CourseController@courseDetails');
 Route::get('/blogs', 'BlogController@listing');
 Route::get('/tags/{tag}', 'TagController@index');

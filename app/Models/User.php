@@ -32,11 +32,9 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [
-            "clt" => "aryabhattclasses.com",
-            "sess" => $this->id,
-            "em" => $this->email ??  '',
-            "prms" => $this->permissions ?? []
-        ];;
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
     }
 
     public static function userHasDirectPermission($permission = "")

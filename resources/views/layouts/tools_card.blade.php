@@ -10,7 +10,7 @@
               <div class="col-lg-3 col-md-4 col-6 text-center">
                 <div class="card border-radius-10">
                   <div class="card-body p-2">
-                    <div class="icon-150 mx-auto">
+                    <div class="w-100 mx-auto">
                       <div class="ratio-image image_16-9 mb-2 bg-transparent">
                         <img src="{{ !empty($tool['thumbnail_image']) ? $tool['thumbnail_image'] : '/assets/image/default_thumb.jpeg'}}" alt="{{ !empty($tool['name']) ? $tool['name'] : ''}}" />
                       </div>

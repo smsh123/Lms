@@ -290,6 +290,9 @@
           $(this).parents('ul').find('.active').removeClass('active');
           $(this).addClass('active');
         });
+        $(".module-container .card-header").click(function(){
+          $(this).parents('.module-header').addClass('active').siblings('.active').removeClass('active');
+        });
         
       });
     </script>

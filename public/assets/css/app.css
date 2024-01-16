@@ -204,7 +204,10 @@
         right:10px;
         transform: rotate(45deg);
       }
+      
     @media only screen and (max-width: 768px) {
+    .module-container .card-body{display:none; transition:all 0.4s ease-in-out;}
+    .module-container .active .card-body{display:block; transition:all 0.4s ease-in-out;}
     .profile_info_image {
       margin-top: -50px;
       width: 75px !important;

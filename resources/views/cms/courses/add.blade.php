@@ -78,6 +78,22 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-6">
+          <label class="font-weight-bold">Intro Video Id</label>
+          <input type="text" class="form-control" name="intro_video" placeholder="Intro Video Id"  />
+          @if ($errors->has('intro_video'))
+            <p class="text-danger">{{ $errors->first('intro_video') }}</p>
+          @endif
+        </div>
+        <div class="col-lg-6">
+          <label class="font-weight-bold">Brochure</label>
+          <input type="text" class="form-control" name="brochure" placeholder="Brochure URL"  />
+          @if ($errors->has('brochure'))
+            <p class="text-danger">{{ $errors->first('brochure') }}</p>
+          @endif
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
           <label class="font-weight-bold">Course Duration (Days)</label>
           <input type="number" class="form-control" placeholder="Days" name="duration"  />
         </div>

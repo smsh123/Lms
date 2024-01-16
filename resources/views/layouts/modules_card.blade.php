@@ -4,7 +4,11 @@
         <div class="card-header bg-transparent border-0">
           <div class="row">
             <div class="col-12 col-md-8 text-lg-left text-center"><h3 class="font-22 font-weight-bold mb-3 mb-md-0"><span class="text-theme-contrast pr-2">Modules</span>We Will Learn</h3></div>
-            <div class="col-12 col-md-4 text-lg-right text-center"><a href="" class="btn btn-theme-contrast text-nowrap"><i class="bi bi-file-earmark-arrow-down mr-2"></i>Download Syllabus</a></div>
+            <div class="col-12 col-md-4 text-lg-right text-center">
+              @if(!empty($CourseDescription['brochure']))
+                <a href="{{ !empty($CourseDescription['brochure']) ? $CourseDescription['brochure'] : ''}}" target="_blank" class="btn btn-theme-contrast text-nowrap"><i class="bi bi-file-earmark-arrow-down mr-2"></i>Download Syllabus</a>
+              @endif
+            </div>
           </div>
           
         </div>
@@ -26,7 +30,7 @@
               {{-- </div> --}}
             </div>
             <div class="col-md-9">
-              <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-content module-container" id="v-pills-tabContent">
                 @foreach ($modules as $key => $module)
                   <div class="tab-pane fade module-header {{ $key == 0 ? 'show active' : '' }}" id="tab_content_{{ $key }}" role="tabpanel" aria-labelledby="v-pills-home-tab_{{ $key }}">
                     @if(!empty($module) && !empty($module['items']))

@@ -18,6 +18,14 @@ class Order extends BaseModel
 
         }
     }
+    public static function getOrderByUserId($user_id) {
+
+        if(!empty($user_id)){
+            $result = self::where('user_id',$user_id)->get()->toArray();
+            return $result;
+
+        }
+    }
 
 }
 

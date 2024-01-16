@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Subscription;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -52,9 +53,22 @@ class ProfileController extends Controller
         ];
         return view ('profile.courses',$data);
     }
-    public function orders(Request $request)
+    public function orders(Request $request, $id)
     {
-        return view ('profile.orders');
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $user_id = !empty($user_details['_id']) ? $user_details['_id'] : '';
+            $orders = Order::getOrderByUserId($user_id);
+        }else{
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "orders" => !empty($orders) ?  $orders : []
+        ];
+        return view ('profile.orders',$data);
     }
     public function reports(Request $request)
     {

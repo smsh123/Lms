@@ -25,8 +25,8 @@
       <div class="card mw-768 mx-auto my-3">
         <div class="card-body text-center">
           <div class="card-text text-theme-contrast font-weight-bold font-22 mb-3">{{ !empty(\Auth::user()->name) ? 'Hi, '.\Auth::user()->name : 'Hi, Student' }}</div>
-          <p class="text-dark">It seems that you haven't placed any order yet. Don't worry once you place any order will display here.</p>
-          <p><a href="/course" class="btn-lg btn-theme-contrast">Explore Courses</a></p>
+          <p class="text-dark">It seems that there are no reports we have to display. Don't worry once we have any reports need to know will update here..</p>
+          <p><a href="/course" class="btn-lg btn-theme-contrast">Start Learning</a></p>
         </div>
       </div>
     @endif

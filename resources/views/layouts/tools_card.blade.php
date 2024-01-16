@@ -5,10 +5,10 @@
           <h3 class="font-22 font-weight-bold mb-0"><span class="text-theme-contrast pr-2">Tools</span>We Will Learn</h3>
         </div>
         <div class="card-body">
-          <div class="row">
+          <div class="row d-flex justify-content-between align-items-stretch">
             @foreach ($tools as $key => $tool)
-              <div class="col-lg-3 col-md-4 col-6 text-center">
-                <div class="card border-radius-10">
+              <div class="col-lg-3 col-md-4 col-6 text-center align-self-stretch pb-2">
+                <div class="card border-radius-10 h-100">
                   <div class="card-body p-2">
                     <div class="w-100 mx-auto">
                       <div class="ratio-image image_16-9 mb-2 bg-transparent">

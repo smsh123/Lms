@@ -13,10 +13,12 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Hamcrest\Type\IsObject;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class AuthController extends Controller
 {
-    
+
     public function register(Request $request)
     {
         // dd($request->all());
@@ -25,7 +27,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'pwd' => 'required|min:8',
         ]);
-    
+
         $userAvatar = ""; //$this->createAvatar($request->name);    
         $user = new User();
         $user->name = $request->name;
@@ -37,9 +39,9 @@ class AuthController extends Controller
         $user->save();
 
         $user = User::where('email', $request->email)->first();
-        if(!empty($user)){
+        if (!empty($user)) {
             Auth::login($user);
-            return Redirect::to('/')->with('msg', 'Congratulations!'.Auth::user()->name.', Registered Successfully');
+            return Redirect::to('/')->with('msg', 'Congratulations!' . Auth::user()->name . ', Registered Successfully');
         }
         // return response()->json(['message' => 'Registration successful', 'user' => $user]);
         return Redirect::to('/')->with('msg', 'Congratulations! Registered Successfully');
@@ -53,24 +55,31 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('pwd')])) {
-           // return response()->json(['message' => 'Login successful', 'user' => Auth::user()]);
-           return Redirect::to('/')->with('msg', 'Welcome -'.Auth::user()->name);
+            $user = Auth::user();
+            $token = JWTAuth::fromUser($user);
+            // Store JWT token in a cookie
+            $minutes = env('TOKEN_EXP', 86400); // Token time-to-live
+            return Redirect::to('/')->withCookie(cookie()->make('login_token', $token, $minutes))->with('msg', 'Welcome - ' . $user->name);
+            // return response()->json(['message' => 'Login successful', 'user' => Auth::user()]);
+            // return Redirect::to('/')->with('msg', 'Welcome -' . Auth::user()->name);
         }
         return Redirect::to('/')->with('error', 'Login Failed');
     }
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
-        return Redirect::to('/')->with('msg', 'Log Out Successfully !');
+        return Redirect::to('/')->withCookie(cookie()->forget('login_token'))->with('msg', 'Log Out Successfully!');
+        // return Redirect::to('/')->with('msg', 'Log Out Successfully !');
     }
     public function createAvatar($name)
     {
         $words = explode(' ', $name);
-       // dd($words,$name);
+        // dd($words,$name);
         $initials = strtoupper(substr($words[0], 0, 1));
-       
+
 
         // Define a background color and text color for the avatar
-        $bgColor = '#'.substr(md5($name), 0, 6); // Use a unique color based on the name
+        $bgColor = '#' . substr(md5($name), 0, 6); // Use a unique color based on the name
         $textColor = '#ffffff'; // White text color
 
         // Create an image with the initials and colors
@@ -82,23 +91,24 @@ class AuthController extends Controller
 
         // Save the image to a file
         $name = str_replace(' ', '_', $name);
-        $avatarPath = '/assets/avatars/'.$name.'_avatar.png';
+        $avatarPath = '/assets/avatars/' . $name . '_avatar.png';
         imagepng($image, public_path($avatarPath));
         imagedestroy($image);
 
         return asset($avatarPath);
     }
 
-    public function validatePasswordRequest(Request $request){
+    public function validatePasswordRequest(Request $request)
+    {
         //$fuser = DB::table('users')->where('email', '=', $request->email)->first();
-        $user = User::where('email','=',$request->email)->first();
-        if(!empty($user)){
+        $user = User::where('email', '=', $request->email)->first();
+        if (!empty($user)) {
             $user = $user->toArray();
         }
         //Check if the user exists
-       // dd($user,$fuser);
+        // dd($user,$fuser);
         if (empty($user)) {
-            return redirect()->back()->with('error','User does not exist');
+            return redirect()->back()->with('error', 'User does not exist');
         }
 
         //Create Password Reset Token
@@ -110,21 +120,21 @@ class AuthController extends Controller
         PasswordResets::create([
             'email' => $request->email,
             'token' => Str::random(16),
-            'created_at' => Carbon::now() 
+            'created_at' => Carbon::now()
         ]);
         //Get the token just created above
-        $tokenData = PasswordResets::where('email','=',$request->email)->first();
+        $tokenData = PasswordResets::where('email', '=', $request->email)->first();
         //$tokenData = PasswordResets::where('email', $request->email)->first()->toArray();
-       
-        if(!empty($tokenData) || $tokenData == null){
+
+        if (!empty($tokenData) || $tokenData == null) {
             if ($this->sendResetEmail($request->email, $tokenData['token'])) {
-                $link = config('base_url') . '/reset/password/'.$tokenData['token'].'?email='.urlencode($request->email);
-                return redirect()->back()->with('msg_focus','A reset link has been sent to your email address.<a href="'.$link.'">Click Here</a>');
+                $link = config('base_url') . '/reset/password/' . $tokenData['token'] . '?email=' . urlencode($request->email);
+                return redirect()->back()->with('msg_focus', 'A reset link has been sent to your email address.<a href="' . $link . '">Click Here</a>');
             } else {
-                return redirect()->back()->with('error','A Network Error occurred. Please try again.');
+                return redirect()->back()->with('error', 'A Network Error occurred. Please try again.');
             }
-        } else{
-            return redirect()->back()->with('error','Token Not Found');
+        } else {
+            return redirect()->back()->with('error', 'Token Not Found');
         }
     }
     private function sendResetEmail($email, $token)
@@ -132,10 +142,10 @@ class AuthController extends Controller
         //Retrieve the user from the database
         $user = DB::table('users')->where('email', $email)->select('firstname', 'email')->first();
         //Generate, the password reset link. The token generated is embedded in the link
-        $link = '/reset/password/'.$token . '?email='.urlencode($user['email']);
+        $link = '/reset/password/' . $token . '?email=' . urlencode($user['email']);
 
         try {
-        //Here send the link with CURL with an external email API 
+            //Here send the link with CURL with an external email API 
             return true;
         } catch (\Exception $e) {
             return false;
@@ -147,23 +157,24 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'password' => 'required',
-            'token' => 'required' ]);
+            'token' => 'required'
+        ]);
 
         //check if payload is valid before moving on
         if ($validator->fails()) {
-            return redirect()->back()->with('error' , 'Please complete the form');
+            return redirect()->back()->with('error', 'Please complete the form');
         }
 
         $password = $request->password;
         // Validate the token
         $tokenData = DB::table('password_resets')
-        ->where('token', $request->token)->first();
+            ->where('token', $request->token)->first();
         // Redirect the user back to the password reset request form if the token is invalid
         if (!$tokenData)  return Redirect::to('/')->with('error', 'Token Expired !');
 
         $user = User::where('email', $tokenData['email'])->first();
         // Redirect the user back if the email is invalid
-        if (!$user) return redirect()->back()->width('error','Email not found');
+        if (!$user) return redirect()->back()->width('error', 'Email not found');
         //Hash and update the new password
         $user->password = Hash::make($password);
         $user->update(); //or $user->save();
@@ -173,20 +184,20 @@ class AuthController extends Controller
 
         //Delete the token
         DB::table('password_resets')->where('email', $user['email'])
-        ->delete();
+            ->delete();
 
         //Send Email Reset Success Email
         return Redirect::to('/')->with('msg', 'Password Reset Successfully !');
-
     }
-    public function resetPasswordForm(Request $request, $token){
+    public function resetPasswordForm(Request $request, $token)
+    {
         $userToken = trim($token);
         $email = $request->email;
         $token = $userToken;
-        $data=[
-            'user_email'=>!empty($email) ? $email : '',
-            'token'=>!empty($token) ? $token : ''
+        $data = [
+            'user_email' => !empty($email) ? $email : '',
+            'token' => !empty($token) ? $token : ''
         ];
-        return view('auth.reset_password',$data);
+        return view('auth.reset_password', $data);
     }
 }

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Course;
-use App\Models\CourseModuleMapping;
-use App\Models\Module;
-use App\Models\Category;
-use App\Models\Tool;
 use Socialite;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Exception;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class GoogleController extends Controller
 {
@@ -40,6 +38,12 @@ class GoogleController extends Controller
             if ($finduser) {
 
                 Auth::login($finduser);
+                $user = Auth::user();
+                $token = JWTAuth::fromUser($user);
+                // Store JWT token in a cookie
+                $minutes = env('TOKEN_EXP', 86400); // Token time-to-live
+                return Redirect::to('/')->withCookie(cookie()->make('login_token', $token, $minutes))->with('msg', 'Welcome - ' . $user->name);
+
 
                 return redirect('/');
             } else {
@@ -64,14 +68,19 @@ class GoogleController extends Controller
                 $user->google_id = $googleUser->id ?? '';
                 $user->permissions = [];
                 $user->save();
-                return redirect()->back()->with('msg', 'User Registered Successfully!');
+                // return redirect()->back()->with('msg', 'User Registered Successfully!');
 
                 Auth::login($user);
+                $user = Auth::user();
+                $token = JWTAuth::fromUser($user);
+                // Store JWT token in a cookie
+                $minutes = env('TOKEN_EXP', 86400); // Token time-to-live
+                return Redirect::to('/')->withCookie(cookie()->make('login_token', $token, $minutes))->with('msg', 'Welcome - ' . $user->name);
 
-                return redirect('/');
+                // return redirect('/');
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
+            dd("exception", $e->getMessage());
         }
     }
 }

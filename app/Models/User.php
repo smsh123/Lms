@@ -7,8 +7,9 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     protected $collection = 'users';
@@ -22,6 +23,21 @@ class User extends Authenticatable
         'user_type'
 
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->_id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            "clt" => "aryabhattclasses.com",
+            "sess" => $this->id,
+            "em" => $this->email ??  '',
+            "prms" => $this->permissions ?? []
+        ];;
+    }
 
     public static function userHasDirectPermission($permission = "")
     {
@@ -47,7 +63,7 @@ class User extends Authenticatable
     public static function getUserByRole($role = '')
     {
         if (!empty($role)) {
-            $result = self::where('roles', $role)->where('is_public',1)->get()->toArray();
+            $result = self::where('roles', $role)->where('is_public', 1)->get()->toArray();
             return $result;
         }
     }

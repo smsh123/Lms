@@ -16,7 +16,7 @@
                           @if(!empty($brandDetails))
                               <h3 class="font-22">{{ !empty($brandDetails['name']) ? $brandDetails['name'] : 'Brand Name' }}</h3>
                               <p>{{ !empty($brandDetails['address']) ? $brandDetails['address'] : 'Brand Address' }}</p>
-                              <div class="d-flex justify-content-center align-items-stretch my-3">
+                              <div class="d-flex justify-content-center flex-wrap align-items-stretch my-3">
                                 <div class="align-self-start">
                                     <div class="card border-radius-10 h100">
                                         <div class="card-body">

@@ -281,6 +281,23 @@
           $(this).hide();
         })
       }
+
+      function updateRatingEmogi(val){
+        var rating_val = val;
+        $("#emogi_icon").removeClass();
+        if(rating_val == 5){
+          $("#emogi_icon").addClass('bi bi-emoji-grin font-32 text-success');
+        }else if(rating_val == 4){
+          $("#emogi_icon").addClass('bi bi-emoji-smile font-32 text-info');
+        }else if(rating_val == 3){
+          $("#emogi_icon").addClass('bi bi-emoji-neutral font-32 text-primary');
+        }else if(rating_val == 2){
+          $("#emogi_icon").addClass('bbi bi-emoji-frown font-32 text-warning');
+        }else{
+          $("#emogi_icon").addClass('bi bi-emoji-angry font-32 text-danger');
+        }
+      }
+
       $(document).ready(function(){
         setTimeout(function(){autoDismissAlerts();},5000);
         if($('#sticky-bottom').length!==0){

@@ -206,6 +206,8 @@
       }
       .faq-container .question-box .card-body{display:none; transition:all 0.4s ease-in-out;}
       .faq-container .question-box.active .card-body{display:block; transition:all 0.4s ease-in-out;}
+      .chatbox-left::after{content: ""; position: absolute; height: 0px; width: 0px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 15px solid #d9f1ff; border-left: 10px solid transparent; left: -18px; bottom: 6px; transform: rotate(-35deg);}
+      .chatbox-right::after{content: ""; position: absolute; height: 0px; width: 0px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 15px solid #fdfbd9; border-right: 10px solid transparent; right: -18px; top: 0px; transform: rotate(-35deg);}
     @media only screen and (max-width: 768px) {
     
     .module-container .card-body{display:none; transition:all 0.4s ease-in-out;}

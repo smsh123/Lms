@@ -40,7 +40,7 @@
       <div class="row form-group">
         <div class="col-lg-6">
           <label class="font-weight-bold">Study Duration (In Days)</label>
-          <input type="number"  class="form-control" name="duration" value="{{ !empty($module['duration']) ? $module['duration'] : ''}}" placeholder="Duration" />
+          <input type="number"  class="form-control" name="duration" value="{{ !empty($module['duration']) ? $module['duration'] : 0}}" placeholder="Duration" />
           @if ($errors->has('duration'))
             <p class="text-danger">{{ $errors->first('duration') }}</p>
           @endif

@@ -62,6 +62,13 @@
         'page_group' => 'ticket'
     ],
     [
+        'label' => 'reviews',
+        'icon'=>'star',
+        'url' => '/cms/reviews',
+        'permission' => 'View Review',
+        'page_group' => 'review'
+    ],
+    [
         'label' => 'scheduling',
         'icon'=>'calendar',
         'url' => '/cms/schedule',

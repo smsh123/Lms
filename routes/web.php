@@ -30,6 +30,8 @@ Route::get('/profile/{id}', 'ProfileController@profile');
 Route::get('/edit-profile/{id}', 'ProfileController@editProfile');
 Route::get('/support/{id}', 'ProfileController@getSupport');
 Route::get('/support/view-ticket/{ticket_id}/{user_id}', 'ProfileController@viewTicket');
+Route::get('/write-review/{user_id}/{product_id}', 'ProfileController@writeReview');
+Route::post('/review/store', 'ProfileController@createReview');
 Route::post('/ticket/store', 'ProfileController@createTicket');
 Route::post('/reply/store', 'ProfileController@createReply');
 Route::post('/profile/update', 'ProfileController@profileUpdate');
@@ -217,4 +219,7 @@ Route::prefix('cms')->middleware(['internal'])->group(function () {
     Route::post('/tickets/update', 'TicketController@update')->name('tickets.update');
     Route::post('/tickets/store', 'TicketController@store')->name('tickets.store');
     Route::post('/reply/store', 'TicketController@createReply');
+    Route::get('/reviews', 'ReviewController@index')->name('reviews.index');
+    Route::get('/reviews/delete/{id}', 'ReviewController@destroy')->name('reviews.delete');
+    Route::get('/reviews/toggle-status/{id}', 'ReviewController@changeStatus');
 });

@@ -9,6 +9,7 @@ use App\Models\Subscription;
 use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Reply;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -173,6 +174,52 @@ class ProfileController extends Controller
         $reply->reply_type = $request->reply_type;
         $reply->save();
         return redirect()->back()->with('msg', 'Ticket Reply Sent Successfully!');
+    }
+
+    public function writeReview(Request $request,$user_id,$product_id)
+    {
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $product_details = Course::find($product_id);
+            
+        }else{
+            dd("User Not Authorised");
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "product_details" => !empty($product_details) && is_object($product_details) ? $product_details->toArray() : []
+           
+        ];
+        return view ('profile.review',$data);
+    }
+
+    public function createReview(Request $request)
+    {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'name' => 'required',
+            'mobile' => 'required',
+            'comment' => 'required',
+            'rating' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $review = new Review;
+        $review->user_id = $request->user_id;
+        $review->name = $request->name;
+        $review->mobile = $request->mobile;
+        $review->email = $request->email;
+        $review->comment = $request->comment;
+        $review->product = $request->product;
+        $review->rating = $request->rating;
+        $review->image = $request->image;
+        $review->is_public = 0;
+        
+        $review->save();
+        return redirect()->back()->with('msg', 'Review Submit Successfully!');
     }
     
     public function createTicket(Request $request)

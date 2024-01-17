@@ -55,6 +55,13 @@
         'page_group' => 'subscription'
     ],
     [
+        'label' => 'tickets',
+        'icon'=>'help-circle',
+        'url' => '/cms/tickets',
+        'permission' => 'View Ticket',
+        'page_group' => 'ticket'
+    ],
+    [
         'label' => 'scheduling',
         'icon'=>'calendar',
         'url' => '/cms/schedule',

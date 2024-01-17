@@ -160,22 +160,9 @@
               </div>
             </div>
           </form>
-          <div class="py-3">
-            {{-- <div id="g_id_onload"
-                  data-client_id="781813580899-2upmv3ck2s2fggkkaolqbf7r951ug9h6.apps.googleusercontent.com"
-                  data-login_uri="http://localhost:8000/auth/google"
-                  data-auto_prompt="false">
-              </div>
-              <div class="g_id_signin"
-                  data-type="standard"
-                  data-size="large"
-                  data-theme="outline"
-                  data-text="sign_in_with"
-                  data-shape="rectangular"
-                  data-logo_alignment="center">
-              </div> --}}
-              <a href="{{ url('auth/google') }}" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2 btn-google">
-                <strong>Login With Google</strong>
+          <div class="py-3 text-center">
+              <a href="{{ url('auth/google') }}" class="ml-2 btn rounded-pill btn-outline-primary">
+                <i class="bi bi-google align-middle mr-3 font-22"></i><span class="align-middle font-16 ">Login With Google</span>
               </a> 
           </div>
         </div>

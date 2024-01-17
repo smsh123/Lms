@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Subscription;
 use App\Models\Order;
+use App\Models\Ticket;
+use App\Models\Reply;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -101,9 +103,101 @@ class ProfileController extends Controller
         ];
         return view ('profile.edit',$data);
     }
-    public function getSupport(Request $request)
+    public function getSupport(Request $request,$id)
     {
-        return view ('profile.support');
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $userId = !empty($user_details['_id']) ? $user_details['_id'] : '';
+            $subscriptions = Subscription::getSubscriptionsByUserId($userId);
+            $tickets = Ticket::getTicketsByUserId($userId);
+            if(!empty($subscriptions)){
+                foreach ($subscriptions as $key => $subscription){
+                    if(!empty($subscription['product_type']) && $subscription['product_type'] == 'course'){
+                        $course_id = !empty($subscription['product_id']) ? $subscription['product_id'] : ''; 
+                        $course_details = Course::find($course_id);
+                        $course_details = !empty($course_details) && is_object($course_details) ? $course_details->toArray() : $course_details; 
+                        $subscriptions[$key]['product_details'] = $course_details;
+                    }
+                }
+            }
+        }else{
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "tickets" => !empty($tickets) ? $tickets : [],
+            "subscriptions" => !empty($subscriptions) ? $subscriptions : []
+        ];
+        return view ('profile.support',$data);
+    }
+
+    public function viewTicket(Request $request,$ticket_id,$user_id)
+    {
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+            $ticketDetails= Ticket::find($ticket_id);
+            $ticketReplies= Reply::getRepliesByTicketId($ticket_id);
+        }else{
+            dd("User Not Authorised");
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : [],
+            "ticketDetails" => !empty($ticketDetails) && is_object($ticketDetails) ? $ticketDetails->toArray() : [],
+            "ticketReplies" => !empty($ticketReplies) ? $ticketReplies : []
+        ];
+        return view ('profile.ticket_details',$data);
+    }
+
+    public function createReply(Request $request)
+    {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'name' => 'required',
+            'mobile' => 'required',
+            'comment' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $reply = new Reply;
+        $reply->ticket_id = $request->ticket_id;
+        $reply->user_id = $request->user_id;
+        $reply->name = $request->name;
+        $reply->mobile = $request->mobile;
+        $reply->email = $request->email;
+        $reply->comment = $request->comment;
+        $reply->reply_type = $request->reply_type;
+        $reply->save();
+        return redirect()->back()->with('msg', 'Ticket Reply Sent Successfully!');
+    }
+    
+    public function createTicket(Request $request)
+    {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'name' => 'required',
+            'mobile' => 'required',
+            'product' => 'required',
+            'comment' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $ticket = new Ticket;
+        $ticket->ticket_id = date('Y-m-d-h-s').generateRandomString();
+        $ticket->user_id = $request->user_id;
+        $ticket->name = $request->name;
+        $ticket->mobile = $request->mobile;
+        $ticket->email = $request->email;
+        $ticket->product = $request->product;
+        $ticket->comment = $request->comment;
+        $ticket->image = $request->image;
+        $ticket->status = !empty($request->status) ? $request->status : 'created';
+        $ticket->save();
+        return redirect()->back()->with('msg', 'Ticket Created Successfully!');
     }
     public function profileUpdate(Request $request)
     {

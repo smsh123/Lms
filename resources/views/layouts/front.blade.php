@@ -308,10 +308,10 @@
           $(this).addClass('active');
         });
         $(".module-container .card-header").click(function(){
-          $(this).parents('.module-header').addClass('active').siblings('.active').removeClass('active');
+          $(this).parents('.module-header')toggleClass('active');
         });
         $(".faq-container .question-box .card-header").click(function(){
-          $(this).parents('.question-box').addClass('active').siblings('.active').removeClass('active');
+          $(this).parents('.question-box').toggleClass('active');
         });
         
       });

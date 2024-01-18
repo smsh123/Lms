@@ -113,6 +113,24 @@ class MenuController extends Controller
         return redirect()->route('menus.index')->with('success', 'Menu Updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $menu = Menu::find($id);
+            $status = !empty($menu->is_public) ? $menu->is_public : 0 ;
+            if($status == 1){
+                $menu->is_public = 0;
+                $menu->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $menu->is_public = 1;
+                $menu->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Menu"])){

@@ -48,6 +48,24 @@ class BannerController extends Controller
         return view('cms.banners.add',$data);
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $banner = Banner::find($id);
+            $status = !empty($banner->is_public) ? $banner->is_public : 0 ;
+            if($status == 1){
+                $banner->is_public = 0;
+                $banner->save();
+                return redirect()->back()->with('success', 'Banner unpublished successfully');
+            } elseif($status == 0){
+                $banner->is_public = 1;
+                $banner->save();
+                return redirect()->back()->with('success', 'Banner published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Banner"])){

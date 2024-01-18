@@ -28,7 +28,7 @@
             <th>Type</th>
             <th>Live Start Date</th>
             <th>Live End Date</th>
-            {{-- <th>Action</th> --}}
+            <th>Action</th>
           </tr>
       </thead>
       <tbody>
@@ -40,11 +40,10 @@
           <td>{{$banner->banner_type}}</td>
           <td>{{$banner->live_from}}</td>
           <td>{{$banner->live_till}}</td>
-          {{-- <td class="text-nowrap">
-            <a href="/cms/courses/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
-            <a href="/cms/courses/edit" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
-            <a href="/cms/courses/delete" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
-          </td> --}}
+          <td class="text-nowrap">
+            <a href="/cms/banners/toggle-status/{{$banner->id}}" class="mx-1 {{ !empty($banner->is_public) && $banner->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/banners/delete/{{$banner->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
+          </td>
         </tr>
         @endforeach
       @else

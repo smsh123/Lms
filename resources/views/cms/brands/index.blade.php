@@ -47,7 +47,7 @@
           <td>{{$brand->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/brands/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/brands/toggle-status/{{$brand->id}}" class="mx-1 {{ !empty($brand->is_public) && $brand->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/brands/edit/{{$brand->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/brands/delete/{{$brand->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

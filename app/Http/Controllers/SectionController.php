@@ -118,6 +118,24 @@ class SectionController extends Controller
         return redirect()->route('sections.index')->with('success', 'Section Updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $section = Section::find($id);
+            $status = !empty($section->is_public) ? $section->is_public : 0 ;
+            if($status == 1){
+                $section->is_public = 0;
+                $section->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $section->is_public = 1;
+                $section->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Section"])){

@@ -38,7 +38,7 @@
           <td>{{$faq->created_at}}</td>
           <td>{{$faq->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/faq/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/faq/toggle-status/{{$faq->id}}" class="mx-1 {{ !empty($faq->is_public) && $faq->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/faq/edit/{{$faq->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/faq/delete/{{$faq->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

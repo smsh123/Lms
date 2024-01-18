@@ -51,7 +51,7 @@
           <td>{{$coupon->created_at}}</td>
           <td>{{$coupon->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/coupons/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/coupons/toggle-status/{{$coupon->id}}" class="mx-1 {{ !empty($coupon->is_public) && $coupon->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/coupons/edit/{{$coupon->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/coupons/delete/{{$coupon->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

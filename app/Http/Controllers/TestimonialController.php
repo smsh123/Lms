@@ -102,6 +102,24 @@ class TestimonialController extends Controller
         return redirect()->route('testimonial.index')->with('msg', 'Testimonial updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $testimonial = Testimonial::find($id);
+            $status = !empty($testimonial->is_public) ? $testimonial->is_public : 0 ;
+            if($status == 1){
+                $testimonial->is_public = 0;
+                $testimonial->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $testimonial->is_public = 1;
+                $testimonial->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Testimonial"])){

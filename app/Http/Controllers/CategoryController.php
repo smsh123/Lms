@@ -123,6 +123,24 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $category = Category::find($id);
+            $status = !empty($category->is_public) ? $category->is_public : 0 ;
+            if($status == 1){
+                $category->is_public = 0;
+                $category->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $category->is_public = 1;
+                $category->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Category"])){

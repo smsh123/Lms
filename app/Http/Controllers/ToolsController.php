@@ -90,6 +90,24 @@ class ToolsController extends Controller
         return redirect()->route('tools.index')->with('success', 'Tool updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $tool = Tool::find($id);
+            $status = !empty($tool->is_public) ? $tool->is_public : 0 ;
+            if($status == 1){
+                $tool->is_public = 0;
+                $tool->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $tool->is_public = 1;
+                $tool->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Tool"])){

@@ -12,7 +12,7 @@ class Page extends BaseModel
     public static function getPageBySlug($slug) {
 
         if(!empty($slug)){
-            $result = self::where('slug',$slug)->get()->toArray();
+            $result = self::where('slug',$slug)->where('is_public',1)->get()->toArray();
             return $result;
         }
     }   

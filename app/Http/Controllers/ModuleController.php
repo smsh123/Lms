@@ -114,6 +114,24 @@ class ModuleController extends Controller
         return redirect()->route('modules.index')->with('success', 'Module Updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $module = Module::find($id);
+            $status = !empty($module->is_public) ? $module->is_public : 0 ;
+            if($status == 1){
+                $module->is_public = 0;
+                $module->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $module->is_public = 1;
+                $module->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Module"])){

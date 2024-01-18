@@ -131,6 +131,24 @@ class BlockController extends Controller
         return redirect()->route('blocks.index')->with('success', 'Block Updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $block = Block::find($id);
+            $status = !empty($block->is_public) ? $block->is_public : 0 ;
+            if($status == 1){
+                $block->is_public = 0;
+                $block->save();
+                return redirect()->back()->with('success', 'Block unpublished successfully');
+            } elseif($status == 0){
+                $block->is_public = 1;
+                $block->save();
+                return redirect()->back()->with('success', 'Block published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Block"])){

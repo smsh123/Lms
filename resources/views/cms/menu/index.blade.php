@@ -42,7 +42,7 @@
           <td>{{$menu->created_at}}</td>
           <td>{{$menu->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/menus/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/menus/toggle-status/{{$menu->id}}" class="mx-1 {{ !empty($menu->is_public) && $menu->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/menus/edit/{{$menu->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/menus/delete/{{$menu->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

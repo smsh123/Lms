@@ -47,7 +47,7 @@
           <td>{{$tool->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/tools/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/tools/toggle-status/{{$tool->id}}" class="mx-1 {{ !empty($tool->is_public) && $tool->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/tools/edit/{{$tool->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/tools/delete/{{$tool->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

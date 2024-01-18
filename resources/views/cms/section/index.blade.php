@@ -46,7 +46,7 @@
           <td>{{$section->created_at}}</td>
           <td>{{$section->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/sections/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/sections/toggle-status/{{$section->id}}" class="mx-1 {{ !empty($section->is_public) && $section->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/sections/edit/{{$section->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/sections/delete/{{$section->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

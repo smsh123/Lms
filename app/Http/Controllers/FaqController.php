@@ -105,6 +105,24 @@ class FaqController extends Controller
         return redirect()->route('faq.index')->with('msg', 'Faq Updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $faq = Faq::find($id);
+            $status = !empty($faq->is_public) ? $faq->is_public : 0 ;
+            if($status == 1){
+                $faq->is_public = 0;
+                $faq->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $faq->is_public = 1;
+                $faq->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Faq"])){

@@ -110,6 +110,24 @@ class CouponController extends Controller
         return redirect()->route('coupons.index')->with('msg', 'Coupon updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $coupon = Coupon::find($id);
+            $status = !empty($coupon->is_public) ? $coupon->is_public : 0 ;
+            if($status == 1){
+                $coupon->is_public = 0;
+                $coupon->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $coupon->is_public = 1;
+                $coupon->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Coupon"])){

@@ -112,6 +112,24 @@ class BrandController extends Controller
         return redirect()->route('brands.index')->with('success', 'Brand updated successfully');
     }
 
+    public function changeStatus(Request $request, $id) {
+        if(!empty($id)){
+            $brand = Brand::find($id);
+            $status = !empty($brand->is_public) ? $brand->is_public : 0 ;
+            if($status == 1){
+                $brand->is_public = 0;
+                $brand->save();
+                return redirect()->back()->with('success', 'Unpublished successfully');
+            } elseif($status == 0){
+                $brand->is_public = 1;
+                $brand->save();
+                return redirect()->back()->with('success', 'Published successfully');
+            }
+        }else{
+            abort(404);
+        }
+    }
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Brand"])){

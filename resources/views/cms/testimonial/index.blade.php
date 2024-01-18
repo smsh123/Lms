@@ -53,7 +53,7 @@
           <td>{{$testimonial->updated_at}}</td>
           {{-- <td>vivek@aryabhattclasses.com</td> --}}
           <td class="text-nowrap">
-            <a href="/cms/testimonials/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/testimonials/toggle-status/{{$testimonial->id}}" class="mx-1 {{ !empty($testimonial->is_public) && $testimonial->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/testimonials/edit/{{$testimonial->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/testimonials/delete/{{$testimonial->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

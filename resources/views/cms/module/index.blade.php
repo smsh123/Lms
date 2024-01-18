@@ -42,7 +42,7 @@
           <td>{{$module->created_at}}</td>
           <td>{{$module->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/modules/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/modules/toggle-status/{{$module->id}}" class="mx-1 {{ !empty($module->is_public) && $module->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/modules/edit/{{$module->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/modules/delete/{{$module->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

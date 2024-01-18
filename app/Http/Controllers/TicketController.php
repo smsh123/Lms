@@ -122,6 +122,7 @@ class TicketController extends Controller
         return redirect()->back()->with('msg', 'Ticket Reply Sent Successfully!');
     }
 
+
     public function destroy($id)
     {
         if(!User::hasPermissions(["Delete Ticket"])){

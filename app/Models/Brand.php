@@ -13,7 +13,7 @@ class Brand extends BaseModel
     public static function getBrandsBySlug($slug) {
 
         if(!empty($slug)){
-            $result = self::where('slug',$slug)->get()->toArray();
+            $result = self::where('slug',$slug)->where('is_public',1)->get()->toArray();
             return $result;
         }
     }

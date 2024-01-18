@@ -43,7 +43,7 @@
           <td>{{$block->created_at}}</td>
           <td>{{$block->updated_at}}</td>
           <td class="text-nowrap">
-            <a href="/cms/blocks/view" class="mx-1" title="View"><span data-feather="eye"></span></a>
+            <a href="/cms/blocks/toggle-status/{{$block->id}}" class="mx-1 {{ !empty($block->is_public) && $block->is_public == 1 ? 'text-success' : 'text-danger' }}" title="View"><span data-feather="eye"></span></a>
             <a href="/cms/blocks/edit/{{$block->id}}" class="mx-1" title="Edit"><span data-feather="edit"></span></a>
             <a href="/cms/blocks/delete/{{$block->id}}" class="mx-1" title="Delete"><span data-feather="trash"></span></a>
           </td>

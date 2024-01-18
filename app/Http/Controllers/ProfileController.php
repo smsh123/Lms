@@ -11,6 +11,7 @@ use App\Models\Ticket;
 use App\Models\Reply;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -143,7 +144,7 @@ class ProfileController extends Controller
             $ticketDetails= Ticket::find($ticket_id);
             $ticketReplies= Reply::getRepliesByTicketId($ticket_id);
         }else{
-            dd("User Not Authorised");
+            
             abort(404);
         }
         $data = [
@@ -185,7 +186,7 @@ class ProfileController extends Controller
             $product_details = Course::find($product_id);
             
         }else{
-            dd("User Not Authorised");
+            
             abort(404);
         }
         $data = [
@@ -221,6 +222,40 @@ class ProfileController extends Controller
         $review->save();
         return redirect()->back()->with('msg', 'Review Submit Successfully!');
     }
+
+    public function settings(Request $request,$user_id)
+    {
+        $isUserLoggedin = false;
+        $isUserLoggedin = Auth::user();
+        if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
+            $user_details = getUserDetailsById($isUserLoggedin->_id);
+        }else{
+            
+            abort(404);
+        }
+        $data = [
+            "profile_details" => !empty($user_details) ? $user_details : []
+        ];
+        return view ('profile.settings',$data);
+    }
+
+    public function changeSettings(Request $request)
+    {
+
+        $id = $request->id;
+        $user = User::find($id);
+        $user->notification = $request->notification;
+        $user->emailers = $request->emailers;
+        $user->sms = $request->sms;
+        $user->promotional_call = $request->promotional_call;
+        $user->transactional_call = $request->transactional_call;
+        $user->offers = $request->offers;
+        
+        $user->save();
+        return redirect()->back()->with('msg', 'Settings Updated Successfully!');
+    }
+
+    
     
     public function createTicket(Request $request)
     {
@@ -298,4 +333,11 @@ class ProfileController extends Controller
         return asset($avatarPath);
     }
     
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return Redirect::to('/logout');
+        return redirect()->back()->with('msg', 'Profile Deleted Successfully!');
+    }
 }

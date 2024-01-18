@@ -15,6 +15,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="/edit-profile/{{ !empty($profile_details['_id']) ? $profile_details['_id'] : 'NA' }}" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-pencil-square font-22 align-middle mr-2 text-primary"></i>Edit Profile</a></li>
                 <li class="list-group-item"><a href="/support/{{ !empty($profile_details['_id']) ? $profile_details['_id'] : 'NA' }}" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-chat-left-quote font-22 align-middle mr-2 text-primary"></i>Support</a></li>
+                <li class="list-group-item"><a href="/settings/{{ !empty($profile_details['_id']) ? $profile_details['_id'] : 'NA' }}" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-sliders font-22 align-middle mr-2 text-primary"></i>Settings</a></li>
                 <li class="list-group-item"><a href="/logout" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-box-arrow-left font-22 align-middle mr-2 text-primary"></i>Sign Out</a></li>
               </ul>
             </div>

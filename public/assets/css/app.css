@@ -208,8 +208,53 @@
       .faq-container .question-box.active .card-body{display:block; transition:all 0.4s ease-in-out;}
       .chatbox-left::after{content: ""; position: absolute; height: 0px; width: 0px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 15px solid #d9f1ff; border-left: 10px solid transparent; left: -18px; bottom: 6px; transform: rotate(-35deg);}
       .chatbox-right::after{content: ""; position: absolute; height: 0px; width: 0px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 15px solid #fdfbd9; border-right: 10px solid transparent; right: -18px; top: 0px; transform: rotate(-35deg);}
+    .slider {
+      width: 100%;
+      margin: 50px auto;
+      -webkit-appearance: none;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      background-color: hsl(50, 100%, 50%);
+      background-image: linear-gradient(to right,rgb(180, 180, 180), green);
+    }
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 50px;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:100%;
+        border-radius: 50%;
+        background-color: hsl(50, 100%, 50%);
+        overflow: visible;
+        cursor: pointer;
+        position:relative;
+    }
+    .slider_1::-webkit-slider-thumb{
+        background-image:url(../image/emoji_1.png);
+    }
+    .slider_2::-webkit-slider-thumb{
+        background-image:url(../image/emoji_2.png);
+    }
+    .slider_3::-webkit-slider-thumb{
+        background-image:url(../image/emoji_3.png);
+    }
+    .slider_4::-webkit-slider-thumb{
+        background-image:url(../image/emoji_4.png);
+    }
+    .slider_5::-webkit-slider-thumb{
+        background-image:url(../image/emoji_5.png);
+    }
+    .slidecontainer {
+        transform: translateY(-10px);
+    }
     @media only screen and (max-width: 768px) {
-    
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 30px;
+        height: 30px;
+      }
     .module-container .card-body{display:none; transition:all 0.4s ease-in-out;}
     .module-container .active .card-body{display:block; transition:all 0.4s ease-in-out;}
     .profile_info_image {

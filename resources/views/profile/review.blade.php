@@ -42,11 +42,10 @@
           <form method="post" action="/review/store">
             @csrf
             <input type="hidden" value="{{ !empty($profile_details['_id']) ? $profile_details['_id'] : ''}}" name="user_id" />
-            <div class="form-group">
-              <label>Rating</label>
-              <input type="range" class="form-control-range" name="rating" min="1" max="5" value="4" step="1" onchange="updateRatingEmogi(this.value,'emogi_icon');" />
-              <div class="icon-200 mx-auto my-2 text-center">
-                <i id="emogi_icon" class="bi bi-emoji-smile font-32 text-info"></i>
+            <div class="form-group text-center">
+              <label class="font-weight-bold text-success">How Much Happy You Are?</label>
+              <div class="py-3">
+                <input type="range" class="slider slider_4" name="rating" min="1" max="5" value="4" step="1" onchange="updateRatingEmogi(this,this.value);" />
               </div>
               @if ($errors->has('rating'))
                 <p class="text-danger">{{ $errors->first('rating') }}</p>

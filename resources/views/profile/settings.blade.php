@@ -44,37 +44,37 @@
             <ul class="list-group mb-3">
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="notification" id="switch1">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['notification']) && $profile_details['notification'] == 'on' ? 'checked'  : ''}} name="notification" id="switch1">
                   <label class="custom-control-label" for="switch1">Push Notifications</label>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="emailers" id="switch2">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['emailers']) && $profile_details['emailers'] == 'on' ? 'checked'  : ''}}  name="emailers" id="switch2">
                   <label class="custom-control-label" for="switch2">Promotional Emailers</label>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="sms" id="switch3">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['sms']) && $profile_details['sms'] == 'on' ? 'checked'  : ''}}  name="sms" id="switch3">
                   <label class="custom-control-label" for="switch3">Receive Massages</label>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="promotional_call" id="switch4">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['promotional_call']) && $profile_details['promotional_call'] == 'on' ? 'checked'  : ''}} name="promotional_call" id="switch4">
                   <label class="custom-control-label" for="switch4">Receive Promotional Call</label>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="transactional_call" id="switch5">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['transactional_call']) && $profile_details['transactional_call'] == 'on' ? 'checked'  : ''}} name="transactional_call" id="switch5">
                   <label class="custom-control-label" for="switch5">Receive Transactional Call</label>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="offers" id="switch6">
+                  <input type="checkbox" class="custom-control-input" {{ !empty($profile_details['offers']) && $profile_details['offers'] == 'on' ? 'checked'  : ''}} name="offers" id="switch6">
                   <label class="custom-control-label" for="switch6">Receive Offers</label>
                 </div>
               </li>

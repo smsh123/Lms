@@ -56,6 +56,9 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('pwd')])) {
             $user = Auth::user();
+            if(!empty($user) && $user['is_public'] ==0){
+                return Redirect::to('/logout')->with('error', 'Login Failed! Profile Deleted');;
+            }
             $token = JWTAuth::fromUser($user);
             // Store JWT token in a cookie
             $minutes = env('TOKEN_EXP', 86400); // Token time-to-live
@@ -67,8 +70,14 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
-        return Redirect::to('/')->withCookie(cookie()->forget('login_token'))->with('msg', 'Log Out Successfully!');
+        $user = Auth::user();
+        if(!empty($user) && $user['is_public'] ==0){
+            Auth::logout();
+            return Redirect::to('/')->withCookie(cookie()->forget('login_token'))->with('error', 'Login Failed! Profile Not Exists');
+        }else{
+            Auth::logout();
+            return Redirect::to('/')->withCookie(cookie()->forget('login_token'))->with('msg', 'Log Out Successfully!');
+        }
         // return Redirect::to('/')->with('msg', 'Log Out Successfully !');
     }
     public function createAvatar($name)

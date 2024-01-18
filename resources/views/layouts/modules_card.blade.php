@@ -42,17 +42,27 @@
                           <p class="m-0">{{ !empty($module['name']) ? '('.$index.') '.$module['name'] : '' }}</p>
                         </div>
                         <div class="card-body px-1">
+                        @if(!empty($module['items']))
                           <ul class="list-group list-group-flush">
                             @foreach ($module['items'] as $submodule)
                               <li class="list-group-item px-1">
                                 <div class="d-flex flex-nowrap justify-content-around align-items-stretch row">
                                   <div class="flex-fill align-self-center col-10 font-12">{{ !empty($submodule['title']) ? $submodule['title'] : '' }}</div>
-                                  <div class="flex-fill align-self-center col-12 text-center font-12"><span class="text-muted">{{ !empty($submodule['duration']) ? $submodule['duration'].' (Hrs)' : '' }}</span></div>
+                                  <div class="flex-fill align-self-center col-2 text-center font-12"><span class="text-muted">{{ !empty($submodule['duration']) ? $submodule['duration'].' (Hrs)' : '' }}</span></div>
                                 </div>
                                 
                               </li>
                             @endforeach
                           </ul>
+                        @else
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item px-1">
+                              <div class="d-flex flex-nowrap justify-content-around align-items-stretch row">
+                                <div class="flex-fill align-self-center col-12 font-12">{{ !empty($module['name']) ? '('.$index.') '.$module['name'] : '' }}</div>
+                              </div>
+                            </li>
+                          </ul>
+                        @endif
                         </div>
                       </div>
                     @endif

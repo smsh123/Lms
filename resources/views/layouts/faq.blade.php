@@ -5,9 +5,6 @@
         </div>
         @foreach ($faqs as $key => $faq )
           <div class="card border-0">
-            {{-- <div class="card-header bg-transparent border-0">
-              <h3 class="font-16 font-weight-bold mb-1">{{ !empty($faq['name']) ? $faq['name'] : '' }}</h3>
-            </div> --}}
             <div class="card-body py-0 px-2">
                 @foreach ($faq['items'] as $key_faq => $faqItem)
                   <div class="card mb-1 question-box" id="question_box_{{ $key_faq }}">

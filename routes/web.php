@@ -40,7 +40,7 @@ Route::get('/orders/{id}', 'ProfileController@orders');
 Route::get('/reports/{id}', 'ProfileController@reports');
 Route::get('/settings/{id}', 'ProfileController@settings');
 Route::post('/settings/set', 'ProfileController@changeSettings');
-Route::post('/profile/delete/{id}', 'ProfileController@delete');
+Route::get('/profile/delete/{id}', 'ProfileController@delete');
 Route::get('/course', 'CourseController@listing');
 Route::get('/ebooks', 'CourseController@ebookListing');
 Route::get('/course/{slug}', 'CourseController@courseDetails');

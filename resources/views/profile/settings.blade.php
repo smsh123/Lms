@@ -36,13 +36,12 @@
       </div>
     @endif
     @if(!empty($profile_details))
-      <div class="card mw-768 mx-auto mb-3">
-        <div class="card-header"><h3 class="font-22 font-weight-bold mb-0">Write Review</h3></div>
-        <div class="card-body">
+      <div class="card mw-768 mx-auto my-3">
+        <div class="card-body p-0">
           <form method="post" action="/settings/set">
             @csrf
-            <input type="hidden" value="{{ !empty($profile_details['_id']) ? $profile_details['_id'] : ''}}" name="user_id" />
-            <ul class="list-group">
+            <input type="hidden" value="{{ !empty($profile_details['_id']) ? $profile_details['_id'] : ''}}" name="id" />
+            <ul class="list-group mb-3">
               <li class="list-group-item">
                 <div class="custom-control custom-switch">
                   <input type="checkbox" class="custom-control-input" name="notification" id="switch1">
@@ -86,7 +85,7 @@
           </form>
           <ul class="list-group">
             <li class="list-group-item">
-              <a href="/profile/delete/{{ !empty($profile_details['_id']) ? $profile_details['_id'] : ''}}" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-person-x-fill font-22 align-middle mr-2 text-primary"></i>Delete</a>
+              <a href="/profile/delete/{{ !empty($profile_details['_id']) ? $profile_details['_id'] : ''}}" class="card-link text-primary d-block w-100 profile_option_link"><i class="bi bi-person-x-fill font-22 align-middle mr-2 text-primary"></i>Delete Profile</a>
             </li>
           </ul>
         </div>

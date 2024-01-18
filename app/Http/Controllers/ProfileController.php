@@ -22,6 +22,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
         }else{
             abort(404);
         }
@@ -36,6 +39,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             $userId = !empty($user_details['_id']) ? $user_details['_id'] : '';
             $subscriptions = Subscription::getSubscriptionsByUserId($userId);
             if(!empty($subscriptions)){
@@ -63,6 +69,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             $user_id = !empty($user_details['_id']) ? $user_details['_id'] : '';
             $orders = Order::getOrderByUserId($user_id);
         }else{
@@ -81,6 +90,9 @@ class ProfileController extends Controller
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
             $user_id = !empty($user_details['_id']) ? $user_details['_id'] : '';
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             //$reports = Order::getOrderByUserId($user_id);
         }else{
             abort(404);
@@ -97,6 +109,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
         }else{
             abort(404);
         }
@@ -111,6 +126,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             $userId = !empty($user_details['_id']) ? $user_details['_id'] : '';
             $subscriptions = Subscription::getSubscriptionsByUserId($userId);
             $tickets = Ticket::getTicketsByUserId($userId);
@@ -141,6 +159,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             $ticketDetails= Ticket::find($ticket_id);
             $ticketReplies= Reply::getRepliesByTicketId($ticket_id);
         }else{
@@ -183,6 +204,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
             $product_details = Course::find($product_id);
             
         }else{
@@ -229,6 +253,9 @@ class ProfileController extends Controller
         $isUserLoggedin = Auth::user();
         if($isUserLoggedin && $user_id == $isUserLoggedin->_id){
             $user_details = getUserDetailsById($isUserLoggedin->_id);
+            if(!empty($user_details) && $user_details['is_public'] ==0){
+                return redirect()->back()->with('error', 'Profile Deleted!');
+            }
         }else{
             
             abort(404);
@@ -336,7 +363,11 @@ class ProfileController extends Controller
     public function delete($id)
     {
         $user = User::find($id);
-        $user->delete();
+        if(!empty($user) && $user['is_public'] ==0){
+            return redirect()->back()->with('error', 'Profile Already Deleted!');
+        }
+        $user->is_public = 0;
+        $user->save();
         return Redirect::to('/logout');
         return redirect()->back()->with('msg', 'Profile Deleted Successfully!');
     }
